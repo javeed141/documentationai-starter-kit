@@ -1,0 +1,234 @@
+---
+title: Constructing Business Queries
+---
+
+The Datafiniti API lets you build out a wide variety of search queries so you can get the exact data you want.
+
+## Querying a single field
+
+The simplest query you can do is querying a single field.  Here's an example:
+
+```json
+{
+	"query": "city:Austin"
+}
+```
+
+This tells the API to search the business database for any business that has the value `Austin` in its `city` field.
+
+You can do similar queries on any of the fields in the [business schema](https://java.documentationai.com/docs/business-data-schema).  Here's an example that queries the `name` field:
+
+```json
+{
+	"query": "name:mechanic"
+}
+```
+
+## Querying multiple fields
+
+You can run more complicated queries by combining fields with various boolean operators (e.g., `AND` `OR`).  For example:
+
+```json
+{
+	"query": "categories:hotels AND city:Austin"
+}
+```
+
+This returns any businesses that are categorized as hotels and are in the city of Austin.
+
+You can use the `OR` operator to run broader queries.  For example:
+
+```json
+{
+	"query": "categories:hotels OR categories:restaurants"
+}
+```
+
+That's not all though.  We can group fields and operators with parentheses to do some really fancy stuff:
+
+```json
+{
+	"query": "(categories:hotels OR categories:restaurants) AND city:Austin"
+}
+```
+
+## Querying multiple values
+
+If you want to query multiple values within the same field, there is a simple way to do this.  For example:
+
+```json
+{
+	"query": "categories:(hotels OR restaurants OR bars)"
+}
+```
+
+This returns any businesses matching any of the above categories.  This is much simpler than:
+
+```json
+{
+	"query": "categories:hotels OR categories:restaurants OR categories:bars"
+}
+```
+
+## Wildcards
+
+You can use `*` to query a field for any value, like this:
+
+```json
+{
+	"query": "phones:*"
+}
+```
+
+This will return any businesses that have an associated phone number.  This is helpful if we want to make sure any businesses we get back are guaranteed to have certain fields filed out.
+
+Wildcards can do more though.  You can also append `*` to the value we're searching on to broaden its potential matches.  For example:
+
+```json
+{
+	"query": "categories:invest*"
+}
+```
+
+This will return businesses with any of the following in their `categories` field: `invest`, `investor`, `investment`, `investing`, and so on.
+
+## Querying sub-fields
+
+Several fields in our schema have sub-fields.  For example, `reviews` has sub-fields like `date`, `rating`, and others.  Everything you can do to query fields, you can also do to query sub-fields.  For example:
+
+```json
+{
+	"query": "reviews.rating:3"
+}
+```
+
+will return all businesses that have a review with a 3-star rating.
+
+It's important to note here that querying on sub-fields will not only return sub-objects that match your query.  The entire field will be returned.
+
+For instance, if a business look likes this:
+
+\{
+  "name": "example business",
+  "reviews:": [
+    \{
+      "rating": 3
+    \},
+    \{
+      "rating": 4
+    \}
+  ]
+\}
+
+then you'll see both `rating` values in your data, even if you do `"query": "reviews.rating:3"`.
+
+## Compound Queries on sub-fields
+
+Along with querying individual sub-fields, you can also query for sub-objects that have multiple fields that meet specific requirements. For example, you can find all businesses where at least one reviewer was from Austin and gave the business a five star rating.
+
+```text
+{
+   "query":"{ reviews.rating:5 AND reviews.userProvince:Austin }",
+    "num_records":10
+}
+```
+
+The key thing to note for these queries is that any sub-field requirements that you want to match within a single sub-object must be contained within curly brackets **"\{ \}"**
+
+## Range queries
+
+Any fields that are dates, integers, or doubles will let you search them based on a range.
+
+```json
+{
+	"query": "dateAdded:[2017-01-01 TO 2017-02-01]"
+}
+```
+
+will return all businesses that have been added to the database between Jan 1, 2017 and Feb 2, 2017.
+
+You can do unbounded range queries as well, like:
+
+```json
+{
+	"query": "dateAdded:[2017-01-01 TO *]"
+}
+```
+
+This will return all businesses have been added since Jan 1, 2017 until the current date.
+
+You can also use comparison operators like `>`, `>=`, `<=`, and `<`.  These are helpful when you want to search for products that are cheaper or more expensive than certain limits.  E.g.:
+
+```json
+{
+	"query": "reviews.rating:>3"
+}
+```
+
+returns all businesses that have reviews greater than 3.
+
+## Excluding values
+
+For some searches, you'll want to exclude certain values from returning.  For example, let's say you wanted to find all restaurants, except for fast food locations.  You would use the `-` operator to negate `fast food` values:
+
+```json
+{
+	"query": "categories:restaurants AND -categories\"fast food\""
+}
+```
+
+## Geo Queries
+
+You can also use the API to do queries based around latitude and longitude values. For example, if you would like to find all businesses within 10 miles of a specific point in Austin, Texas you could use the following query.
+
+```json
+{
+    "query":"geoLocation:[-97.7430600,30.2671500,10,mi]"
+}
+```
+
+The format for the parameter values is: [ Longitude, Latitude, Distance, Distance Unit ]
+
+You can also use the following units for measuring distance:
+
+**m** - meters\
+**mi** - miles\
+**ft** - feet\
+**in** - yards\
+**mm** - millimeters\
+**km** - kilometers\
+**NM** - nautical miles\
+**cm** - centimeters
+
+## Count Feature
+
+As an alternative or used for testing purposes you can set your `num_records` to 0 in your business search query. This is will only return the `num_found` of the query and will cost 0 credits to search. Try it out
+
+```json
+{
+  "query": "country:US",
+  "num_records":0
+}
+```
+
+<Callout kind="info">
+  **Count Feature**
+
+Please note that this is feature is only for paid accounts. So please check your account plan or contact `<support@datafinti.co.>`
+</Callout>
+
+## Paging Over Results
+
+As an alternative to running a download, you can also use the API to page through the data. This approach allows you to consume one chunk at a time.
+
+```text
+POST https://api.datafiniti.co/v4/products/paginate?page=1&limit=50
+{
+  "query": "keys:*"
+}
+```
+
+The pagination endpoint uses the following parameters:
+
+* **page** - You specify which chunk of data you would like to access. You can iterate the page to work your way through all of the results. You cannot paginate further than the 10,000th record.
+* **limit** - This specifies the number of results you want returned within the page. The maximum number of results that can be returned per page is 1,000.

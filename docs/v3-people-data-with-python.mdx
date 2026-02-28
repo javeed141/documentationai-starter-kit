@@ -1,0 +1,355 @@
+---
+title: People Data with Python
+---
+
+For this guide, we're going to assume the following that you're interested in using Datafiniti's people data to develop a sales campaign.  Let's say you're a growth marketer that's been tasked with the following:
+
+1. Collect email addresses of CEOs.
+2. Refine that list to a specific geographic region.
+
+**Your environment and data needs:**
+
+1. You're working with Python.
+2. You want to work with CSV or JSON data.
+
+Here are the steps we'll take:
+
+<Callout kind="alert">
+  **Python version assessment**
+
+Note that we are using Python 3 for the examples below.
+</Callout>
+
+### 1. Install the requests module for Python
+
+In your terminal, run the following to install the `requests` module for Python:
+
+```shell
+pip3 install requests
+```
+
+### 2. Get your API token
+
+The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
+
+To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co/settings), log in, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+
+<Callout kind="info">
+  **API Key**
+
+For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
+</Callout>
+
+<Callout kind="alert">
+  **API Key Regen**
+
+For security reasons, your API token will be automatically changed whenever you change your password.
+</Callout>
+
+### 3. Run your first search
+
+The first thing we'll do is perform a test search that will give us a sense of what sort of data might be available.  Eventually we'll refine our search so that we get back the most relevant data.
+
+Since we want CEOs, let's try a simple search that will just give us people with that title.
+
+Write the following code in your code editor (replace the dummy API token with your real API token):
+
+```python
+import requests
+import urllib.parse
+import json
+
+## Set your API parameters here.
+API_token = 'AAAXXXXXXXXXXXX'
+#format = 'CSV'
+format = 'JSON'
+query = 'jobTitle:CEO'
+num_records = 1
+download = False
+
+request_headers = {
+	'Authorization': 'Bearer ' + API_token,
+	'Content-Type': 'application/json',
+}
+request_data = {
+    'query': query,
+    'format': format,
+    'num_records': num_records,
+    'download': download
+}
+
+## Make the API call.
+r = requests.post('https://api.datafiniti.co/v4/people/search',json=request_data,headers=request_headers);
+
+## Do something with the response.
+if r.status_code == 200:
+	print(r.content)
+else:
+	print('Request failed')
+```
+
+You should get a response similar to this:
+
+```json
+{
+    "num_found": 357,
+    "total_cost": 1,
+    "records": [
+        {
+            "address": "9855 Melbourne Ave",
+            "businessName": "MICHIGAN MARKETING EXTREME LLC",
+            "city": "Allen Park",
+            "country": "US",
+            "dateAdded": "2018-02-20T00:33:45Z",
+            "dateUpdated": "2018-02-20T00:33:45Z",
+            "emails": [
+                "billmey@michiganmarketingextreme.com"
+            ],
+            "firstName": "Bill",
+            "keys": [
+                "billmeymichiganmarketingextremecom"
+            ],
+            "lastName": "Mey",
+            "jobFunction": "Business Management",
+            "jobLevel": "C-Team",
+            "jobTitle": "CEO",
+            "numEmployeesMin": 1,
+            "numEmployeesMax": 19,
+            "phones": [
+                "7346190715"
+            ],
+            "postalCode": "48101",
+            "province": "MI",
+            "sourceURLs": [
+                "https://datafiniti.co"
+            ],
+            "id": "AWG2azB1QH9dEUBnfEki"
+        }
+    ]
+}
+```
+
+Let's break down each of the parameters we sent in our request:
+
+| API Call Component        | Description                                                                                                                                                                                           |
+| :------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"query": "jobTitle:CEO"` | `query` tells the API what query you want to use.  In this case, you're telling the API you want to search by `jobTitle`.  Any person that has `CEO` listed in its `jobTitle` field will be returned. |
+| `"num_records": 1`        | `num_records` tells the API how many records to return in its response.  In this case, you just want to see 1 matching record.                                                                        |
+| `"format":"xxxx"`         | `"format"` tells the API what format to output the data in the response. Can be either `CSV` or `JSON`                                                                                                |
+
+Now let's dive through the response the API returned:
+
+| Response Field | Description |
+| --- | --- |
+| `"num_found"` | The total number of available records in the database that match your query.  If you end up downloading the entire data set, this is how many records you'll use. |
+| `"total_cost"` | The number of credits this request has cost you.  People records have a record cost multiplier tied to them.  [See pricing](https://datafiniti.co/pricing/people-data-pricing/). |
+| `"records"` | The first available matches to your query. If there are no matches, this field will be empty.   <br/>    <br/> Within each record returned, you'll see multiple fields shown.  This is the data for each record. |
+
+Within the `records` field, you'll see a single person returned with multiple fields and the values associated with that product.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
+
+Each product record will have multiple fields associated with it.  You can see a full list of available fields in our [People Data Schema](https://java.documentationai.com/docs/people-data-schema).
+
+### 4. Refine your search
+
+Let's say we decided to adjust our sales campaign to only target CEOs in Austin, TX.
+
+Modify your code to look like this:
+
+```python
+import requests
+import urllib.parse
+import json
+
+## Set your API parameters here.
+API_token = 'AAAXXXXXXXXXXXX'
+#format = 'CSV'
+format = 'JSON'
+query = 'jobTitle:CEO AND province:TX AND city:Austin'
+num_records = 10
+download = False
+
+request_headers = {
+	'Authorization': 'Bearer ' + API_token,
+	'Content-Type': 'application/json',
+}
+request_data = {
+    'query': query,
+    'format': format,
+    'num_records': num_records,
+    'download': download
+}
+
+## Make the API call.
+r = requests.post('https://api.datafiniti.co/v4/people/search',json=request_data,headers=request_headers);
+
+## Do something with the response.
+if r.status_code == 200:
+	print(r.content)
+else:
+	print('Request failed')
+```
+
+This query is different in a couple ways:
+
+1. It adds ` AND country:US` to narrow down results to just US hotels.
+2. It changes `records=1` to `records=10` so we can look at more sample matches.
+
+Datafiniti lets you construct very refined boolean queries.  If you wanted to do more complicated searches, you could OR operations, negation, and more.
+
+You can run the Python code above to see the difference in the results.
+
+If you would like to narrow your search to just exact matches you can place the search term in quotation marks.
+
+```python
+import requests
+import urllib.parse
+import json
+
+## Set your API parameters here.
+API_token = 'AAAXXXXXXXXXXXX'
+#format = 'CSV'
+format = 'JSON'
+query = 'jobTitle:"Product Developer"'
+num_records = 10
+download = False
+
+request_headers = {
+	'Authorization': 'Bearer ' + API_token,
+	'Content-Type': 'application/json',
+}
+request_data = {
+    'query': query,
+    'format': format,
+    'num_records': num_records,
+    'download': download
+}
+
+## Make the API call.
+r = requests.post('https://api.datafiniti.co/v4/people/search',json=request_data,headers=request_headers);
+
+## Do something with the response.
+if r.status_code == 200:
+	print(r.content)
+else:
+	print('Request failed')
+```
+
+The above query will only return people with the exact title of Product Developer.
+
+### 5. Initiate a download of the data
+
+Once we like what we see from the sample matches, it's time to download a larger data set!  To do this, we're going to update our code a fair bit (an explanation follows):
+
+```python
+import requests
+import urllib.parse
+import json
+import time
+
+## Set your API parameters here.
+API_token = 'AAAXXXXXXXX'
+format = 'CSV'
+#format = 'JSON'
+query = 'jobTitle:CEO AND province:TX AND city:Austin'
+num_records = 20
+download = True
+
+request_headers = {
+	'Authorization': 'Bearer ' + API_token,
+	'Content-Type': 'application/json',
+}
+request_data = {
+    'query': query,
+  	'num_records': num_records
+    'format': format,
+    'download': download
+}
+
+## Make the API call.
+r = requests.post('https://api.datafiniti.co/v4/people/search',json=request_data,headers=request_headers);
+
+## Do something with the response.
+if r.status_code == 200:
+	request_response = r.json()
+	print(request_response)
+
+	# Keep checking the request status until the download has completed
+	download_id = request_response['id']
+	download_status = request_response['status']
+
+	while (download_status != 'completed'):
+		time.sleep(5)
+		download_r = requests.get('https://api.datafiniti.co/v4/downloads/' + str(download_id),headers=request_headers);
+		download_response = download_r.json()
+		download_status = download_response['status']
+		print('Records downloaded: ' + str(download_response['num_downloaded']))
+
+	# Once the download has completed, get the list of links to the result files and download each file
+	if download_status == 'completed':
+		result_list = download_response['results']
+		i = 1;
+		for result in result_list:
+			filename = str(download_id) + '_' + str(i) + '.' + format
+			urllib.request.urlretrieve(result,filename)
+			print('File: ' + str(i) + ' out of ' + str(len(result_list)) + ' saved: ' + filename)
+			i += 1
+
+else:
+	print('Request failed')
+	print(r)
+```
+
+A few things to pay attention to in the above code:
+
+1. We change `num_records` from `10` to `20`.  This will download the first 20 matching records.  If we wanted to download all matching records, we would remove `num_records`. `num_records` will tell the API to default to all available records.
+2. We changed `format` from `JSON` to `CSV`.  We'll want to view the files in CSV format, so it will be easier to look at.
+3. We changed `download` from `false` to `true`.
+
+<Callout kind="alert">
+  **Num_records**
+
+If num_records is not specified, ALL of the records matching the query will be downloaded.
+</Callout>
+
+Since we've handled multiple steps of the download process in this code, we won't go into the details here, but we do recommend you familiarize yourself with those steps.  Checking them out in our other guides [Getting started with People Data](https://java.documentationai.com/docs/getting-started-with-people-data)
+
+### 6. Parse the data
+
+Whether you choose CSV or JSON as your format type, you can parse through Datafiniti's people data in different ways.
+
+#### Parse the CSV data
+
+For files formatted as CSV, you will receive you files as `downloadID_#.csv`. You can navigate to the file you downloaded and open it.  Since it's a CSV file, it should open in Excel automatically.  It will look something like:
+
+<Image src="https://files.readme.io/5c1900e-people.png" width="1920" height="1080" alt="" />
+
+#### Parse the JSON data
+
+The download code will save one or more result files to your project folder.
+
+<Callout kind="info">
+  **JSON Format**
+
+The JSON data will actually be a text file, instead of a single JSON object. Each line in the text file is a JSON object. We format the data this way because most programming languages won't handle parsing the entire data set as a JSON object with their standard system calls very well. Commonly known as NDJSON.
+</Callout>
+
+We'll need to parse the file into an array of JSON objects.  We can use code similar to this to handle the parsing:
+
+```python
+import json
+
+## Set the location of your file here
+filename = 'xxxx_x.txt'
+
+records = []
+
+with open(filename) as myFile:
+	for line in myFile:
+		records.append(json.loads(line))
+
+for record in records:
+	# Edit these lines to do more with the data
+	print json.dumps(record, indent=4, sort_keys=True)
+```
+
+You can edit the code in the `for` loop above to do whatever you'd like with the data, such as store the data in a database, write it out to your console, etc.

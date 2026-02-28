@@ -1,0 +1,246 @@
+---
+title: Find rental rates for properties
+---
+
+## Introduction
+
+Determining what kind of rental income an apartment building or multi-family home can produce is a significant factor in deciding to invest in or underwrite a rental property.  Datafiniti can provide current and historical rental rates for any given property.
+
+## Finding a specific property
+
+To search for a specific property, start by searching for that property's address. We will use the `rentalStatuses` and `mostRecentRentalStatus` to identify the current rental state of the property.
+
+```json
+{
+  "query": "address:\"7325 SW 82nd St\" AND city:Miami AND province:FL",
+  "num_records": 1
+}
+```
+
+<Callout kind="info">
+  **Address normalization**
+
+Datafiniti uses standardized street name normalization. Converting `street` to `st`, `drive` to `dr`, etc, you can learn more about our address normalization here: [Normalized Property Addresses](https://java.documentationai.com/docs/normalized-address-data)\
+If you wish to exactly match addresses to Datafiniti's property data, you will need to use this normalization method.
+</Callout>
+
+<br />
+
+## Analyzing the property matches
+
+The above query will return a response like so (abbreviated record shown):
+
+```json
+{
+    "num_found": 22,
+    "total_cost": 1,
+    "records": [
+      {
+        "address": "7325 SW 82nd St",
+        "buildingName": "Bermuda Villas Apartments",
+        "city": "Miami",
+        "country": "US",
+        "dateAdded": "2015-10-26T21:25:35Z",
+        "dateUpdated": "2023-04-05T05:00:10Z",
+        "floorSizeValue": 723,
+        "floorSizeUnit": "sqft",
+        "geoLocation": "POINT (-80.312377929 25.694877624)",
+        "leasingTerms": [
+          {
+            "dateSeen": "2015-10-26T21:25:35Z",
+            "value": "12 Months"
+          }
+        ],
+        "lotSizeValue": 6.73,
+        "lotSizeUnit": "acs",
+	"mostRecentRentalListPriceAmount": 1575,
+        "mostRecentRentalPricePeriod": "Per Month",
+        "mostRecentRentalPriceDomain": "www.apartments.com",
+        "mostRecentRentalListPriceDate": "2025-02-19T21:19:56.101Z",
+        "mostRecentRentalPriceFirstDateSeen": "2025-07-13T16:15:01.278Z",
+        "mostRecentStatus": "Rental",
+        "mostRecentStatusFirstDateSeen": "2022-02-10T00:00:00.000Z",
+        "numBathroom": 1,
+        "numBedroom": 1,
+        "numFloor": 2,
+        "numUnit": 20,
+        "prices": [
+          {
+            "amountMax": 1375,
+            "amountMin": 1175,
+            "availability": "true",
+            "currency": "USD",
+            "dateSeen": [
+              "2020-01-29T09:29:00.000Z"
+            ]
+          },
+          {
+            "amountMax": 2399,
+            "amountMin": 2399,
+            "currency": "USD",
+            "dateSeen": [
+              "2023-04-05T05:00:00.000Z"
+            ]
+          }
+        ],
+        "propertyType": "Multi-Family Dwelling",
+        "province": "FL",
+        "statuses": [
+          {
+            "dateSeen": [
+              "2021-01-16T12:42:00.000Z"
+            ],
+            "firstDateSeen": "2021-01-16T12:42:00.000Z",
+            "lastDateSeen": "2021-01-20T00:12:00.000Z",
+            "type": "Sold"
+          },
+          {
+            "dateSeen": [
+              "2021-04-22T21:45:00.000Z"
+            ],
+            "firstDateSeen": "2021-04-22T21:45:00.000Z",
+            "lastDateSeen": "2022-01-01T22:16:00.000Z",
+            "type": "Rental"
+          },
+          {
+            "dateSeen": [
+              "2023-04-05T05:00:10.627Z"
+            ],
+            "type": "Rental"
+          }
+        ]
+      }
+    ]
+}
+```
+
+There are a couple important things to understand about this response:
+
+**The `num_found` is 22.** This means there are 22 matching properties at this address.  This makes sense, because the address is the location of an apartment complex with multiple units.  Datafiniti has split out each unit into separate records.
+
+**The rental prices are available in the `prices` array.**  Looking through the list of prices, we can see various objects.  Each one contains a specific price and the date when that price was seen.  We can use this information to determine the rentable value of the property.  By looking at all the properties' prices, we can determine how much income could be generated from this complex.
+
+## Find the most recent rental price
+
+While we have a historical record of rental prices in the `prices` field, we also have a field dedicated to the most recent rental price amount. This field being `mostRecentRentalPriceAmount`. Let see what that looks like in comparison to this historical data.
+
+<Callout kind="alert">
+  **mostRecentRentalPriceAmount vs mostRecentPriceAmount**
+
+Please note that `mostRecentPriceAmount `no longer contains a rental price if `mostRecentRentalListPriceAmount` is populated in the record.
+</Callout>
+
+We will update the previous query to show properties with `mostRecentRentalPriceAmount `populated:
+
+```json
+{
+    "query": "country:US AND city:Miami AND province:FL AND mostRecentRentalListPriceAmount:*",
+    "num_records":10
+}
+```
+
+This is a snippet of the result you will see:
+
+```json
+{
+	    "mostRecentRentalListPriceAmount": 6500,
+            "mostRecentPriceDomain": "www.nestfully.com",
+            "mostRecentRentalListPriceDate": "2024-06-13T11:03:33.663Z",
+            "mostRecentRentalPriceAmount": 8940,
+            "mostRecentRentalPricePeriod": "Per Month",
+            "mostRecentRentalPriceDomain": "www.apartmentguide.com",
+            "mostRecentRentalPriceFirstDateSeen": "2024-02-28T08:09:11.463Z",
+}
+```
+
+You can also find the `mostRecentRentalListPriceAmount `in our prices field.
+
+```json
+{
+                    "amountMax": 8940,
+                    "amountMin": 8940,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2024-02-28T23:40:24.123Z",
+                        "2024-02-28T08:09:11.463Z"
+                    ],
+                    "firstDateSeen": "2024-02-28T08:09:11.463Z",
+                    "lastDateSeen": "2024-02-28T23:40:24.123Z",
+                    "domains": [
+                        "www.apartmentguide.com"
+                    ],
+                    "isSale": "true",
+                    "period": "Per Month",
+                    "pricePerSquareFoot": 5.32
+                },
+```
+
+<br />
+
+## Rental history of a property
+
+You can track the rental history of a property by utilizing the `rentalStatuses` field. This top level field is a json array of a previously scrape statuses over the history of time. Here is a an example of what this field looks like:
+
+```json
+"rentalStatuses": [
+                {
+                    "date": "2025-01-09T08:19:49.000Z",
+                    "dateSeen": [
+                        "2025-07-18T23:00:04.564Z",
+                        "2025-06-30T08:03:33.447Z",
+                        "2025-08-15T01:57:01.111Z",
+                        "2025-07-21T04:46:05.555Z",
+                        "2025-08-15T02:02:07.164Z",
+                        "2025-07-21T04:46:05.530Z",
+                        "2025-07-21T04:51:23.661Z",
+                        "2025-01-16T21:43:40.361Z",
+                        "2025-04-27T11:04:38.237Z"
+                    ],
+                    "firstDateSeen": "2025-01-16T21:43:40.361Z",
+                    "lastDateSeen": "2025-08-15T02:02:07.164Z",
+                    "sourceURLs": [
+                        "https://www.apartments.com/20225-ne-34th-ct-miami-fl/xjt5bsp/",
+                        "https://www.apartments.com/20225-ne-34th-ct-aventura-fl-unit-1813/6ch1kjv/",
+                        "https://www.apartmentguide.com/apartments/Florida/Aventura/20225-NE-34th-Ct/LV1873191240/",
+                        "https://www.apartments.com/20225-ne-34th-ct-miami-fl/xjt5bsp/#kjkltfb-2-unit",
+                        "https://www.apartments.com/20225-ne-34th-ct-aventura-fl-unit-1514-updated-furnished/74lgtky/"
+                    ],
+                    "type": "Rental"
+                },
+                {
+                    "date": "2025-01-09T08:19:49.000Z",
+                    "dateSeen": [
+                        "2025-08-15T02:38:17.992Z"
+                    ],
+                    "firstDateSeen": "2025-01-16T21:43:40.361Z",
+                    "lastDateSeen": "2025-08-15T02:38:17.992Z",
+                    "sourceURLs": [
+                        "https://www.apartments.com/20225-ne-34th-ct-miami-fl-unit-2318/b1rtgy9/"
+                    ],
+                    "type": "Rental"
+                }
+            ]
+```
+
+## Additional information
+
+There are a number of other fields returned for each property that can be useful when determining the value of a rental property.  Any of these fields may affect an investment or underwriting decision:
+
+* `floorSizeValue` and `floorSizeUnit` - These show the size of the individual units.
+* `numBathroom` and `numBedroom`
+* `numFloor`
+* `parking`
+* `petPolicy`
+* `propertyTaxes`
+* `yearBuilt`
+
+### Example Records
+
+Here are example bulk download files of our previous query:
+
+* [Miami rental property data CSV](https://drive.google.com/file/d/1ud8Ba2A_3MCz4LCFXVMq1nuraLy92wsF/view?usp=share_link)
+* [Miami rental property data Json](https://drive.google.com/file/d/1chlqgJCWZKNG9OGhz48fM2HOMEs_Tkac/view?usp=share_link)
+
+### Conclusion
+
+With multiple records from the same area, you can compare and find rental property that fits into your use case. Compare Price, search availability, and look up move in dates using this report.

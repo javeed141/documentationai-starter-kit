@@ -1,0 +1,110 @@
+---
+title: products_pricesFlat
+---
+
+The `products_pricesFlat` view should be used when you want to look at individual prices for each product in your data set in a CSV format.  It will split each price for a product into its own row.  All other fields will repeat in each row.
+
+
+| Field | Included Sub-fields |
+| --- | --- |
+| `asins` | N/A |
+| `brand` | N/A |
+| `categories` | N/A |
+| `colors` | N/A |
+| `count` | N/A |
+| `dateAdded` | N/A |
+| `dateUpdated` | N/A |
+| `descriptions` | `dateSeen` <br/> `sourceURLs` <br/> `value` |
+| `dimension` | N/A |
+| `ean` | N/A |
+| `features` | `key` <br/> `value` |
+| `flavors` | N/A |
+| `imageURLs` | N/A |
+| `isbn` | N/A |
+| `keys` | N/A |
+| `manufacturer` | N/A |
+| `manufacturerNumber` | N/A |
+| `merchants` | `address` <br/> `availability` <br/> `city` <br/> `country` <br/> `dateSeen` <br/> `name` <br/> `phone` <br/> `postalCode` <br/> `province` |
+| `name` | N/A |
+| `prices` | `amountMin` <br/> `amountMax` <br/> `availability` <br/> `color` <br/> `condition` <br/> `count` <br/> `currency` <br/> `dateAdded` <br/> `dateSeen` <br/> `flavor` <br/> `isSale` <br/> `merchant` <br/> `offer` <br/> `returnPolicy` <br/> `shipping` <br/> `size` <br/> `source` <br/> `sourceURLs` <br/> `warranty` |
+| `reviews` | `date` <br/> `dateAdded` <br/> `dateSeen` <br/> `didPurchase` <br/> `doRecommend` <br/> `numHelpful` <br/> `rating` <br/> `sourceURLs` <br/> `text` <br/> `title` <br/> `userCity` <br/> `username` <br/> `userProvince` |
+| `sizes` | N/A |
+| `skus` | `sourceURLs` <br/> `value` |
+| `sourceURLs` | N/A |
+| `upc` | N/A |
+| `vin` | N/A |
+| `websiteID` | N/A |
+| `weight` | N/A |
+
+
+Right-click and choose "Save link as..." to download this sample so you can see it in Excel: [products_pricesFlat-CSV-example.csv](https://gist.githubusercontent.com/shiondev/20d51145a7c0eb684221daa1450eed87/raw/b842a3191dfcccec012bbb50bf40e4b2fcd0fa2f/products_pricesflat-CSV-example.csv)
+
+{/* [block:embed] needs manual review */}
+
+
+```json
+{
+  "asins": [
+    "B00NW4LUMI"
+  ],
+  "categories": [
+    "Kitchen & Bath Fixtures"
+  ],
+  "dateAdded": "2015-08-22T00:20:16Z",
+  "dateUpdated": "2015-08-22T00:20:16Z",
+  "features": [
+    {
+      "key": "Weight",
+      "value": [
+        "41 Grams"
+      ]
+    },
+    {
+      "key": "Item Package Quantity",
+      "value": [
+        "1"
+      ]
+    }
+  ],
+  "imageURLs": [
+    "http://ecx.images-amazon.com/images/I/31kWQk9vqdL._SX300_QL70_.jpg",
+    "http://ecx.images-amazon.com/images/I/31kWQk9vqdL._SS40_.jpg"
+  ],
+  "keys": [
+    "macdee114plasticdomeurinalwaste/b00nw4lumi"
+  ],
+  "manufacturer": "Macdee",
+  "merchants": [
+    {
+      "dateSeen": [
+        "2015-08-20T00:00:00Z"
+      ],
+      "name": "Esda Ltd"
+    }
+  ],
+  "name": "Macdee 1 1/4\" Plastic Dome Urinal Waste",
+  "prices": [
+    {
+      "amountMin": 1.81,
+      "amountMax": 1.81,
+      "condition": "new",
+      "currency": "EUR",
+      "dateAdded": "2015-08-22T00:20:16Z",
+      "dateSeen": [
+        "2015-08-20T00:00:00Z"
+      ],
+      "isSale": "false",
+      "merchant": "ESDA Ltd",
+      "shipping": "EUR 2.99",
+      "sourceURLs": [
+        "http://www.amazon.co.uk/Macdee-Plastic-Dome-Urinal-waste/dp/B00NW4LUMI"
+      ]
+    }
+  ],
+  "sourceURLs": [
+    "http://www.amazon.co.uk/Macdee-Plastic-Dome-Urinal-waste/dp/B00NW4LUMI"
+  ],
+  "weight": "41 g",
+  "id": "AVpe8YoN1cnluZ0-aYn7"
+}
+```

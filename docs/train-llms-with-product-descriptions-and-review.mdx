@@ -1,0 +1,126 @@
+---
+title: Train LLMs with product descriptions and review
+---
+
+## Introduction
+
+Large Language Models (or LLMs) have recently revolutionized the field of AI applications.  These models require large amounts of text.  Datafiniti product data hosts billions of products descriptions and reviews that can be used to train LLMs on product-specific LLM applications  Let's learn how!
+
+## Accessing description data
+
+The `descriptions` field for products contains every description Datafiniti has seen for a product, which means you can use this data to access a robust "description history" across multiple websites.
+
+If you want to search for products with description, it's pretty easy:
+
+```json
+{
+  "query": "descriptions:*"
+}
+```
+
+Here's a sample `descriptions` array that might get returned:
+
+```json
+ "descriptions": [
+   {
+     "value": "Whether you're shooting digitally or on film, Fotodiox offers the world's largest selection of lens adapters. Mix camera/lens platforms or reinvigorate vintage glass Fotodiox has hundreds of ways to mount lenses onto your DSLR or SLR camera. Our adapters deliver infinity focus, manual aperture control, and a sturdy build for lasting quality.",
+     "sourceURLs": [
+       "https://www.newegg.com/p/0Y3-00YN-00002"
+     ],
+     "dateSeen": "2020-09-28T07:26:00.000Z"
+   },
+   {
+     "value": "Make use of your existing Mamiya 645-mount lenses on your Sony Alpha A-mount or Minolta AF-mount camera with this Pro Lens Mount Adapter from FotodioX. Precision-crafted out of hardened anodized aluminum, the adapter provides a secure and solid camera-to-lens connection. Additionally, it supports infinity focus.",
+     "sourceURLs": [
+       "https://www.bhphotovideo.com/c/product/1413532-REG/fotodiox_m645_snya_pro_pro_lens_mount_adapter.html"
+     ],
+     "dateSeen": "2023-03-29T19:50:00.000Z"
+   }
+ ],
+```
+
+This information can be very helpful when training an LLM on generating descriptions for products.  Best of all, Datafiniti will provide the associated product name, brand, etc., so that the LLM can produce very targeted product descriptions.  Here's some of the additional metadata supplied in the same record:
+
+```json
+{
+  "brand": "FotodioX",
+  "manufacturer": "Fotodiox",
+  "manufacturerNumber": "M645-SNYA-PRO",
+  "name": "FotodioX Pro Mount Adapter for Mamiya 645 Lens to Sony A-Mount Camera",
+  "taxonomy": [
+    "electronics > camera & photo > accessories > lens accessories > adapters & converters"
+  ]
+}
+```
+
+## Accessing review data
+
+The `reviews` field for products contains every review Datafiniti has seen for a given product.
+
+If you want to search for any products with reviews, just use this query:
+
+```json
+{
+  "query": "reviews:*"
+}
+```
+
+The `*` tells Datafiniti to return any products that have something in their `reviews` field.
+
+Here's what a sample `reveiws` array looks like:
+
+```json
+"reviews": [
+  {
+    "date": "2020-05-04T00:00:00.000Z",
+    "dateSeen": "2021-07-09T19:33:00.000Z",
+    "rating": 5,
+    "sourceURLs": [
+      "https://www.google.com/shopping/product/4866762053014532335/reviews"
+    ],
+    "text": "The power adapter I received was Lenovo-branded with no visible signs of wear. It did not have the AC cable, though I am not sure if that is usually included. In any case,this is purchased as a replacement, so I hadthe old AC cable. Of course, supplying the AC cable may add unnecessary complexity, since this may work with different AC cable configurations. Far more important is that the output cable was in \"like new\" condition, as that is a part that can be most affected by wear. Very happy.",
+    "title": "Lenovo-branded power adapter with no signs of wear",
+    "username": "stratum33 · Review provided by  ebay.com"
+  },
+  {
+    "date": "2015-07-23T06:50:00.000Z",
+    "dateSeen": "2021-05-21T03:25:59.399Z",
+    "doRecommend": "true",
+    "numHelpful": 0,
+    "sourceURLs": [
+      "https://www.bestbuy.com/site/reviews/microsoft-surface-pro-3-docking-station-black/7524004"
+    ],
+    "text": "Was looking for a single computer for personal use and business. Surface was the complete solution. I work at home and at the office and was tired of working on different computers. Surface solved that with the ability to easily transport it. It also replaced a tablet when working with clients and a laptop when traveling. Docking stations at both the office and home a great addition. Use full size keyboard, mouse and larger screen.",
+    "title": "Replaced my tablet, desktop and laptop",
+    "username": "BigRed"
+  }
+]
+```
+
+As you can see, the review data gives you several fields that are useful when training LLMs.  The `rating` and `doRecommend` fields in particular can tell you how to score each review in terms of sentiment.
+
+And remember, each product record contains important metadata that will help your LLM create targeted product reviews.  E.g., here's some metadata for the product associated with the above reviews:
+
+```json
+{
+  "brand": "Microsoft",
+	"manufacturer": "Microsoft",
+	"manufacturerNumber": "3Q9-00001",
+	"name": "Microsoft- Imsourcing Docking Station for Surface Pro 3",
+	"taxonomy": [
+	  "electronics > computers & accessories > computer accessories & peripherals > input devices > graphics tablets",
+  	"electronics > computers & accessories > computers & tablets > tablets"
+	]
+}
+```
+
+### Example files
+
+Here are example bulk download files of our previous query:
+
+* [Description Example CSV](https://drive.google.com/file/d/1074AY_zxtgYt0c9kSZ74kYO_IawffIrb/view?usp=share_link)
+* [Description Example JSON](https://drive.google.com/file/d/1XJDJ7-ZCHbFeAcblHn7clOBM-AgElFss/view?usp=share_link)
+
+### Conclusion
+
+With the knowledge of how to pull records with descriptions, you can use the record's data to train LLM or AI models to your specific tasks.

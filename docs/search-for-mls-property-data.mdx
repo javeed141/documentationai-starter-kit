@@ -1,0 +1,182 @@
+---
+title: Search for MLS Numbers or Download MLS Markets
+---
+
+### Introduction
+
+Datafiniti's property data can be used to verify or enrich data that you have for existing properties. If you have an MLS number of a property but want more specific data about it, you can use Datafiniti to find out and analyze the property more.
+
+<Callout kind="info">
+  **MLS Searching**
+
+We recommend users combine their MLS number search with a province search for sometimes historical MLS data can be found that matches other MLSs in another state.
+</Callout>
+
+### Search using the MLS number
+
+Since all properties have an MLS number you can search via our `mlsNumber` field.\
+Here is an example of how to do that.
+
+```json
+{
+  "query": "mlsNumber:09073511 AND province:IL",
+  "num_records":1
+}
+```
+
+This will pull the 1 record attached to this MLS number and specify the search to the state of Illinios.
+
+### Using multiple MLS numbers
+
+You can use OR operators in your query to search multiple MLS numbers at a time.
+
+```json
+{
+  "query": "mlsNumber:(09073511 OR 09505465) AND province:IL",
+	"num_records":2
+}
+```
+
+### Adding more parameter to you MLS search
+
+You can always add any field search from our property [schema](https://developer.datafiniti.co/docs/property-data-schema).
+
+```json
+{
+	"query": "country:US AND people.title:owner AND prices.amountMin:>=500000 AND brokers.agent:* AND province:IL AND mlsNumber:(09073511 OR 09505465)",
+"num_records":10
+}
+```
+
+This query targets US and Illinois properties above or equal to 500000$. Along with must having a broker's agent and owner data.
+
+<Callout kind="alert">
+  **Price & Integer Fields**
+
+please note your field's data type when inputting your value in the search query. price will not accept commas (,) in the value.
+</Callout>
+
+<Callout kind="info">
+  **Address normalization**
+
+Datafiniti uses standardized street name normalization. Converting `street` to `st`, `drive` to `dr`, etc, you can learn more about our address normalization here: [Normalized Property Addresses](https://java.documentationai.com/docs/normalized-address-data)\
+If you wish to exactly match addresses to Datafiniti's property data, you will need to use this normalization method.
+</Callout>
+
+<br />
+
+## Search an Entire MLS Market
+
+You can use the `mlsNumber` field and standard location fields (`country`, `province`, `postalCode`, `neighborhood`, etc.) to narrow or broaden your MLS data searches. Below are examples showing how to query different geographic levels — from nationwide to local neighborhoods.
+
+### Target the Entire U.S. MLS Market
+
+If you want to retrieve all MLS listings across the United States, you can simply search for records that contain an `mlsNumber` field. This will return any record tied to an MLS source.
+
+Example — entire U.S. MLS data
+
+```json
+{
+  "query": "country:US AND address:* AND mlsNumber:*",
+  "num_records": 10
+}
+```
+
+<br />
+
+You can add additional filters, as long as they reference valid [property data schema fields](https://java.documentationai.com/docs/property-data-schema). For instance, you might want to only download record that fit a particular price range or current status. You can filter by `mostRecentStatus` or by `mostRecentSaleListPriceAmount`.
+
+Example — active listings (via `mostRecentStatus`) in the U.S.:
+
+```json
+{  
+  "query": "country:US AND address:* AND mlsNumber:* AND mostRecentStatus:\"For Sale\"",  
+  "num_records": 10  
+}
+```
+
+### Target an Entire State (Province)
+
+By utilizing the `province` field you can search my state. Just be sure to convert to the 2 letter abbreviation. For this example we will search for MLS properties in California.
+
+<Callout kind="info">
+  **Address normalization**
+
+Datafiniti uses standardized street name normalization. Converting `street` to `st`, `drive` to `dr`, etc, you can learn more about our address normalization here: [Normalized Property Addresses](https://java.documentationai.com/docs/normalized-address-data)\
+If you wish to exactly match addresses to Datafiniti's property data, you will need to use this normalization method.
+</Callout>
+
+```json
+{  
+  "query": "country:US AND province:CA AND address:* AND mlsNumber:*",  
+  "num_records": 10  
+}
+```
+
+You could also filter by `city` (which is in the schema) in addition to state:
+
+```json
+{  
+  "query": "country:US AND province:CA AND city:\"San Francisco\" AND address:* AND mlsNumber:*",  
+  "num_records": 10  
+}
+```
+
+<br />
+
+### Target Specific Postal Codes
+
+The schema includes `postalCode`. Use that to restrict the scope.
+
+Example — single postal code:
+
+```json
+{
+  "query": "country:US AND province:TX AND postalCode:76544 AND address:* AND mlsNumber:*",
+  "num_records": 10
+}
+```
+
+Example — multiple postal codes:
+
+```json
+{
+  "query": "country:US AND province:TX AND postalCode:(76543 OR 76544 OR 76545) AND address:* AND mlsNumber:*",
+  "num_records": 10
+}
+```
+
+### Target Specific Neighborhoods
+
+The schema has a field named `neighborhoods` (a list of neighborhood names).
+
+You can filter using that:
+
+```json
+{
+  "query": "country:US AND province:NY AND neighborhoods:\"Upper East Side\" AND address:* AND mlsNumber:*",
+  "num_records": 10
+}
+```
+
+If `neighborhoods` is not populated in your data, you can fall back to using geographic coordinates via `geoLocation`, or by using the latitude and longitude fields in range queries (they are part of the schema via geo indexing).
+
+Example — geolocation range:
+
+```json
+{
+  "query": "country:US AND geoLocation:[-97.7430600,30.2671500,10,mi] AND address:* AND mlsNumber:*",
+  "num_records": 10
+}
+```
+
+<Image src="https://files.readme.io/3dbcd1294d4b5dabf360c5d5a399cae34acf633aa217d354dbbd6b3f8d0e815d-image.png" width="1920" height="1080" alt="" />
+
+<br />
+
+### Example Records
+
+Here are example bulk download files of our previous query:
+
+* [MLS Property CSV](https://drive.google.com/file/d/1snrgw04rd4XfiUWvuXXCsto_ww4DJvRe/view?usp=share_link)
+* [MLS Property Json](https://drive.google.com/file/d/1rSGfQ02PfcYXShUGBlz4-3rWuWcPmUYW/view?usp=share_link)

@@ -1,0 +1,35 @@
+---
+title: Count
+---
+
+Our count feature is an alternative way for testing API search request. You can set your `num_records` to 0 in your property search query. This is will only return the `num_found` of the query and will cost 0 credits to search. Lastly you are not charged property data credits for this. Try it out
+
+```json
+{
+  "query": "brand:dell AND categories:laptop AND -categories:accessories",
+  "num_records":0
+}
+```
+
+Expected response:
+
+```json
+{
+    "num_found": 6473
+}
+```
+
+From this result we can tell that we have a total of 6473 with the search parameters. This knowledge is great for testing your query syntax, seeing expect results before pulling real data, or sanity checking value from previous searches.
+
+<Callout kind="info">
+  **Count Feature**
+
+Please note that this is feature is only for paid accounts. So please check your account plan or contact `<support@datafinti.co.>`
+</Callout>
+
+## Use cases
+
+Check out some of our use cases that use the Count feature:
+
+* [Accessing owners, brokers, & other people data](https://java.documentationai.com/docs/accessing-owners-brokers-and-other-people)
+* [Find property with a lien](https://java.documentationai.com/docs/find-property-with-liens)

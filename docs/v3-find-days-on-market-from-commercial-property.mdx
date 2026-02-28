@@ -1,0 +1,68 @@
+---
+title: Find days on market for commercial property
+---
+
+## Introduction
+
+In this guide we will explore how to extract the days on market from commercial property that is currently for sale. With this data you will be able to build lead reports, market analytics, and other data reports based on this data. In this example we will focus on commercial medical offices. Let's get started:
+
+### Searching for commercial medical offices
+
+Lets start by searching for commercial medical offices in miami, Florida. We will focus on utilizing the `propertyType `and `categories `fields. While we have Commercial property as a main `propertyType`, we will need to utilize the categories field to field any sub-types or non normalized property types.
+
+<Callout kind="info">
+  **For sale vs rental statuses**
+
+Please note that Datafiniti tracks for sale and rental statuses separately, so if you are looking for rental statuses please use mostRecentRentalStatus. Being to check the possible status value here. [Possible Values for Property Fields](https://java.documentationai.com/docs/possible-values-for-property-fields)
+</Callout>
+
+<br />
+
+```json
+{
+    "query":"mostRecentStatus:\"For Sale\" AND propertyType:commercial AND categories:(Office AND Medical)",
+    "num_records":10
+}
+```
+
+You will find that the categories field is an array with multiple property type values matched from keywords or sub-category fields.
+
+```json
+"categories": [
+                "Office",
+                "Commercial",
+                "OFFICE BUILDING",
+                "Medical",
+                "Office Building"
+              ]
+```
+
+### Calculating days on market from your data
+
+From here we can filter for days on market by utilizing our sources feature key values. In this case we will look for Crexi's date Added field. After obtaining that we can calculate the days on market by subtracting that value from the current data. Let modify our query to select this data:
+
+\{
+    "query":"mostRecentStatus:\"For Sale\" AND propertyType:commercial AND categories:(Office AND medical) AND features.key:(\"Date Added - Crexi\" OR \"Date Updated - Crexi\")",
+    "num_records":10
+\}
+
+You see these feature key/values represent like the following:
+
+			 \{
+                    "key": "Date Added - Crexi",
+                    "value": [
+                        "2024-04-29T21:14:14.399Z"
+                    ],
+                    "replace": "true"
+                \},
+
+We can use this date here to see that this property is 16 days on the market.
+
+<br />
+
+### Example records
+
+Here are example bulk download files of our previous query:
+
+* [Days on Market JSON](https://drive.google.com/file/d/12byuFsmXhJo_vOgYiHLHMD-3TFCbXGSd/view?usp=sharing)
+* [Days on Market CSV](https://drive.google.com/file/d/1IAGwG2MTDGoljdU2Kd-CvghUBFELRW7u/view?usp=sharing)

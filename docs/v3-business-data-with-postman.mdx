@@ -1,0 +1,352 @@
+---
+title: Business Data with Postman
+---
+
+For this guide, we're going to assume you're interested in using Datafiniti's business data to do some marketing analysis on hotels.  Let's say you're a data scientist that's been tasked with the following:
+
+1. Collecting data on hotels in the US.
+2. Sort the business data by state.
+3. Find which states have the most hotels.
+
+**Your environment and data needs:**
+
+1. For this guide we are working with Postman.
+2. You want to work with CSV or JSON data.
+
+Here are the steps we'll take:
+
+## 1. Download Postman
+
+We recommend using Postman when accessing the Datafiniti API.  It's a great client for using any sort of RESTful API and works particularly well with Datafiniti.  You can download Postman [here](https://www.getpostman.com/).
+
+## 2. Download Postman collection
+
+The next thing you'll need is your API token. The API token lets you authenticate with the Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
+
+To get your API token, go to the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co/settings/api), login, and click on your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+
+<Image src="https://files.readme.io/7a9b4cfaa16d9c33bd568f461438ac0f937eca3df7f532450ce1e00fcc74c358-image.png" width="1920" height="1080" alt="" />
+
+<Callout kind="info">
+  **API Key**
+
+For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
+</Callout>
+
+<Callout kind="alert">
+  **API Key Regen**
+
+For security reasons, your API token will be automatically changed whenever you change your password.
+</Callout>
+
+## 3. Run your first search
+
+The first thing we'll do is to do a test search that will give us a sense for what sort of data might be available.  Eventually we'll refine our search so that we get back the most relevant data.
+
+Since we want hotels, let's try a simple search that will just give us online listings for hotels.
+
+With Postman open, click on the Datafiniti API V4 collection.  Then navigate to Secured Endpoints > Search > Search Business Data.
+
+<Image src="https://files.readme.io/320f881101b3328740767a7e620314b4ef427fb0ffdf5b07dbd376dd5716da85-image.png" width="1920" height="1080" alt="" />
+
+<br />
+
+Click on "Body" in the main screen and enter the following in the text area:
+
+```json
+{
+  "query": "categories:hotels",
+  "num_records": 1
+}
+```
+
+<Image src="https://files.readme.io/efa8fb42b2177872d39a896edd5e33187b34d3e7547b93503ae3d3db69b54f1c-image.png" width="1920" height="1080" alt="" />
+
+<br />
+
+Click the blue "Send" button.  You should get a response similar to this:
+
+```json
+{
+  "num_found": 139666,
+  "total_cost": 1,
+  "records": [
+    {
+      "address": "7030 Amin Dr",
+      "categories": [
+        "Hotels"
+      ],
+      "city": "Chattanooga",
+      "country": "US",
+      "dateAdded": "2016-11-04T23:50:14Z",
+      "dateUpdated": "2016-11-04T23:50:14Z",
+      "descriptions": [
+        {
+          "dateSeen": [
+            "2016-11-09T19:26:53Z"
+          ],
+          "sourceURLs": [
+            "http://www.hotels.com/ho141351/?locale=en_US&pos=HCOM_US"
+          ],
+          "value": "No-frills hotel in Hamilton Place with health club"
+        }
+      ],
+      "features": [
+        {
+          "key": "Services",
+          "value": [
+            "24-hour front desk, Dry cleaning/laundry service, Laundry facilities, Free newspapers in lobby"
+          ]
+        },
+        {
+          "key": "Nearby Attractions",
+          "value": [
+            "[In Hamilton Place, Hamilton Place Mall (1.1 mi / 1.7 km), Dragon Dreams Museum (2.7 mi / 4.4 km), Tennessee Valley Railroad Museum (3.6 mi / 5.8 km), Concord Golf Club (3.8 mi / 6 km), Brown Acres Golf Course (4 mi / 6.5 km)]"
+          ]
+        }
+      ],
+      "imageURLs": [
+        "https://exp.cdn-hotels.com/hotels/1000000/120000/117400/117332/117332_95_n.jpg",
+        "https://exp.cdn-hotels.com/hotels/1000000/120000/117400/117332/117332_107_n.jpg"
+      ],
+      "keys": [
+        "us/tn/chattanooga/7030amindr/1104338646"
+      ],
+      "latitude": "35.04281",
+      "longitude": "-85.158",
+      "name": "Mainstay Suites Chattanooga",
+      "numRoom": 77,
+      "phones": [
+        "8004916126"
+      ],
+      "postalCode": "37421",
+      "province": "TN",
+      "reviews": [
+        {
+          "date": "2013-11-11T00:00:00Z",
+          "dateAdded": "2016-11-04T23:50:14Z",
+          "dateSeen": [
+            "2016-11-06T00:00:00Z",
+            "2016-08-12T00:00:00Z"
+          ],
+          "rating": 2,
+          "sourceURLs": [
+            "https://www.hotels.com/hotel/141351/reviews%20/"
+          ],
+          "text": "Hotel was ok. Room not as up to date as I expected.",
+          "title": "Was ok",
+          "username": "A Traveler"
+        },
+        {
+          "date": "2014-11-03T00:00:00Z",
+          "dateAdded": "2016-11-04T23:50:14Z",
+          "dateSeen": [
+            "2016-08-09T00:00:00Z",
+            "2016-08-27T00:00:00Z",
+            "2016-07-18T00:00:00Z"
+          ],
+          "rating": 3,
+          "sourceURLs": [
+            "https://www.hotels.com/hotel/141351/reviews%20/"
+          ],
+          "text": "It was adequate for our one night stay there. Staff was very friendly and the room was clean but not very big. I would recommend to someone for a very short stay.",
+          "username": "scott"
+        }
+      ],
+      "sourceURLs": [
+        "http://www.hotels.com/ho141351/?locale=en_US&pos=HCOM_US",
+        "https://www.hotels.com/hotel/141351/reviews%20/"
+      ],
+      "id": "AVwcsllU_7pvs4fzx-yW"
+    }
+  ]
+```
+
+Let's break down each of the parameters we sent in our request:
+
+| API Call Component             | Description                                                                                                                                                                                                 |
+| :----------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"query": "categories:hotels"` | `query` tells the API what you want to search.  In this case, you're telling the API you want to search by `categories`.  Any business that has `hotels` listed in its `categories` field will be returned. |
+| `"num_records": 1`             | `num_records` tells the API how many records to return in its response.  In this case, you just want to see 1 matching record.                                                                              |
+| `"format":"xxxx"`              | `format` tells the API what format to output the data in the response. Can be either `CSV` or `JSON`                                                                                                        |
+
+Now let's dive through the response the API returned:
+
+| Response Field | Description |
+| --- | --- |
+| `"num_found"` | The total number of available records in the database that match your query.  If you end up downloading the entire data set, this is how many records you'll use. |
+| `"total_cost"` | The number of credits this request has cost you.  Business records only cost 1 credit per record. |
+| `"records"` | The first available matches to your query. If there are no matches, this field will be empty.   <br/>    <br/> Within each record returned, you'll see multiple fields shown.  This is the data for each record. |
+
+Within the `records` field, you'll see a single business returned with multiple fields and the values associated with that business.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
+
+Each business record will have multiple fields associated with it.  You can see a full list of available fields in our [Business Data Schema](https://java.documentationai.com/docs/business-data-schema).
+
+## 4. Refine your search
+
+If you think about the original query we made, you'll realize we didn't really specify which geography we're interested in.  Since we only want US hotels, we should narrow our search appropriately.  Modify your request body to look like this:
+
+```json
+{
+  "query": "categories:hotels AND country:US",
+  "num_records": 10,
+  "format":"csv"
+}
+```
+
+This API call is different in a couple ways:
+
+1. It adds ` AND country:US` to narrow down results to just US hotels.
+2. It changes `records=1` to `records=10` so we can look at more sample matches.
+3. It changes `format` from `json` to `csv`.
+
+Datafiniti lets you construct very refined boolean queries.  If you wanted to do more complicated searches, you could use OR operations, negation, and more.
+
+Hit "Send" to see the updated results.
+
+## 5. Initiate a download of the data
+
+Once we like what we see from the sample matches, it's time to download a larger data set!  To do this, we're going to further modify our request body to look like this:
+
+```json
+{
+  "query": "categories:hotels AND country:US",
+  "num_records": 50,
+  "format":"csv",
+  "view": "business_basic",
+  "download": true
+}
+```
+
+Here's what we changed:
+
+1. We change `"num_records": 10` to `"num_records": 50`.  This will download the first 50 matching records.  If we wanted to download all matching records, we would remove `num_records`.
+2. We added `"view": "business_basic"`.  If you don't specify `view`, it will show all available fields.
+3. We added `"download": true`.  This tells the API to issue a download request instead of a search request.
+
+<Callout kind="alert">
+  **num_records**
+
+If num_records is not specified, ALL of the records matching the query will be downloaded.
+</Callout>
+
+When you make this API call, you'll see a response similar to:
+
+```json
+{
+    "id": 7,
+    "results": [],
+    "user_id": 15,
+    "status": "running",
+    "date_started": "2017-11-16 17:46:06.0",
+    "num_downloaded": 0,
+    "data_type": "business",
+    "query": "categories:hotels AND country:US",
+    "format": "csv",
+    "num_records": 50,
+		"total_cost": 50
+}
+```
+
+We'll explain each of these fields in the next section.
+
+## 6. Monitor the status of the download
+
+As the download request runs, you can check on its status by using the "Get Download" call in your Postman collection.  Just replace `:id` with the `id` value you saw in the previous step.
+
+<Image src="https://files.readme.io/ed6443fc990aee5f733aaded558714686ef8b62eb6c82a1cbc3306e518f4aa26-image.png" width="1920" height="1080" alt="" />
+
+<br />
+
+If you keep running this call, you'll see some of the values update.  Once the download completes, it will look something like this:
+
+```json
+{
+    "id": 7,
+    "results": [
+        "https://datafiniti-downloads.s3.amazonaws.com/15/7_1.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20171116T174607Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Credential=AKIAJYCTIF46QVBTXWYA%2F2017xxxx%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=ecf13f1bb4b7adfdde1a99143541afd1d12347292eb9ec3f6ed1316c64d4eekf"
+    ],
+    "user_id": 15,
+    "status": "completed",
+    "date_started": "2017-11-16 17:46:06.0",
+    "date_updated": "2017-11-16 17:46:07.0",
+    "num_downloaded": 50,
+    "data_type": "business",
+    "query": "categories:hotels AND country:US",
+    "format": "json",
+    "num_records": 50,
+  	"total_cost": 50
+}
+```
+
+Here's what these fields mean:
+
+| Response Field   | Description                                                                                                                                                                                          |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`             | This is a unique identifier for the request.                                                                                                                                                         |
+| `results`        | This is a list of links for all the result files generated for this data set.  When you first issue the download request, it will be an empty list, but it will populate as the download progresses. |
+| `user_id`        | This is an internal id for your user account.                                                                                                                                                        |
+| `status`         | This indicates the status of your download.  It will be set to `completed` once the download has finished.                                                                                           |
+| `date_started`   | The date and time the download started.                                                                                                                                                              |
+| `date_updated`   | The last time the download information was updated.                                                                                                                                                  |
+| `num_downloaded` | The number of records that have been downloaded so far.                                                                                                                                              |
+| `data_type`      | The data type you queried.                                                                                                                                                                           |
+| `query`          | The query you ran.                                                                                                                                                                                   |
+| `format`         | The data format you requested.                                                                                                                                                                       |
+| `num_records`    | The total number of records that will be downloaded.                                                                                                                                                 |
+| `total_cost`     | The total number of credits used by this download.  Business records only cost 1 credit per record.                                                                                                  |
+
+## 7. Download the result file(s)
+
+Once the download response shows `"status": "completed"`, you can download the data using the URLs in the `results` field.
+
+If you've requested a lot of records (i.e., over 10,000), you may see more than 1 result object shown.
+
+To download the result files, copy each `url` value and paste it into your browser.  Your browser will initiate a download to your computer.
+
+## 8. Open the result file(s)
+
+### Open the result file(s) in Excel
+
+For files formatted as CSV, you will receive you files as `<downloadID_#>`.csv. You can navigate to the file you downloaded and open it.  Since it's a CSV file, it should open in Excel automatically.  It will look something like:
+
+<Image src="https://files.readme.io/e200451-people.png" width="1920" height="1080" alt="" />
+
+### Parse JSON data
+
+The download code will save one or more result files to your project folder.
+
+<Callout kind="info">
+  **JSON Format**
+
+The JSON data will actually be a text file, rather of a single JSON object. Each line in the text file is a JSON object. We format the data this way because most programming languages won't handle parsing the entire data set as a JSON object with their standard system calls very well.
+</Callout>
+
+We'll need to parse the file into an array of JSON objects.  We can use code similar to this to handle the parsing:
+
+```php
+<?php
+
+// Set the location of your file here
+$file = "xxxx_x.txt";
+
+$records = array();
+
+$handle = fopen($file, "r");
+if ($handle) {
+	while (($line = fgets($handle)) !== false) {
+		$records[] = json_decode(($line));
+	}
+} else {
+	echo "Error opening file.";
+}
+
+foreach($records as $record) {
+	// Edit these lines to do more with the data.
+	print_r($record);
+}
+
+?>
+```
+
+You can edit the code in the `foreach` loop above to do whatever you'd like with the data, such as store the data in a database, write it out to your console, etc.

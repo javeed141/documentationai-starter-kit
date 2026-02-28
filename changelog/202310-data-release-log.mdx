@@ -1,0 +1,62 @@
+---
+title: 2023.10 - Data Release Log
+---
+
+## Overview
+
+3 new property data statuses with 4 new property data top level fields.
+
+### Record Counts
+
+* Business: 131,722,376 unique records with 248,896 added
+* People: 5,423,078 unique records with 1,016,358 added
+* Products: 508,562,574 unique records with 3,191,188 newly added
+* Property: 208,111,424 unique records with 2,807,656 newly added
+
+### Property Data Updates
+
+We understand the importance of staying up-to-date with the ever-evolving real estate market. That's why we are pleased to announce the addition of new statuses for property listings:
+
+**Auction**: Explore comprehensive data on properties scheduled for auction. Whether you're an investor or a market observer, this information will help you navigate the auction landscape effectively.\
+` "mostRecentStatus": "Auction"`
+
+**Pre-Foreclosed:** Gain an edge by accessing data on properties in pre-foreclosure status. This feature enables you to identify opportunities before they hit the market, providing a competitive advantage.\
+` "mostRecentStatus": "Pre-Foreclosed"`
+
+**Foreclosed**: We've expanded our data coverage to include foreclosed properties. Now, you can access essential data on distressed assets, opening up new investment possibilities.\
+` "mostRecentStatus": "Foreclosed"`
+
+We have introduced four new top-level property schema fields. These additions offer enhanced property insights and facilitate more precise searches:
+
+**congressionalDistrictHouse**: Congressional district of the property. Field type: string\
+**legalRange**: Legal range of the property.Field type: string\
+**currentOwnerType**: Current owner type of the property. Field type: string\
+**instrumentNumber**: Instrument # of the property. Field type: string
+
+```json
+{
+	"congressionalDistrictHouse": 4,
+	"legalRange":"08E",
+	"currentOwnerType": "Company",
+	"instrumentNumber": "3312-0576"
+}
+```
+
+Added new statuses to all our crawler apps and added weekly home buyer data to our daily property feed.
+
+* Updated Weichert
+* Updated Realtytrac
+* Updated Movoto
+* Updated Realtor.com
+* Updated Coldwellbanker
+* Updated Remax.ca
+* Updated GetRentToOwn
+* Updated CityRealty
+* Updated Century21
+* Updated VRBO
+* Added Foreclosure statuses to Homefinder and Realtytrac
+* Updated Cityfeet
+* Updated BHGRE
+* Added MLSListings.com
+* Updated Kijiji.ca
+* Updated Homes.com

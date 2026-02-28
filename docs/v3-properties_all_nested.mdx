@@ -1,0 +1,65 @@
+---
+title: properties_all_nested
+---
+
+The `properties_all_nested` view will display all available fields in our [Property Data Schema](https://java.documentationai.com/docs/property-data-schema).
+
+If using the `csv` format, it will keep all elements in multi-valued field lists in a single cell.  This means a field like `reviews` will show up as a nested JSON object within the CSV.
+
+
+| Field | Included Sub-fields |
+| --- | --- |
+| `address` | N/A |
+| `availableDates` | `dateSeen` <br/> `endDate` <br/> `sourceURLs` <br/> `startDate` |
+| `brokers` | `agent` <br/> `company` <br/> `dateSeen` <br/> `emails` <br/> `phones` <br/> `websites` |
+| `buildingName` | N/A |
+| `city` | N/A |
+| `country` | N/A |
+| `dateAdded` | N/A |
+| `dateUpdated` | N/A |
+| `deposits` | `amount` <br/> `currency` <br/> `dateSeen` <br/> `sourceURLs` |
+| `descriptions` | `dateSeen` <br/> `sourceURLs` <br/> `value` |
+| `features` | `key` <br/> `value` |
+| `fees` | `amountMax` <br/> `amountMin` <br/> `currency` <br/> `dateSeen` <br/> `sourceURLs` <br/> `type` |
+| `floorSizeValue` | N/A |
+| `floorSizeUnit` | N/A |
+| `hours` | `day` <br/> `hour` |
+| `imageURLs` | N/A |
+| `keys` | N/A |
+| `languagesSpoken` | N/A |
+| `latitude` | N/A |
+| `leasingTerms` | `dateSeen` <br/> `sourceURLs` <br/> `value` |
+| `listingName` | N/A |
+| `longitude` | N/A |
+| `lotSizeValue` | N/A |
+| `lotSizeUnit` | N/A |
+| `managedBy` | `dateSeen` <br/> `sourceURLs` <br/> `value` |
+| `mlsNumber` | N/A |
+| `nearbySchools` | `assigned` <br/> `address` <br/> `city` <br/> `country` <br/> `dateSeen` <br/> `distanceValue` <br/> `distanceUnit` <br/> `faxes` <br/> `gradeLevels` <br/> `name` <br/> `phones` <br/> `postalCode` <br/> `province` <br/> `sourceURLs` |
+| `neighborhoods` | N/A |
+| `numBathroom` | N/A |
+| `numBedroom` | N/A |
+| `numFloor` | N/A |
+| `numPeople` | N/A |
+| `numRoom` | N/A |
+| `numUnit` | N/A |
+| `parking` | N/A |
+| `paymentTypes` | N/A |
+| `people` | `dateSeen` <br/> `email` <br/> `name` <br/> `phone` <br/> `title` |
+| `petPolicy` | N/A |
+| `phones` | N/A |
+| `postalCode` | N/A |
+| `prices` | `amountMin` <br/> `amountMax` <br/> `availability` <br/> `comment` <br/> `currency` <br/> `date` <br/> `dateAdded` <br/> `dateSeen` <br/> `dateValidStart` <br/> `dateValidEnd` <br/> `isSale` <br/> `minStay` <br/> `period` <br/> `pricePerSquareFoot` <br/> `sourceURLs` |
+| `propertyTaxes` | `amount` <br/> `currency` <br/> `dateSeen` <br/> `sourceURLs` |
+| `propertyType` | N/A |
+| `province` | N/A |
+| `reviews` | `date` <br/> `dateAdded` <br/> `dateSeen` <br/> `doRecommend` <br/> `rating` <br/> `sourceURLs` <br/> `text` <br/> `title` <br/> `userCity` <br/> `username` <br/> `userProvince` |
+| `rules` | N/A |
+| `sourceURLs` | N/A |
+| `statuses` | `dateSeen` <br/> `isUnderContract` <br/> `sourceURLs` <br/> `type` |
+| `taxID` | N/A |
+| `unavailableDates` | `dateSeen` <br/> `endDate` <br/> `sourceURLs` <br/> `startDate` |
+| `websiteIDs` | N/A |
+
+
+Right-click and choose "Save link as..." to download this sample so you can see it in Excel: [properties_all-CSV-example.csv]()

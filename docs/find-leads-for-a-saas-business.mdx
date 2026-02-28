@@ -1,0 +1,177 @@
+---
+title: Find leads for a SaaS business
+---
+
+## Introduction
+
+A popular use case for Datafiniti's People Data is lead generation for sales campaigns.  You can use our People Data to find leads that match a wide variety of criteria.
+
+In this example, we'll show you how to find leads for a fictional SaaS (software-as-a-service) business
+
+## Developing your search query
+
+When generating a lead list, you're likely to start by searching for specific job titles that match who will be making buying decisions.  We can use the `jobTitle` field for this.
+
+```json
+{
+  "query": "jobTitle:\"Product Manager\""
+}
+```
+
+This will return several matching records, like this one:
+
+```json
+{
+    "num_found": 41693,
+    "total_cost": 10,
+    "records": [
+        {
+            "businessCategories": [
+                "information technology and services",
+                "mechanical or industrial engineering"
+            ],
+            "businessName": "goformz",
+            "city": "san diego",
+            "country": "US",
+            "dateAdded": "2023-02-22T21:38:35Z",
+            "dateUpdated": "2023-02-22T21:38:35Z",
+            "domains": [
+                "www.datafiniti.co"
+            ],
+            "experiences": [
+                {
+                    "jobTitle": "product manager",
+                    "jobLevel": "manager",
+                    "businessName": "giving assistant",
+                    "numEmployeesMin": 51,
+                    "numEmployeesMax": 200,
+                    "address": "535 mission street",
+                    "country": "united states",
+                    "province": "california",
+                    "city": "san francisco",
+                    "latitude": "37.77,-122.41",
+                    "companyFounded": "2014",
+                    "websites": [
+                        "givingassistant.org"
+                    ]
+                }
+            ],
+            "emails": [
+                "greg@givingassistant.org"
+            ],
+            "facebookURL": "https://www.facebook.com/greg.brice.5",
+            "firstName": "greg",
+            "gender": "male",
+            "jobFunction": "operations",
+            "jobLevel": "manager",
+            "jobSkills": [
+                "information technology",
+                "adobe creative suite",
+                "vmware vsphere",
+                "motion graphics",
+                "aerospace industries",
+                "microsoft excel",
+                "microsoft office",
+                "final cut pro",
+                "management",
+                "team leadership",
+                "supply chain management",
+                "audio engineering",
+                "boom lift"
+            ],
+            "jobTitle": "product manager",
+            "keys": [
+                "gregory/brice/informationtechnologyandservices",
+                "gregory/brice/goformz",
+                "gregory/brice/mechanicalorindustrialengineering",
+                "gregory/brice/gregorygivingassistantorg"
+            ],
+            "lastName": "brice",
+            "linkedinURL": "https://www.linkedin.com/in/greg-brice-12a2193",
+            "numEmployeesMin": 11,
+            "numEmployeesMax": 50,
+            "professionalEmails": [
+                "greg@givingassistant.org"
+            ],
+            "province": "CA",
+            "sourceURLs": [
+                "https://www.datafiniti.co/"
+            ],
+            "id": "OmYQe4YBnlMipTIrXMUH"
+        }
+      ]
+}
+```
+
+The matching record is for a person that works in the industrial engineering field.  You may want to target a specific industry, which you can do by searching on the `businessCategories` field:
+
+```json
+{
+  "query": "jobTitle:\"Product Manager\" AND businessCategories:\"financial services\""
+}
+```
+
+### Getting a count of managers
+
+If you want to make sure that all leads that come back have an email and phone number, you can use our count feature to see the number of records before downloading the results
+
+```json
+{
+  "query": "jobTitle:\"Product Manager\" AND businessCategories:\"financial services\" AND professionalEmails:* AND phones:*",
+  "num_records":0
+}
+```
+
+The response from this request:
+
+```json
+{
+    "num_found": 1026
+}
+```
+
+If you would like to check the records with in this query you can pull a small amount of records to do some spot checking:
+
+```json
+{
+  "query": "jobTitle:\"Product Manager\" AND businessCategories:\"financial services\" AND professionalEmails:* AND phones:*",
+  "num_records":10
+}
+```
+
+This will make sure the leads that come back have data like this:
+
+```json
+"professionalEmails": [
+  "greg@givingassistant.org"
+],
+"phones": [
+  "+1 845-920-0300"
+],
+```
+
+## Downloading your lead list
+
+Once you've developed the exact search criteria you want, you can download all matching results into a lead list like so:
+
+```json
+{
+  "query": "jobTitle:(\"product manager\") AND businessCategories:\"financial services\" AND professionalEmails:* AND phones:*",
+  "download": true,
+  "format": "CSV",
+  "num_records":1026
+}
+```
+
+This will generate a CSV file with each field in our [people data schema](https://developer.datafiniti.co/docs/people-data-schema) in a separate column.
+
+### Example files
+
+Here are example bulk download files of our previous query:
+
+* [SaaS Business People Leads CSV](https://drive.google.com/file/d/1cJ54Gn-i6yeSDMn2OexxHEiDl1UlRXnI/view?usp=share_link)
+* [SaaS Business People Leads JSON](https://drive.google.com/file/d/1_24qB3FhLK7H5WWs90JY7ZS28XNBhf1Q/view?usp=share_link)
+
+### Conclusion
+
+With the knowledge of how to pull records with business-specific categories, you can now generate sales campaigns with the people these records.

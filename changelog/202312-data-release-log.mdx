@@ -1,0 +1,81 @@
+---
+title: 2023.12 - Data Release Log
+---
+
+## Overview
+
+Datafiniti project release 5 has been updated and is now live.
+
+Datafiniti unveils updates aimed at improving user interaction. New top-level property fields, such as mostRecentBroker, offer enhanced insights into recently observed brokers. The introduction of the "floorPlans" field provides a structured overview of various residential unit types, including details like bedrooms, bathrooms, floor size, and rent. We have focused on refining and structuring property data for a smoother user experience, standardizing field values for convenience. Additionally, efforts include consolidating property status values and unifying units and location terms across the database.
+
+### Record Count
+
+Business: 132,657,851 unique records with 346,894 added\
+People: 16,974,243 unique records with 11,551,165 added\
+Products: 518,971,526 unique records with 10,408,952 newly added\
+Property: 221,514,366 unique records with 4,726,397 newly added
+
+### Property API Updates
+
+**Adding mostRecentBroker fields**
+
+Like our other most recent fields, this will be a set of top level fields for the broker that was seen most recently. These include:
+
+* mostRecentBrokerAgent
+* mostRecentBrokerCompany
+* mostRecentBrokerDateSeen
+* mostRecentBrokerEmails
+* mostRecentBrokerPhones
+
+**Added parkingTypes**
+
+We now parse the parking field and pull out the type of parking and the number of spaces. parkingTypes is an array of strings. It can contain the following values:
+
+* RV Parking
+* Parking Lot
+* Street
+* Attached Garage
+* Detached Garage
+* Driveway
+* Carport
+
+**Elevating feature fields into top-level fields**\
+The following data points currently exist in the features array, but we will be moving them into their own top-level fields.  The reason for these changes is that these fields have been asked for by several different leads or customers.  By moving them into their own fields, we’ll make it easier for customers to find and work with this data.
+
+**Pushing subdivision and other features into neighborhoods**\
+The features array captures data that is the same information as neighborhoods but just uses different names.  Examples include subdivision and community.  There are probably others.
+
+**Adding permits and zoning data\&#xA;**&#x50;ermitting data is a big deal for a lot of customers. Permits signify what can be built at a certain property. There are several variations of how this data is currently labeled in the features array, so explore it thoroughly to capture everything. Similar information is available for zoning. Note that permitting and zoning are not the same thing.
+
+**Standardizing field values**\
+There are several examples of the same information being represented in multiple ways. This causes confusion and friction for customers as they try to search for or work with the data.  We’re going to standardize these values to make them easier to use.
+
+**Merging Rental Unit with Rental**\
+Both of these values exist for statuses, even though they mean the same thing.
+
+**Merging sqft and sq ft\&#xA;**&#x49;t’s not clear which of these is the better option to stick with, but it’s clear we don’t need both!
+
+**Merging Manhattan with New York City**\
+Manhattan is technically a borough within New York City.  We may actually want to consider how to designate boroughs.
+
+### Property Source Updates
+
+* Updated Redfin
+* Updated VRBO
+* Updated Realestatebook
+* Added Landsearch
+* Updated Remax.com
+* Updated Apartments.com
+* Updated ForRent.com
+* Rebuilt 99acres
+* Updated Loopnet
+* Updated Century21
+* Updated Realestate.com.au
+* Updated Apartmentguide.com
+* Added ForSaleByOwner.ca
+
+### Product Source Updates
+
+* Rebuilt DicksSportingGoods.com
+* Updated BHPhotovideo.com
+* Rebuilt Homepath

@@ -1,0 +1,170 @@
+---
+title: Integrations and Extensions
+description: Connect Java with third-party tools and services to enhance your documentation workflow and automate updates.
+---
+
+## Overview
+
+Extend Java's documentation capabilities by integrating with GitHub for version control, APIs for custom automation, webhooks for real-time notifications, and third-party apps for enhanced workflows. These integrations help you sync content changes, embed external resources, and streamline collaboration.
+
+<Callout kind="tip">
+Review your integration permissions and test in a staging environment before production use.
+</Callout>
+
+## Popular Integrations
+
+Discover ready-to-use connections with popular tools.
+
+<Columns cols={3}>
+  <Card title="GitHub" icon="github" href="https://github.com" target="_blank">
+    Sync repositories with documentation pages for automatic updates on commits and releases.
+  </Card>
+  <Card title="Slack" icon="message-circle" href="https://slack.com" target="_blank">
+    Receive notifications for page updates, new versions, and collaboration mentions.
+  </Card>
+  <Card title="Zapier" icon="zap" href="https://zapier.com" target="_blank">
+    Build no-code automations connecting Java docs to 5000+ apps.
+  </Card>
+</Columns>
+
+## GitHub Version Control Integration
+
+Connect your GitHub repository to automatically publish documentation changes.
+
+<Tabs>
+  <Tab title="Connect Repository" icon="link">
+    1. Navigate to your Java dashboard at `https://dashboard.example.com`.
+    2. Go to **Settings > Integrations > GitHub**.
+    3. Authorize the app and select your repository.
+
+    <CodeGroup tabs="CLI,UI">
+    ````bash
+    gh auth login
+    java-docs sync-repo --repo owner/my-docs
+    ````
+    ````javascript
+    // Using Java SDK
+    import { JavaDocs } from '@java/docs-sdk';
+    const docs = new JavaDocs({ apiKey: 'YOUR_API_KEY' });
+    await docs.integrations.connectGitHub('owner/my-docs');
+    ````
+    </CodeGroup>
+  </Tab>
+  <Tab title="Sync Workflow" icon="git-branch">
+    Use GitHub Actions to trigger builds.
+
+    ````yaml
+    name: Deploy Docs
+    on: [push]
+    jobs:
+      deploy:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v4
+          - run: java-docs deploy --token ${{ secrets.JAVA_TOKEN }}
+    ````
+  </Tab>
+</Tabs>
+
+## Webhook Setup for Real-Time Updates
+
+Set up webhooks to receive instant notifications on documentation events like page updates or new viewers.
+
+### Steps to Configure
+
+<Steps>
+  <Step title="Create Webhook" icon="plus">
+    In your Java dashboard, visit **Settings > Webhooks > New Webhook**.
+
+    Provide your endpoint: `https://your-webhook-url.com/java-events`.
+  </Step>
+  <Step title="Select Events" icon="zap">
+    Choose events: `page.updated`, `page.published`, `user.login`.
+  </Step>
+  <Step title="Verify and Test" icon="check-circle">
+    Java sends a test payload. Respond with HTTP 200.
+
+    <ParamField header="X-Java-Signature" param-type="string" required="true">
+      HMAC SHA-256 signature for payload verification.
+    </ParamField>
+  </Step>
+</Steps>
+
+Example handler:
+
+<CodeGroup tabs="Node.js,Python">
+````javascript
+const crypto = require('crypto');
+app.post('/java-events', (req, res) => {
+  const signature = req.headers['x-java-signature'];
+  const payload = JSON.stringify(req.body);
+  const expected = crypto.createHmac('sha256', 'YOUR_WEBHOOK_SECRET')
+    .update(payload).digest('hex');
+  if (signature === `sha256=${expected}`) {
+    console.log('Event:', req.body.event);
+    res.status(200).send('OK');
+  } else {
+    res.status(401).send('Invalid signature');
+  }
+});
+````
+````python
+import hmac
+import hashlib
+from flask import Flask, request
+
+app = Flask(__name__)
+@app.route('/java-events', methods=['POST'])
+def webhook():
+    signature = request.headers.get('X-Java-Signature')
+    payload = request.data
+    expected = hmac.new(
+        b'YOUR_WEBHOOK_SECRET',
+        payload,
+        hashlib.sha256
+    ).hexdigest()
+    if signature == f'sha256={expected}':
+        print('Event:', request.json['event'])
+        return 'OK', 200
+    return 'Invalid signature', 401
+````
+</CodeGroup>
+
+## API Access for Custom Workflows
+
+Build custom integrations using Java's REST API at `https://api.example.com/v1`.
+
+<ResponseField name="data" field-type="object" required="true">
+  Main response payload.
+</ResponseField>
+<ResponseField name="pages" field-type="array">
+  List of documentation pages.
+</ResponseField>
+
+<Expandable title="Advanced API Authentication" default-open="false">
+  Use OAuth 2.0 for user-context actions.
+
+  ```javascript
+  const response = await fetch('https://api.example.com/v1/pages', {
+    headers: {
+      Authorization: 'Bearer YOUR_ACCESS_TOKEN'
+    }
+  });
+  ```
+</Expandable>
+
+## Embedding External Content
+
+Embed GitHub Gists, YouTube videos, or iframes directly in pages.
+
+| Provider | Embed Method | Example |
+|----------|--------------|---------|
+| GitHub Gist | `<iframe>` | `https://gist.github.com/...` |
+| YouTube | `<iframe>` | `https://youtube.com/embed/VIDEO_ID` |
+| Figma | `<iframe>` | `https://www.figma.com/embed?embed_host=...` |
+
+<Callout kind="alert">
+  Embedded content must comply with your site's Content Security Policy (CSP).
+</Callout>
+
+These integrations supercharge your Java documentation. Start with GitHub sync for immediate value, then explore webhooks for automation.

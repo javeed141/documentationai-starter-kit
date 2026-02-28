@@ -1,0 +1,31 @@
+---
+title: 2021.1 - Data Release Log
+---
+
+# Overview
+
+Our property database has come under intense scrutiny lately with performance issues.  This month focused a lot on tweaking and improving that performance.
+
+## Record Counts
+
+The following are the updated record counts for each vertical:
+
+* Business data increased by 0.6 million to 119.4 million
+* People data increase by 0.5 to 3 million
+* Product data increased by 5.3 million to 262.8 million
+* Property data decreased by 6.7 million to 166.7 million
+
+## New Sources
+
+The following data types have received new sources:
+
+* 6 Product data sources
+
+## Schema Changes
+
+* Removed the following fields from the property data schema due to outdated data or no longer carried value for our customers: `nearbySchools`, `hours`, `availableDates`, and `unavailableDates`
+
+## Fixes
+
+* Removed data from miscellaneous features field to improve property cluster performance
+* Updated 1 Business data source, 1 Product data source, and 1 Property data source

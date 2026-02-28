@@ -1,0 +1,74 @@
+---
+title: Gather people contact information
+---
+
+## Introduction
+
+By providing a general lead's name we can search our people database to see if any contact information is available.
+
+## Searching against a known target list
+
+If your company provides leads, you likely have access to lists of known individuals' names. These lists will likely contain each person's name, email, and other identifiers.  A list may look like:
+
+First Name, Last Name
+Joe, Curry
+Tina, Harris
+Luis, Fiego
+
+You can take information like this and use it to find matching individuals in our people database.  Here's how such a search might look:
+
+```json
+{
+  "query": "firstName:Joe AND lastName:Curry",
+  "num_records": 10
+}
+```
+
+If a matching record comes back, it will include the company that currently employs the individual. (with more data)
+
+```json
+ {
+   "country": "US",
+   "emails": [
+     "joe.curry@universallumpers.com",
+     "jcurry@universallumpers.com"
+            ],
+   "firstName": "joe",
+   "gender": "male",
+ }
+```
+
+## Matching your lead to targeted area
+
+As you match each person and find their area that they reside, your can enhance your query to hone your record result to the demographic of that specific person.
+
+```json
+{
+  "query": "firstName:Joe AND lastName:Curry AND country:US AND province:CO AND city:denver",
+  "num_records": 10
+}
+```
+
+This will guarantee that the person in question is from the US, Denver, Colorado area.
+
+## Matching via email
+
+You can also search via the email of the person you are looking for. Utilizing our emails field, you can search via the email.
+
+```json
+{
+  "query": "emails:\"ctrivedi@remax.net\"",
+  "num_records": 1
+}
+```
+
+### Example files
+
+Here are example bulk download files of our previous query:
+
+* [Denver leads CSV](https://drive.google.com/file/d/1YSttkeS83HVXPMn5IDt89XRaVPhOeU_L/view?usp=share_link)
+* [Denver leads JSON](https://drive.google.com/file/d/1a2rcHQp4GMK8Gki6PXbtfGOS1s5GU4Ed/view?usp=share_link)
+
+### Conclusion
+
+With the knowledge of how to pull records with business-specific categories, you can now pull targeted area leads for your outreach.

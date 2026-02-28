@@ -1,0 +1,57 @@
+---
+title: 2025.06 - Data Release Log
+---
+
+# New to Datafiniti
+
+## New Improvements to People and Property Data
+
+We’ve introduced new `people_key` sub-fields in both our people and brokers fields. These sub-fields serve as keys that link to corresponding records in our people database, enabling you to pull contact information for homeowners and brokers associated with each property.
+
+* people.people_key – Use this field to retrieve more detailed homeowner contact information.
+* brokers.people_key – Use this field to access license numbers, contact details, and listing history for brokers.
+
+## New Property Data Fields
+
+We’ve added new name-based sub-fields to the brokers field to enhance the reliability of broker name searches in our property data.
+
+* brokers.firstName
+* brokers.lastName
+
+## New People Data Fields
+
+The following top-level fields have been added to our people data to help you better identify and filter homeowners, brokers, and their associated properties:
+
+* propertyKeys
+* propertiesOwned
+* propertiesRepresented
+
+## New Nationwide Business Data Buildouts
+
+We’ve expanded our business data with records sourced from state government databases to improve our coverage of local businesses. This update focuses on registered businesses across individual states.
+
+Currently available sources:
+
+* New York (data.ny.gov)
+* Connecticut (data.ct.gov)
+
+Let us know if there’s a state you’d like us to prioritize: [support@datafiniti.co](mailto:support@datafiniti.co)
+
+# Coming Soon
+
+## New Business Data Fields
+
+We’re building new fields for our business data to include unique business identifiers such as business_id, entity_id, and others. These updates will improve filtering and targeting of registered businesses.
+
+## Improved Download Speed & Reliability
+
+We're working behind the scenes to deliver faster and more reliable downloads. These performance enhancements are expected to roll out later this month.
+
+# Available Data
+
+Here’s a snapshot of our current record counts by data type:
+
+* Property: 284,150,037 unique records with 27,402,601 added last month
+* Business: 135,265,845 unique records with 1,128,127 added last month
+* People: 135,356,144 unique records with 35,755,573 added last month
+* Products: 565,269,848 unique records with 20,554,861 added last month

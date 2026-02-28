@@ -1,0 +1,102 @@
+---
+title: Find mortgage lender from transactions
+---
+
+## Introduction
+
+In this guide we will explore how to find mortgage lenders with Datafiniti's property data. From transactions to refinance loan Datafiniti can provide property analytical data points to see the past, current, and future market. Helping you to provide insights into your property market. Let's get started:
+
+### Searching for lenders being present in the record
+
+For this guide let's start by looking for property records in Kentucky with lender information within the last year:
+
+```json
+{
+    "query": "transactions.lenderName:* AND transactions.mortgageTerm:* AND transactions.saleDate:[2024-02-10 TO *] AND province:(\"KY\")",
+    "num_records":10,
+    "view":[
+        	{"name": "address"},
+		{"name": "city"},
+		{"name": "province"},
+		{"name": "postalCode"},
+		{"name": "propertyType"},
+        {
+			"name": "transactions",
+			"flatten": true,
+			"sub_fields": 
+          [{"name":"saleDate"},{"name":"firstDateSeen"},{"name":"lastDateSeen"},{"name":"documentType"},{"name":"price"},{"name":"sellerFirstName"},{"name":"sellerMiddleName"},{"name":"sellerLastName"},{"name":"buyerFirstName"},{"name":"buyerMiddleName"},{"name":"buyerLastName"},{"name":"lenderName"},{"name":"loanType"},{"name":"loanAmount"},{"name":"mortgageTerm"},{"name":"interestType"},{"name":"parcelNumber"},{"name":"ownerType"},{"name":"contactOwnerMailAddressFull"}]
+		},
+        {"name": "mostRecentPriceAmount"}, 
+        {"name": "mostRecentPriceDate"},
+        {"name": "mostRecentStatus"}, 
+        {"name": "mostRecentStatusDate"},
+        {"name": "mostRecentStatusFirstDateSeen"}
+    ]
+}
+```
+
+Here is a snippet of the code response:
+
+```json
+{
+            "address": "8211 Cedar Crst Ln",
+            "city": "Louisville",
+            "province": "KY",
+            "postalCode": "40291",
+            "propertyType": "Single Family Dwelling",
+            "transactions": [
+                {
+                    "saleDate": "2023-12-13T08:00:00.000Z",
+                    "price": 187500
+                },
+                {
+                    "saleDate": "2024-09-11T00:00:00.000Z",
+                    "documentType": "Deed Of Trust",
+                    "buyerLastName": "Limestone Builders Inc",
+                    "lenderName": "Liberty Fcu",
+                    "loanType": "Building Or Construction",
+                    "loanAmount": 292863,
+                    "mortgageTerm": 18,
+                    "ownerType": "Company",
+                    "contactOwnerMailAddressFull": "Po Box 277, Prospect, KY, 40059"
+                }
+            ],
+            "mostRecentPriceAmount": 384900,
+            "mostRecentPriceDate": "2025-01-21T00:00:00.000Z",
+            "mostRecentStatus": "For Sale",
+            "mostRecentStatusDate": "2025-01-03T00:00:00.000Z",
+            "mostRecentStatusFirstDateSeen": "2025-02-04T15:59:58.628Z",
+            "id": "5yBXUYwBod0R46D1_GpX"
+        },
+```
+
+You can see here the lender is Liberty FCU for a new deed of trust.
+
+### Targeting specific lenders
+
+From our previous example, lets now target all property that used "Liberty FCU" as a lender. We can modify the base query to target this lender using `transactions.lenderName`.
+
+```json
+{
+    "query": "transactions.lenderName:\"Liberty Fcu\" AND transactions.mortgageTerm:* AND transactions.saleDate:[2024-02-10 TO *] AND province:(\"KY\")",
+    "num_records":10,
+    "view":[
+        	{"name": "address"},
+		{"name": "city"},
+		{"name": "province"},
+		{"name": "postalCode"},
+		{"name": "propertyType"},
+        {
+			"name": "transactions",
+			"flatten": true,
+			"sub_fields": 
+          [{"name":"saleDate"},{"name":"firstDateSeen"},{"name":"lastDateSeen"},{"name":"documentType"},{"name":"price"},{"name":"sellerFirstName"},{"name":"sellerMiddleName"},{"name":"sellerLastName"},{"name":"buyerFirstName"},{"name":"buyerMiddleName"},{"name":"buyerLastName"},{"name":"lenderName"},{"name":"loanType"},{"name":"loanAmount"},{"name":"mortgageTerm"},{"name":"interestType"},{"name":"parcelNumber"},{"name":"ownerType"},{"name":"contactOwnerMailAddressFull"}]
+		},
+        {"name": "mostRecentPriceAmount"}, 
+        {"name": "mostRecentPriceDate"},
+        {"name": "mostRecentStatus"}, 
+        {"name": "mostRecentStatusDate"},
+        {"name": "mostRecentStatusFirstDateSeen"}
+    ]
+}
+```

@@ -1,0 +1,1007 @@
+---
+title: Product Data with PHP
+---
+
+For this guide, we're going to assume the following you're interested in using Datafiniti's product data to analyze trends in the women's luxury shoe market.  Let's say you're a data scientist that's been tasked with the following:
+
+1. Collect pricing data on women's luxury shoes from multiple online retailers.
+2. Sort the data by brand.
+3. Determine the average price of each brand.
+
+**Your environment and data needs:**
+
+1. You're working with PHP.
+2. You want to work with CSV or JSON data.
+
+Here are the steps we'll take:
+
+## 1. Open a code editor
+
+If you want to use PHP to access the Datafiniti API, we're assuming you'll be using a standard code editor to write your PHP code.  Open your code editor to get started.
+
+## 2. Get your API token
+
+The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
+
+To get your API token, go the [Datafiniti Web Portal Settings Page](https://portal.datafiniti.co/settings/api), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+
+For security reasons, your API token will be automatically changed whenever you change your password.
+
+<Image src="https://files.readme.io/09308c19ef5679c6c442944d6110ca679093450ba9364b1caa8aaa05b67cb768-image.png" width="1920" height="1080" alt="" />
+
+<Callout kind="info">
+  **API Key**
+
+For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
+</Callout>
+
+<Callout kind="alert">
+  **API Key Regen**
+
+For security reasons, your API token will be automatically changed whenever you change your password.
+</Callout>
+
+## 3. Run your first search
+
+The first thing we'll do is do a test search that will give us a sense for what sort of data might be available.  Eventually we'll refine our search so that we get back the most relevant data.
+
+Since we want hotels, let's try a simple search that will just give us online listings for hotels.
+
+Write the following code in your code editor (replace the dummy API token with your real API token):
+
+```php
+<?php
+/*
+  Illustrates an API call to Datafiniti's Business Database for hotels.
+*/
+
+$url = 'https://api.datafiniti.co/v4/products/search';
+
+// Set your API parameters here.
+$APIToken = 'AAAXXXXXXXXXXXX';
+$format = 'JSON';
+$query = 'categories:shoes';
+$num_records = 1;
+$download = false;
+
+$request_body = array(
+	'query' => $query,
+	'format' => $format,
+	'num_records' => $num_records,
+	'download' => $download
+);
+
+$options = array(
+	'http' => array (
+		'header'  => "Authorization: Bearer " . $APIToken . "\r\n" . 
+					 "Content-Type: application/json\r\n",
+		'method'  => 'POST',
+		'content' => json_encode($request_body)
+	)
+);
+
+$context  = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+if ($result === FALSE) {
+	echo "Error.";
+} else {
+	var_dump($result);
+}
+
+?>
+```
+
+You should get a response similar to this:
+
+```json
+(
+    [num_found] => 884885
+  	[total_cost] => 1
+    [records] => Array
+        (
+            [0] => Array
+                (
+                    [asins] => Array
+                        (
+                            [0] => B010XYTFM6
+                        )
+
+                    [brand] => inktastic
+                    [categories] => Array
+                        (
+                            [0] => Novelty
+                            [1] => Tops & Tees
+                            [2] => Novelty & More
+                            [3] => Women
+                            [4] => Clothing, Shoes & Jewelry
+                            [5] => T-Shirts
+                            [6] => Clothing
+                        )
+
+                    [dateAdded] => 2015-11-09T01:55:09Z
+                    [dateUpdated] => 2016-04-12T16:19:26Z
+                    [imageURLs] => Array
+                        (
+                            [0] => http://ecx.images-amazon.com/images/I/41W6xSgsBbL._SX342_QL70_.jpg
+                            [1] => http://ecx.images-amazon.com/images/I/41StiamgorL._SR38,50_.jpg
+                            [2] => http://ecx.images-amazon.com/images/I/41StiamgorL._SX342_QL70_.jpg
+                            [3] => http://ecx.images-amazon.com/images/I/41W6xSgsBbL._SR38,50_.jpg
+                        )
+
+                    [keys] => Array
+                        (
+                            [0] => inktasticwomensbutterflybanjochickjuniorvnecktshirts/b010xytfm6
+                        )
+
+                    [name] => Inktastic Women's Butterfly Banjo Chick Junior V-neck T-shirts
+                    [sourceURLs] => Array
+                        (
+                            [0] => http://www.amazon.com/Inktastic-Womens-Butterfly-Junior-T-Shirts/dp/B010XYTK1W
+                            [1] => http://www.amazon.com/Inktastic-Womens-Butterfly-Junior-T-Shirts/dp/B016HKYYN0
+                            [2] => http://www.amazon.com/Inktastic-Butterfly-T-Shirts-Athletic-Heather/dp/B016HKYPYS
+                        )
+
+                    [id] => AVkzMzokUmTPEltRlaJ_
+                )
+
+)
+```
+
+Let's break down each of the parameters we sent in our request:
+
+| API Call Component            | Description                                                                                                                                                                                                  |
+| :---------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"query": "categories:shoes"` | `query` tells the API what query you want to use.  In this case, you're telling the API you want to search by `categories`.  Any product that has `shoes` listed in its `categories` field will be returned. |
+| `"num_records": 1`            | `num_records` tells the API how many records to return in its response.  In this case, you just want to see 1 matching record.                                                                               |
+| `"format":"xxxx"`             | `"format"` tells the API what format to output the data in the response. Can be either `CSV` or `JSON`                                                                                                       |
+
+Now let's dive through the response the API returned:
+
+| Response Field | Description |
+| --- | --- |
+| `"num_found"` | The total number of available records in the database that match your query.  If you end up downloading the entire data set, this is how many records you'll use. |
+| `"total_cost"` | The number of credits this request has cost you.  Product records only cost 1 credit per record. |
+| `"records"` | The first available matches to your query. If there are no matches, this field will be empty.   <br/>    <br/> Within each record returned, you'll see multiple fields shown.  This is the data for each record. |
+
+Within the `records` field, you'll see a single product returned with multiple fields and the values associated with that product.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
+
+Each product record will have multiple fields associated with it.  You can see a full list of available fields in our [Product Data Schema](https://java.documentationai.com/docs/product-data-schema).
+
+## 4. Refine your search
+
+If you take a look at the sample record shown above, you'll notice that it's not actually a pair of shoes.  It's actually a shirt.  It was returned as a match because its category keywords included `Clothing, Shoes & Jewelry`.  If we downloaded all matching records, we would find several products that really are shoes, but we'd also find other products like this one, which aren't.
+
+<Callout kind="info">
+  **Format**
+
+Note that you have the commented line to change between CSV and JSON format. You may change this by comment out the format you do not want.
+</Callout>
+
+We'll need to refine our search to make sure we're only getting shoes.  Modify your code to look like this:
+
+```php
+<?php
+/*
+  Illustrates an API call to Datafiniti's Business Database for hotels.
+*/
+
+$url = 'https://api.datafiniti.co/v4/products/search';
+
+// Set your API parameters here.
+$APIToken = 'AAAXXXXXXXXXXXX';
+$format = 'CSV';
+$query = 'categories:shoes AND -categories:shirts AND categories:women AND (brand:* OR manufacturer:*) AND prices:*';
+$num_records = 10;
+$download = false;
+
+$request_body = array(
+	'query' => $query,
+	'format' => $format,
+	'num_records' => $num_records,
+	'download' => $download
+);
+
+$options = array(
+	'http' => array (
+		'header'  => "Authorization: Bearer " . $APIToken . "\r\n" . 
+					 "Content-Type: application/json\r\n",
+		'method'  => 'POST',
+		'content' => json_encode($request_body)
+	)
+);
+
+$context  = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+if ($result === FALSE) {
+	echo "Error.";
+} else {
+	var_dump($result);
+}
+
+?>
+```
+
+This code is different in a couple ways:
+
+1. It uses `AND -categories:shirts` to filter out any products that might be shirts. Note the `-` in front of `categories`.
+2. It adds `AND categories:women` to narrow down results to just products for women. (We were interested in just women's shoes.)
+3. It adds `AND (brand:* OR manufacturer:*)`.  This ensures the `brand` or `manufacturer` field is filled out in all the records I request.  We call the `*` a "wildcard" value.  Matching against a wildcard is a useful way to ensure the fields you're searching aren't empty.
+4. It adds `AND prices:*`.  Again, matching against a wildcard here means we're sure to only get products that have pricing information.
+5. It changes `records=1` to `records=10` so we can look at more sample matches.
+6. It changes the format from `JSON` to `CSV`.
+
+<Callout kind="alert">
+  **Num_records not specified**
+
+If num_records is not specified, ALL of the records matching the query will be downloaded.
+</Callout>
+
+Notice how Datafiniti lets you construct very refined boolean queries.  In the API call above, we're using a mix of `AND` and `OR` to get exactly what we want.
+
+If you would like to narrow your search to just exact matches you can place the search term in quotation marks.
+
+```php
+<?php
+/*
+  Illustrates an API call to Datafiniti's Business Database for hotels.
+*/
+
+$url = 'https://api.datafiniti.co/v4/products/search';
+
+// Set your API parameters here.
+$APIToken = 'AAAXXXXXXXXXXXX';
+$format = 'CSV';
+$query = 'name:"Apple Iphone 10"';
+$num_records = 10;
+$download = false;
+
+$request_body = array(
+	'query' => $query,
+	'format' => $format,
+	'num_records' => $num_records,
+	'download' => $download
+);
+
+$options = array(
+	'http' => array (
+		'header'  => "Authorization: Bearer " . $APIToken . "\r\n" . 
+					 "Content-Type: application/json\r\n",
+		'method'  => 'POST',
+		'content' => json_encode($request_body)
+	)
+);
+
+$context  = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+if ($result === FALSE) {
+	echo "Error.";
+} else {
+	var_dump($result);
+}
+
+?>
+```
+
+The above query will only return products with the exact name of Apple Iphone 10.
+
+## 5. Initiate a download of the data
+
+Once we like what we see from the sample matches, it's time to download a larger data set!  To do this, we're going to update our code a fair bit (an explanation follows):
+
+```php
+<?php
+/*
+  Illustrates how to download a full data set from Datafiniti's Business Database.
+*/
+
+$request_url = 'https://api.datafiniti.co/v4/products/search';
+
+// Set your API parameters here.
+$API_token = 'AAAXXXXXXXX';
+$format = 'CSV';
+$query = 'categories:shoes AND -categories:shirts AND categories:women AND (brand:* OR manufacturer:*) AND prices:*';
+$num_records = 50;
+$download = true;
+
+$request_body = array(
+	'query' => $query,
+  'num_records' => $num_records,
+	'format' => $format,
+	'download' => $download
+);
+
+$request_options = array(
+	'http' => array (
+		'header'  => "Authorization: Bearer " . $API_token . "\r\n" . 
+					 "Content-Type: application/json\r\n",
+		'method'  => 'POST',
+		'content' => json_encode($request_body)
+	)
+);
+
+// Make the initial API call.
+echo "Making initial request...\n";
+print_r($request_options);
+$request_context  = stream_context_create($request_options);
+$request_response = file_get_contents($request_url, false, $request_context);
+
+if ($request_response === FALSE) {
+
+	echo "Error.";
+	var_dump($request_response);
+
+} else {
+
+	echo "Download request successful:\n";
+	$request_response_array = json_decode($request_response,true);
+	print_r($request_response_array);
+
+	$download_id = $request_response_array['id'];
+	$download_url = 'https://api.datafiniti.co/v4/downloads/' . $download_id;
+	$download_options = array(
+		'http' => array (
+			'header'  => "Authorization: Bearer " . $API_token . "\r\n",
+			'method'  => 'GET'
+		)
+	);
+	$download_status = 'running';
+	while ($download_status != 'completed') {
+		sleep(10);
+		echo "Checking on status: " . $download_url . "\n";
+		$download_context  = stream_context_create($download_options);
+		$download_response = file_get_contents($download_url, false, $download_context);		
+		$download_response_array = json_decode($download_response,true);
+		$download_status = $download_response_array['status'];
+		echo "Records downloaded: " . $download_response_array['num_downloaded'] . "\n";
+	}
+
+	if ($download_status == 'completed') {
+		$result_list = $download_response_array['results'];
+		for ($i = 0; $i < count($result_list); $i++) {
+			$result_link = $result_list[$i];
+			$filename = $download_id . "_" . $i . "." . $format;
+			file_put_contents($filename, fopen($result_link, 'r'));
+			echo "File " . ($i+1) . " out of " . count($result_list) . " saved: " . $filename . "\n";
+		}
+	}
+}
+
+?>
+```
+
+A couple things to pay attention to in the above code:
+
+1. We changed `num_records` from `10` to `50`.  This will download the first 50 matching records.  If we wanted to download all matching records, we would remove `num_records`. `num_records` will tell the API to default to all available records.
+2. We changed `download` from `false` to `true`.
+
+Since we've handled multiple steps of the download process in this code, we won't go into the details here, but we do recommend you familiarize yourself with those steps.  Checking them out in our [Product Data with Postman and JSON](https://java.documentationai.com/docs/product-data-with-postman-json) guide.
+
+<Callout kind="alert">
+  **Credit limit monitoring**
+
+When using the API, you will not receive any warning if you are going past your monthly record limit.  Keep a track on how many records you have left by checking your account.  You are responsible for monitoring your monthly limit. To learn more about your credit limit please review [How Credits Work](https://java.documentationai.com/docs/how-credits-work-api).
+</Callout>
+
+## 6. Checking your download status
+
+You will be presented with a response JSON different from the previous download being false. Whenever your download is true, Datafiniti will provide a download ID in the response file along with your credits used and a status. Below is an example of the response of your property search API. You can gather the following fields from the response JSON:
+
+* `status` - your status can be: completed, cancelled, queued, or running
+* `num_downloaded` - you show the amount of records download so far
+* `property_cost` - cost of credit for this download, will update once status = completed
+* `ID` - *most important* to track your download.
+
+```json
+{
+    "status": "queued",
+    "num_downloaded": 0,
+    "num_records_suppressed": 0,
+    "people_cost": 0,
+    "property_cost": 0,
+    "product_cost": 0,
+    "business_cost": 0,
+    "total_cost": 0,
+    "fields": [
+        {
+            "name": "apiURLs",
+            "flatten": false
+        },
+        {
+            "name": "asins",
+            "flatten": false
+        },
+        {
+            "name": "brand"
+        },
+        {
+            "name": "canonicalBrand"
+        },
+        {
+            "name": "categories",
+            "flatten": false
+        },
+        {
+            "name": "colors",
+            "flatten": false
+        },
+        {
+            "name": "count"
+        },
+        {
+            "name": "dateAdded"
+        },
+        {
+            "name": "dateUpdated"
+        },
+        {
+            "name": "descriptions",
+            "flatten": false
+        },
+        {
+            "name": "dimension"
+        },
+        {
+            "name": "domains",
+            "flatten": false
+        },
+        {
+            "name": "ean",
+            "flatten": false
+        },
+        {
+            "name": "ean8"
+        },
+        {
+            "name": "ean13"
+        },
+        {
+            "name": "features",
+            "flatten": false
+        },
+        {
+            "name": "financingAndLeasing",
+            "flatten": false,
+            "sub_fields": [
+                {
+                    "name": "additionalDetails"
+                },
+                {
+                    "name": "apr"
+                },
+                {
+                    "name": "currency"
+                },
+                {
+                    "name": "dateSeen"
+                },
+                {
+                    "name": "dueAtSigningMin"
+                },
+                {
+                    "name": "dueAtSigningMax"
+                },
+                {
+                    "name": "disclaimers"
+                },
+                {
+                    "name": "milesPerYear"
+                },
+                {
+                    "name": "monthlyPaymentMin"
+                },
+                {
+                    "name": "monthlyPaymentMax"
+                },
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "offerStartDate"
+                },
+                {
+                    "name": "offerEndDate"
+                },
+                {
+                    "name": "securityDepositMin"
+                },
+                {
+                    "name": "securityDepositMax"
+                },
+                {
+                    "name": "sourceURLs"
+                },
+                {
+                    "name": "term"
+                }
+            ]
+        },
+        {
+            "name": "flavors",
+            "flatten": false
+        },
+        {
+            "name": "gtins",
+            "flatten": false
+        },
+        {
+            "name": "imageURLs",
+            "flatten": false
+        },
+        {
+            "name": "isbn"
+        },
+        {
+            "name": "keys",
+            "flatten": false
+        },
+        {
+            "name": "manufacturer"
+        },
+        {
+            "name": "manufacturerNumber"
+        },
+        {
+            "name": "merchants",
+            "flatten": false
+        },
+        {
+            "name": "mostRecentPriceAmount"
+        },
+        {
+            "name": "mostRecentPriceNonSalesAmount"
+        },
+        {
+            "name": "mostRecentPriceAvailability"
+        },
+        {
+            "name": "mostRecentPriceCurrency"
+        },
+        {
+            "name": "mostRecentPriceColor"
+        },
+        {
+            "name": "mostRecentPriceSize"
+        },
+        {
+            "name": "mostRecentPriceCondition"
+        },
+        {
+            "name": "mostRecentPriceIsSale"
+        },
+        {
+            "name": "mostRecentPriceDomain"
+        },
+        {
+            "name": "mostRecentPriceSourceURL"
+        },
+        {
+            "name": "mostRecentPriceDate"
+        },
+        {
+            "name": "mostRecentPriceFirstDateSeen"
+        },
+        {
+            "name": "mostRecentPriceByDomain",
+            "flatten": false,
+            "sub_fields": [
+                {
+                    "name": "amount"
+                },
+                {
+                    "name": "nonSalesAmount"
+                },
+                {
+                    "name": "availability"
+                },
+                {
+                    "name": "currency"
+                },
+                {
+                    "name": "color"
+                },
+                {
+                    "name": "size"
+                },
+                {
+                    "name": "condition"
+                },
+                {
+                    "name": "isSale"
+                },
+                {
+                    "name": "domain"
+                },
+                {
+                    "name": "sourceURL"
+                },
+                {
+                    "name": "date"
+                },
+                {
+                    "name": "firstDateSeen"
+                }
+            ]
+        },
+        {
+            "name": "name"
+        },
+        {
+            "name": "prices",
+            "flatten": false,
+            "sub_fields": [
+                {
+                    "name": "amountMax"
+                },
+                {
+                    "name": "amountMin"
+                },
+                {
+                    "name": "availability"
+                },
+                {
+                    "name": "color"
+                },
+                {
+                    "name": "condition"
+                },
+                {
+                    "name": "count"
+                },
+                {
+                    "name": "currency"
+                },
+                {
+                    "name": "dateSeen"
+                },
+                {
+                    "name": "firstDateSeen"
+                },
+                {
+                    "name": "lastDateSeen"
+                },
+                {
+                    "name": "flavor"
+                },
+                {
+                    "name": "isSale"
+                },
+                {
+                    "name": "isSold"
+                },
+                {
+                    "name": "merchant"
+                },
+                {
+                    "name": "offer"
+                },
+                {
+                    "name": "returnPolicy"
+                },
+                {
+                    "name": "shipping"
+                },
+                {
+                    "name": "size"
+                },
+                {
+                    "name": "sourceURLs"
+                },
+                {
+                    "name": "warranty"
+                }
+            ]
+        },
+        {
+            "name": "primaryCategories",
+            "flatten": false
+        },
+        {
+            "name": "primaryImageURLs",
+            "flatten": false
+        },
+        {
+            "name": "quantities",
+            "flatten": false
+        },
+        {
+            "name": "reviews",
+            "flatten": false,
+            "sub_fields": [
+                {
+                    "name": "date"
+                },
+                {
+                    "name": "dateSeen"
+                },
+                {
+                    "name": "didPurchase"
+                },
+                {
+                    "name": "doRecommend"
+                },
+                {
+                    "name": "id"
+                },
+                {
+                    "name": "numHelpful"
+                },
+                {
+                    "name": "rating"
+                },
+                {
+                    "name": "sourceURLs"
+                },
+                {
+                    "name": "text"
+                },
+                {
+                    "name": "title"
+                },
+                {
+                    "name": "userCity"
+                },
+                {
+                    "name": "username"
+                },
+                {
+                    "name": "userProvince"
+                }
+            ]
+        },
+        {
+            "name": "sdsURLs",
+            "flatten": false
+        },
+        {
+            "name": "secondaryCategories",
+            "flatten": false
+        },
+        {
+            "name": "sizes",
+            "flatten": false
+        },
+        {
+            "name": "skus",
+            "flatten": false
+        },
+        {
+            "name": "sourceURLs",
+            "flatten": false
+        },
+        {
+            "name": "stockNum"
+        },
+        {
+            "name": "taxonomy",
+            "flatten": false
+        },
+        {
+            "name": "taxonomyLevel1",
+            "flatten": false
+        },
+        {
+            "name": "taxonomyLevel2",
+            "flatten": false
+        },
+        {
+            "name": "taxonomyLevel3",
+            "flatten": false
+        },
+        {
+            "name": "taxonomyLevel4",
+            "flatten": false
+        },
+        {
+            "name": "taxonomyLevel5",
+            "flatten": false
+        },
+        {
+            "name": "taxonomyLevel6",
+            "flatten": false
+        },
+        {
+            "name": "taxonomyLevel7",
+            "flatten": false
+        },
+        {
+            "name": "taxonomyLevel8",
+            "flatten": false
+        },
+        {
+            "name": "taxonomyLevel9",
+            "flatten": false
+        },
+        {
+            "name": "upc",
+            "flatten": false
+        },
+        {
+            "name": "upce"
+        },
+        {
+            "name": "upca"
+        },
+        {
+            "name": "vin"
+        },
+        {
+            "name": "websiteIDs",
+            "flatten": false
+        },
+        {
+            "name": "weight"
+        }
+    ],
+    "sort": true,
+    "auto_trace": false,
+    "only_traceable": false,
+    "format": "csv",
+    "suppressed_fields": [],
+    "enriched_fields": [],
+    "query": "categories:shoes AND -categories:shirts AND categories:women AND (brand:* OR manufacturer:*) AND prices:*",
+    "num_records": 50,
+    "data_type": "product",
+    "user": 126609,
+    "results": [],
+    "date_started": "2025-04-09T20:32:22.163Z",
+    "date_updated": "2025-04-09T20:32:22.163Z",
+    "_id": 847070,
+    "is_suppression_job": false,
+    "is_enrichment_job": false,
+    "id": "847070"
+}
+```
+
+You can track the status of your download via the following method using our GET `https://api.datafiniti.co/v4/downloads/:id` endpoint
+
+### Track your download via the API
+
+The following code can be used to track your download ID:
+
+```php
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => "https://api.datafiniti.co/v4/downloads/811043?api_key=<your_API_key>",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "GET",
+  CURLOPT_HTTPHEADER => [
+    "Authorization: Bearer <your_API_key>",
+    "accept: application/json"
+  ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+The response of your code will provide you with the following JSON:
+
+```json
+{
+  "status": "completed",
+  "num_downloaded": 50,
+  "num_records_suppressed": 0,
+  "people_cost": 0,
+  "property_cost": 0,
+  "product_cost": 50,
+  "business_cost": 0,
+  "total_cost": 50,
+  "sort": true,
+  "auto_trace": false,
+  "only_traceable": false,
+  "format": "csv",
+  "suppressed_fields": [],
+  "enriched_fields": [],
+  "_id": 710516,
+  "query": "categories:shoes AND -categories:shirts AND categories:women AND (brand:* OR manufacturer:*) AND prices:*",
+  "num_records": 50,
+  "data_type": "property",
+  "user": 1226609,
+  "results": [
+    "https://datafiniti-downloads.s3.amazonaws.com/126609/811043_1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250317T200355Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Credential=AKIAZSCI425AD5EKHVNH%2F20250317%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=4c14da1d1df9eb490a0ab7c329b6f60f87c87edda2fe3b1a3dc857ea6e639sdfas6dc"
+  ],
+  "date_started": "2025-03-17T20:00:46.733Z",
+  "date_updated": "2025-03-17T20:03:55.926Z",
+  "is_suppression_job": false,
+  "is_enrichment_job": false,
+  "id": "847070"
+}
+```
+
+### Track your download via the portal
+
+You can track the status of your Datafiniti download via the portal in the download page [here](https://portal.datafiniti.co/download).\
+For more information please read our [Downloading Result Files](https://java.documentationai.com/docs/downloading-result-files).\
+You can match the ID from your API response to the download ID on the page here:
+
+<Image src="https://files.readme.io/e048f51d3f77560a7a3803356c4350802c0f3386c89d25c67dd180c95804c747-image.png" width="1920" height="1080" alt="" />
+
+### Track via our reference page
+
+You can track the status of your Datafiniti download via the API reference page [Get a Download](https://java.documentationai.com/reference/get-a-download). You can match the ID from your API response to the download ID on the page here:
+
+<Image src="https://files.readme.io/c5707f6b7aca415216ec57d58c5047fdedece72db0596e3c7d3ae88cb8c7d35a-image.png" width="1920" height="1080" alt="" />
+
+<br />
+
+## 7. Parse the data
+
+### Open the result file(s) in Excel
+
+The download code will save one or more result files to your project folder.  Open one of those files in Excel.  It will look something like:
+
+<Image src="https://files.readme.io/b8b08d6f8ae5cdf1c77c8c56b6da899a6c006ce27fb76ddfb795aaf0a4f3b50b-image.png" width="1920" height="1080" alt="" />
+
+### Parse the JSON data
+
+The download code will save one or more result files to your project folder.
+
+<Callout kind="info">
+  **JSON format download**
+
+The JSON data will actually be a text file, instead of a single JSON object. Each line in the text file is a JSON object. We format the data this way because most programming languages won't handle parsing the entire data set as a JSON object with their standard system calls very well. Commonly know as NDJSON
+</Callout>
+
+We'll need to parse the file into an array of JSON objects.  We can use code similar to this to handle the parsing:
+
+```php
+<?php
+
+// Set the location of your file here.
+$file = 'xxxx_x.txt';
+
+// Function to read each line and process it with a callback
+function readLines($filePath, $callback) {
+    $records = [];
+
+    $handle = fopen($filePath, "r");
+    if ($handle) {
+        while (($line = fgets($handle)) !== false) {
+            $line = trim($line);
+            if (!empty($line)) {
+                $callback($line, $records);
+            }
+        }
+        fclose($handle);
+    } else {
+        die("Error opening the file.");
+    }
+
+    processData($records);
+}
+
+// Function to parse line to JSON and add to records array
+function func($line, &$records) {
+    $json = json_decode($line, true);
+    if (json_last_error() === JSON_ERROR_NONE) {
+        $records[] = $json;
+    } else {
+        echo "JSON parse error on line: $line\n";
+    }
+}
+
+// Function to process all data after file read is complete
+function processData($records) {
+    // You can modify this to do more with the data
+    print_r($records);
+}
+
+readLines($file, 'func');
+```
+
+You can edit the code in `processData` above to do whatever you'd like with the data, such as store the data in a database, write it out to your console, etc.

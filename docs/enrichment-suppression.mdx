@@ -1,0 +1,50 @@
+---
+title: "Enrichment & Suppression"
+---
+
+You can use our  `/search/enrichment`  endpoint to improve your data by merging it with datafiniti records. Data enrichment improves the quality of your existing data by adding information we've collected from all over the web.
+
+<Image src="https://files.readme.io/9946bea-PostmanSearch.PNG" width="1920" height="1080" alt="PostmanSearch.PNG" />
+
+## Endpoints
+`POST https://api.datafiniti.co/v4/{dataType}/search/enrichment`
+
+## Input
+A multipart/form-data object containing all the information needed to process your enrichment job. The multipart/form-data object will look like this:
+
+<Image src="https://files.readme.io/b43812d-APIbasicSetup2.PNG" width="1920" height="1080" alt="APIbasicSetup2.PNG" />
+
+**Required Fields:**
+
+* `comparison_field` -This should be replaced with the field we will use to match records. The value holds the file containing data we want to enrich. `comparison_field` can hold one field or multiple comma-separated fields.
+* `query` - This is used to refine the data we will use for enrichment. It can be as simple as `{comparison_field}:*`, but we strongly advise against this because the more specific your query is, the faster your enrichment job will be.
+* `num_records` - The number of records you want us to enrich.
+
+<Callout kind="alert">
+  **Credit Usage**
+
+Please note the number of `num_record` will be charge against your account upon submitting this request. Since enrichment was made to handle large bulk requests please be sure to account for your credit used before submitting data for enrichment.
+</Callout>
+
+**Optional Fields:**
+
+* `view` - This is used to specify which fields you want added to your data. If no view is provided, we will add all fields from matching records.
+* `format` -  The format you want the final enriched data to be in. If no format is given, we will default to whatever the original data was in. Valid formats are json and csv.
+
+## Output
+The response body returned to you is a JSON object containing either a download object or an errors array.
+The presence of an errors array indicates that a fatal error occurred and that the enrichment job was aborted. The errors array will contain strings that indicate why we could not complete your request. Generally, these will describe issues with your input that can be easily fixed.
+
+The presence of a download object indicates that we were able to start the enrichment process for the data provided.
+The object will contain parameters for the job as well as its current status. The only part of this object you need to worry about is the `id`; this is used to monitor the status of your download.
+
+<Callout kind="danger">
+  **Credit Usage & Enrichment**
+
+Since Enrichment charge credit per the batch file you are enriching data from, you may be overcharged credits to your account upon submitting a enrichment request. If you do not know if overcharging is enable / disable on your account you may contact support@datafiniti.co to find this info out.
+</Callout>
+
+**Retrieving your download**
+You can retrieve the enriched data by using our download endpoint and supplying the ID in the path.
+`GET https://api.datafiniti.co/v4/downloads/{id}`
+This will return an object that indicates the status of your download. If everything is ready, it will also contain s3 links to your data. For more infomation on how to check through your downloads, you can visit [here](https://developer.datafiniti.co/docs/postman-downloading-result-files).

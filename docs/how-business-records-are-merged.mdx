@@ -1,0 +1,68 @@
+---
+title: How Business Records Are Merged
+---
+
+For each record we collect, we generate 1 or more `keys` for the record.  Each key value is based on different unique identifiers that are available from the record's data.  If we see a different record with 1 or more of the same `keys` values, we will merge these two records.
+
+For example, we may generate a business record like this when crawling a web page:
+
+```json
+{
+  "name": "Joe's Sloppy Joes",
+  "address": "123 Anywhere St",
+  "city": "Austin",
+  "province": "TX",
+  "country": "US",
+  "twitter": "joessloppyjoes"
+}
+```
+
+This record will generate the following `keys`:
+
+"keys": [
+  "US/TX/Austin/123-Anywhere-St/8833444"
+]
+
+Let's say we then crawl another web page for the same business and generate this data:
+
+```json
+{
+  "name": "Joe's Sloppy Joes",
+  "address": "123 Anywhere St",
+  "city": "Austin",
+  "province": "TX",
+  "country": "US",
+  "websites": [
+    "https://joessloppyjoes.com"
+  ]
+}
+```
+
+This will generate the same `keys` value, so the two records will be merged:
+
+```json
+{
+  "name": "Joe's Sloppy Joes",
+  "address": "123 Anywhere St",
+  "city": "Austin",
+  "province": "TX",
+  "country": "US",
+  "keys": [
+  	"US/TX/Austin/123-Anywhere-St/8833444"
+  ],
+  "twitter": "joessloppyjoes",
+  "websites": [
+    "https://joessloppyjoes.com"
+  ]
+}
+```
+
+Business records use the following fields to generate keys:
+
+* `address`
+* `city`
+* `province`
+* `country`
+* `name`
+
+`name` is used to disambiguate between two businesses located at the same address (e.g., business located at a mall).

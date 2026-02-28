@@ -1,0 +1,339 @@
+---
+title: Property Data with Python and CSV
+---
+
+For this guide, we're going to assume you're interested in using Datafiniti's property data to do some marketing analysis on residential home inventory.  Let's say you're a data scientist that's been tasked with the following:
+
+1. Collect data on homes.
+2. Sort the data by state.
+3. Find which states have the most properties for sale.
+
+Your environment and data needs:
+
+1. You're working with Python.
+2. You want to work with CSV data.
+
+Here are the steps we'll take:
+
+<Callout kind="alert">
+Note that we are using Python 3 for the examples below.
+</Callout>
+
+
+In your terminal, run the following to install the `requests` module for Python:
+
+```shell
+pip3 install requests
+```
+
+
+The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
+
+To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+
+<Callout kind="info">
+For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
+</Callout>
+
+.
+
+
+The first thing we'll do is do write some code that will run a test search.  This test search will give us a sense for what sort of data might be available.  Eventually we'll refine our search so that we get back the most relevant data.
+
+Since we want homes in the US, let's try a simple search that will just give us online listings for properties in the US.
+
+Write the following code in your code editor (replace the dummy API token with your real API token):
+
+```python
+import requests
+import urllib.parse
+import json
+
+## Set your API parameters here.
+APIToken = 'AAAXXXXXXXXXXXX'
+view = 'properties_all'
+format = 'JSON'
+query = urllib.parse.quote_plus('country:US')
+records = '1'
+download = 'false'
+
+## Construct the API call.
+APICall = 'https://' + APIToken + ':@api.datafiniti.co/v3/data/properties?' \
+			+ 'view=' + view \
+			+ '&format=' + format \
+			+ '&q=' + query \
+			+ '&records=' + records \
+			+ '&download=' + download
+
+## Make the API call.
+r = requests.get(APICall);
+
+## Do something with the response.
+if r.status_code == 200:
+	print(json.loads(r.content))
+else:
+	print('Request failed')
+```
+
+You should get a response similar to this:
+
+```json
+{
+  "estimated total": 7983205,
+  "records": [
+    {
+      "address": "711 Kent Ave",
+      "brokers": [
+        {
+          "agent": "Raj Singh",
+          "company": "YOUR REALTY INC.",
+          "dateSeen": [
+            "2016-06-06T18:09:28Z"
+          ],
+          "sourceURLs": [
+            "https://www.homepath.com/listing/711-kent-ave-catonsville-md-21228-46273970"
+          ]
+        }
+      ],
+      "city": "Catonsville",
+      "country": "US",
+      "dateAdded": "2016-06-06T18:09:28Z",
+      "features": [
+        {
+          "key": "Air Conditioning",
+          "value": [
+            "Heat Pumps"
+          ]
+        },
+        {
+          "key": "Sewer Type",
+          "value": [
+            "Public"
+          ]
+        }
+      ],
+      "keys": [
+        "us/md/catonsville/711kentave",
+        "mlsnumber/us/md/bc9677283",
+        "https://www.homepath.com/listing/711-kent-ave-catonsville-md-21228-46273970/homepath.com-46273970"
+      ],
+      "latitude": "39.284462",
+      "listingName": "711 Kent Ave, Catonsville, Md 21228",
+      "longitude": "-76.734069",
+      "lotSizeValue": 0.16,
+      "lotSizeUnit": "Acres",
+      "mlsNumber": "BC9677283",
+      "numBathroom": 2,
+      "numBedroom": 4,
+      "postalCode": "21228",
+      "prices": [
+        {
+          "amountMax": 199900,
+          "amountMin": 199900,
+          "currency": "USD",
+          "dateSeen": [
+            "2016-08-08T00:00:00Z",
+            "2016-08-03T00:00:00Z"
+          ],
+          "isSale": "false",
+          "sourceURLs": [
+            "https://www.homepath.com/listing/711-kent-ave-catonsville-md-21228-46273970"
+          ]
+        },
+        {
+          "amountMax": 212000,
+          "amountMin": 212000,
+          "currency": "USD",
+          "dateSeen": [
+            "2016-06-06T00:00:00Z"
+          ],
+          "isSale": "false",
+          "sourceURLs": [
+            "https://www.homepath.com/listing/711-kent-ave-catonsville-md-21228-46273970"
+          ]
+        }
+      ],
+      "propertyTaxes": [
+        {
+          "amount": 3195,
+          "currency": "USD",
+          "dateSeen": [
+            "2016-06-06T18:09:28Z"
+          ],
+          "sourceURLs": [
+            "https://www.homepath.com/listing/711-kent-ave-catonsville-md-21228-46273970"
+          ]
+        }
+      ],
+      "propertyType": "Single Family Dwelling",
+      "province": "MD",
+      "sourceURLs": [
+        "https://www.homepath.com/listing/711-kent-ave-catonsville-md-21228-46273970"
+      ],
+      "statuses": [
+        {
+          "dateSeen": [
+            "2016-08-09T09:16:10Z"
+          ],
+          "isUnderContract": "false",
+          "sourceURLs": [
+            "https://www.homepath.com/listing/711-kent-ave-catonsville-md-21228-46273970"
+          ],
+          "type": "For Sale"
+        }
+      ],
+      "websiteIDs": [
+        "homepath.com-46273970"
+      ],
+      "id": "AV9WzHyO_RWkykBuv11F"
+    }
+  ]
+]
+```
+
+Let's break down what the API call is all about:
+
+| API Call Component | Description |
+| --- | --- |
+| `https://` | This is the communication protocol used by the API.  It's the same one used when you visit a secure website. |
+| `AAAXXXXXXXXXXXX:@` | Your API token.  You're telling the API who you are so it can respond to your request. |
+| `api.datafiniti.co` | The location of the API. |
+| `/v3` | You're telling the API which version to use.  `v3` is our most recent and current API version. |
+| `/data` | You're telling the API you're interested in querying data. |
+| `/properties` | Specifically, you're interested in property data. |
+| `view=properties_all` | The `view` tells the API in which fields you want your response.  `properties_all` will show all available fields in a record. |
+| `format=JSON` | The `format` tells the API which data format you want to see.  You can set it to `JSON` or `CSV`. |
+| `q=country:US` | The `q` tells the API what query you want to use.  In this case, you're telling the API you want to search by `country`.  Any property that is in the US will be returned. |
+| `records=1` | The `records` tells the API how many records to return in the its response.  In this case, you just want to see 1 matching record. |
+| `download=false` | The `download` tells the API if you want to initiate a download request or not. Setting it to `false` means you don't, so it will show the matching records immediately in the response. |
+
+Now let's dive through the response the API returned:
+
+| Response Field | Description |
+| --- | --- |
+| `"estimated_total"` | The total number of available records in the database that match your query.  If you end up downloading the entire data set, this is how many records you'll use. |
+| `"records"` | The first available matches to your query.  For most queries, you'll see 1 to 10 example records.  If there are no matches, this field will be empty. <br/>  <br/> Within each record returned, you'll see multiple fields shown.  This is the data for each record. |
+
+Within the `records` field, you'll see a single property returned with multiple fields and their values associated with that business.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
+
+Each property record will have multiple fields associated with it.  You can see a full list of available fields in our [Property Data Schema](https://java.documentationai.com/docs/property-data-schema).
+
+
+If you think about the original query we made, you'll realize we didn't really specify we only wanted homes for sale.  There are several other types of properties (e.g., commercial, rentals) that may also be in the data.  Since we only want homes for sale, we should narrow our search appropriately.
+
+We'll need to refine our search to make sure we're only getting US homes for sale.  To do that, we can add additional filters to the `q` parameter to narrow down the results.  For example:
+
+```javascript
+import requests
+import urllib.parse
+import json
+
+## Set your API parameters here.
+APIToken = 'AAAXXXXXXXXXXXX'
+view = 'properties_all'
+format = 'JSON'
+query = urllib.parse.quote_plus('country:US AND propertyType:"Single Family Dwelling"')
+records = '1'
+download = 'false'
+
+## Construct the API call.
+APICall = 'https://' + APIToken + ':@api.datafiniti.co/v3/data/properties?' \
+			+ 'view=' + view \
+			+ '&format=' + format \
+			+ '&q=' + query \
+			+ '&records=' + records \
+			+ '&download=' + download
+
+## Make the API call.
+r = requests.get(APICall);
+
+## Do something with the response.
+if r.status_code == 200:
+	print(json.loads(r.content))
+else:
+	print('Request failed')
+```
+
+This query is different in a couple ways:
+
+1. It adds ` AND propertyType:"Single Family Dwelling"` to narrow down results to just US hotels.
+2. It changes `records=1` to `records=10` so we can look at more sample matches.
+
+Datafiniti lets you construct very refined boolean queries.  If you wanted to do more complicated searches, you could OR operations, negation, and more.
+
+You can run the Python code above to see the difference in the results.
+
+
+Once we like what we see from the sample matches, it's time to download the entire data set!  To do this, we're going to update our code a fair bit (an explanation follows):
+
+```python
+import requests
+import json
+import urllib.parse
+import time
+
+## Set your API parameters here.
+APIToken = 'AAAXXXXXXXXXXXX'
+view = 'properties_all_nested'
+format = 'csv'
+query = urllib.parse.quote_plus('country:US AND propertyType:"Single Family Dwelling"')
+records = '1'
+download = 'true'
+
+## Construct the API call.
+APICall = 'https://' + APIToken + ':@api.datafiniti.co/v3/data/properties?' \
+			+ 'view=' + view \
+			+ '&format=' + format \
+			+ '&q=' + query \
+			+ '&download=' + download
+
+## Make the initial API call.
+r = requests.get(APICall);
+if r.status_code == 200:
+	# Get the request ID for the download
+	requestAPICall = r.url
+
+	# Keep checking the request status until the download has completed
+	requestID = '';
+	requestResponseCode = 200
+	requestResponseStatus = 'STARTED';
+	while (requestResponseCode == 200 and requestResponseStatus != 'COMPLETED'):
+		time.sleep(5)
+		print('Checking on status: ' + requestAPICall)
+		request = requests.get(requestAPICall)
+		requestResponse = json.loads(request.text)
+		requestID = requestResponse[0]['id']
+		requestResponseStatus = requestResponse[0]['status']
+		print('Records downloaded: ' + str(requestResponse[0]['numDownloaded']))
+
+	# Once the download has completed, get the list of links to the result files and download each file
+	if requestResponseStatus == 'COMPLETED':
+		result = requests.get('https://' + APIToken + ':@api.datafiniti.co/v3/results/' + str(requestID))
+		resultResponse = json.loads(result.text)
+		i = 1;
+		for resultObj in resultResponse:
+			filename = str(requestID) + '_' + str(i) + '.' + format
+			urllib.request.urlretrieve(resultObj['url'],filename)
+			print('Downloaded file: ' + filename)
+			i += 1
+
+else:
+	print('Request failed')
+```
+
+A few things to pay attention to in the above code:
+
+1. Change `format=JSON` to `format=CSV`.  We'll want to view the files in CSV format, so it will be easier to look at.
+2. Remove `&records=10`.
+3. Change `properties_all` to `properties_all_nested`.  This will nest fields like prices and features into a single cell (instead splitting them across multiple rows and columns).
+4. Change `download=false` to `download=true`.
+
+Since we've handled multiple steps of the download process in this code, we won't go into the details here, but we do recommend you familiarize yourself with those steps.  Checking them out in our [Property Data with Web Browser and CSV](https://java.documentationai.com/docs/property-data-with-web-browser-and-csv) guide.
+
+
+The download code will save one or more result files to your project folder.  Open one of those files in Excel.  It will look something like:
+
+<Image src="https://files.readme.io/4bc9ef6-property_sample.jpg" width="1920" height="1080" alt="property_sample.jpg" />
+
+
+Using Excel, we can easily do some analysis on the number of properties for each state.  The `province` column gives us where each property is located, so we can use it to tally up the numbers.

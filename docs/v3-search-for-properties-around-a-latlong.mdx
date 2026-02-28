@@ -1,0 +1,61 @@
+---
+title: "Search latitude & longitude for properties"
+---
+
+## Introduction
+
+One popular use case for Datafiniti's Property Data is finding properties near a specific geo-coordinate that match certain criteria.  Here's how to do this!
+
+## Searching around latitude & longitude
+
+Let's say you have the following latitude and longitude coordinates:
+
+```json
+{
+  "latitude": 30.253540,
+  "longitude": -97.770640
+}
+```
+
+You can run a search for properties near this geo-coordinate like so:
+
+## Using Radial Search
+
+You can use geoLocation to search in a radius of a Longitude and Latitude. The following example will show you how to build a query.
+
+```json
+{
+	"query": "geoLocation:[-97.7430600,30.2671500,10,mi]"
+}
+```
+
+This will return all matching properties within a 10 mile radius.  You can change the `10` and the `mi` to other values you want, like `5,km` for 5 kilometers.
+
+## Search the Most Recent Records
+
+This will pull just the mostRecentStatus of "For Sale" properties in the area from the provided date to the present date.
+
+```json
+{
+	"query": "geoLocation:[-97.7430600,30.2671500,10,mi] AND mostRecentStatus:\"For Sale\" AND dateUpdated:[2023-03-14 TO *]"  
+}
+```
+
+## Adding more filters
+
+You probably want to be more specific than every property available, so you can additional filters like this:
+
+```json
+{
+	"query": "geoLocation:[-97.7430600,30.2671500,10,mi] AND propertyType:(\"Single Family Dwelling\" OR Apartment)"
+}
+```
+
+This will narrow down your matches to properties that are single family homes or apartments.  You can add any additional filters from the fields [available in our schema](https://developer.datafiniti.co/docs/property-data-schema).
+
+## Example files
+
+Here are example bulk download files for ourprevious query:
+
+* [long/lat JSON](https://drive.google.com/file/d/1y7cHkHF5d2ZlUYLOkk672-d5jFN9-0ZA/view?usp=sharing)
+* [long/lat CSV](https://drive.google.com/file/d/1YWohYam6LkQgj0-N93gHBLErkuJc3wYv/view?usp=sharing)

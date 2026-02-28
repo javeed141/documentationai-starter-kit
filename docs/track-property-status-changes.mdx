@@ -1,0 +1,149 @@
+---
+title: Track property status changes
+---
+
+### Introduction
+
+Many Datafiniti customers are interested in using our property data to track the status of property as they on/off the market. This guide will show you how to track this feed from historical to daily.
+
+### Finding the most recent status change
+
+Datafiniti allows you to search on the most recent changes to the data in the record itself. For this example we will be looking for the most recent *For Sale* homes in Houston, Texas for the last 30 days since July 1st. Here is the query:
+
+```json
+{
+    "query": "country:\"US\" AND province:TX AND city:houston AND mostRecentStatus:\"For Sale\" AND mostRecentStatusFirstDateSeen:[2023-07-01 TO *]",
+    "num_records": 10
+}
+```
+
+We used a combination of `mostRecentStatus `and `mostRecentStatusFirstDateSeen `to limit this query to only *For Sale* status. `mostRecentStatusFirstDateSeen `will state the date when the `mostRecentStatus `changed last.
+
+<Callout kind="info">
+  **mostRecentStatusFirstDateSeen vs mostRecentStatusDate**
+
+Please note that `mostRecentStatusFirstDateSeen` is a static field that show when the status change was first made. `mostRecentStatusDate` is a fluid field that will update even if the status is verified to be the same.
+</Callout>
+
+We are using a wildcard ended range to dictate the till present date. Please change your date range to which ever represent your use case better.
+
+<Callout kind="info">
+  **For sale vs rental statuses**
+
+Please note that Datafiniti tracks for sale and rental statuses separately, so if you are looking for rental statuses please use mostRecentRentalStatus. Being to check the possible status value here. [Possible Values for Property Fields](https://java.documentationai.com/docs/possible-values-for-property-fields)
+</Callout>
+
+<br />
+
+### Verify a non-rental status of a property
+
+Based off of our previous example we are going to check if the status of the address *1914 Augusta Dr Unit 21* is still for sale. We will use the following query to do so:
+
+```json
+{
+    "query": "country:\"US\" AND province:TX AND city:houston AND address:\"1914 Augusta Dr Unit 21\"",
+    "num_records": 1
+}
+```
+
+<Callout kind="info">
+  **Address normalization**
+
+Datafiniti uses standardized street name normalization. Converting `street` to `st`, `drive` to `dr`, etc, you can learn more about our address normalization here: [Normalized Property Addresses](https://java.documentationai.com/docs/normalized-address-data)\
+If you wish to exactly match addresses to Datafiniti's property data, you will need to use this normalization method.
+</Callout>
+
+Please note there are many statuses in regards to a non-rental property. You can see our full list of statuses [Possible Values for Property Fields](https://java.documentationai.com/docs/possible-values-for-property-fields)
+
+This will return the following property data. We will focus on the most recent data fields for this example.
+
+```json
+{
+	
+	"mostRecentPriceDomain": "www.redfin.com",
+	"mostRecentPriceSourceURL": "https://www.redfin.com/TX/Houston/1914-Augusta-Dr-77057/unit-21/home/30396468",
+  "mostRecentSaleListPriceAmount": 227900,
+"mostRecentSaleListPriceDate": "2023-08-08T15:42:45.733Z",
+	"mostRecentStatus": "For Sale",
+	"mostRecentStatusDate": "2023-08-08T00:00:00.000Z",
+	"mostRecentStatusFirstDateSeen": "2023-07-19T00:00:00.000Z"
+}
+```
+
+We can see that the property has been on the market for longer than 14 days by comparing `mostRecentStatusDate `to `mostRecentStatusFirstDateSeen`. Using this method will allow you boarder insight on market trends in your area with any query you search with.
+
+## Tracking Rental Status Transitions
+
+While the existing guide focuses on sale-related changes, many users deal with rental markets or want to monitor when properties shift between being occupied and available. Tracking `rentalStatus` offers insights into vacancy cycles, market demand, and property usage trends.
+
+### Relevant fields & properties
+
+Assuming Datafiniti supports analogous fields for rentals akin to sales status, the key properties likely include:
+
+* `mostRecentRentalStatus` – current rental availability (e.g., “Available,” “Rented,” “Off Market”).
+* `mostRecentRentalStatusDate`  – the timestamp when the current rental status was last observed.
+* `mostRecentRentalStatusFirstDateSeen` – when that particular status was first recorded.
+
+<Callout kind="info">
+  **Relevant Fields Not Present**
+
+If these fields don’t already exist, it is safe to assume the property record does not have any rental status data.
+</Callout>
+
+### Querying Recent Rental Availability
+
+Here’s an example query to find properties recently listed as Available for rent in Austin, Texas, within the last 30 days:
+
+```json
+{  
+  "query": "country:\"US\" AND province:TX AND city:austin AND mostRecentRentalStatus:\"Rental\" AND mostRecentRentalStatusFirstDateSeen:[2025-07-15 TO *]",  
+  "num_records": 10  
+}
+```
+
+How this works:
+
+* `mostRecentRentalStatus`: "Rental" filters properties currently available for rent.
+* The date range on `mostRecentRentalStatusFirstDateSeen` ensures you're only seeing those newly marked as available.
+
+### Verifying Rental Status of a Specific Property
+
+To check whether a given property is still available or has changed, execute a query using its address:
+
+```json
+{  
+  "query": "country:\"US\" AND province:TX AND city:austin AND address:\"122 Elm Street\"",  
+  "num_records": 1  
+}
+```
+
+Review the returned JSON for fields similar to the following:
+
+```json
+{  
+  "mostRecentRentalStatus": "Rented",  
+  "mostRecentRentalStatusDate": "2025-08-14T08:30:00.000Z",  
+  "mostRecentRentalStatusFirstDateSeen": "2025-08-01T00:00:00.000Z"  
+}
+```
+
+You’ll know the property was first marked as “`Rented`” on August 1, 2025, and remains in that status as of the latest check on August 14, 2025.
+
+#### Interpreting Rental Status Durations
+
+By comparing `mostRecentRentalStatusDate` to `mostRecentRentalStatusFirstDateSeen`, you can estimate how long a property has been in its current rental state. This is helpful for:
+
+* Gauging average rental turnaround times.
+* Identifying unusually long vacancies.
+* Spotting high-demand markets via rapid re-leasing.
+
+## Example files
+
+Here are example bulk download files of our previous queries:
+
+* [Houston Statuses Csv](https://drive.google.com/file/d/1qSMgv9OXJ02z5s4QTpDex1PREjJyqb_F/view?usp=sharing)
+* [Houston Statuses Json](https://drive.google.com/file/d/1ewNz10ZoxKfe8HlnmIFVxWiN34bPyQGd/view?usp=sharing)
+
+### Conclusion
+
+By utilizing our most recent status field you will be able to track the life cycle of a property as it comes on/off the market. Search for the statuses you care about and setting up date ranges will allow you to better analyze the property markets you are most interested in.

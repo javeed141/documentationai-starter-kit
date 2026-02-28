@@ -1,0 +1,169 @@
+---
+title: Creating a custom people view on the fly
+---
+
+## Introduction
+
+Many Datafiniti customers are interested in using our people data with only specific fields in the record results of a query. In this guide, we will show you a couple of ways to set up a custom view.
+
+## Setting a view in your People Search API
+
+Whenever you set up your people search API body you can create a view by declaring the fields in the JSON of the body. Let's use the following query as a base for a property search:
+
+```json
+{
+    "query":"country:US AND province:TX AND city:\"el paso\"",
+    "num_records":20
+}
+```
+
+Now let's add the view to the body that allows only the following fields:
+
+* address
+* city
+* firstname
+* lastname
+* province
+* postalCode
+* email
+* phones
+
+\{
+    "query":"country:US AND province:TX AND city:\"el paso\"",
+    "num_records":20,
+    "view":[
+        \{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "address"
+		\},
+		\{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "city"
+		\},
+		\{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "country"
+		\},
+		\{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "emails"
+		\},
+		\{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "firstName"
+		\},
+		\{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "lastName"
+		\}
+    ]
+\}
+
+Here is an example of the download of this view:
+
+* [Custom People View CSV](https://drive.google.com/file/d/15rnbkt-JobOBwD2nHwYUwZqtRjsLRvXt/view?usp=sharing)
+
+## Creating a custom people view via create view API endpoint
+
+This method will create a permanent view that you can declare by name in the view of your search body. Using the [https://api.datafiniti.co/v4/views](https://api.datafiniti.co/v4/views) API endpoint you can create a view. We will use the previous fields as our view body. We will name this view `people_simplified`.
+
+```json
+{
+	"name": "people_simplified",
+	"data_type": "people",
+	"fields": [
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "businessName"
+		},
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "city"
+		},
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "country"
+		},
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "emails"
+		},
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "firstName"
+		},
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "industry"
+		},
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "jobLevel"
+		},
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "jobTitle"
+		},
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "lastName"
+		},
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "linkedinURL"
+		},
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "phones"
+		},
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "postalCode"
+		},
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "primaryEmail"
+		},
+		{
+			"flatten": false,
+			"sub_fields": [],
+			"name": "province"
+		}
+	]
+}
+```
+
+<Callout kind="info">
+  **Name**
+
+Please note you can name the view any string value not currently used. To check your current view you can use: [https://api.datafiniti.co/v4/views?page=1&limit=10](https://api.datafiniti.co/v4/views?page=1&limit=10)
+</Callout>
+
+<Callout kind="alert">
+  **dataType**
+
+Be sure that you declare the correct dataType to the dataType you wish to search. As we need to match the API to the dataType's schema. Learn more about [Property Data Schema](https://java.documentationai.com/docs/property-data-schema).
+</Callout>
+
+## Conclusion
+
+This will allow you to create a custom view to select only the people field you need. In this case creating a simplified people record, ready to use as a data source of people leads.

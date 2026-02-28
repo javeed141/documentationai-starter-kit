@@ -1,0 +1,27 @@
+---
+title: "java not found" Error
+description: Fix when Java command not found.
+---
+
+## Symptoms
+
+- Terminal shows `java: command not found`
+- Cannot run Java programs
+
+## Solution
+
+<Steps>
+  <Step title="Check installation">
+    ````bash
+    ls /usr/bin/java
+    # or
+    where java
+    ````
+  </Step>
+  <Step title="Update PATH">
+    Add JDK's `bin` directory to your `PATH`.
+    ````bash
+    export PATH=$PATH:/path/to/jdk/bin
+    ````
+  </Step>
+</Steps>

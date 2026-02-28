@@ -1,0 +1,39 @@
+---
+title: Pagination
+---
+
+Pagination is a way that you can page through more results in Realtime than the regular search allows. (the limit being 50 records per search). This may used for combing through large datasets or allowing the API to load more records beyond 50 credit for the same query parameters. Let get started:
+
+## Paging Over Results
+
+An alternative to running a business data search, you can also use the API to page through the data. This approach allows you to consume one chunk at a time. Then continue from where the end of the previous page left off. To do the we will need to modify the [Business Data](https://java.documentationai.com/reference/businesses) endpoint like so:
+
+```curl
+POST <https://api.datafiniti.co/v4/business/paginate?page=1&limit=500>
+```
+
+The pagination endpoint uses the following parameters:
+
+* **page** - You specify which chunk of data you would like to access. You can iterate the page to work your way through all of the results. You cannot paginate further than the 10,000th record.
+* **limit** - This specifies the number of results you want returned within the page. The maximum number of results that can be returned per page is 500.
+
+<Callout kind="alert">
+  **Credit limit with pagination**
+
+Please note that with pagination you can query more records at once. So be sure your logic, when using Datafiniti's API, accounts for your business data plan credit limit.
+</Callout>
+
+Note that the query syntax remains the same, so you can copy / use the same business data search queries as normal.
+
+```json
+{
+  "query": "country:\"US\" AND province:\"TX\"""
+}
+```
+
+Your response should look like:
+
+
+## Use cases
+
+Check out some of our use cases that use pagination:

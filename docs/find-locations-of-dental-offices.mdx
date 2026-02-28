@@ -1,0 +1,95 @@
+---
+title: Find owners that need roofing work
+---
+
+## Introduction
+
+Datafiniti's property data can be used to generate lead lists for individuals or homes that may require maintenance or replacement of their rooves.  You can use our advanced query syntax to generated targeted lists.
+
+## Searching for homes with old roofs
+
+Many property listings include information on the condition or type of roofing.  This information is captured in the `features` or `descriptions` fields.  Here's an example search:
+
+```json
+{
+  "query":"-features.value:\"new roof\" OR -descriptions.value:\"new roof\"",
+}
+```
+
+This query is a little complex, so let's explain what's happening:
+
+* We're using a `-` character to act as a negation filter on both `features` and `descriptions`.  A negation filter tells Datafiniti "return everything that doesn't match this".
+* Both `features` and `descriptions` are lists of objects, with each object contain subfields like `value`.  To search for possible values, we use `.value`.
+
+We can also use the `yearBuilt` field to find older homes:
+
+```json
+{
+  "query":"-features.value:\"new roof\" OR -descriptions.value:\"new roof\" AND yearBuilt:[* TO 2018]",
+}
+```
+
+By using a range query on `yearBuilt`, we can find every property that is no older than 2018.
+
+Finally, we can add a status filters to find properties that will have or are about to have a new home owner.
+
+```json
+{
+  "query":"-features.value:\"new roof\" OR -descriptions.value:\"new roof\" AND yearBuilt:[* TO 2018] AND mostRecentStatus:(\"For Sale\" OR Sold)",
+}
+```
+
+We use the `OR` constructor to search for multiple status values at once.
+
+<Callout kind="info">
+  **Data Freshness Notice – Owner & Transaction Data**
+
+Homeowner contact details and transaction records are typically available within 2 weeks after a property is marked as sold. This brief processing window allows us to validate, normalize, and match deed and ownership updates to ensure accuracy and reduce false positives.
+</Callout>
+
+<br />
+
+## autotrace for owner's contact information
+
+A newer feature to Datafiniti is the ability to cross reference people found in the property data with our people data. This can be done using the property data's `auto_trace` feature. The `auto_trace` feature is a key generated and linked to a people data record key. Allow for a single API call to pull both property and people data for the homer in one record.
+
+```json
+{
+  "query":"-features.value:\"new roof\" OR -descriptions.value:\"new roof\" AND yearBuilt:[* TO 2018] AND mostRecentStatus:(\"For Sale\" OR Sold)",
+  "num_records":10,
+  "auto_trace":true,
+  "only_traceable":true,
+  "download":true,
+  "format":"json"
+}
+```
+
+<br />
+
+[block:tutorial-tile]
+\{
+  "backgroundColor": "#5903a0",
+  "emoji": "💻",
+  "id": "668302669c410b0057060de9",
+  "link": "https://java.documentationai.com/v4/recipes/autotrace",
+  "slug": "autotrace",
+  "title": "Autotrace"
+\}
+[/block]
+
+<Callout kind="info">
+  **Autotrace people data**
+
+For more information on our auto_trace feature, you can read more about it here: [Autotrace](https://java.documentationai.com/docs/autotrace)
+</Callout>
+
+## Example files
+
+Here are example bulk download files of our previous query:
+
+* [New Roof Leads CSV](https://drive.google.com/file/d/1ZvrtjZUeRqn1vljfncnyhg2XVQ4pJ8Q8/view?usp=share_link)
+* [New Roof Leads JSON](https://drive.google.com/file/d/134a01nkY7DCsl9Rqg6l3lXP2rXdAQQWq/view?usp=share_link)
+
+## Conclusion
+
+With the knowledge of how to pull records with new homeowner data, you will have the capability to contact and create lead data. You can also further enhance this data with reference to Datafiniti's people data as well.

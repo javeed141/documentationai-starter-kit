@@ -1,0 +1,79 @@
+---
+title: Find property refinance data
+---
+
+## Introduction
+
+You can utilize the Datafiniti Refinance Data API to discover valuable insights into refinance transactions that align with your investment and financial analysis requirements. Our API provides comprehensive data with numerous fields that are easily searchable. It's all about identifying the optimal combination of filters to fulfill your specific criteria. In this guide, we will walk you through common search criteria and how to leverage them for your investment and financial analysis purposes. Let's begin by exploring the possibilities!
+
+## Searching for refinance data
+
+There are several fields in our property data schema you can utilize to search for refinanced property data. All of these fields can be found in our [Property Data Schema](https://java.documentationai.com/docs/property-data-schema). In this guide we will highlight using the following fields:
+
+* taxExemptions
+* title
+* transactions
+* trustDescription
+
+### Tax exempted property
+
+For this example, we will focus on querying for property with `taxExemptions` data. Let's say you want to search in the state of Texas for property with "Absolute Exemption". You can use the following query to find this data.
+
+```json
+{
+    "query":"country:US AND taxExemptions:\"Absolute Exemption\" AND province:TX",
+    "num_records":10
+}
+```
+
+Being able to filter via `taxExemptions` will provide better insights into annual costs. Having this data allows more confidence before committing resources to an investment property.
+
+### Title of property
+
+For this example we will focus on data of titles of refinanced property. Let's say you want to gather the data for refinance titles in the Oklahoma area for pending or sold homes. You can using the following query to get that data.
+
+```json
+{
+    "query":"country:US AND title:\"OWNER FINANCE\"",
+    "num_records":10
+}
+```
+
+### Transactions
+
+For this example we will focus on the `transactions` of any refinance property. This will give you more details in the transaction record of the property recently refinanced. In this query we will be looking for the previous fields in this guide plus specifying that this property is a commercial property. Here is the query we would use:
+
+```json
+{
+    "query":"country:US AND title:* AND taxExemptions:* AND transactions:* AND propertyType:commercial",
+    "num_records":10
+}
+```
+
+<Callout kind="info">
+  **Transactions**
+
+You can utilize the transactions field for more than just refiance data. Owner / seller data of the property can be had. Read [Find property comps from transaction data](https://java.documentationai.com/docs/find-property-comps-from-transaction-data) for more on using the `transactions` field.
+</Callout>
+
+### Trust descriptions
+
+Lastly we can identify if a property has a trust associated with it. Lets say you want to compound the previous query but want to check the trust description. You can use the following query:
+
+```json
+{
+    "query":"country:US AND title:* AND taxExemptions:* AND transactions:* AND propertyType:commercial",
+    "num_records":10
+}
+```
+
+## Example Files
+
+Here are some example files of refinance data:
+
+* [Refinance Data CSV](https://drive.google.com/file/d/1_1mZz8c75AiaIw2yFEp4OdyeyjCf5jc0/view?usp=sharing)
+* [Refinance Data Json](https://drive.google.com/file/d/1GmdCmI8_K_DM0HPDSIpH80X-YKvGs5DY/view?usp=sharing)
+
+## Conclusion
+
+In conclusion, the Datafiniti Refinance Data API empowers you to harness the wealth of information within refinance transactions to meet your investment and financial analysis objectives. With a multitude of fields at your disposal, each fully searchable, you have the flexibility to tailor your queries precisely to your needs. Whether you're researching tax exemptions, trust descriptions, transaction IDs, or any other relevant data, this API equips you with the tools to make informed decisions and uncover valuable insights. By leveraging these capabilities, you can take your investment and financial analysis to new heights. Start exploring the possibilities with Datafiniti's Refinance Data API today.

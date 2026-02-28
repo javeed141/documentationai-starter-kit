@@ -1,0 +1,156 @@
+---
+title: Contact new home owners
+---
+
+## Introduction
+
+Datafiniti's property data can be used to generate lead lists for individuals or homes that have just purchased a new home. You can use our advanced query syntax to generate a targeted lists.
+
+## Searching for recently sold single-family homes
+
+Many property listings include information on when a property was sold via online listing or MLS networks. We will utilize the syntax next to find a list of properties recently sold.
+
+```json
+{
+  "query":"country:US AND transactions.buyerFirstName:* AND transactions.saleDate:[2023-01-01 TO *]",
+  "num_records":10
+}
+```
+
+You may sub out the date range of `saleDate` to whatever time period that pertains to your use case.
+
+This query is a little complex, so let's explain what's happening:
+
+* We're using a `buyerFirstName` wildcard to guarantee that the home owner is there.
+* `Transactions.saleDate` will show us only records with the start date until the current date.
+
+## Eliminating newly built houses from your search
+
+We can also use the `yearBuilt` field to find older homes:
+
+```json
+{
+  "query":"country:US AND transactions.buyerFirstName:* AND transactions.saleDate:[2023-01-01 TO *] AND yearBuilt:[* TO 2018]"
+}
+```
+
+By using a range query on `yearBuilt`, we can find every property that is no older than 2018.
+
+Here is a sample of what this transactional data may look like.
+
+```json
+ "transactions": [
+   {
+     "saleDate": "2023-01-08T00:00:00.000Z",
+     "documentType": "Grant Deed",
+     "price": 173000,
+     "sellerFirstName": "Seanot",
+     "sellerLastName": "Hembree",
+     "buyerFirstName": "clif",
+     "buyerLastName": "Mccurley",
+     "loanType": "Conventional",
+     "parcelNumber": "056-670-034-000",
+     "contactOwnerMailAddressFull": "18158 OLD WARDS FERRY RD"
+   }
+ ]
+```
+
+## Find the people data record
+
+<Callout kind="info">
+
+  **Data Freshness Notice – Owner & Transaction Data**
+
+  Homeowner contact details and transaction records are typically available within 2 weeks after a property is marked as sold. This brief processing window allows us to validate, normalize, and match deed and ownership updates to ensure accuracy and reduce false positives.
+
+</Callout>
+
+
+
+## Using autotrace to combine people and property data
+
+A newer feature to Datafiniti is the ability to cross reference people found in the property data with our people data. This can be done using the property data's auto_trace feature. The auto_trace feature is a key generated and linked to a people data record key. Allow for a single API call to pull both property and people data for the homer in one record.
+
+```json
+{
+  "query":"country:US AND transactions.buyerFirstName:* AND propertyType:(\"Multi-Family Dwelling\" OR land) AND transactions.saleDate:[2023-01-01 TO *] AND yearBuilt:[* TO 2018] AND people.people_key:*",
+  "num_records":10,
+  "auto_trace":true,
+  "only_traceable":true
+}
+```
+
+Which will provide result like this: (note the result here have been condense for viewing)
+
+```text
+id	address	city	province	postalCode	transactions	people.emails	people.firstName	people.lastName	people.phoneNumberHighScoreMobile	people.phoneNumberHighScoreLand	people.phoneNumberHighScoreMobileScore	people.phoneNumberHighScoreLand	people.keys	people.people_key	people.title	people.firstName	people.lastName	people.name	people.equity	people.equityPercent	people.dateSeen
+AWtkTuzZhcmU2WcKMoVp	11961 APOLLO DR	NORTH ROYALTON	OH	44133	[{"saleDate":"2022-01-19T00:00:00.000Z","sellerLastName":"Lee","sellerFirstName":"Kwangje","buyerLastName":"Shin","buyerFirstName":"Laura","lenderName":"Crosscountry Mortgage LLC","loanAmount":344000.0,"mortgageTerm":361.0,"parcelNumber":"489-31-030","price":430000.0}]										Owner			LAURA SHIN			2024-07-22T18:14:40.211Z
+AWtkTuzZhcmU2WcKMoVp	11961 APOLLO DR	NORTH ROYALTON	OH	44133	[{"saleDate":"2022-01-19T00:00:00.000Z","sellerLastName":"Lee","sellerFirstName":"Kwangje","buyerLastName":"Shin","buyerFirstName":"Laura","lenderName":"Crosscountry Mortgage LLC","loanAmount":344000.0,"mortgageTerm":361.0,"parcelNumber":"489-31-030","price":430000.0}]										Listing Agent			Jade K Zivko			2022-01-19T20:55:34.932Z
+AWtkTuzZhcmU2WcKMoVp	11961 APOLLO DR	NORTH ROYALTON	OH	44133	[{"saleDate":"2022-01-19T00:00:00.000Z","sellerLastName":"Lee","sellerFirstName":"Kwangje","buyerLastName":"Shin","buyerFirstName":"Laura","lenderName":"Crosscountry Mortgage LLC","loanAmount":344000.0,"mortgageTerm":361.0,"parcelNumber":"489-31-030","price":430000.0}]										Selling Agent			Lauren Mastracco			2022-01-19T20:55:34.932Z
+AWtkTuzZhcmU2WcKMoVp	11961 APOLLO DR	NORTH ROYALTON	OH	44133	[{"saleDate":"2022-01-19T00:00:00.000Z","sellerLastName":"Lee","sellerFirstName":"Kwangje","buyerLastName":"Shin","buyerFirstName":"Laura","lenderName":"Crosscountry Mortgage LLC","loanAmount":344000.0,"mortgageTerm":361.0,"parcelNumber":"489-31-030","price":430000.0}]										Owner			EUI			2024-07-22T18:14:40.211Z
+AWtkTuzZhcmU2WcKMoVp	11961 APOLLO DR	NORTH ROYALTON	OH	44133	[{"saleDate":"2022-01-19T00:00:00.000Z","sellerLastName":"Lee","sellerFirstName":"Kwangje","buyerLastName":"Shin","buyerFirstName":"Laura","lenderName":"Crosscountry Mortgage LLC","loanAmount":344000.0,"mortgageTerm":361.0,"parcelNumber":"489-31-030","price":430000.0}]	estevenshin@gmail.com			+1 310-210-4070		100	+1 424-274-3761	eui/shin/1674358008,eui/shin/-283083515,eui/shin/us/oh/northroyalton/11961apollodr,eui/shin/-678153731,eui/shin/1295844313,eui/shin/1868187156,eui/shin/1385383208,eui/shin/-1973574619,eui/shin/-750067171,eui/shin/-1526813169,eui/shin/624457502,eui/shin/-1996003364,eui/shin/1393629454,eui/shin/155267307,eui/shin/-1324664635,eui/shin/-765887463,eui/shin/-847852312,eui/shin/177696052,eui/shin/1219920010,eui/shin/826606036,eui/shin/-923776615,eui/shin/-476912663			Eui	Shin				
+AWU0MhMtjCNrmMAs2AUU	8760 OAKWOOD LN	NORTH ROYALTON	OH	44133	[{"saleDate":"2021-11-24T00:00:00.000Z","sellerLastName":"Kelly","sellerFirstName":"Mary","buyerLastName":"Kelly","buyerFirstName":"Mary","lenderName":"Home Point Financial Corporation","loanAmount":168200.0,"mortgageTerm":361.0,"parcelNumber":"489-27-061","price":201840.0}]										Owner			MARY A. KELLY			2024-07-22T18:14:38.619Z
+AWU0MhMtjCNrmMAs2AUU	8760 OAKWOOD LN	NORTH ROYALTON	OH	44133	[{"saleDate":"2021-11-24T00:00:00.000Z","sellerLastName":"Kelly","sellerFirstName":"Mary","buyerLastName":"Kelly","buyerFirstName":"Mary","lenderName":"Home Point Financial Corporation","loanAmount":168200.0,"mortgageTerm":361.0,"parcelNumber":"489-27-061","price":201840.0}]										Owner			MICHAEL D.			2024-07-22T18:14:38.619Z
+AWU0MhMtjCNrmMAs2AUU	8760 OAKWOOD LN	NORTH ROYALTON	OH	44133	[{"saleDate":"2021-11-24T00:00:00.000Z","sellerLastName":"Kelly","sellerFirstName":"Mary","buyerLastName":"Kelly","buyerFirstName":"Mary","lenderName":"Home Point Financial Corporation","loanAmount":168200.0,"mortgageTerm":361.0,"parcelNumber":"489-27-061","price":201840.0}]				+1 440-334-4317		85	+1 440-237-2132	nicholas/kelly/-1288979216,nicholas/kelly/-932746383,nicholas/kelly/1710057269,nicholas/kelly/451155209,nicholas/kelly/862291455,nicholas/kelly/-1700115462,nicholas/kelly/-433639356,nicholas/kelly/us/oh/northroyalton/8760oakwoodln,nicholas/kelly/1210950242			Nicholas	Kelly				
+AXFtBm12LZfAPClVbY66	8229 Claridge Ct	North Royalton	OH	44133	[{"saleDate":"2020-05-27T00:00:00.000Z","buyerLastName":"Schroeder","buyerFirstName":"Jeremy","lenderName":"Veterans United Hm Lns","loanAmount":263500.0,"mortgageTerm":360.0,"parcelNumber":"482-20-093","price":316200.0},{"saleDate":"2024-04-08T00:00:00.000Z","price":362000.0,"documentNumber":"269","lenderName":"Rocket Mortgage LLC","loanType":"Conventional","loanAmount":343900.0,"mortgageTerm":361.0,"documentType":"Warranty Deed","sellerLastName":"Schroeder","sellerFirstName":"Jeremy","buyerLastName":"Darby","buyerFirstName":"Bertha","ownerType":"Individual","contactOwnerMailAddressFull":"8229 CLARIDGE CT, NORTH ROYALTON, OH, 44133"}]										Owner			BERTHA DARBY			2024-07-22T18:06:55.067Z
+AXFtBm12LZfAPClVbY66	8229 Claridge Ct	North Royalton	OH	44133	[{"saleDate":"2020-05-27T00:00:00.000Z","buyerLastName":"Schroeder","buyerFirstName":"Jeremy","lenderName":"Veterans United Hm Lns","loanAmount":263500.0,"mortgageTerm":360.0,"parcelNumber":"482-20-093","price":316200.0},{"saleDate":"2024-04-08T00:00:00.000Z","price":362000.0,"documentNumber":"269","lenderName":"Rocket Mortgage LLC","loanType":"Conventional","loanAmount":343900.0,"mortgageTerm":361.0,"documentType":"Warranty Deed","sellerLastName":"Schroeder","sellerFirstName":"Jeremy","buyerLastName":"Darby","buyerFirstName":"Bertha","ownerType":"Individual","contactOwnerMailAddressFull":"8229 CLARIDGE CT, NORTH ROYALTON, OH, 44133"}]	pfoward@msn.com,pfoward20@msn.com,s1329089@cedarville.edu			+1 330-278-2222		100	+1 630-406-0579	jeremy/schroeder/1577888243,jeremy/schroeder/2077414341,jeremy/schroeder/-407389342,jeremy/schroeder/-1748409554,jeremy/schroeder/1619404524,jeremy/schroeder/-565808382,jeremy/schroeder/402861117,jeremy/schroeder/-355676085,jeremy/schroeder/1685769667,jeremy/schroeder/-66282284,jeremy/schroeder/517658207,jeremy/schroeder/1645432942,jeremy/schroeder/-1626038418,jeremy/schroeder/1788020540,jeremy/schroeder/-236995092,jeremy/schroeder/us/oh/northroyalton/8229claridgect,jeremy/schroeder/1914275579,jeremy/schroeder/-465501004			Jeremy	Schroeder				
+jMU48oUB5p3ULnC0Du3H	6780 QUEENS Way	NORTH ROYALTON	OH	44133	[{"saleDate":"2023-03-01T00:00:00.000Z","sellerLastName":"Jakacki","sellerFirstName":"Robert","buyerLastName":"Polefko","buyerFirstName":"Matthew","lenderName":"Crosscountry Mortgage LLC","loanAmount":340000.0,"mortgageTerm":360.0,"parcelNumber":"489-08-043","price":425000.0}]										Owner			SOLOMIYA			2024-07-22T18:14:30.018Z
+jMU48oUB5p3ULnC0Du3H	6780 QUEENS Way	NORTH ROYALTON	OH	44133	[{"saleDate":"2023-03-01T00:00:00.000Z","sellerLastName":"Jakacki","sellerFirstName":"Robert","buyerLastName":"Polefko","buyerFirstName":"Matthew","lenderName":"Crosscountry Mortgage LLC","loanAmount":340000.0,"mortgageTerm":360.0,"parcelNumber":"489-08-043","price":425000.0}]										Owner			MATTHEW POLEFKO			2024-07-22T18:14:30.018Z
+jMU48oUB5p3ULnC0Du3H	6780 QUEENS Way	NORTH ROYALTON	OH	44133	[{"saleDate":"2023-03-01T00:00:00.000Z","sellerLastName":"Jakacki","sellerFirstName":"Robert","buyerLastName":"Polefko","buyerFirstName":"Matthew","lenderName":"Crosscountry Mortgage LLC","loanAmount":340000.0,"mortgageTerm":360.0,"parcelNumber":"489-08-043","price":425000.0}]	xxlegal420xx@aol.com,shebejo25@aol.com,jjakacki@yahoo.com			+1 440-227-5262		95	+1 440-582-0126	sheila/jakacki/-86060068,sheila/jakacki/1126623294,sheila/jakacki/1681518545,sheila/jakacki/387786196,sheila/jakacki/-341112611,sheila/jakacki/us/oh/northroyalton/6780queensway,sheila/jakacki/451271734,sheila/jakacki/-1531106065,sheila/jakacki/620164606,sheila/jakacki/1289797514,sheila/jakacki/-1927627068,sheila/jakacki/1508890731,sheila/jakacki/-861473157,sheila/jakacki/216069557,sheila/jakacki/654599339,sheila/jakacki/1796355594,sheila/jakacki/-642379940,sheila/jakacki/-462178080,sheila/jakacki/-1763484475,sheila/jakacki/-347341031,sheila/jakacki/-1699998937,sheila/jakacki/1802584014			Sheila	Jakacki				
+```
+
+*Please note that this is a condensed view to show people data of home owner contact info.*
+
+
+<Card title="Autotrace" href="https://java.documentationai.com/v4/recipes/autotrace">
+
+Learn more about using Autotrace to connect property and people data.
+
+</Card>
+
+Presented here is a people data search for the same data of home owner contact.
+
+```json
+{
+  "query": "keys:(\"abel/garcia/-429207647\" OR \"lindsay/konopelko/1911697931\" OR \"richard/simmons/-2086742185\" OR \"douglas/guthrie/-1005717922\" OR \"maria/ho/593525497\" OR \"david/gutierrez/-652075127\" OR \"wu/hsiang/1995332620\" OR \"alex/gonzales/-1334037217\" OR \"hugo/oxlaj/262345253\")",
+  "num_records": 10
+}
+```
+
+<Callout kind="info">
+
+  **Autotrace people data**
+
+  For more information on our auto_trace feature, you can read more about it here: [Autotrace](https://java.documentationai.com/docs/autotrace)
+
+</Callout>
+
+<Callout kind="info">
+
+  **Comparing buyer data to Datafiniti's people data**
+
+  After compiling a list of records with first names, last names, and general locational geographics, you can query Datafiniti's people database to find out more info.
+
+  Please visit our documentation on [gathering people contact information](https://java.documentationai.com/docs/gather-people-contact-information) to learn how to query people data. This will allow you to gather phones, emails, and other contact information for reaching out to new home buyers.
+
+</Callout>
+
+<Callout kind="info">
+
+  **Address normalization**
+
+  Datafiniti uses standardized street name normalization. Converting `street` to `st`, `drive` to `dr`, etc. You can learn more about our address normalization here: [Normalized Property Addresses](https://java.documentationai.com/docs/normalized-address-data).
+  If you wish to exactly match addresses to Datafiniti's property data, you will need to use this normalization method.
+
+</Callout>
+
+## Example files
+
+Here are example bulk download files of our previous query:
+
+* [Multi-family & Land CSV](https://drive.google.com/file/d/1Fyf9LAG_7Omm_s1zafPzVp0Up_08RGvk/view?usp=sharing)
+* [Multi-family & Land JSON](https://drive.google.com/file/d/14W0E-ktyBZXkwLevLCIjEHcrv4A4Dk6R/view?usp=sharing)
+
+## Conclusion
+
+With the knowledge of how to pull records with new homeowner data, you will have the capability to contact and create lead data. You can also further enhance this data with reference to Datafiniti's people data as well.

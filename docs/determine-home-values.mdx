@@ -1,0 +1,4357 @@
+---
+title: Determine home values
+---
+
+## Introduction
+
+Many Datafiniti customers are interested in using our data to determine the value of a single home or the expected value of homes within a given area.  There are a couple ways to do this.
+
+## Option #1 Using estimatedPrices to determine a home’s value
+
+This method leverages the `estimatedPrices` field from Datafiniti’s property data to retrieve a home’s estimated value and compare it to recent sale prices of similar homes nearby from the previous example.
+
+We will use this query for finding the Home’s Estimated Value:
+
+```json
+{
+  "query": "numBedroom:2 AND numBathroom:3 AND propertyType:\"Single Family Dwelling\" AND yearBuilt:>=2018 AND yearBuilt:<=2022 AND postalCode:78722 AND estimatedPrices:*",
+  "num_records": 10
+}
+```
+
+Response Example:
+
+```json
+{
+            "address": "6845 Avenue N Dr",
+            "city": "Houston",
+            "estimatedPrices": [
+                {
+                    "pricePerSquareFoot": 235.36,
+                    "dateSeen": [
+                        "2024-03-16T09:13:42.446Z"
+                    ],
+                    "sourceURLs": [
+                        "https://www.movoto.com/houston-tx/6845-avenue-n-houston-tx-77011-403_60001740/"
+                    ],
+                    "domain": "www.movoto.com",
+                    "firstDateSeen": "2024-03-16T09:13:42.446Z",
+                    "lastDateSeen": "2024-03-16T09:13:42.446Z",
+                    "currency": "USD",
+                    "amountMin": 287136,
+                    "amountMax": 287136
+                },
+                {
+                    "pricePerSquareFoot": 251.08,
+                    "dateSeen": [
+                        "2024-01-04T10:20:32.539Z"
+                    ],
+                    "sourceURLs": [
+                        "https://www.movoto.com/houston-tx/6845-avenue-n-houston-tx-77011-403_60001740/"
+                    ],
+                    "domain": "www.movoto.com",
+                    "firstDateSeen": "2024-01-04T10:20:32.539Z",
+                    "lastDateSeen": "2024-01-04T10:20:32.539Z",
+                    "currency": "USD",
+                    "amountMin": 306316,
+                    "amountMax": 306316
+                }
+            ],
+            "mostRecentStatus": "For Sale",
+            "mostRecentSaleListPriceAmount": 319000,
+            "province": "TX",
+            "postalCode": "77011",
+            "propertyType": "Single Family Dwelling",
+            "sourceURLs": [
+            ],
+            "id": "SD2GrooB5p3ULnC0Gr8O"
+        }
+```
+
+Now you can use the most recent estimated price for comparison of the estimated value to recent sales person. This will allow you to calculate the following:
+
+* The average sale price of comparable homes.
+* The target home’s estimated price (estimatedPrices) to the recent sales.
+* Interpretation off the estimated price of the average sale price and if the listing price is over/undervalued.
+
+In this case we can see for `"address": "6845 Avenue N Dr"` we can see the listed price as `319000`. However you can see the most recent estimated value from movoto is 306316. Meaning that you can see that the listing value is slightly overvalued, giving you the insight to bargain on this "for sale" property.
+
+## Option 2: Download data for all homes in an area
+
+You can also download data for all the homes in a given area.  Let's start with something simple:
+
+```json
+{
+  "query": "numBedroom:2 AND numBathroom:3 AND propertyType:\"Single Family Dwelling\" AND yearBuilt:>=2018 AND yearBuilt:<=2022 AND postalCode:78722 AND estimatedPrices:*",
+  ,
+  "num_records": 10,
+  "format": "JSON",
+  "download": true
+}
+```
+
+This query will match every single family home in the 78722 zip code that has been listed as for sale since January 1, 2023.  We can adjust the `dateUpdated` value to reflect any date range we want.
+
+<Callout kind="info">
+  **Using credits**
+
+Your "num_records" sets your limit on how many credit to use. If your query is under the limit, Datafiniti will only charge property for the lower value. For more info on how to spend credits, you can read [How Credits Work](https://java.documentationai.com/docs/how-credits-work-api)
+</Callout>
+
+Let's say we don't want to do a zip code-based search.  We want to do a search around a lat/long point:
+
+```json
+{
+	"query": "numBedroom:2 AND numBathroom:3 AND propertyType:\"Single Family Dwelling\" AND yearBuilt:>=2018 AND yearBuilt:<=2022 AND postalCode:78722 AND estimatedPrices:* AND geoLocation:[-97.7430600,30.2671500,10,mi] AND dateUpdated:[2023-01-01 TO *]"
+}
+```
+
+This is similar to the previous query, but now it matches every property in a 10 mile radius around a single geo coordinate.  Longitude goes first, latitude goes second.
+
+If we want to go a little further and only match properties that are within a certain price range, we do this:
+
+```json
+{
+	"query": "numBedroom:2 AND numBathroom:3 AND propertyType:\"Single Family Dwelling\" AND yearBuilt:>=2018 AND yearBuilt:<=2022 AND postalCode:78722 AND estimatedPrices:* AND geoLocation:[-97.7430600,30.2671500,10,mi] AND dateUpdated:[2023-01-01 TO *] AND prices.amountMin:>=300000 AND prices.amountMin:<=500000"
+}
+```
+
+This filters down the matching data further by restricting it to homes that have been listed between $300,000 - $500,000.
+
+Finally, if we want to download the entire data set, we do this:
+
+```json
+{
+  "query": "numBedroom:2 AND numBathroom:3 AND propertyType:\"Single Family Dwelling\" AND yearBuilt:>=2018 AND yearBuilt:<=2022 AND postalCode:78722 AND estimatedPrices:*AND mostRecentStatus:\"For Sale\" AND geoLocation:[-97.7430600,30.2671500,10,mi] AND dateUpdated:[2023-01-01 TO *]",
+	"download": true,
+	"format": "CSV"    
+}
+```
+
+We can adjust the parameters here to set format to `JSON`.  We can also restrict the number of records to download by passing in additional `num_records` field.
+
+<Callout kind="info">
+  **Address normalization**
+
+Datafiniti uses standardized street name normalization. Converting `street` to `st`, `drive` to `dr`, etc, you can learn more about our address normalization here: [Normalized Property Addresses](https://java.documentationai.com/docs/normalized-address-data)\
+If you wish to exactly match addresses to Datafiniti's property data, you will need to use this normalization method.
+</Callout>
+
+## Option 3: Find comparable homes to a single property
+
+Let's say you have a property in mind and you want to use similar properties to determine the value of the home.
+
+First off, if we don't have the features of the property in hand, we can try looking them up in Datafiniti.
+
+```json
+{
+  "query": "numBedroom:2 AND numBathroom:3 AND propertyType:\"Single Family Dwelling\" AND yearBuilt:>=2018 AND yearBuilt:<=2022 AND postalCode:78722 AND estimatedPrices:*"
+}
+```
+
+This will return something like:
+
+```json
+ {
+            "address": "1709 Westover Rd",
+            "brokers": [
+                {
+                    "agent": "Natalie Kopp",
+                    "company": "Gottesman Residential R.E.",
+                    "dateSeen": "2019-12-03T23:18:21.474Z"
+                },
+                {
+                    "agent": "Beth Carter",
+                    "dateSeen": "2020-09-16T14:32:11.047Z"
+                },
+                {
+                    "agent": "Beth Carter",
+                    "company": "Compass RE Texas, LLC",
+                    "dateSeen": "2020-09-16T04:44:00.000Z",
+                    "phones": [
+                        "+1 512-799-7427",
+                        "+1 512-575-3644"
+                    ]
+                },
+                {
+                    "agent": "Natalie Kopp",
+                    "dateSeen": "2019-12-03T17:15:03.221Z"
+                },
+                {
+                    "agent": "Beverly Williams",
+                    "company": "Realty Austin",
+                    "dateSeen": "2023-04-14T18:19:35.771Z",
+                    "phones": [
+                        "(512) 773-6056"
+                    ]
+                }
+            ],
+            "city": "Austin",
+            "country": "US",
+            "dateAdded": "2019-09-26T15:42:41Z",
+            "dateUpdated": "2023-04-14T18:19:36Z",
+            "descriptions": [
+                {
+                    "dateSeen": "2020-06-01T02:15:00.000Z",
+                    "value": "New Price! Charming Brykerwoods classic home tucked away at the end of private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods/Casis elementary. Fresh white bathroom tidy kitchen. Large storage shed in back. Live in 'as is' or remodel. See renderings: Expand existing home to 1,749sf (Fourth Wrkshp) new SF development of 2,370sf or, 2 structure w/ ADU of 2,373sf (Element 5). Nicely protected from Mopac proximity by 2 sound walls fully fenced back yard. Schedule a Private Showing"
+                },
+                {
+                    "dateSeen": "2020-11-16T10:25:00.000Z",
+                    "value": "For the surrounding community of Austin, TX 78703, the nearby schools are excellent and include Casis El, O Henry M S and Austin H S. The overall crime risk for this area is moderate. The natural disaster risk for this area includes very low earthquake risk, high tornado risk, and minimal flood risk."
+                },
+                {
+                    "dateSeen": "2020-06-09T08:22:00.000Z",
+                    "value": "New Price! Charming Brykerwoods classic home tucked away at the end of private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods/Casis elementary. Fresh white bathroom & tidy kitchen. Large storage shed in back. Live in 'as is' or remodel. See renderings: Expand existing home to 1,749sf (Fourth Wrkshp); new SF development of 2,370sf; or, 2 structure w/ ADU of 2,373sf (Element 5). Nicely protected from Mopac proximity by 2 sound walls & fully fenced back yard."
+                },
+                {
+                    "dateSeen": "2020-04-17T02:04:00.000Z",
+                    "value": "Charming Brykerwoods classic home tucked away at the end of private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods, feeding to Casis elementary. Large storage shed in back. Fresh white bathroom tidy kitchen. Live in 'as is' or remodel. See renderings: Expand existing home to 1,749sf (Fourth Wrkshp) new SF development of 2,370sf or, 2 structure w/ ADU of 2,373sf (Element 5). Nicely protected from Mopac proximity by 2 sound walls fully fenced back yard. Schedule a Private Showing"
+                },
+                {
+                    "dateSeen": "2023-03-12T17:51:00.000Z",
+                    "value": "Note: New roof installed (3/2023) and eave work completed: 5-year warranty on labor and limited lifetime warranty on materials (Owens Corning TrueDef Duration Shingles). Charming Bryker Woods updated cottage tucked away at the end of a private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods that feeds into excellent schools: Casis Elementary, O Henry and Austin High School. Remodeled kitchen, engineered wood flooring, renovated bathroom, foundation leveled (2021), interior paint, designer lighting, interior space saving laundry closet with stacked washer/dryer + custom sliding door, attached patio deck and recently updated exterior landscaping (see posted List of Improvements). Fully fenced backyard has a large storage shed and the home is protected from Mopac proximity by two (2) sound walls. Experience the best of Urban living with a classic touch. Potential to expand the home’s square footage for additional livable space. Continue readingNote: New roof installed (3/2023) and eave work completed: 5-year warranty on labor and limited lifetime warranty on materials (Owens Corning TrueDef Duration Shingles). Charming Bryker Woods updated cottage tucked away at the end of a private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods that feeds into excellent schools: Casis Elementary, O Henry and Austin High School. Remodeled kitchen, engineered wood flooring, renovated bathroom, foundation leveled (2021), interior paint, designer lighting, interior space saving laundry closet with stacked washer/dryer + custom sliding door, attached patio deck and recently updated exterior landscaping (see posted List of Improvements). Fully fenced backyard has a large storage shed and the home is protected from Mopac proximity by two (2) sound walls. Experience the best of Urban living with a classic touch. Potential to expand the home’s square footage for additional livable space."
+                },
+                {
+                    "dateSeen": "2020-11-16T10:25:00.000Z",
+                    "value": "1709 Westover Rd is a single family residence located in Austin, TX 78703. Built in 1946, this property features 1 bathroom, 5,933 sq ft lot, and 913 sq ft of living space. This property recently sold on 09/11/2020."
+                },
+                {
+                    "dateSeen": "2020-08-22T18:46:00.000Z",
+                    "value": "Charming Brykerwoods classic tucked away at the end of private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods/Casis elementary. Fresh white bathroom tidy kitchen. Large storage shed in back. Live in 'as is' or remodel. See renderings: Expand existing home to 1,749sf (Fourth Wrkshp) new SF development of 2,370sf or, 2 structure w/ ADU of 2,373sf (Element 5). Nicely protected from Mopac proximity by 2 sound walls fully fenced back yard. Schedule a Private Showing"
+                },
+                {
+                    "dateSeen": "2023-04-14T18:20:00.000Z",
+                    "value": "Note: New roof installed (3/2023) and eave work completed: 5-year warranty on labor and limited lifetime warranty on materials (Owens Corning TrueDef Duration Shingles). Charming Bryker Woods updated cottage tucked away at the end of a private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods that feeds into excellent schools: Casis Elementary, O Henry and Austin High School. Remodeled kitchen, engineered wood flooring, renovated bathroom, foundation leveled (2021), interior paint, designer lighting, interior space saving laundry closet with stacked washer/dryer + custom sliding door, attached patio deck and recently updated exterior landscaping (see posted List of Improvements). Fully fenced backyard has a large storage shed and the home is protected from Mopac proximity by two (2) sound walls. Experience the best of Urban living with a classic touch. Potential to expand the home’s square footage for additional livable space."
+                },
+                {
+                    "dateSeen": "2023-02-22T12:24:00.000Z",
+                    "value": "Charming Bryker Woods updated cottage tucked away at the end of a private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods that feeds into excellent schools: Casis Elementary, O Henry and Austin High School. Recently replaced roof (1/23), remodeled kitchen, engineered wood flooring, renovated bathroom, foundation leveled (2021), interior paint, designer lighting, interior space saving laundry closet with stacked washer/dryer + custom sliding door, attached patio deck and recently updated exterior landscaping (see posted List of Improvements). Fully fenced backyard has a large storage shed and the home is protected from Mopac proximity by two (2) sound walls. Experience the best of Urban living with a classic touch. Potential to expand the home’s square footage for additional livable space. Continue readingCharming Bryker Woods updated cottage tucked away at the end of a private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods that feeds into excellent schools: Casis Elementary, O Henry and Austin High School. Recently replaced roof (1/23), remodeled kitchen, engineered wood flooring, renovated bathroom, foundation leveled (2021), interior paint, designer lighting, interior space saving laundry closet with stacked washer/dryer + custom sliding door, attached patio deck and recently updated exterior landscaping (see posted List of Improvements). Fully fenced backyard has a large storage shed and the home is protected from Mopac proximity by two (2) sound walls. Experience the best of Urban living with a classic touch. Potential to expand the home’s square footage for additional livable space."
+                },
+                {
+                    "dateSeen": "2020-01-31T04:05:00.000Z",
+                    "value": "1709 Westover Rd is a house in Austin, TX 78703. This 913 square foot house sits on a 5,933 square foot lot and features 1 bathroom. This property was built in 1946. Based on Redfin's Austin data, we estimate the home's value is $534,029. Comparable nearby homes include 2203 Greenlee Dr, 3207 Glenview Ave, and 1903 W 32nd St. Nearby schools include Casis Elementary School, Rawson Saunders and Bryker Woods Elementary School. The closest grocery stores are Randalls, Randalls and Grande Food Mart. Nearby coffee shops include Starbucks, Starbucks and Anderson's Coffee Co.. Nearby restaurants include Food Food, Burger King and The Beer Plant. 1709 Westover Rd is near Tarrytown Neighborhood Park, Bailey Neighborhood Park and Whole Foods Market Headquarters. This address can also be written as 1709 Westover Road, Austin, Texas 78703."
+                },
+                {
+                    "dateSeen": "2023-01-31T02:57:00.000Z",
+                    "value": "Charming Brykerwoods classic tucked away at the end of private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods/Casis elementary. Fresh white bathroom & tidy kitchen. Large storage shed in back. Live in 'as is' or remodel. See renderings: Expand existing home to 1,749sf (Fourth Wrkshp); new SF development of 2,370sf; or, 2 structure w/ ADU of 2,373sf (Element 5). Nicely protected from Mopac proximity by 2 sound walls & fully fenced back yard. Sprinkler Sys:Yes"
+                },
+                {
+                    "dateSeen": "2020-11-16T10:25:00.000Z",
+                    "value": "1709 Westover Rd, Austin, TX 78703 - 913 sq. ft., 1 bath. View photos and property info at RealtyTrac - 1111452141."
+                },
+                {
+                    "dateSeen": "2023-04-12T22:25:00.000Z",
+                    "value": "Note: New roof installed (3/2023) and eave work completed: 5-year warranty on labor and limited lifetime warranty on materials (Owens Corning TrueDef Duration Shingles).  Charming Bryker Woods updated cottage tucked away at the end of a private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods that feeds into excellent schools: Casis Elementary, O Henry and Austin High School. Remodeled kitchen, engineered wood flooring, renovated bathroom, foundation leveled (2021), interior paint, designer lighting, interior space saving laundry closet with stacked washer/dryer + custom sliding door, attached patio deck and recently updated exterior landscaping (see posted List of Improvements). Fully fenced backyard has a large storage shed and the home is protected from Mopac proximity by two (2) sound walls. Experience the best of Urban living with a classic touch. Potential to expand the home’s square footage for additional livable space."
+                },
+                {
+                    "dateSeen": "2023-03-12T03:19:00.000Z",
+                    "value": "Note: New roof installed (3/2023) and eave work completed: 5-year warranty on labor and limited lifetime warranty on materials (Owens Corning TrueDef Duration Shingles). Charming Bryker Woods updated cottage tucked away at the end of a private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods that feeds into excellent schools: Casis Elementary, O Henry and Austin High School. Remodeled kitchen, engineered wood flooring, renovated bathroom, foundation leveled (2021), interior paint, designer lighting, interior space saving laundry closet with stacked washer/dryer + custom sliding door, attached patio deck and recently updated exterior landscaping (see posted List of Improvements). Fully fenced backyard has a large storage shed and the home is protected from Mopac proximity by two (2) sound walls. Experience the best of Urban living with a classic touch. Potential to expand the homes square footage for additional livable space. Schedule a Private Showing"
+                },
+                {
+                    "dateSeen": "2020-09-18T07:15:00.000Z",
+                    "value": "Charming Brykerwoods classic tucked away at the end of private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods/Casis elementary. Fresh white bathroom & tidy kitchen. Large storage shed in back. Live in 'as is' or remodel. See renderings: Expand existing home to 1,749sf (Fourth Wrkshp); new SF development of 2,370sf; or, 2 structure w/ ADU of 2,373sf (Element 5). Nicely protected from Mopac proximity by 2 sound walls & fully fenced back yard."
+                },
+                {
+                    "dateSeen": "2020-04-26T01:44:00.000Z",
+                    "value": "Charming Brykerwoods classic home tucked away at the end of private cul de sac. Great opportunity for entry into one of Austin's most sought after neighborhoods, feeding to Casis elementary. Large storage shed in back. Fresh white bathroom & tidy kitchen. Live in 'as is' or remodel. See renderings: Expand existing home to 1,749sf (Fourth Wrkshp); new SF development of 2,370sf; or, 2 structure w/ ADU of 2,373sf (Element 5). Nicely protected from Mopac proximity by 2 sound walls & fully fenced back yard."
+                }
+            ],
+            "features": [
+                {
+                    "key": "Water",
+                    "value": [
+                        "Public",
+                        "City"
+                    ]
+                },
+                {
+                    "value": [
+                        "No"
+                    ],
+                    "key": "Horses:"
+                },
+                {
+                    "key": "Tax Year",
+                    "value": [
+                        "2018"
+                    ]
+                },
+                {
+                    "key": "Buyer's Agent Commission",
+                    "value": [
+                        "3%"
+                    ]
+                },
+                {
+                    "value": [
+                        "1946"
+                    ],
+                    "key": "Year Built:"
+                },
+                {
+                    "value": [
+                        "1"
+                    ],
+                    "key": "Full Bath"
+                },
+                {
+                    "value": [
+                        "Austin ISD",
+                        "Middle: Austin ISD",
+                        "Elem: Austin ISD",
+                        "Jh"
+                    ],
+                    "key": "County School District"
+                },
+                {
+                    "key": "Compass Type",
+                    "value": [
+                        "Single Family"
+                    ]
+                },
+                {
+                    "value": [
+                        "false"
+                    ],
+                    "key": "Is New Construction"
+                },
+                {
+                    "key": "Yard/Grounds",
+                    "value": [
+                        "Storage Building",
+                        "Storage",
+                        "Gutters Partial",
+                        "Outbuildings",
+                        "Deck",
+                        "Covered Patio",
+                        "Patio-Uncovered"
+                    ]
+                },
+                {
+                    "key": "FEMA 100 Yr Flood Plain",
+                    "value": [
+                        "No"
+                    ]
+                },
+                {
+                    "key": "Other Exterior Features",
+                    "value": [
+                        "Storage Building",
+                        "Fenced",
+                        "Patio-Covered, Storage Building"
+                    ]
+                },
+                {
+                    "value": [
+                        "Slope of lot: Nearly Level",
+                        "Elevation of property: 589 ft",
+                        "Tree Cover of lot: 59%"
+                    ],
+                    "key": "Facts & Figures"
+                },
+                {
+                    "value": [
+                        "No"
+                    ],
+                    "key": "Water Access:"
+                },
+                {
+                    "key": "Flooring",
+                    "value": [
+                        "Laminate",
+                        "CARPET",
+                        "Hard Tile",
+                        "Tile - Hard",
+                        "Tile",
+                        "LAMINATE",
+                        "Carpet"
+                    ]
+                },
+                {
+                    "key": "Multi Unit Information",
+                    "value": [
+                        "Pets Allowed: No"
+                    ]
+                },
+                {
+                    "key": "View YN",
+                    "value": [
+                        "No"
+                    ]
+                },
+                {
+                    "key": "High School District",
+                    "value": [
+                        "Austin ISD"
+                    ]
+                },
+                {
+                    "key": "Foundation",
+                    "value": [
+                        "Pier Beam",
+                        "Pier & Beam",
+                        "Pillar/Post/Pier"
+                    ]
+                },
+                {
+                    "value": [
+                        "N"
+                    ],
+                    "key": "Pool"
+                },
+                {
+                    "key": "Fence",
+                    "value": [
+                        "Wood",
+                        "Y",
+                        "Chain Link"
+                    ]
+                },
+                {
+                    "key": "HOA",
+                    "value": [
+                        "No",
+                        "N"
+                    ]
+                },
+                {
+                    "value": [
+                        "No"
+                    ],
+                    "key": "FEMA 100 Yr Flood Plain:"
+                },
+                {
+                    "key": "Construction",
+                    "value": [
+                        "Frame",
+                        "FRAME"
+                    ]
+                },
+                {
+                    "value": [
+                        "26",
+                        "61"
+                    ],
+                    "key": "Days On Site"
+                },
+                {
+                    "key": "Cooling",
+                    "value": [
+                        "See Agent",
+                        "CENTRAL AIR",
+                        "Central A/C",
+                        "Central Air"
+                    ]
+                },
+                {
+                    "key": "FIPS",
+                    "value": [
+                        "48453"
+                    ]
+                },
+                {
+                    "value": [
+                        "Back Steps, Front Steps"
+                    ],
+                    "key": "Steps:"
+                },
+                {
+                    "key": "Lot Features",
+                    "value": [
+                        "Back Yard",
+                        "Cul-De-Sac",
+                        "Cul-DeSac",
+                        "Level"
+                    ]
+                },
+                {
+                    "key": "Bedrooms on Main Level",
+                    "value": [
+                        "2"
+                    ]
+                },
+                {
+                    "value": [
+                        "No"
+                    ],
+                    "key": "Sprinkler System:"
+                },
+                {
+                    "key": "Gr 9 High School",
+                    "value": [
+                        "Austin"
+                    ]
+                },
+                {
+                    "value": [
+                        "Storage Building"
+                    ],
+                    "key": "Exterior Features:"
+                },
+                {
+                    "value": [
+                        "true"
+                    ],
+                    "key": "Is Wired"
+                },
+                {
+                    "key": "Lot Information",
+                    "value": [
+                        "Legal Lot Number: 4",
+                        "Municipality Type: 0A",
+                        "Lot Features: Back Yard, Corner Lot, Cul-De-Sac, Front Yard, Level, Moderate Trees, Sprinklers Automatic, Trees Medium Size, Trees Small Size",
+                        "Lot Size Area: 0.1362",
+                        "Has Sprinkler System",
+                        "# of Buildings: 1",
+                        "Lot Size Acres: 0.14",
+                        "Medium Trees (20 Ft - 40 Ft), Moderate Tree Densty, Small Trees (Under 20 Ft)",
+                        "County Use Description: SINGLE FAMILY RESIDENCE",
+                        "Legal Block Number: 5",
+                        "Land Use Code: Sfr",
+                        "Front Footage: 46",
+                        "Lot Size Area: 0.14",
+                        "Sprinkler System Description: Automatic, Front Yard",
+                        "Lot Features: Cul-De-Sac, Sprinklers In Front, Level, Moderate Trees, Sprinklers Automatic, Trees Medium Size, Trees Small Size",
+                        "Lot Size (Acres): 0.136",
+                        "Depth Footage: 120",
+                        "Fence: Chain Link Fence, Wood Fence",
+                        "Lot Size Acres: 0.1362",
+                        "Lot Features: Cul-De-Sac, Level",
+                        "Municipality Name: AUSTIN",
+                        "Acres: 0.1362",
+                        "Steps: Back Steps, Front Steps",
+                        "FEMA 100 Year Flood Plain: No",
+                        "Land Sq. Ft: 5,933"
+                    ]
+                },
+                {
+                    "key": "Additional Parcels",
+                    "value": [
+                        "false"
+                    ]
+                },
+                {
+                    "key": "Num Living",
+                    "value": [
+                        "1"
+                    ]
+                },
+                {
+                    "key": "Direction Faces",
+                    "value": [
+                        "NE"
+                    ]
+                },
+                {
+                    "key": "Amenities",
+                    "value": [
+                        "Private Outdoor Space",
+                        "Lighting Recessed",
+                        "Electricity on Property",
+                        "Natural Gas on Property",
+                        "Deck",
+                        "Laundry in Building",
+                        "Built-in Book Cases",
+                        "Skylight",
+                        "Wired For Security",
+                        "Electricity Available",
+                        "Window Treatments",
+                        "Garage",
+                        "Parking Included",
+                        "Air Conditioning",
+                        "Crown Molding",
+                        "Cottage",
+                        "Storage Shed",
+                        "Smoke Detector",
+                        "Laundry",
+                        "Washer / Dryer in Unit"
+                    ]
+                },
+                {
+                    "key": "Other Interior Features",
+                    "value": [
+                        "Floors: Carpet, Laminate, Tile - Hard",
+                        "Smoke Detector, Wired for Security"
+                    ]
+                },
+                {
+                    "value": [
+                        "No"
+                    ],
+                    "key": "Gated Community:"
+                },
+                {
+                    "key": "Est. Mo. Payment",
+                    "value": [
+                        "$3,141",
+                        "$3,262",
+                        "$3,184",
+                        "$3,143",
+                        "$3,343",
+                        "$3,342",
+                        "$3,146",
+                        "$3,267",
+                        "$3,347",
+                        "$3,148",
+                        "$3,225",
+                        "$3,269",
+                        "$3,427",
+                        "$5,590",
+                        "$3,182",
+                        "$3,394",
+                        "$3,231",
+                        "$3,153",
+                        "$3,274",
+                        "$3,155",
+                        "$3,199",
+                        "$3,312",
+                        "$3,157",
+                        "$3,278",
+                        "$3,237",
+                        "$3,236",
+                        "$5,861",
+                        "$3,163",
+                        "$3,164",
+                        "$3,166",
+                        "$3,243",
+                        "$3,320",
+                        "$3,169",
+                        "$3,203",
+                        "$3,247",
+                        "$3,207",
+                        "$5,579",
+                        "$5,855",
+                        "$5,850",
+                        "$3,281",
+                        "$3,250",
+                        "$3,175",
+                        "$3,376",
+                        "$3,177",
+                        "$3,378",
+                        "$3,212",
+                        "$3,256",
+                        "$3,137",
+                        "$3,335",
+                        "$3,339",
+                        "$5,844",
+                        "$5,883",
+                        "$3,171"
+                    ]
+                },
+                {
+                    "key": "Condo/Co-op Fees",
+                    "value": [
+                        "-"
+                    ]
+                },
+                {
+                    "key": "Laundry Facilities",
+                    "value": [
+                        "Kitchen",
+                        "Stackable W/D Connections"
+                    ]
+                },
+                {
+                    "key": "Association",
+                    "value": [
+                        "false"
+                    ]
+                },
+                {
+                    "key": "Redfin Rental Estimate",
+                    "replace": "true",
+                    "value": [
+                        "$1828 - $2486 / month"
+                    ]
+                },
+                {
+                    "key": "Gated Community",
+                    "value": [
+                        "No",
+                        "N"
+                    ]
+                },
+                {
+                    "value": [
+                        "Tax Record"
+                    ],
+                    "key": "SqFt Source:"
+                },
+                {
+                    "value": [
+                        "1st Floor Entry, No Adjoining Neighbor"
+                    ],
+                    "key": "Unit Style:"
+                },
+                {
+                    "key": "Exterior Features",
+                    "value": [
+                        "Other Structures: Shed(s)",
+                        "Fencing: Back Yard, Chain Link, Fenced, Privacy, Wood",
+                        "Other Structures: Storage",
+                        "Fencing: Chain Link, Fenced, Wood",
+                        "Exterior Features: Private Yard, Rain Gutters",
+                        "Partial Gutters",
+                        "Security Features: Pre Wired, Smoke Detector(s)",
+                        "Security Features: Smoke Detector(s)",
+                        "Storage Building",
+                        "Patio And Porch Features: Covered, Patio",
+                        "Patio And Porch Features: Covered, Deck, Patio, Porch",
+                        "Covered Patio",
+                        "Patio"
+                    ]
+                },
+                {
+                    "value": [
+                        "O Henry"
+                    ],
+                    "key": "Middle School:"
+                },
+                {
+                    "value": [
+                        "Tax District County: TRAVIS CENTRAL APP DIST",
+                        "Assessment Year: 2019"
+                    ],
+                    "key": "Assessor Information"
+                },
+                {
+                    "value": [
+                        "Single Family Detached",
+                        "House"
+                    ],
+                    "key": "Property Sub Type"
+                },
+                {
+                    "value": [
+                        "Bedroom",
+                        "Living Room",
+                        "Full Bath",
+                        "Dining Room"
+                    ],
+                    "key": "Rooms"
+                },
+                {
+                    "key": "Elem. School District",
+                    "value": [
+                        "AUSTIN ISD"
+                    ]
+                },
+                {
+                    "value": [
+                        "N"
+                    ],
+                    "key": "Horses Allowed"
+                },
+                {
+                    "key": "Appliances",
+                    "value": [
+                        "Stackable Washer/Dryer",
+                        "Oven",
+                        "Dishwasher",
+                        "Microwave",
+                        "Refrigerator",
+                        "Cook Top Gas",
+                        "Dryer",
+                        "MICROWAVE OVEN",
+                        "REFRIGERATOR",
+                        "SINGLE OVEN",
+                        "DISHWASHER"
+                    ]
+                },
+                {
+                    "value": [
+                        "500022385098"
+                    ],
+                    "key": "Global Listing ID"
+                },
+                {
+                    "value": [
+                        "Liv/Din Combo"
+                    ],
+                    "key": "Dining Room Description"
+                },
+                {
+                    "key": "Other Structures",
+                    "value": [
+                        "Shed(s)"
+                    ]
+                },
+                {
+                    "key": "Location Information",
+                    "value": [
+                        "Subdivision Name: Bryker Woods C"
+                    ]
+                },
+                {
+                    "key": "Family Room",
+                    "value": [
+                        "Family Room"
+                    ]
+                },
+                {
+                    "value": [
+                        "(512) 657-5596"
+                    ],
+                    "key": "Agent phone:"
+                },
+                {
+                    "value": [
+                        "None"
+                    ],
+                    "key": "Sales Restrictions:"
+                },
+                {
+                    "key": "Waterfront Description",
+                    "value": [
+                        "None"
+                    ]
+                },
+                {
+                    "value": [
+                        "01170204020000"
+                    ],
+                    "key": "Parcel Number:"
+                },
+                {
+                    "key": "Buyer Brokerage Compensation",
+                    "value": [
+                        "3.000"
+                    ]
+                },
+                {
+                    "key": "Subdivision Name",
+                    "value": [
+                        "Bryker Woods C",
+                        "Bryker Woods"
+                    ]
+                },
+                {
+                    "value": [
+                        "No"
+                    ],
+                    "key": "Guest Accommodations:"
+                },
+                {
+                    "value": [
+                        "2"
+                    ],
+                    "key": "Bedrooms Total:"
+                },
+                {
+                    "key": "Elementary A",
+                    "value": [
+                        "Casis"
+                    ]
+                },
+                {
+                    "value": [
+                        "N"
+                    ],
+                    "key": "Energy Efficient Updates"
+                },
+                {
+                    "key": "Time on Redfin",
+                    "value": [
+                        "56 days"
+                    ],
+                    "replace": "true"
+                },
+                {
+                    "key": "Parcel ID",
+                    "value": [
+                        "01170204020000"
+                    ]
+                },
+                {
+                    "key": "Property Sub-type",
+                    "value": [
+                        "Single Family Residence",
+                        "House"
+                    ]
+                },
+                {
+                    "value": [
+                        "1"
+                    ],
+                    "key": "Dining Rooms:"
+                },
+                {
+                    "key": "Interior Features",
+                    "value": [
+                        "Wired",
+                        "Roof Types - Composition Shingle",
+                        "Other Features: Chandelier, High Speed Internet, Main Level Primary, No Interior Steps, Quartz Counters",
+                        "WIRED FOR SECURITY",
+                        "Flooring: Carpet, Laminate, Tile",
+                        "SMOKE DETECTOR",
+                        "Wired For Security",
+                        "Window Features: Double Pane Windows, Window Coverings, Window Treatments",
+                        "Chandelier",
+                        "Smoke Detector",
+                        "Flooring: Tile, Wood",
+                        "Floor Coverings - CarpetLaminateTile",
+                        "Unfurnished",
+                        "Other Features: Main Level Master",
+                        "Security System"
+                    ]
+                },
+                {
+                    "value": [
+                        "No"
+                    ],
+                    "key": "Auction:"
+                },
+                {
+                    "key": "Tax Lot",
+                    "value": [
+                        "4, 5"
+                    ]
+                },
+                {
+                    "key": "Tax Record",
+                    "value": [
+                        "2020: $10,242",
+                        "2019: $10,488",
+                        "2019: $10,242"
+                    ]
+                },
+                {
+                    "key": "Trees",
+                    "value": [
+                        "Moderate",
+                        "Medium (20 Ft - 40 Ft)",
+                        "Small (Under 20 Ft)"
+                    ]
+                },
+                {
+                    "key": "Water Access Description",
+                    "value": [
+                        "None"
+                    ]
+                },
+                {
+                    "key": "Property Condition",
+                    "value": [
+                        "Updated/Remodeled"
+                    ]
+                },
+                {
+                    "key": "Views",
+                    "value": [
+                        "City"
+                    ]
+                },
+                {
+                    "key": "Kitchen Appliances",
+                    "value": [
+                        "Single Oven",
+                        "Microwave oven",
+                        "Dishwasher",
+                        "Refridgerator",
+                        "Cook Top Gas",
+                        "Self Cleaning Ove"
+                    ]
+                },
+                {
+                    "key": "Special Listing Conditions",
+                    "value": [
+                        "Standard"
+                    ]
+                },
+                {
+                    "key": "Tract or Subdivision",
+                    "value": [
+                        "Bryker Woods C",
+                        "Enfield A"
+                    ]
+                },
+                {
+                    "key": "Assessments",
+                    "value": [
+                        "0"
+                    ]
+                },
+                {
+                    "key": "Redfin Estimate (Price)",
+                    "value": [
+                        "$534,029",
+                        "$560,256",
+                        "$514,274"
+                    ]
+                },
+                {
+                    "key": "Contact info",
+                    "value": [
+                        "Sign up to see info"
+                    ]
+                },
+                {
+                    "key": "Kitchen",
+                    "value": [
+                        "Single Oven",
+                        "Dishwasher",
+                        "Microwave",
+                        "Refrigerator",
+                        "Microwave Oven",
+                        "Disposal",
+                        "Range-Free Standing",
+                        "Center Island",
+                        "Oven",
+                        "Stainless Steel",
+                        "Gas Cooktop",
+                        "Cook Top Gas",
+                        "Breakfast Area"
+                    ]
+                },
+                {
+                    "key": "Price History - Redfin",
+                    "value": [
+                        "Date: 2/21/2023 - Price: N/A - Event: Contingent",
+                        "Date: 8/30/2019 - Price: N/A - Event: Listed",
+                        "Date: 5/1/2019 - Price: N/A - Event: Relisted",
+                        "Date: 4/27/2020 - Price: $539000 - Event: Price Changed",
+                        "Date: 6/10/2020 - Price: N/A - Event: Relisted",
+                        "Date: 3/10/2023 - Price: $775000 - Event: Price Changed",
+                        "Date: 6/28/2019 - Price: N/A - Event: Delisted",
+                        "Date: 2/27/2023 - Price: N/A - Event: Relisted",
+                        "Date: 5/1/2019 - Price: N/A - Event: Price Changed",
+                        "Date: 8/4/2020 - Price: N/A - Event: Pending",
+                        "Date: 3/30/2023 - Price: $729500 - Event: Price Changed",
+                        "Date: 2/16/2023 - Price: $789000 - Event: Listed",
+                        "Date: 2/27/2020 - Price: $552000 - Event: Listed",
+                        "Date: 12/11/2019 - Price: N/A - Event: Delisted",
+                        "Date: 6/3/2020 - Price: N/A - Event: Pending",
+                        "Date: 4/30/2019 - Price: N/A - Event: Delisted",
+                        "Date: 4/8/2019 - Price: N/A - Event: Listed"
+                    ],
+                    "replace": "true"
+                },
+                {
+                    "key": "Tax Block",
+                    "value": [
+                        "5"
+                    ]
+                },
+                {
+                    "value": [
+                        "None"
+                    ],
+                    "key": "Special Conditions"
+                },
+                {
+                    "key": "Days on Market",
+                    "value": [
+                        "49"
+                    ],
+                    "replace": "true"
+                },
+                {
+                    "key": "Directions",
+                    "value": [
+                        "head East Left on Jarratt Left on Gaston Right on Jefferson Left on Westover Home is at the end of the street on the right.",
+                        "From MoPac",
+                        "exit Windsor Rd",
+                        "exit Northwood. Go South (right) on Jefferson and then right on Westover. House is the last on the left."
+                    ]
+                },
+                {
+                    "value": [
+                        "Fee-Simple"
+                    ],
+                    "key": "Ownership Type"
+                },
+                {
+                    "value": [
+                        "(512) 451-2422"
+                    ],
+                    "key": "Office phone:"
+                },
+                {
+                    "key": "Building Information",
+                    "value": [
+                        "Roof Details: Composition",
+                        "Year Built: 1946",
+                        "Composition Shingle Roof",
+                        "Year Built Source: Public Records",
+                        "Stories: 1",
+                        "Construction: Frame",
+                        "Home Faces North",
+                        "Construction Details: Frame",
+                        "Sq. Ft. Source: See Attachment",
+                        "Pier & Beam Foundation",
+                        "Year Built Description: Resale",
+                        "Sq. Ft. Source: Tax Record"
+                    ]
+                },
+                {
+                    "key": "Property Information",
+                    "value": [
+                        "Updated/Remodeled",
+                        "Exemptions: None",
+                        "Direction Faces: Northeast",
+                        "Foundation Details: Pillar/Post/Pier",
+                        "Resale",
+                        "Direction Faces: North",
+                        "Gross Sq. Ft: 913",
+                        "Ownership: Fee-Simple",
+                        "Stories Type: 1",
+                        "Has Sign on Property",
+                        "Ground Floor Sq. Ft: 913",
+                        "# of Stories: 1",
+                        "Living Sq. Ft: 913",
+                        "Building Sq. Ft: 913",
+                        "Legal Description: W 20FT OF LOT 4 & NE PT OF LOT 5 BLK 5 BRYKER WOODS C",
+                        "Subdivision Name: BRYKER WOODS C"
+                    ]
+                },
+                {
+                    "value": [
+                        "2018"
+                    ],
+                    "key": "Tax Year:"
+                },
+                {
+                    "key": "Price/Sq.Ft.",
+                    "value": [
+                        "$786",
+                        "$964",
+                        "$865",
+                        "$864",
+                        "$941",
+                        "$963",
+                        "$900",
+                        "$966",
+                        "$889",
+                        "$888",
+                        "$866",
+                        "$748",
+                        "$902",
+                        "$869",
+                        "$847",
+                        "$945",
+                        "$846",
+                        "$849",
+                        "$904",
+                        "$848",
+                        "$580",
+                        "$561",
+                        "$861",
+                        "$860",
+                        "$994",
+                        "$799",
+                        "$876",
+                        "$854",
+                        "$952",
+                        "$875",
+                        "$1,000",
+                        "$911",
+                        "$998",
+                        "$855",
+                        "$956",
+                        "$857",
+                        "$939",
+                        "$890",
+                        "$594",
+                        "$872"
+                    ]
+                },
+                {
+                    "value": [
+                        "Construction Type: Wood",
+                        "Foundation Type: Pier",
+                        "Roof Shape Type: Gable",
+                        "Building Type: Single Family"
+                    ],
+                    "key": "Exterior Information"
+                },
+                {
+                    "key": "Unit Style",
+                    "value": [
+                        "No Adjoining Neighbor",
+                        "1st Floor Entry"
+                    ]
+                },
+                {
+                    "key": "School",
+                    "value": [
+                        "Elementary School: Casis",
+                        "Middle Or Junior School: O Henry",
+                        "High School District: Austin ISD",
+                        "High School: Austin",
+                        "High School: Austin,",
+                        "Elementary School District: Austin ISD",
+                        "Middle Or Junior School District: Austin ISD",
+                        "Middle Or Junior School: O Henry,"
+                    ]
+                },
+                {
+                    "key": "Roof",
+                    "value": [
+                        "Composition",
+                        "Composition Shingle"
+                    ]
+                },
+                {
+                    "key": "Water Source",
+                    "value": [
+                        "Public",
+                        "City"
+                    ]
+                },
+                {
+                    "key": "Senior High School",
+                    "value": [
+                        "Austin"
+                    ]
+                },
+                {
+                    "value": [
+                        "575,000"
+                    ],
+                    "key": "Current Price:"
+                },
+                {
+                    "key": "Living Area",
+                    "value": [
+                        "913"
+                    ]
+                },
+                {
+                    "key": "Elementary School District",
+                    "value": [
+                        "Austin ISD"
+                    ]
+                },
+                {
+                    "key": "Stories",
+                    "value": [
+                        "1"
+                    ]
+                },
+                {
+                    "key": "Dining",
+                    "value": [
+                        "1"
+                    ]
+                },
+                {
+                    "key": "New Construction",
+                    "value": [
+                        "false"
+                    ]
+                },
+                {
+                    "value": [
+                        "Austin ISD"
+                    ],
+                    "key": "School District:"
+                },
+                {
+                    "key": "Baths Total",
+                    "value": [
+                        "1"
+                    ]
+                },
+                {
+                    "key": "Room 2 Information",
+                    "value": [
+                        "Level: Main",
+                        "Features: Jack and Jill Bath, Walk-In Shower",
+                        "Primary Bathroom",
+                        "Laundry"
+                    ]
+                },
+                {
+                    "key": "Similar Homes",
+                    "value": [
+                        "1900 Barton Springs Rd #3028, Barton Hills, Austin, TX",
+                        "701 Oakland Ave #A, Old West Austin, Austin, TX",
+                        "1404 S 3rd St, Bouldin Creek, Austin, TX",
+                        "3200 Duval St #111, North University, Austin, TX",
+                        "607 W 29th 1/2 St, West University, Austin, TX",
+                        "1911 Robbins Pl, West University, Austin, TX",
+                        "707 E 49th St, Hyde Park, Austin, TX",
+                        "5300 Turnabout Ln, Allandale, Austin, TX",
+                        "2308 W 10th St, Austin, TX",
+                        "2205 Rebel Rd, South River City, Austin, TX",
+                        "Astor E Plan in The Grove, Rosedale, Austin, TX",
+                        "2612 W 12th St #204, Austin, TX",
+                        "4714 Rowena Ave, Hyde Park, Austin, TX",
+                        "2716 E 2nd St, Holly, Austin, TX",
+                        "1903 Frazier Ave #B, Zilker, Austin, TX",
+                        "605 Theresa Ave, Old West Austin, Austin, TX",
+                        "7207 Grover Ave, Crestview, Austin, TX",
+                        "1605 Wethersfield Rd, Old Enfield, Austin, TX",
+                        "4800 Evans Ave #A, Hyde Park, Austin, TX",
+                        "501 Park Blvd, Hancock, Austin, TX",
+                        "2507 Quarry Rd #C, Austin, TX",
+                        "2104 Oxford Ave, Zilker, Austin, TX",
+                        "929 E 52nd St, North Loop, Austin, TX",
+                        "1507 Wethersfield Rd, Old Enfield, Austin, TX",
+                        "1603 Enfield Rd #312, Old West Austin, Austin, TX",
+                        "1905 Winsted Ln, Austin, TX",
+                        "901 W 9th St #219, Downtown, Austin, TX",
+                        "1312 Willow St, East Cesar Chavez, Austin, TX",
+                        "1100 W Mary St, Bouldin Creek, Austin, TX",
+                        "1713 Brentwood St, Brentwood, Austin, TX",
+                        "5215 Valley Oak Dr, Austin, TX",
+                        "928 E 53rd 1/2 St #2, North Loop, Austin, TX",
+                        "1302 Woodlawn Blvd #103, Old West Austin, Austin, TX",
+                        "1021 E 43rd St, Hancock, Austin, TX",
+                        "3018 Perry Ln, Austin, TX",
+                        "6807 Cougar Run, Austin, TX",
+                        "1715 Enfield Rd #204, Old West Austin, Austin, TX",
+                        "2507 Quarry Rd #F, Austin, TX",
+                        "3305 Windsor Rd #B, Austin, TX",
+                        "2414 Forest Ave, Dawson, Austin, TX",
+                        "2805 Sol Wilson Ave #B, Rosewood, Austin, TX",
+                        "2707 S 5th St, Galindo, Austin, TX",
+                        "1815 W 36th St, Rosedale, Austin, TX",
+                        "606 Augusta Ave #2, Old West Austin, Austin, TX",
+                        "2412 Enfield Rd #6, Austin, TX",
+                        "1806 Crested Butte Dr #2, Austin, TX",
+                        "Address Not Disclosed, Holly, Austin, TX",
+                        "943 E 52nd St, North Loop, Austin, TX",
+                        "2708 W 35th St, Austin, TX",
+                        "704 W Oltorf St, Bouldin Creek, Austin, TX",
+                        "4904 W Market Dr, Allandale, Austin, TX",
+                        "2917 Pearl St, West University, Austin, TX",
+                        "1009 E 44th St, Hancock, Austin, TX",
+                        "212 Le Grande Ave, South River City, Austin, TX",
+                        "205 Caney St, Holly, Austin, TX",
+                        "712 Harris Ave, Hancock, Austin, TX",
+                        "1909 E 2nd St, Holly, Austin, TX",
+                        "3306 Liberty St, Hancock, Austin, TX",
+                        "1006 Alden Dr, North Austin, Austin, TX",
+                        "5702 Marilyn Dr, Allandale, Austin, TX",
+                        "2905 Rio Grande St, West University, Austin, TX",
+                        "1011 Brodie St #16, Bouldin Creek, Austin, TX",
+                        "4207 Bellvue Ave, Rosedale, Austin, TX",
+                        "1616 W 12th St, Old West Austin, Austin, TX",
+                        "804 W 28th 1/2 St, West University, Austin, TX",
+                        "914 Walter St, Rosewood, Austin, TX",
+                        "4006 Shoal Creek Blvd #B, Rosedale, Austin, TX",
+                        "1608 Bridgeway Dr, South Lamar, Austin, TX",
+                        "616 W Saint Johns Ave, Highland, Austin, TX",
+                        "5717 Joe Sayers Ave, Brentwood, Austin, TX",
+                        "918 E 49th 1/2 St, North Loop, Austin, TX",
+                        "1208 Fernwood Rd, Upper Boggy Creek, Austin, TX",
+                        "Address Not Disclosed, Zilker, Austin, TX",
+                        "2007 Alameda Dr, South River City, Austin, TX",
+                        "1304 Armadillo Rd, Garrison Park, Austin, TX",
+                        "1001 E 53rd St, North Loop, Austin, TX",
+                        "200 W 55th 1/2 St, North Loop, Austin, TX",
+                        "2605 Enfield Rd #217, Austin, TX",
+                        "2008 Kinney Ave, Zilker, Austin, TX",
+                        "2206 Alexander Ave, Rosewood, Austin, TX",
+                        "1707 Astor Pl, MLK, Austin, TX",
+                        "5511 Bennett Ave, North Loop, Austin, TX",
+                        "1207 North St, Brentwood, Austin, TX",
+                        "1208 Chestnut Ave, Chestnut, Austin, TX",
+                        "2705 S 2nd St #B, Galindo, Austin, TX",
+                        "2617 W 45th St, Rosedale, Austin, TX",
+                        "739 Cherico St, Govalle, Austin, TX",
+                        "1904 S 6th St, Bouldin Creek, Austin, TX",
+                        "4505 Bull Creek Rd, Allandale, Austin, TX",
+                        "606 W Lynn St #2, Old West Austin, Austin, TX",
+                        "1314 Norwalk Ln, Austin, TX",
+                        "2205 Laramie Trl, Westgate, Austin, TX",
+                        "640 Twelve Oaks Ln, Galindo, Austin, TX"
+                    ]
+                },
+                {
+                    "key": "Postal Code (78703) Transport Description",
+                    "value": [
+                        "This area is car dependent — most errands require a car. Transit is available, with a few nearby public transportation options. There is some amount of infrastructure for biking."
+                    ]
+                },
+                {
+                    "value": [
+                        "Central Heat"
+                    ],
+                    "key": "Heating:"
+                },
+                {
+                    "key": "View",
+                    "value": [
+                        "None",
+                        "No View"
+                    ]
+                },
+                {
+                    "key": "Laundry Information",
+                    "value": [
+                        "Kitchen, Stackable W/D Connections",
+                        "Features: Washer Hookup, Dryer Hookup, Stacked",
+                        "Features: Stacked"
+                    ]
+                },
+                {
+                    "value": [
+                        "Frame"
+                    ],
+                    "key": "Construction:"
+                },
+                {
+                    "key": "Construction Materials",
+                    "value": [
+                        "Frame"
+                    ]
+                },
+                {
+                    "key": "Equipment",
+                    "value": [
+                        "Appliances: Washer/Dryer Stacked, Dishwasher, Gas Cooktop, Microwave, Oven, Refrigerator",
+                        "Appliances: Washer/Dryer Stacked, Dishwasher, Gas Range, Microwave, Oven, Refrigerator, Range Hood"
+                    ]
+                },
+                {
+                    "key": "Spa Features",
+                    "value": [
+                        "None"
+                    ]
+                },
+                {
+                    "key": "FEMA Flood Plain",
+                    "value": [
+                        "No"
+                    ]
+                },
+                {
+                    "value": [
+                        "No View"
+                    ],
+                    "key": "View:"
+                },
+                {
+                    "key": "Levels",
+                    "value": [
+                        "One"
+                    ]
+                },
+                {
+                    "value": [
+                        "Central Air"
+                    ],
+                    "key": "A/C:"
+                },
+                {
+                    "key": "Community",
+                    "value": [
+                        "Bryker Woods C",
+                        "Austin",
+                        "Bryker Woods"
+                    ]
+                },
+                {
+                    "value": [
+                        "Smoke Detector, Wired For Security"
+                    ],
+                    "key": "Interior Features:"
+                },
+                {
+                    "key": "Mortgage Estimate",
+                    "replace": "true",
+                    "value": [
+                        "Monthly Total: $5,579"
+                    ]
+                },
+                {
+                    "key": "Fencing",
+                    "value": [
+                        "Back Yard"
+                    ]
+                },
+                {
+                    "key": "Foreclosure/REO",
+                    "value": [
+                        "No"
+                    ]
+                },
+                {
+                    "key": "Office phone",
+                    "value": [
+                        "(512) 241-1300",
+                        "(512) 575-3644",
+                        "(512) 451-2422"
+                    ]
+                },
+                {
+                    "key": "What Locals Say",
+                    "value": [
+                        "There's holiday spirit. Rating: 76%",
+                        "It's dog friendly. Rating: 86%",
+                        "It's walkable to grocery stores. Rating: 71%",
+                        "Parking is easy. Rating: 86%",
+                        "Parking is easy. Rating: 85%",
+                        "Car is needed. Rating: 84%",
+                        "Kids play outside. Rating: 80%",
+                        "There's holiday spirit. Rating: 77%",
+                        "Car is needed. Rating: 83%",
+                        "It's walkable to grocery stores. Rating: 76%"
+                    ]
+                },
+                {
+                    "value": [
+                        "No"
+                    ],
+                    "key": "Spa:"
+                },
+                {
+                    "key": "Bath Information",
+                    "value": [
+                        "# of Baths (Full): 1"
+                    ]
+                },
+                {
+                    "key": "Accessibility Features",
+                    "value": [
+                        "None"
+                    ]
+                },
+                {
+                    "key": "Postal Code (78703) Real Estate Sales (Last 30 Days)",
+                    "value": [
+                        "Median List Price: $972K",
+                        "Median List Price: $920K",
+                        "# Sold Homes: 29",
+                        "# Sold Homes: 27",
+                        "# Sold Homes: 25",
+                        "Median Sale / List: 97.8%",
+                        "# Sold Homes: 26",
+                        "Median List Price: $904K",
+                        "Avg. # Offers: 1",
+                        "Avg. Down Payment: 35.0%",
+                        "# Sold Homes: 24",
+                        "Avg. # Offers: 3",
+                        "Median $ / Sq. Ft.: $528",
+                        "Avg. Down Payment: 11.7%",
+                        "Median $ / Sq. Ft.: $527",
+                        "Avg. # Offers: 4",
+                        "Median Sale / List: 97.0%",
+                        "Median Sale / List: 95.2%",
+                        "Median List Price: $1.12M",
+                        "Median $ / Sq. Ft.: $520",
+                        "Median $ / Sq. Ft.: $562",
+                        "Median Sale / List: 99.2%",
+                        "Median $ / Sq. Ft.: $561",
+                        "Median $ / Sq. Ft.: $481",
+                        "Avg. Down Payment: 47.0%",
+                        "Median List Price: $997K",
+                        "Median List Price: $969K",
+                        "# Sold Homes: 16",
+                        "# Sold Homes: 14",
+                        "Median List Price: $917K",
+                        "# Sold Homes: 15",
+                        "Median Sale / List: 98.8%",
+                        "Median Sale / List: 95.9%",
+                        "Median Sale / List: 97.7%",
+                        "Median $ / Sq. Ft.: $517",
+                        "Median $ / Sq. Ft.: $518",
+                        "Median $ / Sq. Ft.: $559",
+                        "Median $ / Sq. Ft.: $515",
+                        "Median $ / Sq. Ft.: $557",
+                        "Median Sale / List: 96.2%",
+                        "Median $ / Sq. Ft.: $558",
+                        "Median Sale / List: 98.0%",
+                        "Median $ / Sq. Ft.: $553",
+                        "Median Sale / List: 99.1%",
+                        "Median $ / Sq. Ft.: $476",
+                        "Median List Price: $1.17M",
+                        "Median $ / Sq. Ft.: $552",
+                        "Median List Price: $1.2M",
+                        "Median List Price: $950K",
+                        "Median List Price: $998K",
+                        "Median List Price: $906K",
+                        "Median Sale / List: 97.6%",
+                        "Avg. Down Payment: 15.5%",
+                        "# Sold Homes: 40",
+                        "Median $ / Sq. Ft.: $545",
+                        "Median Sale / List: 96.5%",
+                        "Median Sale / List: 99.0%",
+                        "Median $ / Sq. Ft.: $466",
+                        "Median List Price: $1000K",
+                        "Median $ / Sq. Ft.: $541",
+                        "Median $ / Sq. Ft.: $464",
+                        "Avg. Down Payment: 19.5%",
+                        "Median List Price: $975K",
+                        "Median List Price: $995K",
+                        "# Sold Homes: 38",
+                        "Median List Price: $999K",
+                        "# Sold Homes: 39",
+                        "# Sold Homes: 37",
+                        "# Sold Homes: 34",
+                        "# Sold Homes: 32",
+                        "# Sold Homes: 33",
+                        "# Sold Homes: 30",
+                        "Median $ / Sq. Ft.: $537",
+                        "Median $ / Sq. Ft.: $538",
+                        "# Sold Homes: 31",
+                        "Median $ / Sq. Ft.: $535",
+                        "Median $ / Sq. Ft.: $536",
+                        "Median $ / Sq. Ft.: $456",
+                        "Median Sale / List: 97.5%",
+                        "Median Sale / List: 96.4%"
+                    ]
+                },
+                {
+                    "value": [
+                        "N"
+                    ],
+                    "key": "Restrictions"
+                },
+                {
+                    "key": "HOA Fees",
+                    "value": [
+                        "-"
+                    ]
+                },
+                {
+                    "value": [
+                        "N"
+                    ],
+                    "key": "Foreclosed/Reo"
+                },
+                {
+                    "key": "Water Access",
+                    "value": [
+                        "No",
+                        "N"
+                    ]
+                },
+                {
+                    "value": [
+                        "1505 Newfield Ln, Austin, TX 78703",
+                        "2407 W 10th St, Austin, TX 78703",
+                        "2312 Pruett St, Austin, TX 78703",
+                        "1501 W 29th St, Austin, TX 78703",
+                        "3305 Helms St, Austin, TX 78705",
+                        "1903 W 32nd St, Austin, TX 78703",
+                        "3300 Kerbey Ln, Austin, TX 78703",
+                        "909 Shelley Ave, Austin, TX 78703",
+                        "1306 W 39 1/2 St, Austin, TX 78756",
+                        "2415 Mccall Rd, Austin, TX 78703",
+                        "3207 Glenview Ave, Austin, TX 78703",
+                        "3302 Glenview Ave, Austin, TX 78703",
+                        "1706 Hartford Rd, Austin, TX 78703",
+                        "2203 Greenlee Dr, Austin, TX 78703",
+                        "1001 Blanco St, Austin, TX 78703"
+                    ],
+                    "key": "Nearby Recently Sold Homes"
+                },
+                {
+                    "value": [
+                        "Resale"
+                    ],
+                    "key": "Year Built Exception:"
+                },
+                {
+                    "value": [
+                        "01170204020000"
+                    ],
+                    "key": "TaxID"
+                },
+                {
+                    "key": "Price Trends",
+                    "value": [
+                        "Typical Home Value by sqft: $1,328, This home: $562 58% below*",
+                        "Typical Home Value by sqft: $1,317, This home: $580 56% below",
+                        "Typical Home Value by sqft: $1,226, This home: $580 53% below",
+                        "Typical Home Value by sqft: $1,328, This home: $580 56% below",
+                        "Typical home value: $1,081,578, This home: $521,994 52% below*",
+                        "Typical home value: $1,052,913, This home: $539,000 49% below",
+                        "Typical home value: $1,062,810, This home: $539,000 49% below",
+                        "Typical home value: $1,059,408, This home: $539,000 49% below"
+                    ]
+                },
+                {
+                    "value": [
+                        "No"
+                    ],
+                    "key": "Flood Zone"
+                },
+                {
+                    "value": [
+                        "Electricity Available, Natural Gas on Property"
+                    ],
+                    "key": "Utilities:"
+                },
+                {
+                    "value": [
+                        "Austin"
+                    ],
+                    "key": "Senior High School:"
+                },
+                {
+                    "key": "Middle Or Junior School",
+                    "value": [
+                        "O Henry"
+                    ]
+                },
+                {
+                    "key": "Bathrooms Total",
+                    "value": [
+                        "1"
+                    ]
+                },
+                {
+                    "key": "Taxable Value",
+                    "value": [
+                        "Land: $446,250",
+                        "Total: $477,500",
+                        "Additions: $31,250"
+                    ]
+                },
+                {
+                    "value": [
+                        "Cash",
+                        "Conventional"
+                    ],
+                    "key": "Financing"
+                },
+                {
+                    "key": "Documents",
+                    "value": [
+                        "Documents Available: Feasibility Study, See Agent, Survey",
+                        "Lead Base Paint Addendum",
+                        "Seller Disclosure",
+                        "Documents Available: Feasibility Study, Survey, Topography Map"
+                    ]
+                },
+                {
+                    "key": "Sub Type",
+                    "value": [
+                        "Single Family Residence",
+                        "House"
+                    ]
+                },
+                {
+                    "key": "Fireplace",
+                    "value": [
+                        "None"
+                    ]
+                },
+                {
+                    "value": [
+                        "No"
+                    ],
+                    "key": "HOA:"
+                },
+                {
+                    "value": [
+                        "Cook Top Gas, Dishwasher, Microwave oven, Refridgerator, Single Oven, Self Cleaning Ove"
+                    ],
+                    "key": "Kitchen Appliances:"
+                },
+                {
+                    "key": "Parcel Number",
+                    "value": [
+                        "01170204020000",
+                        "166297691"
+                    ]
+                },
+                {
+                    "key": "Bathroom",
+                    "value": [
+                        "Master Bedroom: Full Bath"
+                    ]
+                },
+                {
+                    "value": [
+                        "Residential"
+                    ],
+                    "key": "Property Type:"
+                },
+                {
+                    "key": "School District",
+                    "value": [
+                        "Austin ISD"
+                    ]
+                },
+                {
+                    "key": "Bathrooms Full",
+                    "value": [
+                        "1"
+                    ]
+                },
+                {
+                    "value": [
+                        "Active"
+                    ],
+                    "key": "Listing Status"
+                },
+                {
+                    "value": [
+                        "Cul-DeSac, Level"
+                    ],
+                    "key": "Lot Features:"
+                },
+                {
+                    "key": "Homes For Rent Nearby",
+                    "value": [
+                        "701 W 11th St #B, Downtown, Austin, TX",
+                        "4907 Duval St #78751, Hyde Park, Austin, TX",
+                        "Studio, 300 sqft, $695, Hancock, Austin, TX",
+                        "1800 Lavaca St #509, Downtown, Austin, TX",
+                        "1901 E 16th St, Chestnut, Austin, TX",
+                        "911 W 22nd St #301, West University, Austin, TX",
+                        "Harmon Square Apartments, North Loop, Austin, TX",
+                        "2210 Enfield Rd #0, Austin, TX",
+                        "2211 Stamford Ln, Austin, TX",
+                        "Address Not Disclosed, Downtown, Austin, TX",
+                        "624 W 37th St #204, West University, Austin, TX",
+                        "1807 Romeria Dr, Brentwood, Austin, TX",
+                        "810 E Dean Keeton St, Hancock, Austin, TX",
+                        "4001 Red River St, Hancock, Austin, TX",
+                        "1315 Norwalk Ln, Austin, TX",
+                        "504 W 13th St #1, Downtown, Austin, TX",
+                        "801 W Lynn St #201, Old West Austin, Austin, TX",
+                        "2605 Enfield Rd #108, Austin, TX",
+                        "607 Hearn St, Austin, TX",
+                        "2404 Longview St #206, West University, Austin, TX",
+                        "West Campus Flats Apartments, West University, Austin, TX",
+                        "Address Not Disclosed, Austin, TX",
+                        "1708 Sharon Ln, Austin, TX",
+                        "1808 Rio Grande St #8, Downtown, Austin, TX",
+                        "1900 Barton Springs Rd #2038, Barton Hills, Austin, TX",
+                        "The Rosedale Apartments, Rosedale, Austin, TX",
+                        "6th Street West Apartments Austin, Old West Austin, Austin, TX",
+                        "1309 Norwalk Ln, Austin, TX",
+                        "1800 Lavaca St, Downtown, Austin, TX",
+                        "3204 Jefferson St #A, Windsor Road, Austin, TX",
+                        "Enfield Court Apartments, Austin, TX",
+                        "2401 Manor Rd #235, Upper Boggy Creek, Austin, TX",
+                        "1825 W 11th St #B, Old West Austin, Austin, TX",
+                        "Address Not Disclosed, North Loop, Austin, TX",
+                        "505 W 7th St #207, Downtown, Austin, TX",
+                        "1135 Barton Hills Dr #228, Barton Hills, Austin, TX",
+                        "301 E 4th St #302, Downtown, Austin, TX",
+                        "1201 W 22 1/2 St, West University, Austin, TX",
+                        "University Quarters Apartments, North University, Austin, TX",
+                        "301 E 4th St #339, Downtown, Austin, TX"
+                    ]
+                },
+                {
+                    "key": "Style",
+                    "value": [
+                        "No Adjoining Neighbor",
+                        "1st Floor Entry",
+                        "Entry Steps",
+                        "Other"
+                    ]
+                },
+                {
+                    "key": "Floor Coverings",
+                    "value": [
+                        "Laminate",
+                        "Wood",
+                        "Hard Tile",
+                        "Tile",
+                        "Carpet"
+                    ]
+                },
+                {
+                    "key": "Roof Type",
+                    "value": [
+                        "Composition",
+                        "Composition Shingle",
+                        "Shingle"
+                    ]
+                },
+                {
+                    "key": "Laundry Location",
+                    "value": [
+                        "Inside"
+                    ]
+                },
+                {
+                    "key": "Living",
+                    "value": [
+                        "1"
+                    ]
+                },
+                {
+                    "key": "Sprinkler System",
+                    "value": [
+                        "No",
+                        "Yes",
+                        "N"
+                    ]
+                },
+                {
+                    "key": "Subdivision",
+                    "value": [
+                        "Bryker Woods C"
+                    ]
+                },
+                {
+                    "value": [
+                        "Resale"
+                    ],
+                    "key": "Year Built Description"
+                },
+                {
+                    "value": [
+                        "Composition Shingle"
+                    ],
+                    "key": "Roof:"
+                },
+                {
+                    "key": "Sewer",
+                    "value": [
+                        "City at Street",
+                        "Public Sewer",
+                        "City on Property"
+                    ]
+                },
+                {
+                    "key": "Heating",
+                    "value": [
+                        "Central Furnace",
+                        "Central Heat",
+                        "Central",
+                        "CENTRAL HEAT"
+                    ]
+                },
+                {
+                    "value": [
+                        "Casis"
+                    ],
+                    "key": "Elementary A:"
+                },
+                {
+                    "key": "Horses",
+                    "value": [
+                        "No"
+                    ]
+                },
+                {
+                    "key": "New Listings Nearby",
+                    "value": [
+                        "5800 Overlook Dr, Austin, TX",
+                        "1128 Chicon St #100, Central East Austin, Austin, TX",
+                        "910 Juniper St, Central East Austin, Austin, TX",
+                        "2111 Greenwood Ave #B, MLK, Austin, TX",
+                        "807 E 14th St #202, Central East Austin, Austin, TX",
+                        "607 W 29th 1/2 St, West University, Austin, TX",
+                        "2921 Castro St, Govalle, Austin, TX",
+                        "2401 E 6th St #6097, Holly, Austin, TX",
+                        "2021 E 2nd St #2, Holly, Austin, TX",
+                        "2103 Payne Ave #A, Brentwood, Austin, TX",
+                        "5222 Woodrow Ave #B, Brentwood, Austin, TX",
+                        "1609 Walnut Ave #B, Chestnut, Austin, TX",
+                        "2205 Rebel Rd, South River City, Austin, TX",
+                        "2821 Kinney Oaks Ct, South Lamar, Austin, TX",
+                        "1702 S Lamar Blvd #16, Zilker, Austin, TX",
+                        "1303 Glencrest Dr, Windsor Park, Austin, TX",
+                        "2009 Belford Dr, Wooten, Austin, TX",
+                        "1501 Princeton Ave, Crestview, Austin, TX",
+                        "5606 Clay Ave #B2, Brentwood, Austin, TX",
+                        "1918 W Saint Johns Ave #B, Crestview, Austin, TX",
+                        "7207 Grover Ave, Crestview, Austin, TX",
+                        "1413 Berkshire Dr, Windsor Park, Austin, TX",
+                        "1205 Piedmont Ave #1, Crestview, Austin, TX",
+                        "1121 Gunter St, Govalle, Austin, TX",
+                        "7311 Bennett Ave #2, St. Johns, Austin, TX",
+                        "2215 Post Rd #1028, South River City, Austin, TX",
+                        "1109 Lawson Ln, Central East Austin, Austin, TX",
+                        "1609 Greenwood Ave, MLK, Austin, TX",
+                        "6804 Rockledge Cv, Austin, TX",
+                        "800 Brazos St #1007, Downtown, Austin, TX",
+                        "1612 W 9th 1/2 St, Old West Austin, Austin, TX",
+                        "4808 Red River St #1, Hyde Park, Austin, TX",
+                        "5511 Joe Sayers Ave, Brentwood, Austin, TX",
+                        "2002 E 9th St #2, Central East Austin, Austin, TX",
+                        "6101 Gun Bow Ct, Austin, TX",
+                        "4003 Mesa Cv, Austin, TX",
+                        "300 W 55th St, North Loop, Austin, TX",
+                        "5901 Camino Seco, Austin, TX",
+                        "3706 Werner Ave, Upper Boggy Creek, Austin, TX",
+                        "300 Bowie St #1004, Downtown, Austin, TX",
+                        "1806 Crested Butte Dr #2, Austin, TX",
+                        "939 E 50th St, North Loop, Austin, TX",
+                        "6006 Mesa Dr, Austin, TX",
+                        "3900 Glengarry Dr, Austin, TX",
+                        "1105 E Riverside Dr, South River City, Austin, TX",
+                        "704 W Oltorf St, Bouldin Creek, Austin, TX",
+                        "1205 E 32nd St, Upper Boggy Creek, Austin, TX",
+                        "3907 Dry Creek Dr, Austin, TX",
+                        "2308 Westoak Dr, Barton Hills, Austin, TX",
+                        "404 W North Loop Blvd #B, North Loop, Austin, TX",
+                        "5610 Shoalwood Ave, Allandale, Austin, TX",
+                        "2800 Waymaker Way #38, Austin, TX",
+                        "904 W 21st St #214, West University, Austin, TX",
+                        "4416 Barrow Ave, Hancock, Austin, TX",
+                        "4412 Avenue D, Hyde Park, Austin, TX",
+                        "1510 W North Loop Blvd #424, Brentwood, Austin, TX",
+                        "1502 Willow St #2, East Cesar Chavez, Austin, TX",
+                        "2711 Willow St #B, Holly, Austin, TX",
+                        "3016 E 17th St, Rosewood, Austin, TX",
+                        "1804 Richcreek Rd #A, Crestview, Austin, TX",
+                        "1807 Poquito St #41, Chestnut, Austin, TX",
+                        "7603 Grover Ave, Crestview, Austin, TX",
+                        "6107 Bullard Dr #A, Allandale, Austin, TX",
+                        "3505 Banton Rd #A, Upper Boggy Creek, Austin, TX",
+                        "1716 S 5th St #1, Bouldin Creek, Austin, TX",
+                        "1018 Walter St, Rosewood, Austin, TX",
+                        "1209 Kinney Ave #D, Zilker, Austin, TX",
+                        "507 Sabine St #804, Downtown, Austin, TX",
+                        "1608 Bridgeway Dr, South Lamar, Austin, TX",
+                        "201 Academy Dr #201, South River City, Austin, TX",
+                        "6404 Shoal Creek Blvd, Allandale, Austin, TX",
+                        "1139 Gunter St #B, MLK, Austin, TX",
+                        "1305 W Saint Johns Ave, Crestview, Austin, TX",
+                        "902 Spence St, East Cesar Chavez, Austin, TX",
+                        "3405 Banton Rd, Upper Boggy Creek, Austin, TX",
+                        "2619 E 5th St, Holly, Austin, TX",
+                        "903 Newman Dr, Austin, TX",
+                        "1603 Wheless Ln, Windsor Park, Austin, TX",
+                        "4900 Westfield Dr, Allandale, Austin, TX",
+                        "6502 Shadow Valley Dr #A, Austin, TX",
+                        "5202 Brookdale Ln, Windsor Park, Austin, TX",
+                        "4036 Camacho St, RMMA, Austin, TX",
+                        "1207 North St, Brentwood, Austin, TX",
+                        "4204 Shoalwood Ave, Rosedale, Austin, TX",
+                        "1612 Westmoor Dr, Windsor Park, Austin, TX",
+                        "2109 Exposition Blvd, Austin, TX",
+                        "4006 Lewis Ln, Rosedale, Austin, TX",
+                        "5704 Woodrow Ave, Brentwood, Austin, TX",
+                        "1003 E 45th St, Hancock, Austin, TX",
+                        "6601 Treadwell Blvd, Allandale, Austin, TX",
+                        "83 San Saba St, Holly, Austin, TX",
+                        "4308 Nitschke St, RMMA, Austin, TX",
+                        "701 E 49th St #B-B-B, Hyde Park, Austin, TX",
+                        "7505 Sugar Magnolia St, Crestview, Austin, TX",
+                        "1207 Alta Vista Ave, South River City, Austin, TX",
+                        "2300 S 5th St #C, Bouldin Creek, Austin, TX",
+                        "105 W Odell St #1, Highland, Austin, TX",
+                        "1404 S 3rd St, Bouldin Creek, Austin, TX",
+                        "3001 Del Curto Rd #34, South Lamar, Austin, TX",
+                        "3814 Duval St #B, Hyde Park, Austin, TX",
+                        "1606 Ridgehaven Dr, Windsor Park, Austin, TX",
+                        "5309 William Holland Ave #4, Brentwood, Austin, TX",
+                        "2707 Zaragosa St, Govalle, Austin, TX",
+                        "1304 Mariposa Dr #163, South River City, Austin, TX",
+                        "1802 Loreto Dr #B, MLK, Austin, TX",
+                        "3801 Vineland Dr, Upper Boggy Creek, Austin, TX",
+                        "6706 Wild St #A, Brentwood, Austin, TX",
+                        "4517 Bull Creek Rd, Allandale, Austin, TX",
+                        "1300 Cometa St #2, MLK, Austin, TX",
+                        "2314 Montclaire St, Barton Hills, Austin, TX",
+                        "1605 Wethersfield Rd, Old Enfield, Austin, TX",
+                        "4320 Airport Blvd, Upper Boggy Creek, Austin, TX",
+                        "3402 Werner Ave, Upper Boggy Creek, Austin, TX",
+                        "1313 Comal St #A, Central East Austin, Austin, TX",
+                        "712 W Annie St #B, Bouldin Creek, Austin, TX",
+                        "1741 Spyglass Dr #302, Barton Hills, Austin, TX",
+                        "1713 Brentwood St, Brentwood, Austin, TX",
+                        "1741 Spyglass Dr #2106, Barton Hills, Austin, TX",
+                        "1185 Greenwood Ave, MLK, Austin, TX",
+                        "1503 E 3rd St #1, East Cesar Chavez, Austin, TX",
+                        "7306 Meador Ave, St. Johns, Austin, TX",
+                        "2414 Forest Ave, Dawson, Austin, TX",
+                        "4404 Clarkson Ave, Hancock, Austin, TX",
+                        "1609 Deloney St #B, MLK, Austin, TX",
+                        "1615 Cloverleaf Dr, Windsor Park, Austin, TX",
+                        "2729 Lyons Rd, Govalle, Austin, TX",
+                        "1810 Sanchez St, Rosewood, Austin, TX",
+                        "1613 Willow St #B, East Cesar Chavez, Austin, TX",
+                        "3207 Grooms St #3, North University, Austin, TX",
+                        "606 Augusta Ave #2, Old West Austin, Austin, TX",
+                        "1604 Elmhurst Dr, Riverside, Austin, TX",
+                        "1803 Pequeno St, Brentwood, Austin, TX",
+                        "5107 Leralynn St #201, North Loop, Austin, TX",
+                        "2207 Wilson St, Bouldin Creek, Austin, TX",
+                        "3204 Lafayette Ave, Upper Boggy Creek, Austin, TX",
+                        "2301 Lawnmont Ave #4, Allandale, Austin, TX",
+                        "619 Hammack Dr #1, Highland, Austin, TX",
+                        "925 E 49th 1/2 St, North Loop, Austin, TX",
+                        "1902 Alegria Rd #A, Brentwood, Austin, TX",
+                        "3323 E 12th St, MLK, Austin, TX",
+                        "3900 Knollwood Dr #1, Austin, TX",
+                        "1003 Fiesta St #B, Govalle, Austin, TX",
+                        "1808 Morrow St, Crestview, Austin, TX",
+                        "4713 Palisade Dr, Austin, TX",
+                        "2005 Pennsylvania Ave #B, Rosewood, Austin, TX",
+                        "5911 Lookout Mountain Dr, Austin, TX",
+                        "6717 Shoal Creek Blvd, Allandale, Austin, TX",
+                        "1000 Liberty Park Dr #304, Austin, TX",
+                        "5312 Scenic View Dr, Austin, TX",
+                        "6603 Valleyside Rd, Austin, TX",
+                        "4204 N Hills Dr, Austin, TX",
+                        "2410 E 11th St, Central East Austin, Austin, TX",
+                        "2704 Silverway Dr, Allandale, Austin, TX",
+                        "5502 Westminster Dr, Windsor Park, Austin, TX",
+                        "5706 Fairlane Dr, Allandale, Austin, TX",
+                        "6518 E Hill Dr, Austin, TX",
+                        "7709 Shoal Creek Blvd, Allandale, Austin, TX",
+                        "1404 Norwalk Ln #210, Austin, TX",
+                        "1011 Brodie St #16, Bouldin Creek, Austin, TX",
+                        "306 E Live Oak St #1, South River City, Austin, TX",
+                        "2101 Thames Cir, Windsor Park, Austin, TX",
+                        "6206 Highland Hills Dr, Austin, TX",
+                        "2405 Del Curto Rd, South Lamar, Austin, TX",
+                        "1113 Euphoria Bnd, Govalle, Austin, TX",
+                        "4101 Monticello Cir, MLK, Austin, TX",
+                        "54 Rainey St #603, Downtown, Austin, TX",
+                        "1181 Greenwood Ave, MLK, Austin, TX",
+                        "5314 Avenue G, North Loop, Austin, TX",
+                        "1500 Woodlawn Blvd #203, Old Enfield, Austin, TX",
+                        "1001 E 53rd St, North Loop, Austin, TX",
+                        "1187 Coleto St, Rosewood, Austin, TX",
+                        "200 W 55th 1/2 St, North Loop, Austin, TX",
+                        "2705 White Horse Trl, Allandale, Austin, TX",
+                        "1506 Payne Ave #B, Brentwood, Austin, TX",
+                        "2323 Newfield Ln, Old Enfield, Austin, TX",
+                        "1208 Chestnut Ave, Chestnut, Austin, TX",
+                        "7501 Sugar Magnolia St, Crestview, Austin, TX",
+                        "2401 Bryan St, Central East Austin, Austin, TX",
+                        "800 Rosedale Ter #B, South River City, Austin, TX",
+                        "2006 Rountree Dr, Rosewood, Austin, TX"
+                    ]
+                },
+                {
+                    "key": "Utility Information",
+                    "value": [
+                        "City Water",
+                        "Water Source: Public",
+                        "Utilities: Electricity Available, Natural Gas Available",
+                        "Sewer: Public Sewer",
+                        "Electricity Available, Natural Gas on Property",
+                        "1709 Westover Rd is serviced by 7 Internet service providers, including AT&T Fiber, Astound Broadband Powered by Grande, Spectrum, T-Mobile 5G Home Internet. The best available Internet option for 1709 Westover Rd is provided by AT&T Fiber, using Fiber technology with speeds up to 5000 Mbps. Additional Internet options for this home include Fiber, Cable, Cable, Fixed Wireless, DSL, Satellite, Satellite provided by Astound Broadband Powered by Grande, Spectrum, T-Mobile 5G Home Internet.Internet: High speed available"
+                    ]
+                },
+                {
+                    "key": "Pool Private",
+                    "value": [
+                        "No",
+                        "false"
+                    ]
+                },
+                {
+                    "key": "Bedroom Information",
+                    "value": [
+                        "# of Beds (Main Level): 2",
+                        "Has Master on Main Level",
+                        "# of Main Level Bedrooms: 2"
+                    ]
+                },
+                {
+                    "key": "Laundry",
+                    "value": [
+                        "Kitchen",
+                        "Stackable W/D Connections",
+                        "In Kitchen",
+                        "Washer/Dryer Stacked",
+                        "Dryer Connection - Electric",
+                        "Main Level",
+                        "Stacked",
+                        "Washer Connections",
+                        "Utility/Laundry Room"
+                    ]
+                },
+                {
+                    "value": [
+                        "Chain Link, Wood"
+                    ],
+                    "key": "Fence:"
+                },
+                {
+                    "key": "Architecture Style",
+                    "value": [
+                        "No Adjoining Neighbor",
+                        "1st Floor Entry",
+                        "Other"
+                    ]
+                },
+                {
+                    "key": "Dining Rooms",
+                    "value": [
+                        "1"
+                    ]
+                },
+                {
+                    "key": "Community Features",
+                    "value": [
+                        "None"
+                    ]
+                },
+                {
+                    "value": [
+                        "true"
+                    ],
+                    "key": "Has Security System"
+                },
+                {
+                    "key": "Spa",
+                    "value": [
+                        "No",
+                        "N"
+                    ]
+                },
+                {
+                    "key": "Neighbourhoods",
+                    "value": [
+                        "1B"
+                    ]
+                },
+                {
+                    "value": [
+                        "1946"
+                    ],
+                    "key": "Built"
+                },
+                {
+                    "key": "Waterfront",
+                    "value": [
+                        "No",
+                        "false",
+                        "N"
+                    ]
+                },
+                {
+                    "key": "Financial Information",
+                    "value": [
+                        "Title Company: Heritage - R. Stark",
+                        "Possession: Closing, Funding",
+                        "Title Company: Heritage - C. Thornton"
+                    ]
+                },
+                {
+                    "value": [
+                        "House"
+                    ],
+                    "key": "Sub Type:"
+                },
+                {
+                    "key": "Utilities",
+                    "value": [
+                        "Electricity Available",
+                        "Natural Gas on Property"
+                    ]
+                },
+                {
+                    "key": "Heating & Cooling",
+                    "value": [
+                        "Has Cooling",
+                        "Heating Type: Central",
+                        "Cooling: Central Air",
+                        "Heating: Central",
+                        "Air Conditioning Type: Central",
+                        "Has Heating"
+                    ]
+                },
+                {
+                    "value": [
+                        "0",
+                        "338847678",
+                        "338867083"
+                    ],
+                    "key": "Listing ID"
+                },
+                {
+                    "key": "Horse",
+                    "value": [
+                        "false"
+                    ]
+                },
+                {
+                    "value": [
+                        "9,994"
+                    ],
+                    "key": "Actual Tax:"
+                },
+                {
+                    "key": "Listing Information",
+                    "value": [
+                        "BuyerAgencyCompensation: 3.000"
+                    ]
+                },
+                {
+                    "value": [
+                        "None"
+                    ],
+                    "key": "Master Bedroom/Bath"
+                },
+                {
+                    "value": [
+                        "North"
+                    ],
+                    "key": "Faces:"
+                },
+                {
+                    "value": [
+                        "No"
+                    ],
+                    "key": "Waterfront:"
+                },
+                {
+                    "key": "Faces",
+                    "value": [
+                        "North"
+                    ]
+                },
+                {
+                    "value": [
+                        "1",
+                        "1.0"
+                    ],
+                    "key": "Floors"
+                },
+                {
+                    "key": "Middle Or Junior School District",
+                    "value": [
+                        "Austin ISD"
+                    ]
+                },
+                {
+                    "key": "Bedrooms Total",
+                    "value": [
+                        "2"
+                    ]
+                },
+                {
+                    "value": [
+                        "City at Street"
+                    ],
+                    "key": "Sewer:"
+                },
+                {
+                    "key": "Price History - Compass",
+                    "value": [
+                        "Date: Mon Apr 08 2019 - Price: $650000 - Event: Listed (Active)",
+                        "Date: Fri Jun 28 2019 - Price: $599000 - Event: Withdrawn",
+                        "Date: Thu Feb 27 2020 - Price: $552000 - Event: Listed (Active)",
+                        "Date: Fri Aug 30 2019 - Price: $575000 - Event: Listed (Active)"
+                    ]
+                },
+                {
+                    "key": "Room Information",
+                    "value": [
+                        "Dining Room Description: Living / Dining Combo",
+                        "# of Living Rooms: 1",
+                        "# of Dining Rooms: 1",
+                        "Kitchen Appliances: Cook Top Gas, Dishwasher, Microwave Oven, Refrigerator, Single Oven, Stackable Washer/Dryer"
+                    ]
+                },
+                {
+                    "value": [
+                        "Bryker Woods C"
+                    ],
+                    "key": "Subdivision Name:"
+                },
+                {
+                    "value": [
+                        "Medium (20 Ft - 40 Ft), Moderate, Small (Under 20 Ft)"
+                    ],
+                    "key": "Trees:"
+                },
+                {
+                    "key": "Comparable Sales Nearby",
+                    "value": [
+                        "Address: 7003 Priscilla Dr, Austin, TX - Distance: 3.68 - Property Type: Single-Family Home - Sold Price: $415,500 - Sold Date: 12/18/19 - Bed: N/A - Bath: 1.75 - Sqft: 984",
+                        "Address: 922 Gene Johnson St, Austin, TX - Distance: 2.67 - Property Type: Single-Family Home - Sold Price: $607,000 - Sold Date: 11/27/19 - Bed: 3 - Bath: 1 - Sqft: 1,151",
+                        "Address: 5408 Evans Ave, Austin, TX - Distance: 2.74 - Property Type: Single-Family Home - Sold Price: $689,900 - Sold Date: 07/02/19 - Bed: N/A - Bath: 2.5 - Sqft: 1,762",
+                        "Address: 6902 Dogwood Holw, Austin, TX - Distance: 5.34 - Property Type: Single-Family Home - Sold Price: $495,000 - Sold Date: 10/29/19 - Bed: N/A - Bath: 2 - Sqft: 1,869",
+                        "Address: 5114 Avenue F, Austin, TX - Distance: 2.42 - Property Type: Single-Family Home - Sold Price: $695,000 - Sold Date: 11/15/19 - Bed: N/A - Bath: 1.75 - Sqft: 1,283",
+                        "Address: 6105 Woodview Ave, Austin, TX - Distance: 2.81 - Property Type: Single-Family Home - Sold Price: $625,000 - Sold Date: 12/06/19 - Bed: 4 - Bath: 2 - Sqft: 1,688",
+                        "Address: 1039 Wisteria Trl, Austin, TX - Distance: 5.20 - Property Type: Single-Family Home - Sold Price: $467,000 - Sold Date: 12/30/19 - Bed: 4 - Bath: 2 - Sqft: 1,822",
+                        "Address: 1056 Sunflower Trl, Austin, TX - Distance: 5.87 - Property Type: Single-Family Home - Sold Price: $600,000 - Sold Date: 12/30/19 - Bed: 4 - Bath: 3 - Sqft: 3,158",
+                        "Address: 5513 Woodrow Ave, Austin, TX - Distance: 2.38 - Property Type: Single-Family Home - Sold Price: $448,000 - Sold Date: 01/01/20 - Bed: N/A - Bath: 1 - Sqft: 672",
+                        "Address: 3308 Thousand Oaks Cv, Austin, TX - Distance: 3.68 - Property Type: Single-Family Home - Sold Price: $1,350,000 - Sold Date: 12/16/19 - Bed: N/A - Bath: 2.75 - Sqft: 3,458",
+                        "Address: 3903 Petes Path, Austin, TX - Distance: 0.93 - Property Type: Single-Family Home - Sold Price: $475,000 - Sold Date: 03/01/19 - Bed: N/A - Bath: 1 - Sqft: 880",
+                        "Address: 1911 Robbins Pl, Austin, TX - Distance: 1.14 - Property Type: Single-Family Home - Sold Price: $450,000 - Sold Date: 04/19/19 - Bed: N/A - Bath: 1.75 - Sqft: 1,543",
+                        "Address: 2103 Sharon Ln, Austin, TX - Distance: 0.59 - Property Type: Single-Family Home - Sold Price: $1,187,000 - Sold Date: 05/01/19 - Bed: 2 - Bath: 2 - Sqft: 1,766",
+                        "Address: 3007 Breeze Ter, Austin, TX - Distance: 2.52 - Property Type: Single-Family Home - Sold Price: $825,000 - Sold Date: 08/19/20 - Bed: 4 - Bath: 3 - Sqft: 2,123",
+                        "Address: 9410 Meadow Vale, Austin, TX - Distance: 5.65 - Property Type: Single-Family Home - Sold Price: $270,000 - Sold Date: 12/30/19 - Bed: N/A - Bath: 1.75 - Sqft: 1,166",
+                        "Address: 1800 Lakeshore Dr, Austin, TX - Distance: 1.89 - Property Type: Single-Family Home - Sold Price: $2,350,000 - Sold Date: 09/10/20 - Bed: 4 - Bath: 3 - Sqft: 2,640",
+                        "Address: 905 E 56th St, Austin, TX - Distance: 3.04 - Property Type: Single-Family Home - Sold Price: $420,000 - Sold Date: 10/09/19 - Bed: 3 - Bath: 1 - Sqft: 1,290",
+                        "Address: 3108 Kerbey Ln, Austin, TX - Distance: 0.39 - Property Type: Single-Family Home - Sold Price: $636,000 - Sold Date: 06/10/19 - Bed: N/A - Bath: 1 - Sqft: 1,284",
+                        "Address: 907 E 13th St, Austin, TX - Distance: 2.47 - Property Type: Single-Family Home - Sold Price: $580,000 - Sold Date: 09/27/19 - Bed: N/A - Bath: 1 - Sqft: 1,059",
+                        "Address: 1802 W 34th St, Austin, TX - Distance: 0.59 - Property Type: Single-Family Home - Sold Price: $712,500 - Sold Date: 03/05/19 - Bed: N/A - Bath: 2 - Sqft: 1,603",
+                        "Address: 2200 Pennsylvania Ave, Austin, TX - Distance: 3.09 - Property Type: Single-Family Home - Sold Price: $565,000 - Sold Date: 08/15/19 - Bed: N/A - Bath: 3.5 - Sqft: 2,140",
+                        "Address: 1709 E 38th St, Austin, TX - Distance: 2.73 - Property Type: Single-Family Home - Sold Price: $450,000 - Sold Date: 09/26/19 - Bed: N/A - Bath: 1 - Sqft: 1,067",
+                        "Address: 2401 Bryan St, Austin, TX - Distance: 3.33 - Property Type: Single-Family Home - Sold Price: $475,000 - Sold Date: 08/21/20 - Bed: 3 - Bath: 1 - Sqft: 1,092",
+                        "Address: 4109 Avenue A, Austin, TX - Distance: 1.46 - Property Type: Single-Family Home - Sold Price: $480,000 - Sold Date: 07/10/19 - Bed: N/A - Bath: 1 - Sqft: 876",
+                        "Address: 1012 E Saint Johns Ave, Austin, TX - Distance: 4.14 - Property Type: Single-Family Home - Sold Price: $330,000 - Sold Date: 12/31/19 - Bed: N/A - Bath: 1.75 - Sqft: 1,817",
+                        "Address: 1801 Burbank St, Austin, TX - Distance: 3.16 - Property Type: Single-Family Home - Sold Price: $477,220 - Sold Date: 09/11/20 - Bed: 3 - Bath: 2 - Sqft: 1,467",
+                        "Address: 1001 Ogden Dr, Austin, TX - Distance: 6.57 - Property Type: Single-Family Home - Sold Price: $647,500 - Sold Date: 10/30/19 - Bed: N/A - Bath: 3.5 - Sqft: 3,249",
+                        "Address: 911 E 54th St, Austin, TX - Distance: 2.91 - Property Type: Single-Family Home - Sold Price: $430,000 - Sold Date: 12/20/19 - Bed: N/A - Bath: 1.75 - Sqft: 1,369",
+                        "Address: 3702 Grayson Ln, Austin, TX - Distance: 2.98 - Property Type: Single-Family Home - Sold Price: $765,432 - Sold Date: 08/27/20 - Bed: 3 - Bath: 2 - Sqft: 1,667",
+                        "Address: 3500 Gonzales St, Austin, TX - Distance: 4.38 - Property Type: Single-Family Home - Sold Price: $478,000 - Sold Date: 10/31/19 - Bed: N/A - Bath: 2 - Sqft: 1,223",
+                        "Address: 3302 Larry Ln, Austin, TX - Distance: 2.76 - Property Type: Single-Family Home - Sold Price: $480,000 - Sold Date: 12/31/19 - Bed: N/A - Bath: 1 - Sqft: 896",
+                        "Address: 4607 S Forest Dr, Austin, TX - Distance: 5.61 - Property Type: Single-Family Home - Sold Price: $500,000 - Sold Date: 11/01/19 - Bed: N/A - Bath: 1 - Sqft: 2,005",
+                        "Address: 1509 Ullrich Ave, Austin, TX - Distance: 2.58 - Property Type: Single-Family Home - Sold Price: $584,385 - Sold Date: 08/25/20 - Bed: 3 - Bath: 2 - Sqft: 1,229",
+                        "Address: 1818 Piedmont Ave, Austin, TX - Distance: 3.60 - Property Type: Single-Family Home - Sold Price: $635,000 - Sold Date: 08/31/20 - Bed: 3 - Bath: 2 - Sqft: 1,433",
+                        "Address: 7516 Uray Dr, Austin, TX - Distance: 6.24 - Property Type: Single-Family Home - Sold Price: $360,000 - Sold Date: 12/18/19 - Bed: N/A - Bath: 2 - Sqft: 1,215",
+                        "Address: 2005 Karen Ave, Austin, TX - Distance: 3.05 - Property Type: Single-Family Home - Sold Price: $636,900 - Sold Date: 11/18/19 - Bed: 3 - Bath: 2 - Sqft: 1,705",
+                        "Address: 17 Margranita Cres, Austin, TX - Distance: 0.14 - Property Type: Single-Family Home - Sold Price: $859,000 - Sold Date: 03/25/19 - Bed: 4 - Bath: 3 - Sqft: 2,398",
+                        "Address: 606 W 31st 1/2 St, Austin, TX - Distance: 0.96 - Property Type: Single-Family Home - Sold Price: $587,000 - Sold Date: 04/26/19 - Bed: N/A - Bath: 2 - Sqft: 1,128",
+                        "Address: 1302 Crestwood Rd, Austin, TX - Distance: 2.60 - Property Type: Single-Family Home - Sold Price: $799,000 - Sold Date: 06/17/19 - Bed: N/A - Bath: 1.5 - Sqft: 2,063",
+                        "Address: 1308 Lost Creek Blvd, Austin, TX - Distance: 4.56 - Property Type: Single-Family Home - Sold Price: $733,800 - Sold Date: 12/17/19 - Bed: 4 - Bath: 2 - Sqft: 2,112",
+                        "Address: 7708 Evaline Ln, Austin, TX - Distance: 7.89 - Property Type: Single-Family Home - Sold Price: $300,000 - Sold Date: 12/12/19 - Bed: N/A - Bath: 2 - Sqft: 1,451",
+                        "Address: 6318 Shadow Bnd, Austin, TX - Distance: 7.07 - Property Type: Single-Family Home - Sold Price: $250,000 - Sold Date: 12/09/19 - Bed: N/A - Bath: 1 - Sqft: 880",
+                        "Address: 2409 Sharon Ln, Austin, TX - Distance: 0.47 - Property Type: Single-Family Home - Sold Price: $587,500 - Sold Date: 04/16/19 - Bed: 2 - Bath: 2 - Sqft: 1,534",
+                        "Address: 2201 Hopi Trl, Austin, TX - Distance: 0.88 - Property Type: Single-Family Home - Sold Price: $715,000 - Sold Date: 07/23/19 - Bed: N/A - Bath: 1 - Sqft: 1,230",
+                        "Address: 3819 Avenue F, Austin, TX - Distance: 1.56 - Property Type: Single-Family Home - Sold Price: $564,527 - Sold Date: 06/05/19 - Bed: N/A - Bath: 1 - Sqft: 1,212",
+                        "Address: 1600 Briarcliff Blvd, Austin, TX - Distance: 3.97 - Property Type: Single-Family Home - Sold Price: $520,000 - Sold Date: 09/11/20 - Bed: 3 - Bath: 2 - Sqft: 1,354",
+                        "Address: 2611 Oaklawn Ave, Austin, TX - Distance: 2.80 - Property Type: Single-Family Home - Sold Price: $446,000 - Sold Date: 12/23/19 - Bed: 3 - Bath: 1 - Sqft: 960",
+                        "Address: 1502 Bellaire Dr, Austin, TX - Distance: 4.19 - Property Type: Single-Family Home - Sold Price: $387,500 - Sold Date: 12/11/19 - Bed: N/A - Bath: 1.75 - Sqft: 2,038",
+                        "Address: 8909 Mount Bartlett Dr, Austin, TX - Distance: 6.22 - Property Type: Single-Family Home - Sold Price: $446,000 - Sold Date: 11/04/19 - Bed: N/A - Bath: 2.75 - Sqft: 2,010",
+                        "Address: 5513 Avenue H, Austin, TX - Distance: 2.78 - Property Type: Single-Family Home - Sold Price: $975,000 - Sold Date: 12/06/19 - Bed: N/A - Bath: 1 - Sqft: 768",
+                        "Address: 1111 E 3rd St, Austin, TX - Distance: 3.01 - Property Type: Single-Family Home - Sold Price: $420,000 - Sold Date: 06/25/19 - Bed: N/A - Bath: 2 - Sqft: 1,505",
+                        "Address: 2618 Pembrook Trl, Austin, TX - Distance: 1.64 - Property Type: Single-Family Home - Sold Price: $665,000 - Sold Date: 05/01/19 - Bed: 3 - Bath: 2 - Sqft: 1,764",
+                        "Address: 200 W 55th 1/2 St, Austin, TX - Distance: 2.66 - Property Type: Single-Family Home - Sold Price: $393,000 - Sold Date: 09/11/20 - Bed: 2 - Bath: 1 - Sqft: 940",
+                        "Address: 119 Redbud Trl, West Lake Hills, TX - Distance: 2.54 - Property Type: Single-Family Home - Sold Price: $4,380,000 - Sold Date: 12/12/19 - Bed: 5 - Bath: 5 - Sqft: 7,147",
+                        "Address: 3900 Valley View Rd, Austin, TX - Distance: 4.81 - Property Type: Single-Family Home - Sold Price: $890,000 - Sold Date: 09/01/20 - Bed: 2 - Bath: 2 - Sqft: 1,709",
+                        "Address: 1409 Alameda Dr, Austin, TX - Distance: 3.71 - Property Type: Single-Family Home - Sold Price: $901,485 - Sold Date: 12/27/19 - Bed: 3 - Bath: 2 - Sqft: 1,668",
+                        "Address: 3303 Merrie Lynn Ave, Austin, TX - Distance: 2.86 - Property Type: Single-Family Home - Sold Price: $595,000 - Sold Date: 11/25/19 - Bed: 3 - Bath: 2 - Sqft: 2,018"
+                    ]
+                },
+                {
+                    "value": [
+                        "No"
+                    ],
+                    "key": "Foreclosure/REO:"
+                },
+                {
+                    "key": "School & Neighborhood Information",
+                    "value": [
+                        "Senior High School: Austin",
+                        "Elementary School A: Casis",
+                        "Middle School: O Henry",
+                        "School District: Austin ISD"
+                    ]
+                },
+                {
+                    "value": [
+                        "Pier Beam"
+                    ],
+                    "key": "Foundation:"
+                },
+                {
+                    "key": "Misc. Rooms",
+                    "value": [
+                        "Utility Room",
+                        "Storage",
+                        "Family Room",
+                        "Workshop",
+                        "Office/Study",
+                        "Bedroom/Office"
+                    ]
+                },
+                {
+                    "value": [
+                        "Thu Feb 27 2020 00:00:00 GMT+0000 (Coordinated Universal Time) - Listed (Active) - $552,000",
+                        "Wed Dec 11 2019 00:00:00 GMT+0000 (Coordinated Universal Time) - Delisted (Withdrawn)",
+                        "Fri Aug 30 2019 00:00:00 GMT+0000 (Coordinated Universal Time) - Listed (Active) - $575,000",
+                        "Fri Aug 30 2019 00:00:00 GMT+0000 (Coordinated Universal Time) - Listed (Active)",
+                        "Fri Jun 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time) - Delisted (Withdrawn)",
+                        "Wed May 01 2019 00:00:00 GMT+0000 (Coordinated Universal Time) - Price Changed"
+                    ],
+                    "key": "Property History"
+                },
+                {
+                    "key": "Steps",
+                    "value": [
+                        "Front Steps",
+                        "Back Steps"
+                    ]
+                },
+                {
+                    "value": [
+                        "None"
+                    ],
+                    "key": "Exclusions"
+                },
+                {
+                    "key": "Assessment",
+                    "value": [
+                        "Assessed Value: $549,106"
+                    ]
+                },
+                {
+                    "key": "MLS Type",
+                    "value": [
+                        "Residential / Single Family Residence"
+                    ]
+                },
+                {
+                    "value": [
+                        "Living/Dining Combo"
+                    ],
+                    "key": "Dining Room:"
+                },
+                {
+                    "value": [
+                        "1"
+                    ],
+                    "key": "Living Rooms:"
+                },
+                {
+                    "key": "County",
+                    "value": [
+                        "Travis",
+                        "Travis County"
+                    ]
+                },
+                {
+                    "value": [
+                        "Kitchen, Stackable W/D Connections"
+                    ],
+                    "key": "Laundry Facilities:"
+                },
+                {
+                    "value": [
+                        "1"
+                    ],
+                    "key": "Baths Total:"
+                },
+                {
+                    "key": "Bedroom",
+                    "value": [
+                        "Main Level Master",
+                        "Master Bedroom on Main Level"
+                    ]
+                },
+                {
+                    "key": "Year Built Source",
+                    "value": [
+                        "Public Records"
+                    ]
+                },
+                {
+                    "key": "Sales Restrictions",
+                    "value": [
+                        "None"
+                    ]
+                },
+                {
+                    "key": "Patio And Porch Features",
+                    "value": [
+                        "Covered"
+                    ]
+                },
+                {
+                    "key": "Dining Room",
+                    "value": [
+                        "Living/Dining Combo",
+                        "Living/Dining Room",
+                        "Kit/Din Combo",
+                        "Liv/Din Combo"
+                    ]
+                },
+                {
+                    "key": "Cooling & Heating Information",
+                    "value": [
+                        "Heating: Central Heat",
+                        "Air Conditioning: Central Air"
+                    ]
+                },
+                {
+                    "value": [
+                        "Austin"
+                    ],
+                    "key": "School District 3"
+                },
+                {
+                    "value": [
+                        "1"
+                    ],
+                    "key": "Full Baths:"
+                },
+                {
+                    "value": [
+                        "O Henry"
+                    ],
+                    "key": "School District 2"
+                },
+                {
+                    "value": [
+                        "N"
+                    ],
+                    "key": "Handicap Features"
+                },
+                {
+                    "value": [
+                        "From MoPac, exit Windsor Rd, head East Left on Jarratt Left on Gaston Right on Jefferson Left on Westover Home is at the end of the street on the right."
+                    ],
+                    "key": "Directions:"
+                },
+                {
+                    "key": "Main Level Bedrooms",
+                    "value": [
+                        "2"
+                    ]
+                },
+                {
+                    "key": "Neighborhood (Windsor Road) Overview",
+                    "value": [
+                        "Buy: $860k - $3.8m",
+                        "15 Homes For You",
+                        "Buy: $539k - $4.45m",
+                        "11 Homes For You",
+                        "12 Homes For You",
+                        "Buy: $850k - $4m",
+                        "Buy: $552k - $4.45m",
+                        "4 Homes For You",
+                        "13 Homes For You",
+                        "Buy: $865k - $4.45m",
+                        "18 Homes For You",
+                        "19 Homes For You",
+                        "Buy: $327k - $4m",
+                        "20 Homes For You",
+                        "14 Homes For You",
+                        "17 Homes For You",
+                        "Buy: $332k - $4m",
+                        "7 Homes For You",
+                        "16 Homes For You",
+                        "Buy: $425k - $5m"
+                    ]
+                },
+                {
+                    "value": [
+                        "Starbucks: 0.46 miles",
+                        "Trader Joes: 2.19 miles",
+                        "Whole Foods: 1.99 miles"
+                    ],
+                    "key": "What's Near"
+                },
+                {
+                    "value": [
+                        "2"
+                    ],
+                    "key": "Bedrooms on Main Level:"
+                },
+                {
+                    "value": [
+                        "Casis"
+                    ],
+                    "key": "School District 1"
+                },
+                {
+                    "value": [
+                        "No",
+                        "N"
+                    ],
+                    "key": "Auction"
+                },
+                {
+                    "key": "Living Rooms",
+                    "value": [
+                        "1"
+                    ]
+                },
+                {
+                    "key": "Elementary School",
+                    "value": [
+                        "Casis"
+                    ]
+                },
+                {
+                    "key": "Waterfront Features",
+                    "value": [
+                        "None"
+                    ]
+                },
+                {
+                    "key": "Siding",
+                    "value": [
+                        "Frame",
+                        "All Sides Masonry"
+                    ]
+                },
+                {
+                    "key": "Lot Description",
+                    "value": [
+                        "Cul-De-Sac",
+                        "Level"
+                    ]
+                },
+                {
+                    "value": [
+                        "Carpet, Laminate, Hard Tile"
+                    ],
+                    "key": "Flooring:"
+                },
+                {
+                    "key": "Room 3 Information",
+                    "value": [
+                        "Level: Main",
+                        "Master Bedroom",
+                        "Primary Bedroom",
+                        "Features: None"
+                    ]
+                },
+                {
+                    "value": [
+                        "Key in Lockbox"
+                    ],
+                    "key": "Showing Instructions"
+                },
+                {
+                    "key": "Window Features",
+                    "value": [
+                        "Double Pane Windows"
+                    ]
+                },
+                {
+                    "key": "Current Price",
+                    "value": [
+                        "000",
+                        "552",
+                        "575",
+                        "539"
+                    ]
+                },
+                {
+                    "key": "Pool Features",
+                    "value": [
+                        "None"
+                    ]
+                },
+                {
+                    "key": "Property Type",
+                    "value": [
+                        "Residential"
+                    ]
+                },
+                {
+                    "key": "Water & Sewer Information",
+                    "value": [
+                        "City Sewer on Street"
+                    ]
+                },
+                {
+                    "value": [
+                        "1612 Wethersfield Rd, Austin, TX 78703",
+                        "1615 Enfield Rd, Austin, TX 78703",
+                        "2802 Warren St Unit A, Austin, TX 78703",
+                        "1820 W 39th St, Austin, TX 78731",
+                        "1509 ENFIELD Rd, Austin, TX 78703",
+                        "4512 Rosedale Ave, Austin, TX 78756",
+                        "3203 Churchill Dr, Austin, TX 78703",
+                        "1406 W 29th St, Austin, TX 78703",
+                        "1911 Robbins Pl, Austin, TX 78705",
+                        "2401 Jarratt Ave, Austin, TX 78703",
+                        "3306 Liberty St, Austin, TX 78705",
+                        "712 Harris Ave, Austin, TX 78705",
+                        "1916 W 38th St, Austin, TX 78731",
+                        "4101 Ridgelea Dr, Austin, TX 78731",
+                        "500 W 35th St, Austin, TX 78705",
+                        "2706 Cherry Ln, Austin, TX 78703",
+                        "4204 Shoalwood Ave, Austin, TX 78756",
+                        "4522 Speedway, Austin, TX 78751",
+                        "2524 Spring Ln, Austin, TX 78703",
+                        "1510 PALMA Plz, Austin, TX 78703",
+                        "4417 Rosedale Ave, Austin, TX 78756",
+                        "1301 W 42nd St, Austin, TX 78756",
+                        "2802 Cherry Ln, Austin, TX 78703",
+                        "2203 W 9th St, Austin, TX 78703",
+                        "2907 Glenview Ave, Austin, TX 78703",
+                        "1905 Winsted Ln, Austin, TX 78703",
+                        "1903 W 32nd St, Austin, TX 78703",
+                        "2506 Hartford Rd, Austin, TX 78703",
+                        "2001 Mountain View Rd, Austin, TX 78703",
+                        "2405 Tower Dr, Austin, TX 78703",
+                        "4416 Speedway, Austin, TX 78751",
+                        "1310 Elton Ln, Austin, TX 78703",
+                        "4519 Rosedale Ave #2, Austin, TX 78756",
+                        "2410 Sharon Ln Unit B, Austin, TX 78703",
+                        "1813 WATERSTON Unit A&B, Austin, TX 78703",
+                        "2804 Carlton Rd, Austin, TX 78703",
+                        "3600 Conyers Ln, Austin, TX 78724",
+                        "2207 Hopi Trl, Austin, TX 78703",
+                        "2802 Warren St Unit B, Austin, TX 78703",
+                        "2605 Velasquez Dr, Austin, TX 78703",
+                        "1301 Meriden Ln, Austin, TX 78703",
+                        "103 E 34th St, Austin, TX 78705"
+                    ],
+                    "key": "Nearby Similar Homes"
+                },
+                {
+                    "value": [
+                        "City"
+                    ],
+                    "key": "Water Source:"
+                },
+                {
+                    "key": "A/C",
+                    "value": [
+                        "Central Air"
+                    ]
+                },
+                {
+                    "value": [
+                        "N"
+                    ],
+                    "key": "Guest Facilities"
+                },
+                {
+                    "key": "Room 1 Information",
+                    "value": [
+                        "Level: Main",
+                        "Features: Recessed Lighting",
+                        "Kitchen",
+                        "Dining Room"
+                    ]
+                },
+                {
+                    "key": "Year Built Exception",
+                    "value": [
+                        "Resale"
+                    ]
+                },
+                {
+                    "key": "Postal Code (78703) Transport Scores",
+                    "value": [
+                        "Biking Score: 68/100 - Bikeable",
+                        "Transit Score: 36/100 - Some Transit",
+                        "Transit Score: 34/100 - Some Transit",
+                        "Walking Score: 49/100 - Car-Dependent",
+                        "Transit Score: 35/100 - Some Transit"
+                    ]
+                },
+                {
+                    "key": "Guest Accommodations",
+                    "value": [
+                        "No"
+                    ]
+                },
+                {
+                    "key": "Actual Tax",
+                    "value": [
+                        "994",
+                        "9"
+                    ]
+                },
+                {
+                    "key": "Property Assessment",
+                    "value": [
+                        "Assessment: $477,500"
+                    ]
+                },
+                {
+                    "key": "APN",
+                    "value": [
+                        "116540"
+                    ]
+                }
+            ],
+            "floorSizeValue": 975,
+            "floorSizeUnit": "sq ft",
+            "geoLocation": "POINT (-97.757560 30.299470)",
+            "latitude": "30.299470",
+            "listingName": "1709 Westover Road",
+            "longitude": "-97.757560",
+            "lotSizeValue": 5932,
+            "lotSizeUnit": "sq ft",
+            "mostRecentPriceAmount": 729500,
+            "mostRecentPriceDomain": "www.redfin.com",
+            "mostRecentPriceSourceURL": "https://www.redfin.com/TX/Austin/1709-Westover-Rd-78703/home/31234132",
+            "mostRecentPriceDate": "2023-04-14T18:19:36.392Z",
+            "mostRecentPriceFirstDateSeen": "2023-04-03T08:48:53.093Z",
+            "mostRecentStatus": "For Sale",
+            "mostRecentStatusDate": "2023-04-14T18:19:35.761Z",
+            "mostRecentStatusFirstDateSeen": "2023-02-17T00:00:00.000Z",
+            "mlsNumber": "3882507",
+            "neighborhoods": [
+                "Windsor Road",
+                "Austin - Central",
+                "Texas",
+                "Bryker Woods C",
+                "Austin",
+                "Bryker Woods"
+            ],
+            "numBathroom": 1,
+            "numBedroom": 2,
+            "numFloor": 1,
+            "parking": [
+                "Garage Faces Side",
+                "Off Street",
+                "Parking Features: Entry-Side",
+                "# of Parking Spaces: 2",
+                "Garage: false",
+                "# of Parking (Total): 2",
+                "Parking Parking Spaces: 2",
+                "Concrete",
+                "Attached Garage: false",
+                "2 spaces",
+                "Entry-Side"
+            ],
+            "people": [
+                {
+                    "dateSeen": "2023-04-12T22:25:04.028Z",
+                    "email": "beverlywilliams@realtyaustin.com",
+                    "title": "Listing Agent",
+                    "name": "Beverly Williams",
+                    "phone": "(512) 773-6056"
+                }
+            ],
+            "phones": [
+                "+1 512-657-5596",
+                "+1 512-799-7427",
+                "+1 855-755-9965"
+            ],
+            "postalCode": "78703",
+            "prices": [
+                {
+                    "amountMax": 575000,
+                    "amountMin": 575000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2019-11-24T18:41:32.977Z",
+                        "2019-12-03T17:15:03.246Z",
+                        "2019-11-29T04:23:02.661Z"
+                    ],
+                    "isSale": "false",
+                    "isSold": "false",
+                    "pricePerSquareFoot": 630
+                },
+                {
+                    "amountMax": 742724,
+                    "amountMin": 742724,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2023-01-31T02:56:38.843Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 813.5
+                },
+                {
+                    "amountMax": 575000,
+                    "amountMin": 575000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "date": "2019-09-26T15:42:41.151Z",
+                    "dateSeen": [
+                        "2019-09-26T15:43:00.000Z"
+                    ],
+                    "pricePerSquareFoot": 618.95
+                },
+                {
+                    "amountMax": 874402,
+                    "amountMin": 874402,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-09-18T16:12:50.478Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 957.72
+                },
+                {
+                    "amountMax": 789000,
+                    "amountMin": 789000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "date": "2023-02-16T16:47:41.000Z",
+                    "dateSeen": [
+                        "2023-04-12T22:25:04.028Z"
+                    ],
+                    "isSold": "false",
+                    "pricePerSquareFoot": 748.21
+                },
+                {
+                    "amountMax": 558200,
+                    "amountMin": 558200,
+                    "availability": "false",
+                    "currency": "USD",
+                    "date": "2019-12-20T13:08:18.780Z",
+                    "dateSeen": [
+                        "2019-12-20T13:08:00.000Z"
+                    ],
+                    "pricePerSquareFoot": 600.86
+                },
+                {
+                    "amountMax": 729813,
+                    "amountMin": 729813,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2023-01-24T20:12:43.671Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 799.36
+                },
+                {
+                    "amountMax": 927389,
+                    "amountMin": 927389,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-07-28T01:11:31.318Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 1015.76
+                },
+                {
+                    "amountMax": 575000,
+                    "amountMin": 575000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2019-10-17T02:36:35.450Z"
+                    ],
+                    "isSold": "false",
+                    "pricePerSquareFoot": 618.95
+                },
+                {
+                    "amountMax": 521000,
+                    "amountMin": 521000,
+                    "availability": "false",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2020-09-16T14:32:11.242Z"
+                    ],
+                    "isSale": "false",
+                    "isSold": "false",
+                    "pricePerSquareFoot": 561
+                },
+                {
+                    "amountMax": 775000,
+                    "amountMin": 775000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2023-03-24T20:25:43.512Z",
+                        "2023-03-12T17:50:43.357Z",
+                        "2023-03-28T23:36:49.243Z",
+                        "2023-03-12T03:19:11.506Z"
+                    ],
+                    "isSale": "false",
+                    "isSold": "false",
+                    "pricePerSquareFoot": 848.85
+                },
+                {
+                    "amountMax": 789000,
+                    "amountMin": 789000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "date": "2023-02-16T16:47:41.000Z",
+                    "dateSeen": [
+                        "2023-04-02T01:06:29.605Z"
+                    ],
+                    "isSold": "false",
+                    "pricePerSquareFoot": 799.01
+                },
+                {
+                    "amountMax": 539000,
+                    "amountMin": 539000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "date": "2020-04-27T00:00:00.000Z",
+                    "dateSeen": [
+                        "2020-07-17T07:18:00.000Z",
+                        "2020-07-30T13:05:00.000Z",
+                        "2020-06-12T09:58:00.000Z",
+                        "2020-05-13T08:38:00.000Z",
+                        "2020-05-25T18:00:00.000Z",
+                        "2020-07-06T00:22:00.000Z",
+                        "2020-06-26T22:11:00.000Z",
+                        "2020-05-05T11:11:00.000Z"
+                    ],
+                    "pricePerSquareFoot": 580
+                },
+                {
+                    "amountMax": 897731,
+                    "amountMin": 897731,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-07-04T23:47:33.790Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 983.28
+                },
+                {
+                    "amountMax": 729500,
+                    "amountMin": 729500,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2023-04-14T18:19:36.392Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 748.21
+                },
+                {
+                    "amountMax": 729500,
+                    "amountMin": 729500,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2023-04-03T08:48:53.093Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 799.01
+                },
+                {
+                    "amountMax": 894193,
+                    "amountMin": 894193,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-08-26T05:46:33.738Z",
+                        "2022-08-28T04:04:51.488Z",
+                        "2022-08-27T08:26:05.738Z",
+                        "2022-08-29T03:45:42.813Z",
+                        "2022-08-23T23:34:58.414Z",
+                        "2022-08-22T17:24:31.947Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 979.4
+                },
+                {
+                    "amountMax": 575000,
+                    "amountMin": 575000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2019-12-03T23:18:21.479Z",
+                        "2019-11-15T11:53:13.842Z"
+                    ],
+                    "isSold": "false",
+                    "pricePerSquareFoot": 629
+                },
+                {
+                    "amountMax": 575000,
+                    "amountMin": 575000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "date": "2019-10-31T04:56:37.221Z",
+                    "dateSeen": [
+                        "2019-10-31T04:57:00.000Z"
+                    ],
+                    "pricePerSquareFoot": 618.95
+                },
+                {
+                    "amountMax": 552000,
+                    "amountMin": 552000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2020-04-22T18:14:13.094Z",
+                        "2020-03-29T20:13:43.067Z",
+                        "2020-04-13T02:33:29.514Z",
+                        "2020-03-24T11:38:00.000Z",
+                        "2020-02-28T13:34:40.157Z",
+                        "2020-04-17T02:03:42.307Z",
+                        "2020-04-16T05:33:10.061Z",
+                        "2020-04-19T21:21:10.326Z",
+                        "2020-04-16T05:51:54.612Z",
+                        "2020-03-04T22:08:39.029Z",
+                        "2020-04-25T18:04:47.117Z",
+                        "2020-04-11T09:17:52.559Z",
+                        "2020-02-27T16:45:47.241Z",
+                        "2020-04-26T01:44:00.000Z"
+                    ],
+                    "isSale": "false",
+                    "isSold": "false",
+                    "pricePerSquareFoot": 594
+                },
+                {
+                    "amountMax": 887766,
+                    "amountMin": 887766,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-08-30T22:51:58.494Z",
+                        "2022-09-01T04:55:49.674Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 972.36
+                },
+                {
+                    "amountMax": 575000,
+                    "amountMin": 575000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "date": "2019-12-11T23:59:29.014Z",
+                    "dateSeen": [
+                        "2019-12-11T23:59:00.000Z"
+                    ],
+                    "pricePerSquareFoot": 618.95
+                },
+                {
+                    "amountMax": 895831,
+                    "amountMin": 895831,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-08-19T23:39:06.559Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 981.19
+                },
+                {
+                    "amountMax": 835738,
+                    "amountMin": 835738,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-11-24T05:54:51.976Z",
+                        "2022-11-20T19:33:11.985Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 915.38
+                },
+                {
+                    "amountMax": 552000,
+                    "amountMin": 552000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2020-07-17T07:18:00.000Z",
+                        "2020-05-13T08:38:00.000Z",
+                        "2020-05-25T18:00:00.000Z",
+                        "2020-07-11T18:17:01.057Z",
+                        "2020-07-28T08:32:34.684Z",
+                        "2020-06-26T22:11:00.000Z",
+                        "2020-05-05T11:11:00.000Z",
+                        "2020-04-09T18:13:00.000Z",
+                        "2020-07-30T13:05:00.000Z",
+                        "2020-08-31T03:49:50.642Z",
+                        "2020-06-12T09:58:00.000Z",
+                        "2020-07-06T00:22:00.000Z",
+                        "2020-08-14T06:56:08.423Z"
+                    ],
+                    "pricePerSquareFoot": 594.19
+                },
+                {
+                    "amountMax": 558200,
+                    "amountMin": 558200,
+                    "availability": "false",
+                    "currency": "USD",
+                    "date": "2020-01-01T07:29:46.939Z",
+                    "dateSeen": [
+                        "2020-01-01T07:30:00.000Z"
+                    ],
+                    "pricePerSquareFoot": 600.86
+                },
+                {
+                    "amountMax": 923411,
+                    "amountMin": 923411,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-07-14T23:29:15.006Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 1011.4
+                },
+                {
+                    "amountMax": 789000,
+                    "amountMin": 789000,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2023-02-22T12:23:55.299Z",
+                        "2023-02-18T14:45:52.232Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 864.18
+                },
+                {
+                    "amountMax": 13000,
+                    "amountMin": 13000,
+                    "availability": "false",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2020-08-31T03:49:50.642Z",
+                        "2020-07-11T18:17:01.057Z",
+                        "2020-08-14T06:56:08.423Z",
+                        "2020-07-28T08:32:34.684Z"
+                    ],
+                    "pricePerSquareFoot": 580
+                },
+                {
+                    "amountMax": 878316,
+                    "amountMin": 878316,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-07-02T07:51:27.136Z",
+                        "2022-06-30T01:32:28.671Z",
+                        "2022-06-29T12:15:05.654Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 962.01
+                },
+                {
+                    "amountMax": 539000,
+                    "amountMin": 539000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2020-08-30T13:16:41.115Z",
+                        "2020-05-27T16:05:55.820Z",
+                        "2020-05-12T22:41:58.900Z",
+                        "2020-06-27T08:59:38.031Z",
+                        "2020-09-15T05:00:00.000Z",
+                        "2020-08-20T00:16:24.607Z",
+                        "2020-08-16T12:10:45.618Z",
+                        "2020-06-21T19:54:08.171Z",
+                        "2020-05-21T18:10:11.855Z",
+                        "2020-08-08T16:14:05.559Z",
+                        "2020-08-23T13:36:38.316Z",
+                        "2020-05-19T08:21:09.561Z",
+                        "2020-07-28T12:36:46.640Z",
+                        "2020-05-04T08:44:00.078Z",
+                        "2020-07-23T17:38:34.175Z",
+                        "2020-09-12T13:08:13.359Z",
+                        "2020-09-05T14:09:49.722Z",
+                        "2020-05-25T01:24:33.978Z",
+                        "2020-07-30T18:20:17.100Z",
+                        "2020-06-11T20:30:56.119Z",
+                        "2020-05-15T15:50:48.474Z",
+                        "2020-05-01T05:41:23.135Z",
+                        "2020-08-22T18:46:10.321Z",
+                        "2020-06-24T14:40:56.995Z",
+                        "2020-05-24T04:11:48.572Z",
+                        "2020-07-14T11:16:31.252Z",
+                        "2020-06-29T07:06:43.009Z",
+                        "2020-06-07T12:12:20.626Z",
+                        "2020-08-07T03:37:00.000Z",
+                        "2020-05-09T22:05:44.735Z",
+                        "2020-05-07T12:28:35.007Z",
+                        "2020-07-07T03:22:13.787Z",
+                        "2020-09-15T06:09:00.000Z",
+                        "2020-05-16T03:27:44.145Z",
+                        "2020-07-20T13:03:04.118Z",
+                        "2020-06-05T13:24:37.817Z",
+                        "2020-07-04T01:24:42.681Z",
+                        "2020-09-10T19:33:55.949Z",
+                        "2020-09-14T11:07:16.537Z",
+                        "2020-06-01T02:14:30.635Z",
+                        "2020-07-29T12:24:02.161Z",
+                        "2020-05-22T15:50:46.713Z",
+                        "2020-05-26T19:32:33.394Z",
+                        "2020-09-08T19:08:03.534Z",
+                        "2020-06-12T07:35:50.128Z",
+                        "2020-07-11T07:51:23.231Z",
+                        "2020-09-01T07:36:00.000Z",
+                        "2020-08-08T12:28:57.176Z",
+                        "2020-04-28T14:10:22.670Z",
+                        "2020-09-02T20:58:00.000Z",
+                        "2020-07-08T10:34:49.196Z",
+                        "2020-06-17T15:15:35.938Z",
+                        "2020-08-23T17:36:00.000Z",
+                        "2020-09-02T22:02:12.813Z",
+                        "2020-05-01T12:41:20.190Z",
+                        "2020-08-17T05:47:00.000Z",
+                        "2020-08-27T12:34:25.282Z",
+                        "2020-07-17T06:53:07.294Z",
+                        "2020-05-07T06:43:02.467Z"
+                    ],
+                    "isSale": "false",
+                    "isSold": "false",
+                    "pricePerSquareFoot": 580
+                },
+                {
+                    "amountMax": 1150,
+                    "amountMin": 1150,
+                    "availability": "true",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2020-07-11T18:17:00.767Z"
+                    ],
+                    "pricePerSquareFoot": 580
+                },
+                {
+                    "amountMax": 558200,
+                    "amountMin": 558200,
+                    "availability": "false",
+                    "currency": "USD",
+                    "date": "2019-12-29T03:08:41.700Z",
+                    "dateSeen": [
+                        "2019-12-29T03:09:00.000Z"
+                    ],
+                    "pricePerSquareFoot": 600.86
+                },
+                {
+                    "amountMax": 928743,
+                    "amountMin": 928743,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-08-04T03:47:14.133Z",
+                        "2022-08-03T12:23:30.291Z",
+                        "2022-08-05T06:50:49.528Z",
+                        "2022-08-02T04:49:48.924Z"
+                    ],
+                    "isSale": "false",
+                    "pricePerSquareFoot": 1017.24
+                },
+                {
+                    "amountMax": 558200,
+                    "amountMin": 558200,
+                    "availability": "false",
+                    "currency": "USD",
+                    "date": "2020-01-06T19:43:22.876Z",
+                    "dateSeen": [
+                        "2020-01-06T19:43:00.000Z"
+                    ],
+                    "pricePerSquareFoot": 600.86
+                },
+                {
+                    "amountMax": 539000,
+                    "amountMin": 539000,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2020-09-14T03:37:00.000Z",
+                        "2020-09-16T04:44:00.000Z",
+                        "2020-07-18T04:38:00.000Z",
+                        "2020-09-12T07:38:00.000Z",
+                        "2020-05-19T01:31:00.000Z"
+                    ],
+                    "pricePerSquareFoot": 580.19
+                },
+                {
+                    "amountMax": 575000,
+                    "amountMin": 575000,
+                    "availability": "true",
+                    "currency": "USD",
+                    "date": "2019-11-19T10:42:33.469Z",
+                    "dateSeen": [
+                        "2019-11-19T10:43:00.000Z"
+                    ],
+                    "pricePerSquareFoot": 618.95
+                }
+            ],
+            "propertyTaxes": [
+                {
+                    "amount": 10194,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2023-04-02T01:06:29.604Z",
+                        "2023-04-12T22:25:04.026Z"
+                    ]
+                },
+                {
+                    "amount": 10488,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2019-12-11T18:27:00.000Z"
+                    ]
+                },
+                {
+                    "amount": 15825,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2020-07-11T18:17:00.757Z"
+                    ]
+                },
+                {
+                    "amount": 9994,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2020-04-19T21:21:00.000Z",
+                        "2020-05-07T06:43:00.000Z",
+                        "2020-07-28T12:37:00.000Z",
+                        "2019-12-03T17:15:00.000Z",
+                        "2020-06-26T22:11:00.000Z",
+                        "2019-11-24T18:42:00.000Z",
+                        "2019-11-15T11:53:13.825Z",
+                        "2020-05-27T16:06:00.000Z",
+                        "2020-07-11T07:51:00.000Z",
+                        "2019-11-19T10:43:00.000Z",
+                        "2020-06-01T02:14:30.629Z",
+                        "2020-05-09T22:06:00.000Z",
+                        "2020-07-20T13:03:00.000Z",
+                        "2020-08-22T18:46:10.289Z",
+                        "2019-10-17T02:36:35.432Z",
+                        "2020-04-13T02:33:00.000Z",
+                        "2020-06-11T20:31:00.000Z",
+                        "2020-06-27T09:00:00.000Z",
+                        "2020-03-29T20:13:43.060Z",
+                        "2020-06-21T19:54:00.000Z",
+                        "2020-08-20T00:16:00.000Z",
+                        "2020-06-17T15:16:00.000Z",
+                        "2020-05-25T18:00:00.000Z",
+                        "2020-07-29T12:24:00.000Z",
+                        "2020-07-11T18:17:01.047Z",
+                        "2020-05-21T18:10:00.000Z",
+                        "2020-05-05T11:11:00.000Z",
+                        "2020-04-22T18:14:00.000Z",
+                        "2020-07-08T10:35:00.000Z",
+                        "2020-09-16T14:32:00.000Z",
+                        "2020-08-30T13:17:00.000Z",
+                        "2020-08-08T12:29:00.000Z",
+                        "2019-10-31T04:57:00.000Z",
+                        "2020-09-08T19:08:00.000Z",
+                        "2020-07-06T00:22:00.000Z",
+                        "2020-05-07T12:28:34.999Z",
+                        "2020-02-27T16:45:47.234Z",
+                        "2019-09-26T15:43:00.000Z",
+                        "2019-12-11T23:59:00.000Z",
+                        "2020-07-17T07:18:00.000Z",
+                        "2019-12-03T23:18:21.469Z",
+                        "2020-07-14T11:17:00.000Z",
+                        "2020-08-08T16:14:00.000Z",
+                        "2020-06-29T07:07:00.000Z",
+                        "2020-03-24T11:38:00.000Z",
+                        "2020-05-25T01:25:00.000Z",
+                        "2020-07-17T06:53:00.000Z",
+                        "2020-04-16T05:52:00.000Z",
+                        "2020-07-28T08:32:34.675Z",
+                        "2019-11-29T04:23:00.000Z",
+                        "2020-07-30T18:20:00.000Z",
+                        "2020-07-30T13:05:00.000Z",
+                        "2020-09-12T13:08:00.000Z",
+                        "2020-07-04T01:25:00.000Z",
+                        "2020-04-17T02:03:42.296Z",
+                        "2020-05-19T08:21:00.000Z",
+                        "2020-05-22T15:51:00.000Z",
+                        "2020-08-31T03:49:50.634Z",
+                        "2020-08-14T06:56:08.413Z",
+                        "2020-05-12T22:42:00.000Z",
+                        "2020-04-16T05:33:00.000Z",
+                        "2020-09-05T14:10:00.000Z",
+                        "2020-08-16T12:11:00.000Z",
+                        "2020-04-28T14:10:00.000Z",
+                        "2020-05-01T05:41:23.129Z",
+                        "2020-05-26T19:33:00.000Z",
+                        "2020-02-28T13:34:40.151Z",
+                        "2020-05-04T08:44:00.000Z",
+                        "2020-09-10T19:34:00.000Z",
+                        "2020-07-23T17:39:00.000Z",
+                        "2020-07-07T03:22:00.000Z",
+                        "2020-05-13T08:38:00.000Z",
+                        "2020-09-02T22:02:00.000Z",
+                        "2020-06-07T12:12:00.000Z",
+                        "2020-06-24T14:41:00.000Z",
+                        "2020-05-16T03:27:44.139Z",
+                        "2020-06-12T07:35:50.121Z",
+                        "2020-08-27T12:34:00.000Z",
+                        "2020-05-01T12:41:00.000Z",
+                        "2020-03-04T22:09:00.000Z",
+                        "2020-04-11T09:17:52.553Z",
+                        "2020-06-12T09:58:00.000Z",
+                        "2020-05-24T04:11:48.566Z",
+                        "2020-09-14T11:07:00.000Z",
+                        "2020-08-23T13:37:00.000Z",
+                        "2020-06-05T13:25:00.000Z",
+                        "2020-05-15T15:51:00.000Z",
+                        "2020-04-26T01:44:00.000Z",
+                        "2020-04-25T18:05:00.000Z"
+                    ]
+                },
+                {
+                    "amount": 5893,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2012-01-01T00:00:00.000Z"
+                    ]
+                },
+                {
+                    "amount": 10242,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2020-09-18T05:51:00.000Z",
+                        "2020-01-31T04:05:00.000Z",
+                        "2020-09-18T07:15:00.000Z",
+                        "2020-09-15T06:09:00.000Z",
+                        "2020-09-15T05:00:00.000Z"
+                    ]
+                },
+                {
+                    "amount": 9291,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2016-01-01T00:00:00.000Z"
+                    ]
+                },
+                {
+                    "amount": 9107,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2017-01-01T00:00:00.000Z"
+                    ]
+                },
+                {
+                    "amount": 7228,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2014-01-01T00:00:00.000Z",
+                        "2013-01-01T00:00:00.000Z"
+                    ]
+                },
+                {
+                    "amount": 7920,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2015-01-01T00:00:00.000Z"
+                    ]
+                }
+            ],
+            "propertyType": "Single Family Dwelling",
+            "province": "TX",
+            "statuses": [
+                {
+                    "date": "2023-01-24T00:00:00.000Z",
+                    "dateSeen": [
+                        "2023-01-24T20:13:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2023-01-24T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "dateSeen": [
+                        "2020-09-18T05:51:00.000Z"
+                    ],
+                    "firstDateSeen": "2020-09-18T05:51:00.000Z",
+                    "lastDateSeen": "2020-09-18T07:15:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-06-29T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-06-29T12:15:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-06-29T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "dateSeen": [
+                        "2023-04-02T01:06:29.606Z"
+                    ],
+                    "firstDateSeen": "2023-02-17T00:00:00.000Z",
+                    "lastDateSeen": "2023-04-02T01:06:29.606Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2022-06-30T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-06-30T01:32:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-06-30T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-07-02T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-07-02T07:51:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-07-02T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-03-01T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-03-01T03:11:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-03-01T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-03-12T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-03-12T21:48:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-03-12T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-04-20T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-04-20T15:00:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-04-20T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-08-30T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-08-30T22:52:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-08-30T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-05-16T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-05-16T13:11:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-05-16T00:00:00.000Z",
+                    "lastDateSeen": "2022-05-16T00:00:00.000Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2022-02-13T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-02-13T09:32:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-02-13T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-02-28T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-02-28T14:34:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-02-28T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2023-02-22T00:00:00.000Z",
+                    "dateSeen": [
+                        "2023-02-22T12:24:00.000Z"
+                    ],
+                    "firstDateSeen": "2023-02-22T00:00:00.000Z",
+                    "lastDateSeen": "2023-02-22T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-06-06T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-06-06T06:06:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-06-06T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2019-12-11T00:00:00.000Z",
+                    "dateSeen": [
+                        "2019-12-11T00:00:00.000Z"
+                    ],
+                    "firstDateSeen": "2019-12-11T00:00:00.000Z",
+                    "lastDateSeen": "2020-01-17T04:41:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-02-04T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-02-04T21:38:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-01-28T00:00:00.000Z",
+                    "lastDateSeen": "2022-02-04T00:00:00.000Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2022-08-23T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-08-23T23:35:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-08-23T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-03-25T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-03-25T11:36:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-03-25T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-01-29T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-01-29T10:20:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-01-28T00:00:00.000Z",
+                    "lastDateSeen": "2022-01-29T00:00:00.000Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2022-03-09T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-03-09T11:13:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-03-09T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-08-29T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-08-29T03:46:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-08-29T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-07-04T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-07-04T23:48:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-07-04T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-08-05T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-08-05T06:51:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-08-05T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-08-03T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-08-03T12:24:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-08-03T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-07-28T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-07-28T01:12:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-07-28T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "dateSeen": [
+                        "2020-09-14T11:07:00.000Z"
+                    ],
+                    "firstDateSeen": "2020-09-14T11:07:00.000Z",
+                    "lastDateSeen": "2020-09-14T11:07:00.000Z",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2023-02-17T00:00:00.000Z",
+                    "dateSeen": [
+                        "2023-02-18T14:46:00.000Z"
+                    ],
+                    "firstDateSeen": "2023-02-18T14:45:51.623Z",
+                    "lastDateSeen": "2023-02-18T14:45:51.623Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2022-08-27T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-08-27T08:26:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-08-27T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2020-06-03T00:00:00.000Z",
+                    "dateSeen": [
+                        "2020-06-03T00:00:00.000Z"
+                    ],
+                    "firstDateSeen": "2020-06-03T00:00:00.000Z",
+                    "lastDateSeen": "2020-06-09T08:22:00.000Z",
+                    "type": "Pending"
+                },
+                {
+                    "dateSeen": [
+                        "2020-09-16T14:32:00.000Z"
+                    ],
+                    "firstDateSeen": "2020-09-16T14:32:00.000Z",
+                    "lastDateSeen": "2020-09-16T14:32:00.000Z",
+                    "type": "Sold"
+                },
+                {
+                    "date": "2022-06-15T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-06-15T04:25:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-06-15T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2023-01-31T00:00:00.000Z",
+                    "dateSeen": [
+                        "2023-01-31T02:57:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2023-01-31T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "dateSeen": [
+                        "2021-11-06T07:51:00.000Z"
+                    ],
+                    "firstDateSeen": "2021-11-06T07:51:00.000Z",
+                    "lastDateSeen": "2022-01-12T17:00:00.000Z",
+                    "type": "For Sale"
+                },
+                {
+                    "dateSeen": [
+                        "2020-10-28T08:15:21.669Z"
+                    ],
+                    "firstDateSeen": "2020-10-28T08:15:21.669Z",
+                    "lastDateSeen": "2020-11-16T10:24:57.747Z",
+                    "type": "Sold"
+                },
+                {
+                    "date": "2023-02-16T00:00:00.000Z",
+                    "dateSeen": [
+                        "2023-03-28T23:37:00.000Z"
+                    ],
+                    "firstDateSeen": "2023-02-17T00:00:00.000Z",
+                    "lastDateSeen": "2023-03-28T23:36:48.605Z",
+                    "type": "For Sale"
+                },
+                {
+                    "dateSeen": [
+                        "2020-08-16T12:11:00.000Z"
+                    ],
+                    "firstDateSeen": "2020-08-16T12:11:00.000Z",
+                    "lastDateSeen": "2020-08-30T13:17:00.000Z",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-05-21T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-05-21T02:16:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-05-16T00:00:00.000Z",
+                    "lastDateSeen": "2022-05-21T00:00:00.000Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2022-05-03T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-05-03T16:43:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-05-03T00:00:00.000Z",
+                    "lastDateSeen": "2022-05-03T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-05-22T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-05-22T22:11:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-05-22T00:00:00.000Z",
+                    "lastDateSeen": "2022-05-22T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "dateSeen": [
+                        "2020-07-11T18:17:00.770Z"
+                    ],
+                    "firstDateSeen": "2020-07-11T18:17:00.770Z",
+                    "lastDateSeen": "2020-07-28T08:32:34.686Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2019-08-30T00:00:00.000Z",
+                    "dateSeen": [
+                        "2019-08-30T00:00:00.000Z"
+                    ],
+                    "firstDateSeen": "2019-08-30T00:00:00.000Z",
+                    "lastDateSeen": "2019-09-26T15:42:41.145Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2022-04-09T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-04-09T12:35:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-04-09T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-07-14T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-07-14T23:29:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-07-14T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "dateSeen": [
+                        "2020-08-07T03:37:00.000Z"
+                    ],
+                    "firstDateSeen": "2020-08-07T03:37:00.000Z",
+                    "lastDateSeen": "2020-08-08T16:14:00.000Z",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-03-31T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-03-31T17:45:00.000Z",
+                        "2022-03-31T09:21:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-03-31T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "dateSeen": [
+                        "2020-09-16T04:44:00.000Z"
+                    ],
+                    "firstDateSeen": "2020-09-16T04:44:00.000Z",
+                    "lastDateSeen": "2020-09-16T04:44:00.000Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2022-06-16T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-06-16T08:03:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-06-16T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-02-14T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-02-14T10:17:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-02-14T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2019-06-28T00:00:00.000Z",
+                    "dateSeen": [
+                        "2019-06-28T00:00:00.000Z"
+                    ],
+                    "firstDateSeen": "2019-06-28T00:00:00.000Z",
+                    "lastDateSeen": "2019-06-28T00:00:00.000Z",
+                    "isUnderContract": "false",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-08-02T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-08-02T04:50:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-08-02T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-08-19T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-08-19T23:39:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-08-19T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-08-22T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-08-22T17:25:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-08-22T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-01-28T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-01-28T05:40:00.000Z",
+                        "2022-01-28T15:38:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-01-28T00:00:00.000Z",
+                    "lastDateSeen": "2022-01-28T00:00:00.000Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2022-09-18T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-09-18T16:13:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-09-18T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-03-13T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-03-13T15:36:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-03-13T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-03-19T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-03-19T02:57:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-03-19T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-02-01T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-02-01T14:32:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-01-28T00:00:00.000Z",
+                    "lastDateSeen": "2022-02-01T00:00:00.000Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2022-03-08T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-03-08T11:19:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-03-08T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-09-01T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-09-01T04:56:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-09-01T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "dateSeen": [
+                        "2020-09-12T07:38:00.000Z"
+                    ],
+                    "firstDateSeen": "2020-09-12T07:38:00.000Z",
+                    "lastDateSeen": "2020-09-12T07:38:00.000Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2022-08-28T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-08-28T04:05:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-08-28T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-08-26T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-08-26T05:47:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-08-26T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-04-03T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-04-03T22:32:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-02-13T00:00:00.000Z",
+                    "lastDateSeen": "2022-04-03T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-08-04T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-08-04T03:47:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-08-04T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-11-24T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-11-24T05:55:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-11-24T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-11-20T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-11-20T19:33:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-11-20T00:00:00.000Z",
+                    "isUnderContract": "true",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-06-04T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-06-04T08:21:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-04T00:00:00.000Z",
+                    "lastDateSeen": "2022-06-04T00:00:00.000Z",
+                    "type": "For Sale"
+                },
+                {
+                    "dateSeen": [
+                        "2020-09-12T13:08:00.000Z"
+                    ],
+                    "firstDateSeen": "2020-09-12T13:08:00.000Z",
+                    "lastDateSeen": "2020-09-12T13:08:00.000Z",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2020-02-26T00:00:00.000Z",
+                    "dateSeen": [
+                        "2020-02-26T00:00:00.000Z"
+                    ],
+                    "firstDateSeen": "2020-02-26T00:00:00.000Z",
+                    "lastDateSeen": "2020-05-19T01:31:00.000Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2022-04-25T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-04-25T00:29:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-04-25T00:00:00.000Z",
+                    "lastDateSeen": "2022-04-25T00:00:00.000Z",
+                    "type": "For Sale"
+                },
+                {
+                    "dateSeen": [
+                        "2020-08-14T06:56:08.426Z"
+                    ],
+                    "firstDateSeen": "2020-08-14T06:56:08.426Z",
+                    "lastDateSeen": "2020-08-14T06:56:08.426Z",
+                    "type": "For Sale"
+                },
+                {
+                    "dateSeen": [
+                        "2020-09-14T03:37:00.000Z"
+                    ],
+                    "firstDateSeen": "2020-09-14T03:37:00.000Z",
+                    "lastDateSeen": "2020-09-14T03:37:00.000Z",
+                    "type": "For Sale"
+                },
+                {
+                    "dateSeen": [
+                        "2020-09-01T07:36:00.000Z"
+                    ],
+                    "firstDateSeen": "2020-09-01T07:36:00.000Z",
+                    "lastDateSeen": "2020-09-10T19:34:00.000Z",
+                    "type": "Pending"
+                },
+                {
+                    "date": "2022-06-20T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-06-20T14:18:00.000Z",
+                        "2022-06-20T00:28:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-06-20T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2022-06-22T00:00:00.000Z",
+                    "dateSeen": [
+                        "2022-06-22T23:55:00.000Z"
+                    ],
+                    "firstDateSeen": "2022-06-06T00:00:00.000Z",
+                    "lastDateSeen": "2022-06-22T00:00:00.000Z",
+                    "type": "Off Market"
+                },
+                {
+                    "date": "2023-02-17T00:00:00.000Z",
+                    "dateSeen": [
+                        "2023-03-12T03:19:00.000Z",
+                        "2023-03-12T17:51:00.000Z",
+                        "2023-04-14T18:20:00.000Z",
+                        "2023-03-24T20:26:00.000Z",
+                        "2023-04-03T08:49:00.000Z"
+                    ],
+                    "firstDateSeen": "2023-02-17T00:00:00.000Z",
+                    "lastDateSeen": "2023-04-14T18:19:35.761Z",
+                    "type": "For Sale"
+                },
+                {
+                    "dateSeen": [
+                        "2020-08-31T03:49:50.645Z"
+                    ],
+                    "firstDateSeen": "2020-08-31T03:49:50.645Z",
+                    "lastDateSeen": "2020-08-31T03:49:50.645Z",
+                    "type": "For Sale"
+                },
+                {
+                    "date": "2023-02-16T16:47:41.000Z",
+                    "dateSeen": [
+                        "2023-04-12T22:25:04.058Z"
+                    ],
+                    "firstDateSeen": "2023-02-17T00:00:00.000Z",
+                    "lastDateSeen": "2023-04-12T22:25:04.058Z",
+                    "type": "For Sale"
+                }
+            ],
+            "taxID": "116540",
+            "yearBuilt": 1946,
+            "id": "AW1uPRo80x_BgD4eQLRL"
+        }
+```
+
+From here, we can grab some fields that are most commonly used to compare properties:
+
+```json
+{
+  "numBedroom": 2,
+  "numBathroom": 3,
+  "propertyType": "Single Family Dwelling",
+  "yearBuilt": 2020,
+  "geoLocation": "POINT (-97.770640 30.253540)"
+}
+```
+
+There may be other fields, but let's keep it simple for now.  From here, we can automatically/programmatically build a search for comparable properties:
+
+```json
+{
+  "query": "numBedroom:2 AND numBathroom:3 AND propertyType:\"Single Family Dwelling\" AND yearBuilt:>=2018 AND yearBuilt:<=2022 AND postalCode:78722 AND estimatedPrices:* AND geoLocation:[-97.770640,30.253540,10,mi]",
+  "num_records": 100,
+  "format": "JSON",
+  "download": true
+}
+```
+
+This will find and download 100 similar properties in a 10 mile radius.  This information will contain pricing for each of these properties that will look like this:
+
+```json
+{
+...
+  "mostRecentSaleListPriceAmount": 415000,
+  "mostRecentSaleListPriceDate": "2023-02-20T21:25:20.076Z",
+...
+}
+```
+
+You can take each of those prices, average them, and determine an expected value for the original property!
+
+## Example files
+
+Here are example bulk download files of our previous query:
+
+* [Home values JSON file](https://drive.google.com/file/d/1GiXpza-q2w02ydu35ivA-IzYaAUpISLx/view?usp=sharing)
+* [Home values CSV file](https://drive.google.com/file/d/1cEhzBjAuQW9WzpPqLHmNJjX_vVb2oT_h/view?usp=sharing)
+
+## Conclusion
+
+Hopefully this will helps you understand how to use Datafiniti Property Data to determine values for homes.  There are several Datafiniti customers that take these approaches to help power business needs like lending, underwriting, and other investment decisions.  Now you can too!

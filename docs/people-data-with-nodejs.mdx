@@ -1,0 +1,412 @@
+---
+title: People Data with Node.js
+---
+
+For this guide, we're going to assume that you're interested in using Datafiniti's people data to develop a sales campaign. Let's say you're a growth marketer that's been tasked with the following:
+
+1. Collect email addresses of CEOs.
+2. Refine that list to a specific geographic region.
+
+**Your environment and data needs:**
+
+1. You're working with Node.js.
+2. You want to work with CSV or JSON data.
+
+Here are the steps we'll take:
+
+## 1. Install the request module for Node
+
+In your terminal, run the following to install the `request` module for Node:
+
+```shell
+npm install request
+```
+
+## 2. Get your API token
+
+The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
+
+To get your API token, go to the Datafiniti Web Portal ([https://portal.datafiniti.co](https://portal.datafiniti.co)), log in, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+
+<Callout kind="info">
+  **API Key**
+
+For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
+</Callout>
+
+<Callout kind="alert">
+  **API Key Regen**
+
+For security reasons, your API token will be automatically changed whenever you change your password.
+</Callout>
+
+## 3. Run your first search
+
+The first thing we'll do is perform a test search that will give us a sense of what sort of data might be available.  Eventually we'll refine our search so that we get back the most relevant data.
+
+Since we want CEOs, let's try a simple search that will give us people with that title.
+
+Write the following code in your code editor (replace the dummy API token with your real API token):
+
+```node
+/*
+  Illustrates an API call to Datafiniti's Business Database for hotels.
+*/
+var request = require('request');
+
+// Set your API parameters here.
+var API_token = 'AAAXXXXXXXX';
+//var format = 'CSV';
+var format = 'JSON';
+var query = 'jobTitle:CEO';
+var num_records = 1;
+var download = false;
+
+var request_options = {
+  url: 'https://api.datafiniti.co/v4/people/search',
+  method: 'POST',
+  json: {
+    'query': query,
+    'format': format,
+    'num_records': num_records,
+    'download': download
+  },
+  headers: {
+    'Authorization': 'Bearer ' + API_token,
+    'Content-Type': 'application/json'
+  }
+}
+
+console.log(request_options);
+
+// Make the API call.
+request(request_options, function(error, response, body) {
+  if (error) {
+    console.log(error);
+    console.log(response);
+  } else {
+    console.log(body);
+  }
+});
+```
+
+You should get a response similar to this:
+
+```json
+{
+    "num_found": 357,
+    "total_cost": 1,
+    "records": [
+        {
+            "address": "9855 Melbourne Ave",
+            "businessName": "MICHIGAN MARKETING EXTREME LLC",
+            "city": "Allen Park",
+            "country": "US",
+            "dateAdded": "2018-02-20T00:33:45Z",
+            "dateUpdated": "2018-02-20T00:33:45Z",
+            "emails": [
+                "billmey@michiganmarketingextreme.com"
+            ],
+            "firstName": "Bill",
+            "keys": [
+                "billmeymichiganmarketingextremecom"
+            ],
+            "lastName": "Mey",
+            "jobFunction": "Business Management",
+            "jobLevel": "C-Team",
+            "jobTitle": "CEO",
+            "numEmployeesMin": 1,
+            "numEmployeesMax": 19,
+            "phones": [
+                "7346190715"
+            ],
+            "postalCode": "48101",
+            "province": "MI",
+            "sourceURLs": [
+                "https://datafiniti.co"
+            ],
+            "id": "AWG2azB1QH9dEUBnfEki"
+        }
+    ]
+}
+```
+
+Let's break down each of the parameters we sent in our request:
+
+| API Call Component        | Description                                                                                                                                                                                           |
+| :------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"query": "jobTitle:CEO"` | `query` tells the API what query you want to use.  In this case, you're telling the API you want to search by `jobTitle`.  Any person that has `CEO` listed in its `jobTitle` field will be returned. |
+| `"num_records": 1`        | `num_records` tells the API how many records to return in its response.  In this case, you just want to see 1 matching record.                                                                        |
+| `"format":"xxxx"`         | `format` tells the API what format to output the data in the response. Can be either `CSV` or `JSON`                                                                                                  |
+
+Now let's dive through the response the API returned:
+
+| Response Field | Description |
+| --- | --- |
+| `"num_found"` | The total number of available records in the database that match your query.  If you end up downloading the entire data set, this is how many records you'll use. |
+| `"total_cost"` | The number of credits this request has cost you.  People records have a record cost multiplier tied to them.  [See pricing](https://datafiniti.co/pricing/people-data-pricing/). |
+| `"records"` | The first available matches to your query. If there are no matches, this field will be empty.   <br />    <br /> Within each record returned, you'll see multiple fields shown.  This is the data for each record. |
+
+Within the `records` field, you'll see a single person returned with multiple fields and the values associated with that product.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
+
+Each product record will have multiple fields associated with it.  You can see a full list of available fields in our [People Data Schema](https://java.documentationai.com/docs/people-data-schema).
+
+## 4. Refine your search
+
+Let's say we decided to adjust our sales campaign to only target CEOs in Austin, TX.
+
+Modify your code to look like this:
+
+```javascript
+var request = require('request');
+
+// Set your API parameters here.
+var API_token = 'AAAXXXXXXXX';
+//var format = 'CSV';
+var format = 'JSON';
+var query = 'jobTitle:CEO AND province:TX AND city:Austin';
+var num_records = 10;
+var download = false;
+
+var request_options = {
+  url: 'https://api.datafiniti.co/v4/people/search',
+  method: 'POST',
+  json: {
+    'query': query,
+    'format': format,
+    'num_records': num_records,
+    'download': download
+  },
+  headers: {
+    'Authorization': 'Bearer ' + API_token,
+    'Content-Type': 'application/json'
+  }
+}
+
+console.log(request_options);
+
+// Make the API call.
+request(request_options, function(error, response, body) {
+  if (error) {
+    console.log(error);
+    console.log(response);
+  } else {
+    console.log(body);
+  }
+});
+```
+
+This API call is different in a couple ways:
+
+1. It adds ` AND province:TX AND city:Austin` to narrow down results to just people working in Austin, TX.
+2. It changes `"num_records": 1` to `"num_records": 10` so we can look at more sample matches.
+
+Notice how Datafiniti lets you construct very refined boolean queries.  In the API call above, we're using a combination of `AND` queries to get exactly what we want.
+
+If you would like to narrow your search to just exact matches, you can place the search term in quotation marks.
+
+```javascript
+var request = require('request');
+
+// Set your API parameters here.
+var API_token = 'AAAXXXXXXXX';
+//var format = 'CSV';
+var format = 'JSON';
+var query = 'jobTitle:"Product Developer"';
+var num_records = 10;
+var download = false;
+
+var request_options = {
+  url: 'https://api.datafiniti.co/v4/people/search',
+  method: 'POST',
+  json: {
+    'query': query,
+    'format': format,
+    'num_records': num_records,
+    'download': download
+  },
+  headers: {
+    'Authorization': 'Bearer ' + API_token,
+    'Content-Type': 'application/json'
+  }
+}
+
+console.log(request_options);
+
+// Make the API call.
+request(request_options, function(error, response, body) {
+  if (error) {
+    console.log(error);
+    console.log(response);
+  } else {
+    console.log(body);
+  }
+});
+```
+
+The above query will only return people with the exact title of Product Developer.
+
+## 5. Initiate a download of the data
+
+Once we like what we see from the sample matches, it's time to download a larger data set!  To do this, we're going to update our code a fair bit (an explanation follows):
+
+```javascript
+var request = require('request');
+var fs = require('fs');
+
+// Set your API parameters here.
+var API_token = 'AAAXXXXXXXX';
+//var format = 'JSON';
+var format = 'CSV';
+var query = 'jobTitle:CEO AND province:TX AND city:Austin';
+var num_records = 20;
+var download = true;
+
+var request_options = {
+  url: 'https://api.datafiniti.co/v4/people/search',
+  method: 'POST',
+  json: {
+    'query': query,
+    'num_records': num_records,
+    'format': format,
+    'download': download
+  },
+  headers: {
+    'Authorization': 'Bearer ' + API_token,
+    'Content-Type': 'application/json'
+  }
+}
+
+console.log(request_options);
+
+// A function to check if a download request has completed
+function checkDownloadUntilComplete(options, callback) {
+  var download_id = options.download_id;
+  var download_options = {
+    url: 'https://api.datafiniti.co/v4/downloads/' + download_id,
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + API_token,
+      'Content-Type': 'application/json'
+    }
+  }
+
+  request(download_options, function(error, response, body) {
+    var num_files_downloaded = 0;
+    var download_response = JSON.parse(body);
+    console.log('Records downloaded: ' + download_response.num_downloaded);
+    if (download_response.status !== 'completed') {
+      // NEED A SLEEP FUNCTION HERE!
+      checkDownloadUntilComplete(options, callback);
+    } else {
+      var results = download_response.results;
+      console.log(results);
+      for (var i = 0; i < results.length; i++) {
+        var filename = download_id + '_' + i + '.' + format;
+        var file = fs.createWriteStream(filename);
+        request(results[i]).pipe(file).on('end', function() {
+          console.log('File ' + (i+1) + ' out of ' + results.length + ' saved: ' + filename);
+          num_files_downloaded++;
+          if (num_files_downloaded === results.length) process.exit();
+        });
+      }
+    }
+  });
+}
+
+// Initiate the download request.
+request(request_options, function (error, response, body) {
+    var request_response = body;
+    var download_id = request_response.id;
+
+    // Check on status of the download request.
+    checkDownloadUntilComplete ({download_id : download_id}, function (error, response) {});
+  }
+);
+```
+
+A few things to pay attention to in the above code:
+
+1. We change `num_records` from `10` to `20`.  This will download the first 20 matching records.  If we wanted to download all matching records, we would remove `num_records`. This will tell the API to default to all available records.
+2. We changed `format` from `JSON` to `CSV`.  We'll want to view the files in CSV format, so it will be easier to look at.
+3. We changed `download` from `false` to `true`.
+
+<Callout kind="alert">
+  **Num_records**
+
+If num_records is not specified, ALL of the records matching the query will be downloaded.
+</Callout>
+
+Since we've handled multiple steps of the download process in this code, we won't go into the details here, but we do recommend you familiarize yourself with those steps.  Checking them out in our other guides [Getting started with People Data](https://java.documentationai.com/docs/getting-started-with-people-data)
+
+## 6. Parse the data
+
+### Open the result file(s) in Excel
+
+For files formatted as CSV, you will receive you files as `downloadID\_#.csv`. You can navigate to the file you downloaded and open it.  Since it's a CSV file, it should open in Excel automatically. Using Excel, we can easily use the data to build our sales campaign.
+
+<Image src="https://files.readme.io/e200451-people.png" width="1920" height="1080" alt="" />
+
+### Parse the JSON data
+
+The download code will save one or more result files to your project folder.
+
+<Callout kind="info">
+  **JSON Format**
+
+The JSON data will actually be a text file, instead of a single JSON object. Each line in the text file is a JSON object. We format the data this way because most programming languages won't handle parsing the entire data set as a JSON object with their standard system calls very well. Commonly known as NDJSON.
+</Callout>
+
+We'll need to parse the file into an array of JSON objects.  We can use code similar to this to handle the parsing:
+
+```javascript
+var fs = require('fs');
+
+// Set the location of your file here.
+var file = 'xxxx_x.txt';
+
+// A function to read in each line of the file and pass that line to func
+function readLines(input, func) {
+	var records = [];
+	var remaining = '';
+
+	input.on('data', function(data) {
+ 		remaining += data;
+		var index = remaining.indexOf('\n');
+		var last  = 0;
+		while (index > -1) {
+ 			var line = remaining.substring(last, index);
+ 			last = index + 1;
+ 			func(line, records);
+			index = remaining.indexOf('\n', last);
+ 		}
+
+ 		remaining = remaining.substring(last);
+	});
+
+	input.on('end', function() {
+ 		if (remaining.length > 0) {
+ 			func(remaining, records);
+ 		}
+		processData(records);
+	});
+}
+
+// A function that converts a line from the file, parses it to JSON, and stores it an array
+function func(data, records) {
+	var json = JSON.parse(data);
+	records.push(json);
+}
+
+// This function is called once all the data has been read from the file.
+function processData(records) {
+	// Edit these lines to do more with the data.
+	console.log(records);
+}
+
+var records = [];
+var input = fs.createReadStream(file);
+readLines(input, func);
+```
+
+You can edit the code in the `processData` method above to do whatever you'd like with the data, such as store the data in a database, write it out to your console, etc.

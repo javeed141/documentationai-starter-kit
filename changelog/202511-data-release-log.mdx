@@ -1,0 +1,72 @@
+---
+title: 2025.11 - Data Release Log
+---
+
+## Summary
+
+We’re excited to bring you some new updates focused on property data prices, transparency, structure, and usability. Our commitment to providing you with the best possible experience drives these changes, and we believe you'll find them to be impactful to your workflow.
+
+## Property Data
+
+### New “type” field in prices
+
+Each price entry now includes a type sub-field, which will have one of the following values
+
+* Sale List – indicating that this price is a for sale list price
+* Sold – indicating that this price is the price at which the property was sold
+* Rental List – indicating that this price is a rental list price
+  * The type sub-field replaces isSale and isSold.  These sub-fields will be deprecated on January 31st, 2026.\
+    Improved field names
+
+We’ve introduced more descriptive fields to clarify the kind of price shown:
+
+* `mostRecentSaleListPriceAmount `& `mostRecentSaleListPriceDate`
+  * The most recent listing date / price of a property within the prices field.
+* `mostRecentRentalListPriceAmount` & `mostRecentRentalListPriceDate`
+  * The most recent rental date / price of a property within the prices field.
+* mostRecentSoldPriceAmount & mostRecentSoldPriceDate
+  * The most recent sold date / price of a property within the prices field.
+
+**Why the Change?**
+
+We felt that the  isSale, isSold, and mostRecentPriceAmount were very unclear and not descriptive enough to tell whether a price referred to a listing, sale, or a sold price. This update introduces a standardized structure that eliminates confusion and supports more powerful search and analysis.
+
+**Data Consistency & Reliability**
+
+Existing records using isSale or isSold values are being updatedto reflect the new price.type structure over the next month. We are also adding rental price delineation with “type”:”Rental List” to easily reference rental prices.
+
+**Backward Compatibility**
+
+In order to ease the transition for existing customers using our legacy fields, we’re taking a few steps to ensure backwards compatibility for an extended period. If your integration depends on the isSale, isSold, or mostRecentPriceAmount fields,contact your Customer Success Manager, who can provide a custom view that will continue to include these fields during the migration period.
+
+**Deprecation Timeline**
+
+The legacy fields isSale, isSold, and mostRecentPriceAmount will be fully deprecated by January 31st, 2026. We recommend updating your integrations as soon as possible to take advantage of the new, more structured data model.
+
+## Portal Changes
+
+### Visual Renew Date
+
+We have created a “Renew date” in your billing subsubscription page. This will now show your exact date of plan renewal. Giving your more insight on when credits refresh.
+
+### Added County Autocomplete
+
+We have added autocomplete functionality to our property data filter. This will allow you to more efficiently while searching for the property data you need.
+
+## Coming soon
+
+### Business Data & Property Data Search
+
+We created the autotrace feature for cross referencing people and property data, now we are doing the same for business and property data. Our goal is to be able to cross reference our business data schema fields to the equivalent property record.
+
+### Product Data - New Pricing Field
+
+We are working on adding a new pricing field dedicated to the first price seen on products within Datafiniti’s dataset. This new pricing field will allow users to easily track and analyze the initial price of products as first observed by Datafiniti, providing a clear reference point for price changes and market analysis.
+
+## Available Data
+
+This was also another big month regarding business data records for Datafiniti:\
+**Property**: 284,150,037 unique records with 27,402,601 added last month\
+**Business**: 135,265,845 unique records with 1,128,127 added last month\
+**People**: 135,356,144 unique records with 35,755,573 added last month\
+**Products**: 565,269,848 unique records with 20,554,861 added last month

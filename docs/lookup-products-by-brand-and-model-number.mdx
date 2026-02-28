@@ -1,0 +1,68 @@
+---
+title: Lookup products by brand and model number
+---
+
+## Introduction
+
+Datafiniti collects brand (or manufacturer) and model number information.  This information is available in the following fields:
+
+* `brand`
+* `manufacturer`
+* `manufacturerNumber`
+
+You can use a combination of these fields to search for specific products.  Let's find out how!
+
+## Searching for brand and model numbers
+
+We can't assume `brand` or `manufacturerNumber` on their own are unique identifiers for a specific product, but we can use them in combination with each other to find a unique match:
+
+```json
+{
+  "query": "brand:Luxor AND manufacturerNumber:\"EC11HD-G\""
+}
+```
+
+This will return the following product (truncated for brevity):
+
+```json
+{
+  "brand": "Luxor",
+  "categories": [
+    "Utility Carts",
+    "Carts & Stands",
+    "Furniture",
+    "Carts"
+  ],
+  "dateAdded": "2021-07-12T00:21:05Z",
+  "dateUpdated": "2023-03-31T16:23:40Z",
+  "manufacturerNumber": "EC11HD-G",
+  "name": "Luxor Gray 18X32 2 Tub Cart Hd"
+}
+```
+
+## Using `brand` vs using `manufacturer`
+
+In some cases, Datafiniti defaults to using `manufacturer` instead of `brand`.  This can happen when the source of the data specifically refers to "manufacturer".  `brand` is the more commonly-used field, but if we want to be thorough, we can modify our search to the following:
+
+```json
+{
+  "query": "(brand:Luxor OR manufacturer:Luxor) AND manufacturerNumber:\"EC11HD-G\""
+}
+```
+
+This will return the same result as above, but it may be helpful to use this approach to improve your match rates.
+
+## Enriching your data
+
+The product record example shown above has been truncated, but each Datafiniti record will contain dozens of additional attributes that you may find useful when enriching your own database of products.  [See our full product schema for all available fields](https://developer.datafiniti.co/docs/product-data-schema).
+
+### Example files
+
+Here are example bulk download files of our previous query:
+
+* [Brands CSV](https://drive.google.com/file/d/1VodBKysSsJGRWawvBuxnDXwxhRlRvdm5/view?usp=share_link)
+* [Brands JSON](https://drive.google.com/file/d/1h2Y0TDe8dlJJhlbGxVxGUzfUvrSaYshe/view?usp=share_link)
+
+### Conclusion
+
+With the knowledge of this guide you now have the ability to query products based on brand name and model number.

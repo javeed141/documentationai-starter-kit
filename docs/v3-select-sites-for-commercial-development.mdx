@@ -1,0 +1,76 @@
+---
+title: Select sites for commercial development
+---
+
+## Introduction
+
+Many customers use Datafiniti Property Data to provide commercial real estate insight and analysis.  In many of these cases, they're trying to help their own customers find appropriate sites for developing or investing in commercial properties.
+
+## Search for commercial properties
+
+Here's how to run a broad search for commercial properties:
+
+```json
+{
+  "query": "propertyType:Commercial"
+}
+```
+
+You may want to expand what you consider "commercial" spaces to include industrial and retail properties:
+
+```json
+{
+  "query": "propertyType:(Commercial OR Industrial OR Retail)"
+}
+```
+
+The `OR` construction lets you pass in multiple values to a field type.
+
+Now let's say you only want to find properties that are actively listed for sale:
+
+```json
+{
+  "query": "propertyType:(Commercial OR Industrial OR Retail) AND mostRecentStatus:\"For Sale\" AND dateUpdated:[2023-01-01 TO *]"
+}
+```
+
+By adding the `mostRecentStatus` field, along with a `dateUpdated` range, we can match properties that were recently put up for sale.  We can adjust the `dateUpdated` range each time we run this query.
+
+If you need to search for properties that are in different statuses, use one of the [available values](https://developer.datafiniti.co/docs/possible-values-for-property-fields#statusestype-mostrecentstatus) for `mostRecentStatus`.
+
+Finally, if we want to narrow the search to a specific area, we can do any of the following.
+
+To look for properties in a specific state, use the `province` field:
+
+```json
+{
+  "query": "propertyType:(Commercial OR Industrial OR Retail) AND mostRecentStatus:\"For Sale\" AND dateUpdated:[2023-01-01 TO *] AND province:NJ"
+}
+```
+
+To look for properties in a specific zip code, use the `postalCode` field:
+
+```json
+{
+  "query": "propertyType:(Commercial OR Industrial OR Retail) AND mostRecentStatus:\"For Sale\" AND dateUpdated:[2023-01-01 TO *] AND postalCode:78721"
+}
+```
+
+To look for properties around a geo-coordinate, use the `geoLocation` field:
+
+```json
+{
+  "query": "propertyType:(Commercial OR Industrial OR Retail) AND mostRecentStatus:\"For Sale\" AND dateUpdated:[2023-01-01 TO *] AND geoLocation:[-97.7430600,30.2671500,10,mi]"
+}
+```
+
+## Example files
+
+Here are example bulk download files of our previous query:
+
+* [Commercial Property CSV](https://drive.google.com/file/d/17WRTXyFSsOQpkySGo4Oi4dEXOlg-zQ1T/view?usp=share_link)
+* [Commercial Property JSON](https://drive.google.com/file/d/17WRTXyFSsOQpkySGo4Oi4dEXOlg-zQ1T/view?usp=share_link)
+
+## Conclusion
+
+With the knowledge of how to pull records with new commercial property, you can use this data to build comparison reports, analyze trends, or predict commercial property value.

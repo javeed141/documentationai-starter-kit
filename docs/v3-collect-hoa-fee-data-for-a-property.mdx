@@ -1,0 +1,66 @@
+---
+title: Collect HOA fee data for a property
+---
+
+## Introduction
+
+HOA fees can be an important variable in analyzing the risk factors for real estate investment portfolios.  Datafiniti can help you collect this data at scale and feed it into any risk analysis you may be performing
+
+## Searching for HOA fees
+
+Fees are a top-level field within the Datafiniti property schema.  You can search for any property with associated fees data by doing something like:
+
+```json
+{
+  "query": "fees.type:HOA"
+}
+```
+
+Any returned fees data will look something like:
+
+```json
+ "fees": [
+   {
+     "amountMax": 473,
+     "amountMin": 473,
+     "currency": "USD",
+     "dateSeen": [
+       "2023-03-08T02:11:00.000Z",
+       "2023-03-27T13:15:00.000Z",
+       "2023-03-28T17:28:00.000Z",
+       "2023-02-18T04:42:00.000Z"
+     ],
+     "type": "HOA"
+   },
+   {
+     "amountMax": 320,
+     "amountMin": 320,
+     "currency": "USD",
+     "dateSeen": [
+       "2020-11-05T02:29:00.000Z",
+       "2020-11-07T02:00:00.000Z"
+     ],
+     "type": "HOA"
+   }
+ ],
+```
+
+Here's a quick breakdown of these sub-fields:
+
+* `amountMax` and `amountMin`: The price values of the fee
+* `currency`: The currency of the values
+* `dateSeen`: The dates that Datafiniti collected this fees
+* `type`: The type of fee.  Datafiniti collects other types of fees beyond just HOA
+
+Using this information, you can build a timeline of HOA fees for each property.
+
+### Example Records
+
+Here are example bulk download files of our previous query:
+
+* [HOA report CSV](https://drive.google.com/file/d/1xu-jgGdgbpClGvcm7vKHHkzQxb1eIpmL/view?usp=share_link)
+* [HOA report Json](https://drive.google.com/file/d/1UqQ_9UlxwNiNYyGCdR7Y4JiNh1nE4Ih6/view?usp=share_link)
+
+### Conclusion
+
+With the HOA data report, you can confidently create prices and analysis reports about HOA's in your area. This will also allow you to tailor your HOA report to clients in your area.

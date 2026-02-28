@@ -1,0 +1,1830 @@
+---
+title: Search for smart phones
+---
+
+## Introduction
+
+Datafiniti provides a robust collecting of pricing data for all sorts of products. Let's take a look at how to pull data that can be used for pricing and specs in one specific category, smart phones.
+
+## Building a basic query for smart phones
+
+By utilizing our `categories `field, we can query for smart phones. We will add a `prices `wildcard to guarantee that prices are displayed in the records found.
+
+```json
+{
+  "query": "categories:\"phones\" AND prices:*",
+  "num_records":1
+}
+```
+
+## Filter by brand and name
+
+Now let's add a brand and name filter to hone in on a specific type of smart phone.
+
+```json
+{
+  "query": "brand:Google AND name:pixel AND categories:\"phones\" AND prices:*",
+  "num_records":1
+}
+```
+
+This will make sure the result records are for a google pixel smart phone and that a prices is listed.
+
+## Filter by website sold from
+
+```json
+{
+  "query": "brand:Google AND name:pixel AND categories:\"phones\" AND domains:amazon.com AND prices:*",
+  "num_records":1
+}
+```
+
+This will only display results that data was sourced from amazon.com.
+
+## Filter by product color
+
+Let's add a filter to search for black google pixels devices. This can be done by utilizing our `colors` fields.
+
+```json
+{
+  "query": "brand:Google AND name:pixel AND categories:\"phones\" AND domains:amazon.com AND colors:black AND prices:*",
+  "num_records":1
+}
+```
+
+Typically color filters are helpful to find specific UPC, skus, or other unique identifiers.
+
+## Example Records
+
+Here is an example of a record of the final query:
+
+```json
+ {
+            "asins": "B09HZGGSFR",
+            "brand": "Google",
+            "categories": [
+                "Analog or digital cellular telephones",
+                "Cell Phones - Unlocked",
+                "Unlocked Cell Phones",
+                "All Unlocked Cell Phones",
+                "Electronics",
+                "Cell Phones",
+                "Cell Phones & Accessories"
+            ],
+            "colors": [
+                "Stormy Black"
+            ],
+            "dateAdded": "2021-10-20T01:47:32Z",
+            "dateUpdated": "2023-04-11T00:16:52Z",
+            "descriptions": [
+                {
+                    "value": "Google's first flagship smartphone, the Google Pixel 6 Pro Dual-SIM 256GB 5G Smartphone showcases ground-breaking new features in mobile technology with their own processor, the Google Tensor. The Tensor was created to give the Pixel 6 Pro enough power for Google to implement significant advances in AI and machine learning. Some real world examples include a re-engineered camera bar with AI capable of erasing objects and unblurring faces in an image, and voice recognition smart enough to detect accents and dialects to accurately translate up to 55 languages in real time, without requiring the internet. The increased power and AI intelligence of the Pixel 6 Pro are in addition to a host of additional advancements in more traditional aspects of smartphone technology. The Pixel 6 Pro's rear camera bar provides three cameras with larger pixels than previous generations, resulting in more detail and sharper night shots. The 6.7\" display auto adjusts the refresh rate up to 120 Hz, saving power while still providing smooth scrolling & gameplay. The body can handle the rigors of daily life with Gorilla Glass Victus cover & back glass and IP68 water and dust resistance. Inside and out, the Pixel 6 Pro reimagines what smartphones can be, giving you an experience that's even more personal than ever before.",
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "dateSeen": "2022-01-19T15:09:00.000Z"
+                },
+                {
+                    "value": "Introducing Pixel 6 Pro, the completely redesigned, fully loaded Google 5G phone.* With a powerful camera system, next-gen security, and the custom-built Google Tensor processor, it’s the smartest and fastest Pixel yet.",
+                    "sourceURLs": [
+                        "https://www.bestbuy.com/site/google-pixel-6-pro-256gb-unlocked-stormy-black/6483638.p?skuId=6483638"
+                    ],
+                    "dateSeen": "2023-02-27T07:57:00.000Z"
+                },
+                {
+                    "value": "Introducing Pixel 6 Pro, the completely redesigned, fully loaded Google 5G cell phone.1 With a powerful camera system, next-gen security, and the custom Google Tensor processor, its the smartest and fastest Pixel yet.2 And its an unlocked Android smartphone, so you can choose the data plan and carrier that work for you.1 1 Works with all major carriers. Contact carrier for details. 5G service is carrier dependent. Requires a 5G data plan (sold separately). 5G service not available on all carrier networks or in all areas. Contact carrier for details. 5G service, speed and performance depend on many factors, including carrier network capabilities and signal strength. Actual results may vary. Some features not available in all areas. Data rates may apply. See g.co/pixel/networkinfo for info. 2 Compared to Pixel 5. Based on internal CPU benchmark testing on pre-production devices. 3 Compared to main rear camera on Pixel 5. 4 Image simulated. Magic Eraser may not work on all image elements. 5 Deblurring may not work on all photos or videos with faces. 6 Fast wired charging rates are based upon use of the Google 30W USB-C Charger plugged into a wall outlet. Compatible with USB PD 3.0 PPS adapters. Actual results may be slower. Adapters sold separately.",
+                    "sourceURLs": [
+                        "https://www.amazon.com/dp/B09HZGGSFR?productDetails&th=1&psc=1"
+                    ],
+                    "dateSeen": "2022-02-02T12:45:00.000Z"
+                },
+                {
+                    "value": "Google Pixel 6 Pro - 5G smartphone - dual-SIM - RAM 12 GB / 256 GB - OLED display - 6.7\" - 3120 x 1440 pixels (120 Hz) - 3x rear cameras 50 MP, 48 MP, 12 MP - front camera 11.1 MP - stormy black",
+                    "sourceURLs": [
+                        "https://www.shi.com/products/Productprint.aspx?SHISystemID=SHICommodity&ProductIdentity=43938208"
+                    ],
+                    "dateSeen": "2022-04-09T01:54:00.000Z"
+                }
+            ],
+            "dimension": "6.5 in x 3 in x 0.4 in",
+            "domains": [
+                "www.newegg.com",
+                "www.bestbuy.com",
+                "www.amazon.com",
+                "www.bhphotovideo.com",
+                "www.shi.com"
+            ],
+            "ean": [
+                "0810029931205"
+            ],
+            "ean13": "0810029931205",
+            "features": [
+                {
+                    "key": "Digital Zoom",
+                    "value": [
+                        "7x"
+                    ]
+                },
+                {
+                    "key": "Pixel Size",
+                    "value": [
+                        "1.25 µm",
+                        "1.22 µm",
+                        "0.8 µm",
+                        "1.2 µm"
+                    ]
+                },
+                {
+                    "key": "Optical Image Stabilizer",
+                    "value": [
+                        "Optical Image Stabilizer (OIS)"
+                    ]
+                },
+                {
+                    "key": "Light Source",
+                    "value": [
+                        "Flash"
+                    ]
+                },
+                {
+                    "key": "Charging Interface(s)",
+                    "value": [
+                        "USB 2.0"
+                    ]
+                },
+                {
+                    "key": "Wireless Interface",
+                    "value": [
+                        "NFC, IEEE 802.11ax, Ultra-Wideband (UWB), Bluetooth 5.2"
+                    ]
+                },
+                {
+                    "key": "Selected Options",
+                    "value": [
+                        "Size: 256GB",
+                        "Model: Pixel 6 Pro",
+                        "Color: Stormy Black"
+                    ]
+                },
+                {
+                    "key": "Capacity",
+                    "value": [
+                        "5003 mAh"
+                    ]
+                },
+                {
+                    "key": "Internal Carrier",
+                    "value": [
+                        "Not Applicable"
+                    ]
+                },
+                {
+                    "key": "Internet Connectable",
+                    "value": [
+                        "true"
+                    ]
+                },
+                {
+                    "key": "Operating System",
+                    "value": [
+                        "Android 12"
+                    ]
+                },
+                {
+                    "key": "Parent Node Category",
+                    "value": [
+                        "Cell Phones & Accessories"
+                    ]
+                },
+                {
+                    "key": "Fast Charging Technology",
+                    "value": [
+                        "Power Delivery 3.0"
+                    ]
+                },
+                {
+                    "key": "Screen Resolution",
+                    "value": [
+                        "1440 x 2560"
+                    ]
+                },
+                {
+                    "key": "Lens Type",
+                    "value": [
+                        "Telephoto lens",
+                        "Ultra wide-angle lens"
+                    ]
+                },
+                {
+                    "key": "Display Resolution",
+                    "value": [
+                        "3120 x 1440 pixels"
+                    ]
+                },
+                {
+                    "key": "Leaf Node Id",
+                    "value": [
+                        "7072561011"
+                    ]
+                },
+                {
+                    "key": "Wireless Compatibility",
+                    "value": [
+                        "Wi-Fi, MIMO, Ultra Wideband (UWB), Bluetooth"
+                    ]
+                },
+                {
+                    "key": "Communications",
+                    "value": [
+                        "NFC: Yes",
+                        "Bluetooth: Bluetooth 5.2",
+                        "GSM 3G/3.5G: UMTS, HSPA+: 850, 900, 1700, 1900, 2100 MHz",
+                        "Wi-Fi: Wi-Fi 6E (802.11ax); Tri-Band (2.4, 5, & 6 GHz)",
+                        "GSM 2G: GSM, GPRS, EDGE: 850, 900, 1800, 1900 MHz",
+                        "5G NR: n1, n2, n3, n5, n7, n8, n12, n14, n20, n25, n28, n30, n38, n40, n41, n48, n66, n71, n77, n78, n257, n258, n260, n261 Bands",
+                        "4G LTE: LTE: 1, 2, 3, 4, 5, 7, 8, 12, 13, 14, 17, 18, 19, 20, 25, 26, 28, 29, 30, 32, 38, 39, 40, 41, 42, 46, 48, 66, 71 Bands",
+                        "GPS: Yes"
+                    ]
+                },
+                {
+                    "key": "Display / Type",
+                    "value": [
+                        "OLED display"
+                    ]
+                },
+                {
+                    "key": "Battery Type",
+                    "value": [
+                        "Lithium-ion"
+                    ]
+                },
+                {
+                    "key": "Best Sellers Rank",
+                    "value": [
+                        "#49,699 in Electronics (See Top 100 in Electronics) #1,855 in Cell Phones",
+                        "#55,721 in Electronics (See Top 100 in Electronics) #2,070 in Cell Phones",
+                        "#26,353 in Electronics (See Top 100 in Electronics) #989 in Cell Phones",
+                        "#1,192 in Electronics (See Top 100 in Electronics) #35 in Cell Phones",
+                        "#35,485 in Electronics (See Top 100 in Electronics) #1,343 in Cell Phones",
+                        "#38,121 in Electronics (See Top 100 in Electronics) #1,445 in Cell Phones",
+                        "#60,539 in Electronics (See Top 100 in Electronics) #2,270 in Cell Phones",
+                        "#29,952 in Electronics (See Top 100 in Electronics) #1,139 in Cell Phones",
+                        "#62,094 in Electronics (See Top 100 in Electronics) #2,344 in Cell Phones",
+                        "#42,537 in Electronics (See Top 100 in Electronics) #1,590 in Cell Phones",
+                        "#27,033 in Electronics (See Top 100 in Electronics) #988 in Cell Phones",
+                        "#55,943 in Electronics (See Top 100 in Electronics) #2,095 in Cell Phones",
+                        "#55,600 in Electronics (See Top 100 in Electronics) #2,084 in Cell Phones",
+                        "#55,526 in Electronics (See Top 100 in Electronics) #2,105 in Cell Phones",
+                        "#64,585 in Electronics (See Top 100 in Electronics) #2,449 in Cell Phones",
+                        "#55,633 in Electronics (See Top 100 in Electronics) #2,061 in Cell Phones",
+                        "#43,088 in Electronics (See Top 100 in Electronics) #1,620 in Cell Phones",
+                        "#45,983 in Electronics (See Top 100 in Electronics) #1,729 in Cell Phones"
+                    ]
+                },
+                {
+                    "key": "Product Features",
+                    "value": [
+                        "Pixel 6 Pro's 6.7-inch Smooth Display is made with Corning Gorilla Glass Victus, the toughest Gorilla Glass yet, with up to 2x better scratch resistance than previous Pixel phones. And with IP68 protection, it can take a little water and dust.",
+                        "Pixel's security features help keep everything on your phone secure: texts, photos, sensitive data, and more. They've even earned a perfect score on an analyst evaluation.",
+                        "Enjoy more responsive gaming and scrolling with a 120Hz refresh rate and LTPO technology that lowers to 10Hz to save battery.",
+                        "Pixels Magic Eraser4, Motion Mode, and Portrait Mode professional tools keep your photos sharp, accurate, and focused Face Unblur can deblur a face to make it sharper5",
+                        "Translate live video captions, signs in up to 55 languages, and private chats and messages automatically and securely. No apps, Internet, or language courses required.",
+                        "New Pixel experience is more modern and intuitive, with colors that reflect your personal style the At a Glance feature shows you the apps and info you need when you need it, like a boarding pass before a flight10",
+                        "Unlocked Android cell phone gives you the flexibility to change carriers and choose your own data plan1 the new, redesigned Pixel 6 Pro is the smartest and fastest Pixel yet2",
+                        "New 6.7 inch LTPO Smooth Display13 is made with the toughest Gorilla Glass yet14, so your smartphone stays protected get more responsive gaming and scrolling with up to a 120Hz refresh rate15",
+                        "Portraits on Pixel represent the nuances of different skin tones for all people beautifully and authentically.",
+                        "The first processor designed by Google and made for Pixel, Google Tensor makes the Pixel phones the most powerful yet.",
+                        "Keeps your phone protected with the next gen Titan M2 chip, 5 years of security updates8, and the most hardware layers of any phone9",
+                        "Pixels fast charging all day battery adapts to you and saves power for apps you use the most 6,7",
+                        "At a Glance intuitively surfaces your upcoming events, reminders, and more - like your boarding pass before your flight. More modern and personal than ever, it's the first phone that's built around you.",
+                        "With Live Translate, Pixel translates private chats and messages, live video captions, and signs in up to 55 languages right on your cell phone11 no apps, internet, or language courses required12",
+                        "See what makes Pixel 6 Pro the smartest and fastest Pixel yet. It's fully loaded with powerful 5G connectivity, and enhanced Wi-Fi and Bluetooth performance.",
+                        "Advanced camera system with wide and ultrawide lenses, 4x optical zoom, and a main sensor that captures 150 more light3",
+                        "Take big group selfies or see more of your surroundings with the ultrawide 94° field-of-view front camera.",
+                        "Capture brilliant color and vivid detail with Pixel's best-in-class computational photography and new pro-level lenses.",
+                        "Pixel 6 Pro includes a telephoto lens with 4x optical zoom. Super Res Zoom lets you zoom up to 20x.",
+                        "Use Magic Eraser to remove photobombers and unwanted objects, so your subject is the star.",
+                        "The powerful Google Tensor processor is the first processor designed by Google and made for Pixel takes performance to a whole new level",
+                        "The larger main sensor captures the most light ever in a Pixel, for finer detail and richer color, plus faster, more accurate Night Sight photos.",
+                        "Please refer to the product description section below for all applicable legal disclaimers denoted by the bracketed numbers in the preceding bullet points (e.g., 1, 2, etc.)",
+                        "Tensor is the first processor with the Google security core built in, and it works with the certified, next-gen Titan M2 security chip, which makes Pixel even more resilient to attacks."
+                    ]
+                },
+                {
+                    "key": "Network Type",
+                    "value": [
+                        "GSM"
+                    ]
+                },
+                {
+                    "key": "Parent ASIN",
+                    "value": [
+                        "B09J6WKFL6"
+                    ]
+                },
+                {
+                    "key": "Display Format",
+                    "value": [
+                        "QHD+"
+                    ]
+                },
+                {
+                    "key": "Switching is simple.",
+                    "value": [
+                        "It only takes a few steps to move messages, contacts, and photos from your old cell phone and get going on Pixel.*****"
+                    ]
+                },
+                {
+                    "key": "Wireless Technology",
+                    "value": [
+                        "5G, GSM, 4G LTE"
+                    ]
+                },
+                {
+                    "key": "3G UMTS Frequency",
+                    "value": [
+                        "2100, 1900, 1700, 850, 800, 900, 800"
+                    ]
+                },
+                {
+                    "key": "Performance",
+                    "value": [
+                        "Storage Capacity: 256 GB",
+                        "CPU: Cortex X1 Dual-CoreCortex A76 Dual-CoreEfficiency A55 Quad-Core",
+                        "Memory: 12 GB",
+                        "GPU: 20-Core",
+                        "Operating System: Android 12",
+                        "Processor: Google Tensor"
+                    ]
+                },
+                {
+                    "key": "Other display features",
+                    "value": [
+                        "Wireless"
+                    ]
+                },
+                {
+                    "key": "Date First Available",
+                    "value": [
+                        "October 19, 2021"
+                    ]
+                },
+                {
+                    "key": "2G Band",
+                    "value": [
+                        "850 GSM, 900 GSM, 1800 GSM, 1900 GSM"
+                    ]
+                },
+                {
+                    "key": "Unlocked",
+                    "value": [
+                        "true"
+                    ]
+                },
+                {
+                    "key": "Device interface - primary",
+                    "value": [
+                        "Touchscreen"
+                    ]
+                },
+                {
+                    "key": "White Balance",
+                    "value": [
+                        "Custom"
+                    ]
+                },
+                {
+                    "key": "Batteries",
+                    "value": [
+                        "1 Lithium ion batteries required. (included)"
+                    ]
+                },
+                {
+                    "key": "Carrier Compatibility",
+                    "value": [
+                        "AT&T, Cricket, Google Fi, H2O Wireless, MetroPCS, Mint Mobile, Net10, Simple Mobile, Sprint, T-Mobile, Total Wireless, TracFone, Verizon"
+                    ]
+                },
+                {
+                    "key": "Color Category",
+                    "value": [
+                        "Black"
+                    ]
+                },
+                {
+                    "key": "SIM Card Type",
+                    "value": [
+                        "Nano SIM, Electronic SIM card (e-SIM)"
+                    ]
+                },
+                {
+                    "key": "Field of View (FoV)",
+                    "value": [
+                        "23.5 degrees",
+                        "114 degrees",
+                        "82 degrees",
+                        "94 degrees"
+                    ]
+                },
+                {
+                    "key": "Phone Memory (RAM)",
+                    "value": [
+                        "12 gigabytes"
+                    ]
+                },
+                {
+                    "key": "Device Manufacturer",
+                    "value": [
+                        "Google"
+                    ]
+                },
+                {
+                    "key": "You’re in control of your privacy.",
+                    "value": [
+                        "Transparency is built into your Pixel. You have control over your phone’s mics and cameras."
+                    ]
+                },
+                {
+                    "key": "Water Resistant",
+                    "value": [
+                        "true"
+                    ]
+                },
+                {
+                    "key": "Packaged Quantity",
+                    "value": [
+                        "1"
+                    ]
+                },
+                {
+                    "key": "Focus Adjustment",
+                    "value": [
+                        "Focus free",
+                        "Automatic"
+                    ]
+                },
+                {
+                    "key": "Colour",
+                    "value": [
+                        "Stormy Black"
+                    ]
+                },
+                {
+                    "key": "Internal Memory",
+                    "value": [
+                        "256 gigabytes"
+                    ]
+                },
+                {
+                    "key": "Form Factor",
+                    "value": [
+                        "Touch",
+                        "Smartphone"
+                    ]
+                },
+                {
+                    "key": "Leaf Node Category",
+                    "value": [
+                        "Cell Phones"
+                    ]
+                },
+                {
+                    "key": "Sensor Size",
+                    "value": [
+                        "1/1.31\"",
+                        "1/2\""
+                    ]
+                },
+                {
+                    "key": "Laser Auto Focus",
+                    "value": [
+                        "Yes"
+                    ]
+                },
+                {
+                    "key": "SAR Value",
+                    "value": [
+                        "1.19 W/kg (body), 1.11 W/kg (head)"
+                    ]
+                },
+                {
+                    "key": "SIM Card Qty",
+                    "value": [
+                        "Dual-SIM"
+                    ]
+                },
+                {
+                    "key": "Contrast Ratio",
+                    "value": [
+                        "1000000"
+                    ]
+                },
+                {
+                    "key": "Input Device",
+                    "value": [
+                        "Multi-touch"
+                    ]
+                },
+                {
+                    "key": "Connector Type",
+                    "value": [
+                        "USB Type-C - 24 pin USB-C"
+                    ]
+                },
+                {
+                    "key": "Display / Diagonal Size (metric)",
+                    "value": [
+                        "17 cm"
+                    ]
+                },
+                {
+                    "key": "Screen Size",
+                    "value": [
+                        "6.7 inches"
+                    ]
+                },
+                {
+                    "key": "Miscellaneous / Product Color",
+                    "value": [
+                        "Black"
+                    ]
+                },
+                {
+                    "key": "Manufacturer's Warranty - Parts",
+                    "value": [
+                        "1 year"
+                    ]
+                },
+                {
+                    "key": "Wireless Charging",
+                    "value": [
+                        "Yes",
+                        "true"
+                    ]
+                },
+                {
+                    "key": "Model Family",
+                    "value": [
+                        "Google Pixel 6 Pro"
+                    ]
+                },
+                {
+                    "key": "Manufacturer's Warranty - Labor",
+                    "value": [
+                        "1 year"
+                    ]
+                },
+                {
+                    "key": "Other camera features",
+                    "value": [
+                        "Rear, Front"
+                    ]
+                },
+                {
+                    "key": "Type",
+                    "value": [
+                        "OLED display",
+                        "Google Tensor - with Titan M2 security"
+                    ]
+                },
+                {
+                    "key": "Voice Activated",
+                    "value": [
+                        "true"
+                    ]
+                },
+                {
+                    "key": "Wireless Charging Standard",
+                    "value": [
+                        "Qi"
+                    ]
+                },
+                {
+                    "key": "Mobile Hotspot Capability",
+                    "value": [
+                        "true"
+                    ]
+                },
+                {
+                    "key": "Display",
+                    "value": [
+                        "Size: 6.7\"",
+                        "Display Colors: 16.0 Million",
+                        "Panel Type: OLED",
+                        "Pixel Density: 512 ppi",
+                        "Native Resolution: 3120 x 1440",
+                        "Screen Coating: Gorilla Glass Victus",
+                        "Refresh Rate: 120 Hz (at FHD+ Resolution)",
+                        "Aspect Ratio: 19.5:9"
+                    ]
+                },
+                {
+                    "key": "Dust Resistant",
+                    "value": [
+                        "true"
+                    ]
+                },
+                {
+                    "key": "What's Included",
+                    "value": [
+                        "1 m USB-C to USB-C cable (USB 2.0)",
+                        "SIM tool",
+                        "Quick Switch Adapter",
+                        "Quick Start Guide"
+                    ]
+                },
+                {
+                    "key": "Battery Power Rating",
+                    "value": [
+                        "4905"
+                    ]
+                },
+                {
+                    "key": "Camera System",
+                    "value": [
+                        "Camera System: Rear Wide: 50 MP 1/1.31\" Sensor (1.2 µm Pixels) with a f/1.9 Lens (82° FoV) Ultra Wide: 12 MP Sensor (1.25 µm Pixels) with a f/2.2 Lens (114° FoV) Telephoto: 48 MP 1/2\" Sensor (0.8 µm Pixels) with a f/3.5 Lens (23.5° FoV) Front Wide: 11.1 MP Sensor (1.22 µm Pixels) with a f/2.2 Lens (94° FoV)",
+                        "Computational Photography: Multi-Frame Dynamic Range Enhancement (HDR)Multi-Frame Depth-of-Field Control (Portrait Mode)Multi-Camera Noise Reduction (Night Mode)",
+                        "Focus Type: Rear: Laser Autofocus",
+                        "Video Recording: RearUHD 4K at up to 60 fps 1080p at up to 60 fps (240 fps in Slow-Mo Mode) FrontUHD 4K at up to 30 fps 1080p at up to 30 fps"
+                    ]
+                },
+                {
+                    "key": "Body Color",
+                    "value": [
+                        "Stormy black"
+                    ]
+                },
+                {
+                    "key": "Service & Support",
+                    "value": [
+                        "Limited warranty - 1 year"
+                    ]
+                },
+                {
+                    "key": "5G NR Band",
+                    "value": [
+                        "N1, n2, n3, n5, n7, n8, n20, n28, n38, n41, n66, n71, n77, n78, n257, n258, n260, n261, n40, n25, n12, n48, n30, n14"
+                    ]
+                },
+                {
+                    "key": "Camera Modes",
+                    "value": [
+                        "Panorama, portrait mode, Night Sight, Top Shot, Super Res Zoom, Frequent Faces, Cinematic Pan, Motion Mode, Real Tone, Face Unblur, Magic Eraser, Portrait Light, Motion autofocus, Astrophotography timelapse, slow motion video at 240fps"
+                    ]
+                },
+                {
+                    "key": "Key Points",
+                    "value": [
+                        "Captures 150% more light",
+                        "Designed for daily life",
+                        "The most advanced Pixel Camera ever",
+                        "Get up close with 4x optical zoom",
+                        "Google Tensor: the first custom-built processor",
+                        "The world's most fluent phone",
+                        "Made for optimal performance",
+                        "Most layers of hardware security in any phone",
+                        "Get everyone in the shot",
+                        "Take authentic, accurate portraits",
+                        "Redesigned for powerful performance",
+                        "Making sure you and your stuff are safe",
+                        "Pixel 6 Pro shows you what you need, when you need it",
+                        "Make distractions disappear like magic"
+                    ]
+                },
+                {
+                    "key": "3G UMTS Band",
+                    "value": [
+                        "Band 1, Band 2, Band 4, Band 5, Band 6, Band 8, Band 19"
+                    ]
+                },
+                {
+                    "key": "Hierarchy",
+                    "value": [
+                        "Cell Phones & Accessories/Cell Phones"
+                    ]
+                },
+                {
+                    "key": "Display Type",
+                    "value": [
+                        "OLED"
+                    ]
+                },
+                {
+                    "key": "Technology",
+                    "value": [
+                        "WCDMA (UMTS) / GSM",
+                        "LTPO OLED"
+                    ]
+                },
+                {
+                    "key": "Carrier",
+                    "value": [
+                        "Unlocked"
+                    ]
+                },
+                {
+                    "key": "Sensors",
+                    "value": [
+                        "Accelerometer, ambient light sensor, proximity sensor, barometer, magnetometer, gyro sensor, flicker sensor, spectral sensor",
+                        "Proximity sensor, Ambient light sensor, Accelerometer, Magnetometer"
+                    ]
+                },
+                {
+                    "key": "Mobile Payment Service Supported",
+                    "value": [
+                        "Google Pay"
+                    ]
+                },
+                {
+                    "key": "HDR Mode",
+                    "value": [
+                        "Live HDR+"
+                    ]
+                },
+                {
+                    "key": "Processor / Manufacturer",
+                    "value": [
+                        "Google"
+                    ]
+                },
+                {
+                    "key": "Protection",
+                    "value": [
+                        "Fingerprint-resistant coating, Corning Gorilla Glass Victus (scratch resistant glass)",
+                        "Water-resistant, dust-resistant"
+                    ]
+                },
+                {
+                    "key": "Security Devices",
+                    "value": [
+                        "Fingerprint reader (under display)"
+                    ]
+                },
+                {
+                    "key": "Bluetooth Enabled",
+                    "value": [
+                        "true"
+                    ]
+                },
+                {
+                    "key": "4G LTE Band",
+                    "value": [
+                        "Band 1, Band 2, Band 3, Band 4, Band 5, Band 7, Band 8, Band 12, Band 13, Band 14, Band 17, Band 18, Band 19, Band 20, Band 25, Band 26, Band 28, Band 29, Band 30, Band 32, Band 38, Band 39, Band 40, Band 41, Band 42, Band 46, Band 48, Band 66, Band 71"
+                    ]
+                },
+                {
+                    "key": "Memory Interface",
+                    "value": [
+                        "UFS 3.1"
+                    ]
+                },
+                {
+                    "key": "5G NR Frequency",
+                    "value": [
+                        "FDD 2100, FDD 1900PCS, FDD 1800, FDD 850, FDD 2600, FDD 900, FDD 800, FDD 700APT, TDD TD 2600, TDD TD 2500, FDD AWS-3, FDD 600, TDD TD 3700, TDD TD 3500, TDD 28GHz, TDD 26GHz, TDD 39GHz, TDD 28GHz, TDD 2300, FDD 1900, n12, TDD 3500, FDD 2300, n14"
+                    ]
+                },
+                {
+                    "key": "Touch Screen",
+                    "value": [
+                        "true"
+                    ]
+                },
+                {
+                    "key": "Secure to the core.",
+                    "value": [
+                        "Google Tensor is the first processor with the security core built in, and it works with the next-gen Titan M2TM security chip."
+                    ]
+                },
+                {
+                    "key": "Works With",
+                    "value": [
+                        "Google Assistant"
+                    ]
+                },
+                {
+                    "key": "Sensor Resolution",
+                    "value": [
+                        "11.1 Megapixel",
+                        "48 Megapixel",
+                        "50 Megapixel",
+                        "12 Megapixel"
+                    ]
+                },
+                {
+                    "key": "4G LTE Frequency",
+                    "value": [
+                        "FDD 2100, FDD 1900 PCS, FDD 1800+, FDD 1700 - 2110 AWS, FDD 850, FDD 2600, FDD 900, FDD 700a, FDD 700c, FDD 700 PS, FDD 700b, FDD 800 lower, FDD 800 upper, FDD 800 DD, FDD 1900+, FDD 850+, FDD 700 APT, FDD 700d, FDD 2300 WCS, FDD 1500 L, TDD 2600, TDD 1900, TDD 2300, TDD 2500, TDD 3500, TDD  5150, TDD 3600, FDD 1700 - 2110 AWS-3, FDD 600"
+                    ]
+                },
+                {
+                    "key": "Wireless Charging Standards",
+                    "value": [
+                        "Qi"
+                    ]
+                },
+                {
+                    "key": "Diagonal Size",
+                    "value": [
+                        "6.7\""
+                    ]
+                },
+                {
+                    "key": "Input/Output Connectors",
+                    "value": [
+                        "Speaker: 2",
+                        "SIM Card Slots: 1 x Nano SIM1 x eSIM",
+                        "Ports: 1 x USB Type-C (USB 3.1 / USB 3.2 Gen 1)",
+                        "Media/Memory Card Slot: None"
+                    ]
+                },
+                {
+                    "key": "A powerful new camera system.",
+                    "value": [
+                        "Capture finer details with a 50MP camera - including three pro-level lenses and a telephoto lens with 4x optical zoom."
+                    ]
+                },
+                {
+                    "key": "Service & Support / Type",
+                    "value": [
+                        "1-year warranty"
+                    ]
+                },
+                {
+                    "key": "Product Type",
+                    "value": [
+                        "Smartphone"
+                    ]
+                },
+                {
+                    "key": "Email Capable",
+                    "value": [
+                        "true"
+                    ]
+                },
+                {
+                    "key": "Connectivity technologies",
+                    "value": [
+                        "Bluetooth, Wi-Fi"
+                    ]
+                },
+                {
+                    "key": "Additional Features",
+                    "value": [
+                        "MIMO technology, Three microphones, Noise suppression, Fast Charging, ARCore, Google Cast, dual stereo speakers, 5 years of Security Updates, Trusty (Trusted Execution Environment), Private Compute Core, Android System Intelligence"
+                    ]
+                },
+                {
+                    "key": "Included Accessories",
+                    "value": [
+                        "SIM card removal tool, Quick switch adapter, USB-C to USB-C cable (1 m)"
+                    ]
+                },
+                {
+                    "key": "General",
+                    "value": [
+                        "Biometric Authentication: Fingerprint (Under-Screen)",
+                        "Keyboard: Virtual",
+                        "Dimensions (W x H x D): 3.0 x 6.5 x 0.4\" / 7.6 x 16.5 x 1.0 cm",
+                        "Battery: Internal Lithium-Ion (4905.0 mAh)",
+                        "Sensors: Accelerometer, Ambient Light Sensor, Barometer (Altimeter), Fingerprint, Gyroscope, Magnetometer, Proximity, Touch",
+                        "Fast Charging Technology: USB Power Delivery",
+                        "Wireless Charging: Qi",
+                        "Weight: 7.4 oz / 210 g",
+                        "Water Resistance: Resistant",
+                        "Pointing Device: None",
+                        "IP Rating: IP68"
+                    ]
+                },
+                {
+                    "key": "Designed for daily life.",
+                    "value": [
+                        "The 6.7-inch Smooth Display, up to 120Hz** is made with Corning® Gorilla® Glass Victus,™ the toughest Gorilla Glass yet. Its high refresh rate means smoother, more responsive gaming, scrolling, and moving between apps."
+                    ]
+                },
+                {
+                    "key": "It’s everything a battery should be.",
+                    "value": [
+                        "Pixel’s all-day Adaptive Battery is everything a battery should be. It can last beyond 24 hours, even on 5G.* It learns your favorite apps, so it doesn't waste power on ones you never use."
+                    ]
+                },
+                {
+                    "key": "Front-Facing Camera",
+                    "value": [
+                        "11.1 megapixels"
+                    ]
+                },
+                {
+                    "key": "Header / Brand",
+                    "value": [
+                        "Google"
+                    ]
+                },
+                {
+                    "key": "Data Plan Required",
+                    "value": [
+                        "true"
+                    ]
+                },
+                {
+                    "key": "Run Time Details",
+                    "value": [
+                        "Mixed usage: up to 24 hrs",
+                        "Mixed usage (Extreme Battery Saver): up to 48 hrs"
+                    ]
+                },
+                {
+                    "key": "Refresh Rate",
+                    "value": [
+                        "120 Hz"
+                    ]
+                },
+                {
+                    "key": "Included Components",
+                    "value": [
+                        "Cell Phone, USB Cable"
+                    ]
+                },
+                {
+                    "key": "Manufacturer Model Number",
+                    "value": [
+                        "G8V0U"
+                    ]
+                },
+                {
+                    "key": "Pixel Density",
+                    "value": [
+                        "512 ppi"
+                    ]
+                },
+                {
+                    "key": "Phone Style",
+                    "value": [
+                        "Smartphone"
+                    ]
+                },
+                {
+                    "key": "Processor / Type",
+                    "value": [
+                        "Tensor"
+                    ]
+                },
+                {
+                    "key": "The processor made for Pixel.",
+                    "value": [
+                        "Google Tensor is the first processor designed by Google, custom-made for Pixel with 12GB of RAM. You’ll notice the difference immediately. Pixel runs smoother, apps launch faster, and pages load quicker. And Pixel’s security chip helps protect your private data."
+                    ]
+                },
+                {
+                    "key": "Internal Memory Capacity",
+                    "value": [
+                        "256 GB"
+                    ]
+                },
+                {
+                    "key": "HDR",
+                    "value": [
+                        "Yes"
+                    ]
+                },
+                {
+                    "key": "Processor Model",
+                    "value": [
+                        "Google Tensor"
+                    ]
+                },
+                {
+                    "key": "Features",
+                    "value": [
+                        "Always-on display, Now Playing, Smooth Display (up to 120 Hz), High brightness mode, At a Glance",
+                        "Super Res Zoom with telephoto up to 20x",
+                        "Stereo Recording, Audio zoom, laser detection auto focus (LDAF), Dual Exposure Controls, Octa PD Quad Bayer wide camera, Super Resolution Zoom up to 7x, 4K Timelapse with stabilization, 4K Cinematic Pan video stabilization, 4K Locked video stabilization, 1080p Active video stabilization"
+                    ]
+                },
+                {
+                    "key": "Universal Unlocked",
+                    "value": [
+                        "Compatible with all major U.S. carriers, including Verizon, AT&T, Sprint and T-Mobile. Also compatible with prepaid carriers including Cricket Wireless, MetroPCS, Google Fi, Simple Mobile, Total Wireless, Tracfone, Net10, Mint, and H2O."
+                    ]
+                },
+                {
+                    "key": "Navigation",
+                    "value": [
+                        "GPS, GLONASS, Galileo, QZSS, Dual Band GNSS"
+                    ]
+                },
+                {
+                    "key": "Parent Node Id",
+                    "value": [
+                        "2335752011"
+                    ]
+                },
+                {
+                    "key": "Service Provider",
+                    "value": [
+                        "Not specified"
+                    ]
+                },
+                {
+                    "key": "OS",
+                    "value": [
+                        "Android"
+                    ]
+                },
+                {
+                    "key": "Mobile Broadband Generation",
+                    "value": [
+                        "5G"
+                    ]
+                },
+                {
+                    "key": "Data Transmission",
+                    "value": [
+                        "EDGE, HSDPA, HSPA+, FDD-LTE, TDD-LTE, 5G NR FR1, 5G NR FR2"
+                    ]
+                },
+                {
+                    "key": "Packaging Info",
+                    "value": [
+                        "Box Dimensions (LxWxH): 6.9 x 3 x 1.3\"",
+                        "Package Weight: 0.79 lb"
+                    ]
+                },
+                {
+                    "key": "Maximum Depth Of Water Resistance",
+                    "value": [
+                        "4 feet"
+                    ]
+                },
+                {
+                    "key": "Intelligent Assistant",
+                    "value": [
+                        "Google Assistant"
+                    ]
+                },
+                {
+                    "key": "Supported Digital Video Standards",
+                    "value": [
+                        "H.264 AVC, H.265 HEVC"
+                    ]
+                },
+                {
+                    "key": "Aspect Ratio",
+                    "value": [
+                        "19.5"
+                    ]
+                },
+                {
+                    "key": "Series",
+                    "value": [
+                        "Google Pixel 6 Series"
+                    ]
+                },
+                {
+                    "key": "Body Material",
+                    "value": [
+                        "Corning Gorilla Glass Victus, polished alloy frame"
+                    ]
+                },
+                {
+                    "key": "Video Resolutions",
+                    "value": [
+                        "1920 x 1080 (1080p) at 30 fps",
+                        "1920 x 1080 (1080p) at 30 fps, 1920 x 1080 (1080p) at 60 fps, 3840 x 2160 (4K) at 30 fps, 3840 x 2160 (4K) at 40 fps"
+                    ]
+                },
+                {
+                    "key": "Voice Assistant Built-in",
+                    "value": [
+                        "Google Assistant"
+                    ]
+                },
+                {
+                    "key": "Integrated Camera",
+                    "value": [
+                        "Yes - Front and Back"
+                    ]
+                },
+                {
+                    "key": "Optical Zoom",
+                    "value": [
+                        "4x"
+                    ]
+                },
+                {
+                    "key": "Compliant Standards",
+                    "value": [
+                        "IP68, HEARING AID M3/T3"
+                    ]
+                },
+                {
+                    "key": "Lens Aperture",
+                    "value": [
+                        "F/3.5",
+                        "F/1.85",
+                        "F/2.2"
+                    ]
+                },
+                {
+                    "key": "Built-In GPS",
+                    "value": [
+                        "true"
+                    ]
+                },
+                {
+                    "key": "RAM",
+                    "value": [
+                        "12 GB",
+                        "LPDDR5 SDRAM - 12 GB"
+                    ]
+                }
+            ],
+            "gtins": [
+                "810029931205",
+                "0810029931205"
+            ],
+            "imageURLs": [
+                "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6483/6483638_sd.jpg",
+                "https://www.content.shi.com/products/I48/I4851623.jpg",
+                "https://m.media-amazon.com/images/I/41FZC7-Gh2L.jpg",
+                "https://m.media-amazon.com/images/I/41s8E1qnnYL.jpg",
+                "https://m.media-amazon.com/images/I/51lrQwT7GvL.jpg",
+                "https://m.media-amazon.com/images/I/41nC0LMJQHL.jpg",
+                "https://m.media-amazon.com/images/I/513Nf2I+EmL.jpg",
+                "https://m.media-amazon.com/images/I/41FjvASue3L.jpg",
+                "https://m.media-amazon.com/images/I/81w5pRWxr0L._SX38_SY50_CR003850_BG858585_BR-120_PKdp-play-icon-overlay__.jpg",
+                "https://images-na.ssl-images-amazon.com/images/G/01/x-locale/common/transparent-pixel.gif",
+                "https://m.media-amazon.com/images/I/716n8eAia+L.jpg",
+                "https://c1.neweggimages.com/ProductImage/AEJWS211020297C8.jpg"
+            ],
+            "keys": [
+                "googlepixel6produalsim256gb5gsmartphoneunlockedstormyblack/b09hzggsfr",
+                "810029931205",
+                "googlepixel6produalsim256gb5gsmartphoneunlockedstormyblack/43938208",
+                "0810029931205",
+                "googlepixel6produalsim256gb5gsmartphoneunlockedstormyblack/23b001e00307",
+                "googlepixel6produalsim256gb5gsmartphoneunlockedstormyblack/6483638",
+                "shi.com-43938208",
+                "google/ga02258us"
+            ],
+            "manufacturerNumber": "GA02258-US",
+            "merchants": [
+                {
+                    "address": "420 9th Ave",
+                    "city": "New York",
+                    "country": "US",
+                    "dateSeen": "2023-04-11T00:16:51.522Z",
+                    "name": "B & H Foto & Electronics Corp.",
+                    "phone": "8006066969",
+                    "postalCode": "10001",
+                    "province": "NY"
+                }
+            ],
+            "mostRecentPriceAmount": 649.99,
+            "mostRecentPriceNonSalesAmount": 999,
+            "mostRecentPriceAvailability": "false",
+            "mostRecentPriceCurrency": "USD",
+            "mostRecentPriceColor": "Stormy Black",
+            "mostRecentPriceCondition": "New",
+            "mostRecentPriceIsSale": "true",
+            "mostRecentPriceDomain": "www.bestbuy.com",
+            "mostRecentPriceSourceURL": "https://www.bestbuy.com/site/google-pixel-6-pro-256gb-unlocked-stormy-black/6483638.p?skuId=6483638",
+            "mostRecentPriceDate": "2023-02-27T07:56:37.507Z",
+            "mostRecentPriceFirstDateSeen": "2023-02-10T03:25:30.625Z",
+            "mostRecentPriceByDomain": [
+                {
+                    "amount": 649.99,
+                    "nonSalesAmount": 999,
+                    "availability": "false",
+                    "currency": "USD",
+                    "color": "Stormy Black",
+                    "condition": "New",
+                    "isSale": "true",
+                    "domain": "www.bestbuy.com",
+                    "sourceURL": "https://www.bestbuy.com/site/google-pixel-6-pro-256gb-unlocked-stormy-black/6483638.p?skuId=6483638",
+                    "date": "2023-02-27T07:56:37.507Z",
+                    "firstDateSeen": "2022-12-24T15:09:23.894Z"
+                },
+                {
+                    "amount": 649.99,
+                    "nonSalesAmount": 999,
+                    "availability": "false",
+                    "currency": "USD",
+                    "color": "Stormy Black",
+                    "condition": "New",
+                    "isSale": "true",
+                    "domain": "www.bestbuy.com",
+                    "sourceURL": "https://www.bestbuy.com/site/google-pixel-6-pro-256gb-unlocked-stormy-black/6483638.p?skuId=6483638",
+                    "date": "2023-02-27T07:56:37.507Z",
+                    "firstDateSeen": "2023-02-10T03:25:30.625Z"
+                }
+            ],
+            "name": "Google Pixel 6 Pro Dual-SIM 256GB 5G Smartphone (Unlocked, Stormy Black)",
+            "prices": [
+                {
+                    "amountMax": 1122,
+                    "amountMin": 1122,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-02-02T22:12:13.111Z",
+                        "2022-02-18T06:29:29.475Z",
+                        "2022-01-22T18:11:28.358Z",
+                        "2022-01-03T22:32:03.063Z"
+                    ],
+                    "sourceURLs": [
+                        "https://www.shi.com/products/Productprint.aspx?SHISystemID=SHICommodity&ProductIdentity=43938208"
+                    ]
+                },
+                {
+                    "amountMax": 486.99,
+                    "amountMin": 486.99,
+                    "availability": "false",
+                    "color": "Stormy Black",
+                    "condition": "Fair",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2023-02-03T10:42:14.998Z",
+                        "2023-02-10T03:25:30.625Z",
+                        "2023-01-29T06:46:28.772Z",
+                        "2023-01-27T15:01:06.140Z",
+                        "2023-02-05T00:49:27.460Z",
+                        "2023-01-02T17:49:47.629Z",
+                        "2022-12-24T15:09:23.894Z",
+                        "2023-01-01T02:00:02.366Z",
+                        "2023-02-23T18:19:34.376Z",
+                        "2023-02-19T11:44:54.068Z",
+                        "2023-02-27T07:56:37.507Z",
+                        "2023-02-11T17:11:04.379Z",
+                        "2023-01-30T22:41:11.811Z",
+                        "2023-02-13T11:35:22.796Z",
+                        "2023-01-12T18:28:10.794Z",
+                        "2023-01-22T23:31:47.597Z",
+                        "2022-12-30T05:18:51.891Z",
+                        "2023-01-16T00:43:40.015Z",
+                        "2023-01-04T11:53:50.861Z",
+                        "2022-12-29T02:13:27.136Z",
+                        "2023-01-14T05:41:04.911Z",
+                        "2023-02-02T02:30:03.362Z",
+                        "2023-01-17T16:32:06.533Z",
+                        "2023-01-24T07:51:32.164Z",
+                        "2023-01-26T00:01:00.284Z",
+                        "2023-02-25T04:15:04.283Z",
+                        "2023-01-19T16:37:52.618Z"
+                    ],
+                    "isSale": "false",
+                    "sourceURLs": [
+                        "https://www.bestbuy.com/site/google-pixel-6-pro-256gb-unlocked-stormy-black/6483638.p?skuId=6483638"
+                    ]
+                },
+                {
+                    "amountMax": 584.99,
+                    "amountMin": 584.99,
+                    "availability": "true",
+                    "color": "Stormy Black",
+                    "condition": "Refurbished",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-12-29T02:13:27.136Z",
+                        "2023-01-22T23:31:47.597Z",
+                        "2022-12-30T05:18:51.891Z",
+                        "2022-12-24T15:09:23.894Z"
+                    ],
+                    "isSale": "false",
+                    "sourceURLs": [
+                        "https://www.bestbuy.com/site/google-pixel-6-pro-256gb-unlocked-stormy-black/6483638.p?skuId=6483638"
+                    ]
+                },
+                {
+                    "amountMax": 506.99,
+                    "amountMin": 506.99,
+                    "availability": "false",
+                    "color": "Stormy Black",
+                    "condition": "Satisfactory",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2023-02-03T10:42:14.998Z",
+                        "2023-02-10T03:25:30.625Z",
+                        "2023-01-29T06:46:28.772Z",
+                        "2023-01-27T15:01:06.140Z",
+                        "2023-02-05T00:49:27.460Z",
+                        "2023-01-02T17:49:47.629Z",
+                        "2022-12-24T15:09:23.894Z",
+                        "2023-01-01T02:00:02.366Z",
+                        "2023-02-23T18:19:34.376Z",
+                        "2023-02-19T11:44:54.068Z",
+                        "2023-02-27T07:56:37.507Z",
+                        "2023-02-11T17:11:04.379Z",
+                        "2023-01-30T22:41:11.811Z",
+                        "2023-02-13T11:35:22.796Z",
+                        "2023-01-12T18:28:10.794Z",
+                        "2023-01-22T23:31:47.597Z",
+                        "2022-12-30T05:18:51.891Z",
+                        "2023-01-16T00:43:40.015Z",
+                        "2023-01-04T11:53:50.861Z",
+                        "2022-12-29T02:13:27.136Z",
+                        "2023-01-14T05:41:04.911Z",
+                        "2023-02-02T02:30:03.362Z",
+                        "2023-01-17T16:32:06.533Z",
+                        "2023-01-24T07:51:32.164Z",
+                        "2023-01-26T00:01:00.284Z",
+                        "2023-02-25T04:15:04.283Z",
+                        "2023-01-19T16:37:52.618Z"
+                    ],
+                    "isSale": "false",
+                    "sourceURLs": [
+                        "https://www.bestbuy.com/site/google-pixel-6-pro-256gb-unlocked-stormy-black/6483638.p?skuId=6483638"
+                    ]
+                },
+                {
+                    "amountMax": 1174,
+                    "amountMin": 1174,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-03-21T09:50:28.566Z",
+                        "2022-04-09T01:54:15.420Z",
+                        "2022-03-13T01:21:48.057Z",
+                        "2022-03-24T19:18:00.259Z"
+                    ],
+                    "sourceURLs": [
+                        "https://www.shi.com/products/Productprint.aspx?SHISystemID=SHICommodity&ProductIdentity=43938208"
+                    ]
+                },
+                {
+                    "amountMax": 1017.95,
+                    "amountMin": 1017.95,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-10-29T04:18:00.000Z"
+                    ],
+                    "sourceURLs": [
+                        "https://www.newegg.com/p/23B-001E-00307"
+                    ]
+                },
+                {
+                    "amountMax": 649.99,
+                    "amountMin": 649.99,
+                    "availability": "false",
+                    "color": "Stormy Black",
+                    "condition": "New",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2023-02-10T03:25:30.625Z",
+                        "2023-02-23T18:19:34.376Z",
+                        "2023-02-19T11:44:54.068Z",
+                        "2023-02-27T07:56:37.507Z",
+                        "2023-02-11T17:11:04.379Z",
+                        "2023-02-13T11:35:22.796Z",
+                        "2023-02-25T04:15:04.283Z"
+                    ],
+                    "isSale": "true",
+                    "offer": "35% off",
+                    "sourceURLs": [
+                        "https://www.bestbuy.com/site/google-pixel-6-pro-256gb-unlocked-stormy-black/6483638.p?skuId=6483638"
+                    ]
+                },
+                {
+                    "amountMax": 1135,
+                    "amountMin": 1135,
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-03-04T17:34:21.803Z"
+                    ],
+                    "sourceURLs": [
+                        "https://www.shi.com/products/Productprint.aspx?SHISystemID=SHICommodity&ProductIdentity=43938208"
+                    ]
+                },
+                {
+                    "amountMax": 999,
+                    "amountMin": 999,
+                    "condition": "New",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2022-06-03T11:29:00.000Z",
+                        "2022-08-26T22:25:00.000Z",
+                        "2022-04-18T14:49:00.000Z",
+                        "2022-09-09T14:54:00.000Z",
+                        "2021-12-18T13:57:00.000Z",
+                        "2022-07-16T04:10:00.000Z",
+                        "2021-11-07T01:43:00.000Z",
+                        "2021-11-15T16:50:00.000Z",
+                        "2023-02-08T07:53:00.000Z",
+                        "2023-04-11T00:17:00.000Z",
+                        "2022-10-23T14:07:00.000Z",
+                        "2022-05-12T20:48:00.000Z",
+                        "2023-04-03T01:20:00.000Z",
+                        "2022-08-14T10:01:00.000Z",
+                        "2022-10-17T16:43:00.000Z",
+                        "2022-12-03T16:26:00.000Z",
+                        "2022-09-27T23:20:00.000Z",
+                        "2022-01-19T15:09:00.000Z",
+                        "2023-03-12T16:06:00.000Z",
+                        "2023-01-17T14:05:00.000Z"
+                    ],
+                    "merchant": "bhphotovideo.com",
+                    "shipping": "Free Expedited Shipping",
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ]
+                },
+                {
+                    "amountMax": 349.01,
+                    "amountMin": 349.01,
+                    "availability": "false",
+                    "color": "Stormy Black",
+                    "condition": "New",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2023-02-03T10:42:14.998Z",
+                        "2023-01-16T00:43:40.015Z",
+                        "2023-01-04T11:53:50.861Z",
+                        "2023-01-29T06:46:28.772Z",
+                        "2023-01-27T15:01:06.140Z",
+                        "2022-12-29T02:13:27.136Z",
+                        "2023-02-05T00:49:27.460Z",
+                        "2023-01-02T17:49:47.629Z",
+                        "2023-01-14T05:41:04.911Z",
+                        "2022-12-24T15:09:23.894Z",
+                        "2023-02-02T02:30:03.362Z",
+                        "2023-01-17T16:32:06.533Z",
+                        "2023-01-01T02:00:02.366Z",
+                        "2023-01-30T22:41:11.811Z",
+                        "2023-01-24T07:51:32.164Z",
+                        "2023-01-26T00:01:00.284Z",
+                        "2023-01-12T18:28:10.794Z",
+                        "2023-01-22T23:31:47.597Z",
+                        "2022-12-30T05:18:51.891Z",
+                        "2023-01-19T16:37:52.618Z"
+                    ],
+                    "isSale": "true",
+                    "offer": "46% off",
+                    "sourceURLs": [
+                        "https://www.bestbuy.com/site/google-pixel-6-pro-256gb-unlocked-stormy-black/6483638.p?skuId=6483638"
+                    ]
+                },
+                {
+                    "amountMax": 538.99,
+                    "amountMin": 538.99,
+                    "availability": "true",
+                    "color": "Stormy Black",
+                    "condition": "Excellent",
+                    "currency": "USD",
+                    "dateSeen": [
+                        "2023-02-03T10:42:14.998Z",
+                        "2023-02-10T03:25:30.625Z",
+                        "2023-01-29T06:46:28.772Z",
+                        "2023-01-27T15:01:06.140Z",
+                        "2023-02-05T00:49:27.460Z",
+                        "2023-01-02T17:49:47.629Z",
+                        "2022-12-24T15:09:23.894Z",
+                        "2023-01-01T02:00:02.366Z",
+                        "2023-02-23T18:19:34.376Z",
+                        "2023-02-19T11:44:54.068Z",
+                        "2023-02-27T07:56:37.507Z",
+                        "2023-02-11T17:11:04.379Z",
+                        "2023-01-30T22:41:11.811Z",
+                        "2023-02-13T11:35:22.796Z",
+                        "2023-01-12T18:28:10.794Z",
+                        "2023-01-22T23:31:47.597Z",
+                        "2022-12-30T05:18:51.891Z",
+                        "2023-01-16T00:43:40.015Z",
+                        "2023-01-04T11:53:50.861Z",
+                        "2022-12-29T02:13:27.136Z",
+                        "2023-01-14T05:41:04.911Z",
+                        "2023-02-02T02:30:03.362Z",
+                        "2023-01-17T16:32:06.533Z",
+                        "2023-01-24T07:51:32.164Z",
+                        "2023-01-26T00:01:00.284Z",
+                        "2023-02-25T04:15:04.283Z",
+                        "2023-01-19T16:37:52.618Z"
+                    ],
+                    "isSale": "false",
+                    "sourceURLs": [
+                        "https://www.bestbuy.com/site/google-pixel-6-pro-256gb-unlocked-stormy-black/6483638.p?skuId=6483638"
+                    ]
+                }
+            ],
+            "primaryImageURLs": [
+                "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6483/6483638_sd.jpg",
+                "https://www.content.shi.com/products/I48/I4851623.jpg",
+                "https://m.media-amazon.com/images/I/716n8eAia+L.jpg"
+            ],
+            "quantities": [
+                {
+                    "value": 2,
+                    "sourceURLs": [
+                        "https://www.amazon.com/dp/B09HZGGSFR?productDetails&th=1&psc=1"
+                    ],
+                    "dateSeen": [
+                        "2022-02-02T12:45:00.000Z"
+                    ]
+                },
+                {
+                    "value": 4,
+                    "sourceURLs": [
+                        "https://www.amazon.com/dp/B09HZGGSFR?productDetails&th=1&psc=1"
+                    ],
+                    "dateSeen": [
+                        "2022-01-24T23:56:00.000Z",
+                        "2022-01-24T15:32:00.000Z",
+                        "2022-01-23T15:39:00.000Z",
+                        "2022-01-23T14:28:00.000Z",
+                        "2022-01-23T05:45:00.000Z",
+                        "2022-01-24T21:36:00.000Z",
+                        "2022-01-25T05:40:00.000Z",
+                        "2022-01-25T20:08:00.000Z",
+                        "2022-01-24T16:47:00.000Z",
+                        "2022-01-24T10:36:00.000Z",
+                        "2022-01-25T16:57:00.000Z",
+                        "2022-01-24T18:53:00.000Z",
+                        "2022-01-24T04:19:00.000Z",
+                        "2022-01-24T07:21:00.000Z",
+                        "2022-01-22T21:21:00.000Z",
+                        "2022-01-25T11:55:00.000Z",
+                        "2022-01-23T14:17:00.000Z",
+                        "2022-01-23T22:02:00.000Z",
+                        "2022-01-24T10:04:00.000Z",
+                        "2022-01-23T02:53:00.000Z"
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "date": "2022-01-17T00:00:00.000Z",
+                    "dateSeen": "2022-01-19T15:09:00.000Z",
+                    "rating": 3,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "Love the Pixel 6 pro except for the under screen fingerprint reader. Instead of accurate and near instant fingerprint authentication when the reader was located on the rear of previous Pixels, the new underscreen implementation feels like Google just stuck it on to be like some of their competitors. Instead of giving their customers a streamlined experience and use tech that works, they decided to try to fix what wasn't broken. The result is a subpar user experience where fingerprint authentication works maybe 70% of the time, and when it does work, it takes almost as long as it does to simply type in an access code.",
+                    "title": "Slow Underscreen Fingerprint reader",
+                    "username": "Anonymous"
+                },
+                {
+                    "date": "2021-11-12T00:00:00.000Z",
+                    "dateSeen": "2021-11-15T16:50:00.000Z",
+                    "rating": 5,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "Flagship Google phone with all the bells and whistles; reliant and competent shipping by B&H incl. all the perks you would get if you bought from official store!",
+                    "title": "Great phone overall",
+                    "username": "Alessandro"
+                },
+                {
+                    "date": "2022-01-17T00:00:00.000Z",
+                    "dateSeen": "2022-01-19T15:09:00.000Z",
+                    "rating": 2,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "The Pixel 6 pro is most definitely an improvement over the pixel. 5. But it still has a lot of bugs. And since buying my pixel 6 not even a month ago. I'm already on my third phone due to an overheating issue. A screen flickering issue and connectivity loss so far on my third device. I'm not really experiencing much issues but Wi-Fi dropping and the phone is still getting pretty hot. I came from an iPhone 12 pro Max which was a lot more solid than the pixel but I'm stuck with this phone now.",
+                    "title": "Overall rating",
+                    "username": "Josh"
+                },
+                {
+                    "date": "2022-03-25T00:00:00.000Z",
+                    "dateSeen": "2022-04-18T14:49:00.000Z",
+                    "rating": 2,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "I was super excited to upgrade to Pixel 6 from Pixel 2. I was most excited about the camera, which I use for my business. I figured that the new pixel would have an even better camera experience for many reasons. However, I was super disappointed with the focusing on the new Pixel 6. Many of my photos were out of focus with very, very poor depth of field. My old pixel was never out of focus and had very deep depth of field. What a huge disappointment!! The rest of the features don't seem like much of an improvement either. I wish I would have gone with a different camera.",
+                    "title": "Upgrade from Pixel 2"
+                },
+                {
+                    "date": "2022-01-17T00:00:00.000Z",
+                    "dateSeen": "2022-01-19T15:09:00.000Z",
+                    "rating": 2,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "Unfortunately, I’ve switched back to iOS on iPhone. I really wanted to love the Pixel 6 Pro, but it’s bugs and updates became overwhelming. The potential of the phone is most definitely there and during the few hours the phone operated without hiccups, it’s almost masterful. It’s so so unfortunate that the performance consistency isn’t there.",
+                    "title": "Disappointed",
+                    "username": "MWThree"
+                },
+                {
+                    "date": "2022-01-17T00:00:00.000Z",
+                    "dateSeen": "2022-01-19T15:09:00.000Z",
+                    "rating": 3,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "Really nothing I can write here that I'm sure many haven't already said. Why have a beta version when without fail there is always issues with the \"final\" version ? Especially this many issues. Updates are the same. Issued/problems. Last issue with Android 11 update I couldn't use Bluetooth for almost a month. Really ? That's pretty basic. It gets really old. Spend all of this money and get a phone with so many issues. This is my third pixel. If it wasn't for Bixby, I would buy a Samsung phone. I came so close to buying an iPhone, for the first time ever. It may happen next time though.",
+                    "title": "My review",
+                    "username": "Fred"
+                },
+                {
+                    "date": "2021-11-12T00:00:00.000Z",
+                    "dateSeen": "2021-11-15T16:50:00.000Z",
+                    "rating": 5,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "Best Google Phone has ever made. I can feel the quality when holding the phone in hand. Performant even better with Android 12. I jumped from Pixel 3 XL to this one. It is all worthy for all the money and waiting time.",
+                    "title": "I love it",
+                    "username": "Quoc Phu"
+                },
+                {
+                    "date": "2022-03-11T00:00:00.000Z",
+                    "dateSeen": "2022-04-18T14:49:00.000Z",
+                    "rating": 2,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "The phone does not consistently connect to any of my 3 vehicles. It was properly paired by the salesperson at the store however, it most often won't connect and I have to re-pair it. The store sales person said the last one he sold was brought back for the same reason.",
+                    "title": "I am returning this phone..."
+                },
+                {
+                    "date": "2022-03-14T00:00:00.000Z",
+                    "dateSeen": "2022-04-18T14:49:00.000Z",
+                    "rating": 5,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "Best mobile I ever had. Keep it up Google! Great performance in sol apps. Excellent job Google!",
+                    "title": "Google is God or God is Google!"
+                },
+                {
+                    "date": "2021-11-12T00:00:00.000Z",
+                    "dateSeen": "2021-11-15T16:50:00.000Z",
+                    "rating": 5,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "So far, I'm very impressed with the speed and screen. Just getting used to Android 12 so, I'll review later with more detail.",
+                    "title": "Great features",
+                    "username": "Douglas"
+                },
+                {
+                    "date": "2022-01-17T00:00:00.000Z",
+                    "dateSeen": "2022-01-19T15:09:00.000Z",
+                    "rating": 5,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "I love it!! Flawless!! I am so happy with it! It works great, fast, great battery!",
+                    "title": "Outstanding",
+                    "username": "Chris"
+                },
+                {
+                    "date": "2021-11-11T00:00:00.000Z",
+                    "dateSeen": "2021-11-15T16:50:00.000Z",
+                    "rating": 5,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "I had the first 3 Pixel phones and then went to iPhone and then to OnePlus 8 pro. I'm now back to Pixel, and I couldn't be happier. The phone is great all around. The color could be better, but it hides in a case anyways. I would recommend this to anyone in the Android ecosystem.",
+                    "title": "Loving the phone",
+                    "username": "Tyler"
+                },
+                {
+                    "date": "2022-03-06T00:00:00.000Z",
+                    "dateSeen": "2022-04-18T14:49:00.000Z",
+                    "rating": 3,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "Low reception and speed,, not 2 happy.. should of went for Apple instead of loyalty",
+                    "title": "Owner"
+                },
+                {
+                    "date": "2022-04-11T00:00:00.000Z",
+                    "dateSeen": "2022-04-18T14:49:00.000Z",
+                    "rating": 5,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "[This review was collected as part of a promotion.] I love the phone. Being a camera buff, the first thing I look for in a phone is its camera quality and Pixel 6 Pros camera is absolutely outstanding. The overall features in the phone are decent although some of it can be improved with a software update.",
+                    "title": "Great phone. Amazing features"
+                },
+                {
+                    "date": "2021-11-12T00:00:00.000Z",
+                    "dateSeen": "2021-11-15T16:50:00.000Z",
+                    "rating": 5,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "Google has finally delivered a flagship Android smart phone for its Pixel line. Pros: + Excellent performance + 120Hz + All day battery life + Excellent camera + Unique Pixel only features + Excellent value Cons: - Slow and finicky on display finger print scanner - Dim display for outdoor use - Very slippery and requires case",
+                    "title": "Great Android flagship with excellent value",
+                    "username": "Kenneth"
+                },
+                {
+                    "date": "2022-03-04T00:00:00.000Z",
+                    "dateSeen": "2022-04-18T14:49:00.000Z",
+                    "rating": 5,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "[This review was collected as part of a promotion.] I was skeptical of this phone at first, since I’ve been an iPhone user for the last few years. But I am so happy I decided to try this out because I AM OBSESSED! This phone is gorgeous for starters, the way it looks, feels in your hand, and the way the screens and system is set up. My favorite part about it all is the PHOTO QUALITY, it’s unbelievable!! The pictures are so crystal clear and completely unmatched compared to the many different brands I’ve used over the years, it’s even better than my actual camera I carry on trips. The phone runs fast, and the fingerprint security is a very nice touch. I can’t wait to see what phones this company comes out with in the future!! Super happy with my switch!",
+                    "title": "Unmatched photo quality"
+                },
+                {
+                    "date": "2022-01-17T00:00:00.000Z",
+                    "dateSeen": "2022-01-19T15:09:00.000Z",
+                    "rating": 5,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "Everything improved over my 4xl. Same amazing phone, photos, and seamless use of Google but better. Keep making awesome products Google big thumbs up!!",
+                    "title": "Awesome 6pro",
+                    "username": "Anonymous"
+                },
+                {
+                    "date": "2022-01-17T00:00:00.000Z",
+                    "dateSeen": "2022-01-19T15:09:00.000Z",
+                    "rating": 5,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "Fast response, loud and vibrant speakers on phone, beautiful pictures, this is my first Google pixel phone. I got the the pixel pro version. I like the bigger screen and It's not to big though. It's a bit on the heavy side but not annoyingly noticable in my pocket. The screen curves a bit on the side but not to an extreme or anything like that. The battery uses up like any normal phone. I wouldn't say the battery life is great but it's not bad either. You can use battery saver with different options to optimize your use. Great for blocking spam calls. It has the Google assistant to monitor and screen calls and even answer your phone. I can honestly this phone is fun and exciting to pick up after my old phone. Phones should be fun and make life easier. This one does the job!",
+                    "title": "Love this phone !",
+                    "username": "Cody J"
+                },
+                {
+                    "date": "2022-03-23T00:00:00.000Z",
+                    "dateSeen": "2022-04-18T14:49:00.000Z",
+                    "rating": 2,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "The camera is supposed to be the highlight of this phone. My phone freezes and restarts itself when I try to take pictures. I've given up trying to take pictures.",
+                    "title": "Google pixel 6 pro"
+                },
+                {
+                    "date": "2022-01-17T00:00:00.000Z",
+                    "dateSeen": "2022-01-19T15:09:00.000Z",
+                    "rating": 4,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "Traded in my Samsung S21 5G. The design of the phone and camera is ok, as I am still learning Pixel Pro 6. I have two apps (that are important to me) not working and finding help has been difficult. The waze app with Android Auto now shows up blurry and missing a lot of the functions such as other users etc. The GPS speed is no longer present on the screen. The other issue I have is the Quicken app. I can no longer save a transaction on the app and must rely on cloud sync through my PC to update the app. Neither Quicken or waze support can offer any help. But other than that the phone is fast and functional. I am thinking maybe I should have upgraded to the Samsung S22 Plus.",
+                    "title": "Slightly disappointed",
+                    "username": "lbjailer"
+                },
+                {
+                    "date": "2022-03-03T00:00:00.000Z",
+                    "dateSeen": "2022-04-18T14:49:00.000Z",
+                    "rating": 2,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "It's ok, nothing to write home about. The Samsung ultra 22 is slightly better.",
+                    "title": "Pixel pro"
+                },
+                {
+                    "date": "2021-11-11T00:00:00.000Z",
+                    "dateSeen": "2021-11-15T16:50:00.000Z",
+                    "rating": 5,
+                    "sourceURLs": [
+                        "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html"
+                    ],
+                    "text": "Best device and best purchase ever. First of all, I would like to thank B&H for fastest delivery of the smartphone and Pixel Buds headphones as a gift. I really liked the store. That's why I'm going to buy something else later. Pixel 6 Pro is a really good smartphone. So I think many of you already watched reviews about this device. It has problems, but not so big. Even so my device from B&H doesn't have any troubles with screen and etc. Everything is fine. If you still looking for the best android smartphone, please check Google Pixel 6 Series. In my opinion they are both amazing and beautiful devices.",
+                    "title": "Amazing Google Pixel 6 Pro!",
+                    "username": "Nikita"
+                }
+            ],
+            "sizes": [
+                "256 GB"
+            ],
+            "skus": [
+                {
+                    "value": "43938208",
+                    "sourceURLs": [
+                        "https://www.shi.com/products/Productprint.aspx?SHISystemID=SHICommodity&ProductIdentity=43938208"
+                    ]
+                },
+                {
+                    "value": "6483638",
+                    "sourceURLs": [
+                        "https://www.bestbuy.com/site/google-pixel-6-pro-256gb-unlocked-stormy-black/6483638.p?skuId=6483638"
+                    ]
+                },
+                {
+                    "value": "23B-001E-00307",
+                    "sourceURLs": [
+                        "https://www.newegg.com/p/23B-001E-00307"
+                    ]
+                }
+            ],
+            "sourceURLs": [
+                "https://www.newegg.com/p/23B-001E-00307",
+                "https://www.bestbuy.com/site/google-pixel-6-pro-256gb-unlocked-stormy-black/6483638.p?skuId=6483638",
+                "https://www.amazon.com/dp/B09HZGGSFR?productDetails&th=1&psc=1",
+                "https://www.bhphotovideo.com/c/product/1665069-REG/google_ga02258_us_pixel_6_pro_dual_sim.html",
+                "https://www.shi.com/products/Productprint.aspx?SHISystemID=SHICommodity&ProductIdentity=43938208"
+            ],
+            "upc": [
+                "810029931205"
+            ],
+            "upca": "810029931205",
+            "websiteIDs": [
+                "shi.com-43938208"
+            ],
+            "weight": "7.41 oz",
+            "id": "Z3Zhm3wBYEtaI8J01QID"
+        }
+```
+
+Here is a link to download a csv format of 10 records the same query:
+
+[smart_phone_10_records.csv](https://drive.google.com/file/d/1Y0u2lnnTc-ROQnZblhn-zJGJsKuj4_H6/view?usp=share_link)

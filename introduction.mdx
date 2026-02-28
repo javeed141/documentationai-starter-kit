@@ -1,0 +1,126 @@
+---
+title: Welcome to Java Documentation
+description: An overview of Java, a platform for organizing and managing your project documentation, including key features and quick navigation to get started.
+---
+
+<Callout kind="info">
+  **Starter Kit Template**
+
+  This documentation was generated as a starter kit template based on your brand. Please review and customize the content to accurately reflect your product's features, APIs, and capabilities.
+</Callout>
+
+## What is Java?
+
+Java provides a centralized space for you to organize, manage, and collaborate on all your project documentation. You can create structured docs, embed code examples, and maintain version history effortlessly. Whether you're documenting APIs, user guides, or internal wikis, Java scales with your team's needs.
+
+This platform supports markdown-based editing with live previews, making it easy to author content quickly. Integrate it with your existing tools like GitHub or Jira for seamless workflows.
+
+## Key Features
+
+<Columns cols={3}>
+  <Card title="Organized Spaces" icon="layers" href="#organization">
+    Create unlimited projects and folders to keep your documentation structured and accessible.
+  </Card>
+  <Card title="Real-time Collaboration" icon="users" href="#collaboration">
+    Invite team members, @mention contributors, and resolve changes with inline comments.
+  </Card>
+  <Card title="Advanced Search" icon="search" href="#search">
+    Full-text search across all docs with syntax highlighting for code snippets.
+  </Card>
+  <Card title="Version History" icon="git-branch" href="#versions" horizontal>
+    Track changes, revert to previous versions, and compare diffs side-by-side.
+  </Card>
+</Columns>
+
+## Quick Start Overview
+
+Get up and running in minutes with these essential steps.
+
+<Steps>
+  <Step title="Create Account" icon="user-plus">
+    Sign up at `https://app.java-docs.com/register` using your email or GitHub account.
+  </Step>
+  <Step title="New Project" icon="plus">
+    Click **New Project** and name it (e.g., "My API Docs"). Add a description for context.
+  </Step>
+  <Step title="Add First Document" icon="file-text">
+    Create a new MDX file and start editing. Use the live preview to see changes instantly.
+
+````mdx
+# My First Doc
+
+Welcome to your documentation!
+````
+
+  </Step>
+  <Step title="Publish & Share" icon="share-2">
+    Hit **Publish** to generate a shareable link. Embed it in your README or site.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Pro tip: Use the `/invite` command in your project settings to add collaborators immediately.
+</Callout>
+
+## How to Navigate This Documentation
+
+Use the sidebar for quick access to core sections. Here's a breakdown by topic:
+
+<Tabs>
+  <Tab title="Beginners" icon="zap">
+    Start with [Quickstart](/quickstart) for setup, then explore [Authentication](/authentication).
+  </Tab>
+  <Tab title="Advanced" icon="settings">
+    Dive into configuration options and best practices for large teams.
+  </Tab>
+  <Tab title="Reference" icon="book-open">
+    Check the [Changelog](/changelog) for updates and API details.
+  </Tab>
+</Tabs>
+
+## Best Practices for Documentation Management
+
+Follow these guidelines to maintain high-quality docs.
+
+<ExpandableGroup>
+  <Expandable title="Use Consistent Structure" default-open="true">
+    Organize pages with clear H2 headings, tables for comparisons, and code blocks for examples. Always start sections with H2 (`##`) after frontmatter.
+  </Expandable>
+  <Expandable title="Embed Interactive Examples">
+    Leverage `<CodeGroup>` for multi-language support:
+
+<CodeGroup tabs="JavaScript,Python">
+```javascript
+// Fetch project data
+const response = await fetch('https://api.java-docs.com/projects');
+const projects = await response.json();
+console.log(projects);
+```
+```python
+# Fetch project data
+import requests
+response = requests.get('https://api.java-docs.com/projects')
+projects = response.json()
+print(projects)
+```
+</CodeGroup>
+
+  </Expandable>
+  <Expandable title="Version Control Integration">
+    Connect your repo to auto-sync changes. Use branches for draft docs.
+  </Expandable>
+</ExpandableGroup>
+
+## Next Steps
+
+<Columns cols={2}>
+  <Card title="Quickstart Guide" icon="rocket" href="/quickstart">
+    Complete your first project setup.
+  </Card>
+  <Card title="Authentication" icon="lock" href="/authentication">
+    Secure your docs with API keys.
+  </Card>
+  <Card title="Changelog" icon="git-commit" href="/changelog">
+    See what's new.
+  </Card>
+</Columns>

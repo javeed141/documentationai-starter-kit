@@ -1,0 +1,35 @@
+---
+title: 2022.12 - Data Release Log
+---
+
+## Overview
+
+New Business Source, New Property Sources focused on Commercial Canadian and Us markets, Enrichment Improvements, Product Name Normalization, and End of the year assessments on upcoming projects.
+
+### Record Counts
+
+* Business - 126,753,330
+* People - 2,996,031
+* Product - 489,640,662
+* Property - 171,205,068
+
+### Property Source Updates
+
+Added CBRE.ca and CBRE.com as sources. Focused on commercial properties. Over 20000 new records added.
+
+### Business Source Updates
+
+allmenus.com added a new business source focused on delivery and fast service restaurants.
+Added Amazon.co.uk and Amazon.ca
+
+### Product Data Updates
+
+*New top-level product field added - canonicalBrand; This field is the normalized brand names from the scraped source data.* brand - now changed to be the scraped text of the product brand name.
+
+##Datafiniti API
+*Improved our enrichment API across all data types search functionality. Resulting in a 4.5 times increase in speed of starting and finishing an enrichment call.* We have added new logic to help find your product brands easier. Adjusting product brand names upon importing and validation.
+
+### Fixes
+
+* Cleaned about roughly 100,000 property records that were not normalized correctly. This was cause duplicate/confusion in searches for property data.
+* Fixed logic on crawler for zoopla.co.uk. Issue found in html where we were failing to scrape data from the site.

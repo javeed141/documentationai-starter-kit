@@ -1,0 +1,36 @@
+---
+title: 2022.11 - Data Release Log
+---
+
+## Overview
+
+We have added the capability to obtain a realtor/property agent’s license number. (when obtainable from the source). New Business Source, Country & Province Dropdown Filters, and Data Enrichment Feedback
+
+### Record Counts
+
+* Business - 126,081,156
+* People - 2,996,031
+* Product - 478,594,613
+* Property - 171,205,068
+
+### Property Source Updates
+
+Updated redfin.com and compass.com on crawl pattern to increase coverage of broker's data.
+
+### Product Source Updates
+
+allmenus.com added a new business source focused on delivery and fast service restaurants.
+Added Amazon.co.uk and Amazon.ca
+
+##Datafiniti Portal Updates
+Country & Province Dropdown Filters We have added a new province dropdown based on the country selected in the Datafiniti Portal Filter Builder.
+
+##Datafiniti API
+LicenseNumber has been added the capability to obtain a realtor/property agent’s license number. (when obtainable from the source).
+
+After launching our data enrichment API endpoint, we want to hear back from all of you. This will allow you to take your ideas and consolidate to help improve your ability to enrich your data. If you'd like send you ideas, you can email our team info@datafiniti.co or reply to this email
+
+### Fixes
+
+* Fixed minor bug with views not showing for bronze users.
+* We have identified and patched an issue with property records street not being abbreviated. This was identified Oct 18th and patched Oct 21st. As part of this patch we have optimized logic use to normalize and merge based on existing records being found from our data scraper.

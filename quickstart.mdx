@@ -1,0 +1,131 @@
+---
+title: Getting Started with Java
+description: Set up your Java account and create your first documentation space in just a few minutes to begin organizing your project docs.
+---
+
+## Prerequisites
+
+Before you BEGG, ensure you have the following:
+
+<Callout kind="info">
+- A modern web browser like Chrome, Firefox, or Safari
+- An email address for account verification
+- Optional: Existing documentation files in Markdown or GitHub repo for import
+</Callout>
+
+## Create Your Java Account
+
+Sign up for Java in under a minute to access your documentation workspace.
+
+<Steps>
+  <Step title="Visit the Java Dashboard" icon="monitor">
+    Navigate to [https://dashboard.java.com](https://dashboard.java.com) and click **Sign Up**.
+  </Step>
+  <Step title="Enter Your Details" icon="user">
+    Provide your email, create a password, and verify your account via the confirmation email.
+  </Step>
+  <Step title="Complete Onboarding" icon="check-circle">
+    Select your workspace type (personal or team) and agree to the terms.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Use a strong password and enable two-factor authentication during setup for added security.
+</Callout>
+
+## Set Up Your First Documentation Space
+
+Once logged in, create a space to organize your project docs.
+
+<Steps>
+  <Step title="Create New Space" icon="folder-plus">
+    From the dashboard, click **New Space** and name it (e.g., "My Project Docs").
+  </Step>
+  <Step title="Configure Settings" icon="settings">
+    Set visibility (public, private, or workspace) and add a description like "Central hub for API and user guides."
+  </Step>
+  <Step title="Add Team Members" icon="users">
+    Invite collaborators by email if working in a team environment.
+  </Step>
+</Steps>
+
+## Import Existing Documentation
+
+Bring in your current docs seamlessly with these methods.
+
+<Tabs>
+  <Tab title="GitHub Repo" icon="github">
+    Connect your GitHub account and select a repo. Java auto-imports Markdown files into pages.
+
+    <CodeGroup tabs="CLI,UI">
+    ````bash
+    java-cli import --repo owner/my-docs-repo --space "My Project Docs"
+    ````
+    ````bash
+    # Or via dashboard UI: Paste GitHub URL directly
+    ````
+    </CodeGroup>
+  </Tab>
+  <Tab title="Markdown Files" icon="file-text">
+    Upload ZIP of `.md` files or drag-and-drop individual files into the space editor.
+  </Tab>
+  <Tab title="Google Docs" icon="file">
+    Export as Markdown from Google Docs and import via the **Import** button.
+  </Tab>
+</Tabs>
+
+## Basic Workspace Navigation
+
+Familiarize yourself with key areas:
+
+| Area | Description | Icon |
+|------|-------------|------|
+| Sidebar | Access spaces, pages, and settings | `menu` |
+| Editor | Create and edit MDX pages | `edit-3` |
+| Preview | Live preview of changes | `eye` |
+| Publish | Deploy pages to live site | `upload` |
+
+## Publish Your First Page
+
+Create and go live with a simple "Hello World" page.
+
+<Steps>
+  <Step title="New Page" icon="plus">
+    In your space, click **New Page** and title it "Welcome".
+  </Step>
+  <Step title="Add Content" icon="edit-3">
+    Write your intro:
+
+````markdown
+# Welcome to My Docs
+
+This is your first Java page.
+````
+
+  </Step>
+  <Step title="Publish" icon="upload">
+    Click **Publish** to make it live at `https://docs.java.com/my-project/welcome`.
+  </Step>
+</Steps>
+
+## Next Steps
+
+<Columns cols={2}>
+  <Card title="Customize Your Space" icon="settings" href="/configuration">
+    Explore advanced settings and themes.
+  </Card>
+  <Card title="Authentication" icon="shield" href="/authentication">
+    Set up secure access for your team.
+  </Card>
+  <Card title="API Reference" icon="code" href="/api-reference">
+    Integrate programmatically.
+  </Card>
+  <Card title="Help Center" icon="help-circle" href="/help-center">
+    FAQs and support resources.
+  </Card>
+</Columns>
+
+<Expandable title="Troubleshooting Common Issues" default-open="false">
+  - **Import fails?** Check file encoding (UTF-8) and repo permissions.
+  - **Publish errors?** Verify custom domain setup in space settings.
+</Expandable>

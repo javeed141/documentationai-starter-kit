@@ -1,0 +1,73 @@
+---
+title: Find property comps from transaction data
+---
+
+## Introduction
+
+Determining where the market is at can be done with relative ease.  Datafiniti can provide current and historical rental rates for any given property. Utilizing our `transactions `field we can look up prices that property sold for.
+
+## Find a property with transaction data
+
+To search for a specific property with a transaction history, start by searching for that property's address or area and add a transaction price wildcard, like so:
+
+```json
+{
+    "query":"country:US AND province:FL AND transactions.price:*",
+    "num_records":1
+}
+```
+
+This will provide a record result that guarantees a price listed for the sold listing of a property.
+
+```json
+"transactions": [
+                {
+                    "saleDate": "2022-12-20T00:00:00.000Z",
+                    "documentType": "Warranty Deed",
+                    "price": 17300,
+                    "sellerLastName": "Dl Investors 1 Llc",
+                    "buyerFirstName": "xxxxx",
+                    "buyerLastName": "xxxxxx",
+                    "loanType": "Conventional",
+                    "parcelNumber": "09-44-25-15-0000D.0190",
+                    "contactOwnerMailAddressFull": "38 PRIEST ST"
+                }
+            ],
+```
+
+### Find property transaction between a date range
+
+Now let say you need to pull these properties that were sold in the last year. You can use the `transactions.saleDate` to search via a range statement search.
+
+```json
+{
+    "query":"country:US AND province:FL AND transactions.price:* AND transactions.saleDate:[2023-01-01 TO 2024-01-01]",
+    "num_records":1
+}
+```
+
+<br />
+
+## Compare comps of a specific area
+
+You can utilize this data to compare comps in a focus area.
+
+```json
+{
+    "query":"country:US AND province:FL AND transactions.price:* AND postalCode:33905",
+    "num_records":10
+}
+```
+
+This will provide 10 records with transaction prices of the sold property.
+
+### Example Records
+
+Here are example bulk download files of our previous query:
+
+* [Transaction Comp Data CSV](https://drive.google.com/file/d/10GuHEg1dD-IWR_q0Ob5NeG7UTSE1ElZQ/view?usp=share_link)
+* [Transaction Comp Data Json](https://drive.google.com/file/d/1GNFZkIjVMTA9zkeLhw6aWvED0DQhfW1V/view?usp=share_link)
+
+### Conclusion
+
+With multiple records from the same area, you can more accurately see and calculate new for-sale houses from the recently sold properties found in this data.

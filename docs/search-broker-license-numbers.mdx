@@ -1,0 +1,90 @@
+---
+title: Search broker listing property
+---
+
+Datafiniti property data can help you discover the license numbers of brokers in your area. This data can be used to look up other listings from the same broker(s) or to cross reference with our people database. This guide will show how to get started by searching for brokers `licenseNumbers`.
+
+## Search an area for broker's license
+
+We will start by search the Dallas, Texas area for broker's with `licenseNumber `attached to the record results. You can use the following query to pull this data:
+
+```json
+{
+    "query": "country:\"US\" AND province:TX AND city:dallas AND mostRecentStatus:\"For Sale\" AND brokers.licenseNumber:*",
+    "num_records": 10
+}
+```
+
+<Callout kind="info">
+  **For sale vs rental statuses**
+
+Please note that Datafiniti tracks for sale and rental statuses separately, so if you are looking for rental statuses please use mostRecentRentalStatus. Being to check the possible status value here. [Possible Values for Property Fields](https://java.documentationai.com/docs/possible-values-for-property-fields)
+</Callout>
+
+<br />
+
+This will return a broker array with `licenseNumbers `similar to the follow slice of property data:
+
+```json
+ "address": "1907 EBBTIDE LN",
+            "brokers": [
+                {
+                    "agent": "Toni Nuncil",
+                    "company": "Paragon, REALTORS",
+                    "dateSeen": "2022-11-26T02:04:53.747Z",
+                    "licenseNumber": "TREC #0512453"
+                },
+                {
+                    "agent": "Ivana Buciol",
+                    "company": "Henderson Luna Realty",
+                    "dateSeen": "2023-07-20T03:49:35.706Z",
+                    "licenseNumber": "TREC #0472367",
+                    "phones": [
+                        "6120472367"
+                    ]
+                }
+            ],
+            "city": "DALLAS",
+            "country": "US",
+```
+
+<Callout kind="info">
+  **LicenseNumber**
+
+Please note that `licenseNumber`is not a guarantied field. It is only populated when provided by our data sources.
+</Callout>
+
+## Searching for a specific broker's listings by licenseNumber
+
+Now that you have a `licenseNumber` to search by, lets create a query to find all the listings tied to that broker. Note that we are using an exact match dictated by the escaped quotes.
+
+```json
+{
+    "query": "brokers.licenseNumber:\"TREC #0512453\" AND mostRecentStatus:\"For Sale\"",
+    "num_records": 0
+}
+```
+
+This will provide you will the count of all properties that are listed by the broker. Depending if multiple listings are found you can modify the query to result the properties you need. This will allow a greater insight to the type / price of property a specific broker lists.
+
+## Searching for a property broker by name
+
+Let's say you do not have the license number but you have their name. You can easily search both the `brokers.agent` & `mostRecentBrokerAgent` field for the name that matches. This query will show you how to do this:
+
+```json
+{
+    "query": "country:US AND province:WY AND mostRecentStatus:\"For Sale\" AND (mostRecentBrokerAgent:\"Rita Lovell\" OR brokers.agent:\"Rita Lovell\")",
+    "num_records":10
+}
+```
+
+<br />
+
+## Example files
+
+* [Licensed brokers Csv](https://drive.google.com/file/d/1AspP6bOY0-oQX7WY3jP9NCclZiF6Vk5R/view?usp=sharing)
+* [Licensed brokers Json](https://drive.google.com/file/d/1c41ZRTZ3Eax7BLjyg6c6FCm6ruU4p_V_/view?usp=sharing)
+
+## Conclusion
+
+With this knowledge you can use this as a stepping stone to insights into very granular market or build your own list of preferred brokers that your MLS/brokerage group can utilize for future property sales.

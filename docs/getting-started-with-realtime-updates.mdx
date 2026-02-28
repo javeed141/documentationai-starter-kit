@@ -1,0 +1,250 @@
+---
+title: Targeted Updates
+---
+
+## Overview
+
+Our `/targeted-updates` endpoint allows you to refresh our data in real-time.
+
+## Endpoint
+
+`POST https://api.datafiniti.co/v4/targeted-updates`
+
+## Input
+
+A JSON object containing the `query` that returns the data you want refreshed, the 'data_type' of the data being refreshed, and the 'domains' you want to pull the updated data from. You can also provide a 'num_records_requested' that will restrict the number of records that get updated. The json object is structured like so:
+
+```json
+{
+    "query": "keys:* AND domains:\"www.amazon.com\"",
+    "num_records_requested": 1,
+    "data_type": "product",
+    "domains": ["www.amazon.com"]
+}
+```
+
+* query - This selects what records to be updated, it is the same format as our search endpoint.
+* num_records_requested - The number of records matching the query you want to be updated, if this parameter is not specified all matching records will be updated.
+* data_type - The datatype to run the query on. This could be "business", "product" or "property"
+* domains - This is the domain to pull the updates from.
+
+<Callout kind="info">
+  **How do I know which query to use?**
+
+You should experiment using our search endpoint to determine what query returns the data you want refreshed.
+</Callout>
+
+<Callout kind="info">
+  **Which URL format should I use for the domains?**
+
+Domains generally are represented by "www" followed by the domain and then the TLD, e.g. "www.domain.tld". You can find the proper format for the domains in the "domains" field within the records returned.
+</Callout>
+
+<Callout kind="alert">
+  **Domains is not the URL for the product**
+
+The domain parameter specifies what site pull the updates from. If you have a specific product URL, you should include that in the query using sourceURLS: `<URL>`.
+</Callout>
+
+## Output
+
+The response body returned to you is a JSON object that either contains a real-time update object or an error object. These arrays are mutually exclusive.
+
+The presence of an error object indicates that a fatal error occurred and none of the URLs provided in your request body were processed. The error object will contain strings that indicate why we could not service your request. Please contact customer support and provide us with the request body that yielded an error object should this occur to you during your usage of this feature. Please provide us with the response body returned to you as well.
+
+The presence of a real-time update object indicates that we were able to start the update for the records that match the query provided.\
+The object will contain the parameters the update was created with as well as its current status.
+
+The `stats` object provides metrics to track the current progress of the updates.
+
+* `num_urls_matched`: This is the total number of URLs that matched the query that will be checked for updates.
+* `num_crawl_results_submitted`: This is the number of the URLs that returned usable data.
+* `num_crawl_results_processed`: This is the number of the above URLs that have been processed and the records updated in our database.
+
+The response also includes these fields:
+
+* `status`: This provides the current status of the update. This can be `QUEUED`, `STARTED`, or `FINISHED`
+  * `QUEUED` - The update request has been received but the system has not began processing it.
+  * `STARTED` - The update is currently fetching the updates from the specified domains.
+  * `FINISHED` - The updates have been merged into the database.
+* `id`: This is the internal ID for the Real-time Update. This can be used to check its status after the initial creation.
+* `date_created`: The date the update was initialized.
+* `date_updated`: The date the update completed.
+* `domains`: The domains initially specified in creation of the Real-Time Update
+* `query`: The query initially specified in creation of the Real-Time Update
+* `data_type`: The data type initially specified in creation of the Real-Time Update
+* `num_records_requested`: The number of records initially specified in creation of the Real-Time Update.
+* `user`: Your user ID number.
+* `crawl`: The internal crawl that was created to fetch the updates. This is helpful to provide to support if you are running into issues.
+
+The following snippet is an example response body:
+
+```text
+{
+    "stats": {
+        "num_urls_matched": o,
+        "num_urls_resulting_in_updates": 0,
+        "num_crawl_results_processed": 0,
+        "num_crawl_results_submitted": 0
+    },
+    "domains": [
+        "www.amazon.com"
+    ],
+    "status": "STARTED",
+    "_id": 26,
+    "query": "domains:amazon.com AND dateUpdated:[2021-09-02 TO *]",
+    "num_records_requested": 1,
+    "data_type": "product",
+    "user": 5,
+    "crawl": 3566484,
+    "date_created": "2021-09-07T14:41:18.741Z",
+    "date_updated": "2021-09-07T14:59:13.454Z",
+    "id": "26"
+}
+```
+
+<Callout kind="alert">
+  **Number of URLs matched**
+
+In the initial object that is returned, the number of URLs matched will always be zero. This is expected behavior, the number of URLs matched is generated asynchronously and will not show up until you retrieve the update as outlined below.
+</Callout>
+
+<Callout kind="alert">
+  **How we charge credits**
+
+We will only charge credit for the amount of records that were updated after the targeted update is completed. You can always limit the number of credits by setting the "num_records_requested" to a specific value.
+</Callout>
+
+## Retrieving your Real-time Update
+
+You can retrieve your real-time update by using this endpoint and supplying the ID in the path.\
+`GET https://api.datafiniti.co/v4/targeted-updates/<RU_ID>`
+
+This will return the data in the same format as the response body for the initial creation of the update. You can use this to track the completion of your update as well as how many URLs actually generated usable data.
+
+If you want to see all updates you have created you can use this end point.\
+`GET https://api.datafiniti.co/v4/targeted-updates/`
+
+## Retrieving updated data.
+
+You can access the refreshed data by using the same query on our search end points after the update has finished.
+
+## Updating a Specific Product by ASIN
+
+If you have the ASIN that matches a product within our database you can run a real-time update on that one specific product by using the following query.
+
+```json
+{
+    "query": "asins:B0119S96D8",
+    "num_records_requested": 1,
+    "data_type": "product",
+    "domains": ["www.amazon.com"]
+}
+```
+
+## Updating a Specific Product by URL
+
+If you have a URL for a product in our database you can run a real-time update by using the following query
+
+```json
+{
+    "query": "sourceURLs:\"https://www.amazon.com/dp/B0119S96D8?productDetails&th=1&psc=1\"",
+    "num_records_requested": 1,
+    "data_type": "product",
+    "domains": ["www.amazon.com"]
+}
+```
+
+<Callout kind="info">
+  **Escaping quotation marks**
+
+Note in the query above we put the URL in quotation marks, this is because the URL contains special characters that are reserved for other purposes, such as the colon. Since we are using quotation marks within another set of quotation marks, we have to make sure to escape them using a back slash.
+</Callout>
+
+## Updating All Records in a Category
+
+You can also update all records that fall into a specific category using the following query.
+
+```json
+{
+    "query": "categories:electronics",
+    "num_records_requested": 1000,
+    "data_type": "product",
+    "domains": ["www.amazon.com"]
+}
+```
+
+<Callout kind="danger">
+  **Number of records error**
+
+num_records_requested is not specified in the above example. By removing this parameter the update will provide an error like the following:\
+` "errors": [  
+        "num_records_requested cannot exceed 1000"  
+    ]`
+</Callout>
+
+## Updating All Records using Taxonomy
+
+You can be far more selective using taxonomy versus category.
+
+```json
+{
+    "query": "taxonomyLevel1:electronics AND taxonomyLevel2:headphones",
+    "num_records_requested": 1000,
+    "data_type": "product",
+    "domains": ["www.amazon.com"]
+}
+```
+
+This query returns far fewer results than the category query.
+
+<Callout kind="info">
+  **If the query exceeds num_records_requested**
+
+If your query results exceeds num_records_requested, then you may receive an error like the one stated above. However, you can set the num_records_requested to 1000 and run another targeted update upon finishing the finishing the first. Just be sure that your query does not intersect with sets of data previously updated.
+</Callout>
+
+## Updating Specific Property using dateUpdated
+
+This query will request our scrape to check redfin if the property is missing any newly updated data.
+
+```json
+{   
+    "query": "address:\"114 E Morris St\" AND province:TX",
+    "num_records_requested": 1, 
+    "data_type": "property",
+    "domains": ["www.redfin.com"]
+}
+```
+
+## Updating Property Records based on Status
+
+This query will check to see if the status of the pending listing in Houston, Texas has changed in the last week.
+
+```json
+{   
+    "query": "city:houston AND province:TX AND mostRecentStatus:\"Pending\" AND dateUpdated:[2023-01-01 TO *]",
+    "num_records_requested": 50, 
+    "data_type": "property",
+    "domains": ["www.redfin.com"]
+}
+```
+
+## Updating Property Records based on a price most recent property list price
+
+This query will check to see if the status of the pending listing in Houston, Texas has changed in the last week.
+
+```json
+{   
+    "query": "country:US AND province:TX AND city:Austin AND mostRecentPriceAmount:[300000 TO 500000]",
+    "num_records_requested": 50, 
+    "data_type": "property",
+    "domains": ["www.redfin.com"]
+}
+```
+
+<Callout kind="alert">
+  **If your targeted update does not update your records**
+
+Please reach out to support@datafiniti.co and send us your query parameters. There are many reasons why we may not update a specific set of records and we are here to help provide the highest quality to all data types.
+</Callout>

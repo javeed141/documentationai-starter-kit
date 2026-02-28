@@ -1,0 +1,89 @@
+---
+title: Product Brand Normalization
+---
+
+Datafiniti uses a validation process that checks scraped data upon importing it into the database. We have logic in place to change the brand name to the recognized brand names you know. This was done to allow for more ease in querying the product database for the brands you want to see.
+
+Previously if you wanted to search for *Samsung* via the *brands* field you would find the following brand names back:
+
+* Samsung
+* Samsung Electronics
+* Samsung Electronics L\&T
+* Samsung Televisions
+* Samsung Appliances
+
+After the Normalization logic is in place the only brand name you will see is ***Samsung***.
+
+Below is a list of product brand names that our normalization filters process and set to a designated brand name.
+
+<Callout kind="info">
+  **Suggested Brand Name Normalization**
+
+If there are any brand names you feel should be normalized or made easier to search, feel free to open a discussion suggestion [here](https://developer.datafiniti.co/discuss).
+</Callout>
+
+## CanonicalBrand Names
+
+| CanonicalBrand | Scraped Source Brand Name |
+| --- | --- |
+| '47 | '47 brand |
+| 3m | 3m espe <br /> 3m healthcare <br /> 3m thinsulate |
+| delphi | delphi classics (parts edition) |
+| dents | dents thinsulate |
+| desert | desert decadence, <br /> desert essence, <br /> desert forager, <br /> desert harvest, <br /> desert pepper trading, <br /> desert sun coffee roasters, <br /> desert tortoise botanicals |
+| diesel | diesel x foscarini,  <br /> diesel | men |
+| dion | dion lee |
+| dior | dior jadore, <br /> dior sauvage |
+| divided | divided style |
+| divine | "divine noise", <br /> "divine specialties", <br /> "divine xpressions", <br /> "divine xpressions collection" |
+| dixon | dixon apparel,  <br /> dixon ticonderoga co - pacon |
+| dk | dk industries,  <br /> dk knowledge,  <br /> dk tools |
+| dl | dl & co.,  <br /> dl jeans,  <br /> dl medical & health,  <br /> dl signs |
+| dnd | "dnd - daisy nail design" |
+| dove | "dove and dovelet", <br /> "dove beauty", <br /> "dove men+care", <br /> "dove purely pampering" |
+| ds | ds babyland |
+| dunhill | dunhill canada |
+| dunlop | dunlop volleys |
+| duo | duo brush <br /> duo distilleries |
+| egg | egg press <br /> egg weights |
+| eko | eko brewery |
+| element | element fitness |
+| elf | elf creek games |
+| elite | "elite flight tees", <br /> "elite hockey", <br /> "elite modern", <br /> "elite sport", <br /> "elite srl" |
+| elle | elle jae merch,  <br /> elle zeitoune |
+| emu | emu australia |
+| enduro | enduro bearings |
+| enve | enve composites |
+| envy | "envy us beauty supply", <br /> "envy us clothing", <br /> "envy us luxe hair" |
+| eos | eos publishing |
+| hill's | hill's science diet,  <br /> hills prescription diet |
+| hp | hp reed diffuser,  <br /> hp tackle |
+| husky | husky liners |
+| hustler | hustler toys |
+| independent | "independent distillers canada", <br /> "independent liquor group", <br /> "independent liquor ltd" |
+| inspire | inspire fitness |
+| iris | "iris basic", "iris hantverk" |
+| jeep | jeep world |
+| junior | junior learning |
+| lottie | lottie london |
+| lulu | lulu bebe,  <br /> lulu guinness,  <br /> lulu lashes |
+| lush | lush clothing |
+| neo | neo craft |
+| nhl | nhl merchandise |
+| nununu | nununu world |
+| odi | odi lynch |
+| ooshie | ooshie resort wear |
+| osprey | osprey custom tackle, <br /> osprey packs |
+| oxo | "oxo good grips bake", <br /> "oxo good grips bath", <br /> "oxo international, ltd." |
+| penn | "penn fishing tackle", <br /> "penn plax", <br /> "penn reels" |
+| perrin | perrin performance |
+| prx | prx & simpsons fitness supply,  <br /> prx performance |
+| quest | quest impact |
+| rene | "rene o. villanueva, illustrated by daniel tayona", <br /> "rene ruiz collection", <br /> "rene villanueva, illustrated by joel jason o. chua" |
+| róen | róen beauty |
+| vero | vero moda |
+| volvo | volvo penta, <br /> volvo polestar |
+| winden | winden x anomie |
+| wine | winn grips |
+| yru | yru (strange cvlt) |
+| ziip | ziip compatible pods |

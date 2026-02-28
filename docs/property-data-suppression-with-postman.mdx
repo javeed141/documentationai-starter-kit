@@ -1,0 +1,116 @@
+---
+title: Property Data Suppression with CSV
+---
+
+For this guide, we're going to assume the following you're interested in using Datafiniti's property data API to search for specific properties. But you need to run multiple queries where the data does not overlap. You can use the following steps to query for the property data by hitting the same records twice. You can use the following steps to use Datafiniti's suppression API endpoint.
+
+## Starting Data
+
+Let's assume you are searching for property in Austin, Texas US and you have already downloaded 20 records here:
+[20 Austin Texas Property Records CSV](https://drive.google.com/file/d/1Y61BMuN4DbLASjtD-1zyN-F4GlG-byNu/view?usp=share_link)
+
+See that the data we are starting with is Datafiniti's CSV format.
+
+## Converting the property data for use in suppression
+
+Now we will need to pull only the addresses in the property csv to use in our suppression API call. Convert the csv to a line seperated text file. Isolate only the address column in the csv.
+
+```text
+3900 Threadgill St Unit 1
+3900 Threadgill St Unit 4
+1205 Sahara Ave
+9721 Anderson Village Dr
+12305 Salida Del Sol Pass
+5312 Watusi Bnd
+3312 Thousand Oaks Cv
+3004 Shoot Out Ct
+2707 Valley Springs Rd
+7502 Lobelia Dr
+12701 Cinchring Ln
+7302 Meadowood Dr
+1809 Frazier Ave
+3613 Sawmill Dr
+3612 Sawmill Dr
+15605 Cabrillo Way
+2309 E 5th St
+7603 Creston Ln
+7605 Creston Ln
+10200 Skyflower Dr
+```
+
+<Callout kind="alert">
+
+  **Common Error**
+
+  If the file name is not labeled as excluded *address.txt* the API will return the following 400 error code:
+
+  ```json
+  {
+      "errors": [
+          "Ignoring file. Reason: Invalid file name [20austin_property.txt]. Expected excluded <field_name>",
+          "suppressed_fields should NOT have fewer than 1 items"
+      ]
+  }
+  ```
+
+</Callout>
+
+## Building the suppress API call using Postman
+
+Next, we will open the Datafiniti api library in Postman. For how to get the Postman library, you can use this guide here: [Postman Guide](https://support.datafiniti.co/docs/postman-endpoint-overview) Once open we will use the following query to look for `single family dwelling` in Austin Texas, US.
+
+```text
+country:US AND province:"TX" AND city:"austin" AND propertyType:"Single Family Dwelling"
+```
+
+For this example we will set our `Num_records` limit to 100. But you may set this value to fit your testing needs.
+
+Finally select your text file made in the previous step to base the suppress call on.
+
+You finally call should look something like this:
+
+<Image src="https://files.readme.io/61513ca-image.png" width="1920" height="1080" alt="Postman suppression API call setup" />
+
+<Callout kind="alert">
+
+  **Suppression Query Syntax**
+
+  Please only use quotes for exact value matches.
+  Any `\"string_here\"` should be converted to `"string_here"`.
+
+</Callout>
+
+## Sending the API call and downloading the data
+
+After sending the api call you will receive a response similar to any of the search api calls.
+
+```json
+{
+    "sort": true,
+    "format": "json",
+    "suppressed_fields": [
+        {
+            "field": "address",
+            "s3Key": "production/126609/1683920093687-excluded_address.txt"
+        }
+    ],
+    "enriched_fields": [],
+    "user": 126609,
+    "query": "country:US AND province:TX AND city:\\\"austin\\\" AND propertyType:\\\"Single Family Dwelling\\\"",
+    "num_records": 100,
+    "data_type": "property",
+    "results": [],
+    "date_started": "2023-05-12T19:34:56.041Z",
+    "date_updated": "2023-05-12T19:34:56.041Z",
+    "_id": 188454,
+    "is_suppression_job": true,
+    "is_enrichment_job": false,
+    "id": "188454"
+}
+```
+
+Your `is_suppression_job` will dictate that your api call is a suppression call. Typically these calls have a longer response and download time. Your download `id` is dictated by the last `id` key in the response.
+
+You can check your download status by the following guide here: [Postman: Download Result Files](https://java.documentationai.com/docs/postman-downloading-result-files)
+
+Once you have downloaded your suppressed data, you can check to see that no previously search for addresses were pulled. This will allow you to optimize how you spend your credits using Datafiniti's Suppression API. Only searching once instead of pulling records multiple times.

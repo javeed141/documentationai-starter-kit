@@ -1,0 +1,811 @@
+---
+title: Business Data with PHP
+---
+
+For this guide, we're going to assume you're interested in using Datafiniti's business data to do some marketing analysis on hotels.  Let's say you're a data scientist that's been tasked with the following:
+
+1. Collecting data on hotels in the US.
+2. Sort the business data by state.
+3. Find which states have the most hotels.
+
+**Your environment and data needs:**
+
+1. You're working with PHP.
+2. You want to work with CSV or JSON data.
+
+Here are the steps we'll take:
+
+## 1. Open a code editor
+
+If you want to use PHP to access the Datafiniti API, we're assuming you'll be using a standard code editor to write your PHP code.  Open your code editor to get started.
+
+## 2. Get your API token
+
+The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
+
+To get your API token, go the [Datafiniti Web Portal Settings Page](https://portal.datafiniti.co/settings/api), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+
+For security reasons, your API token will be automatically changed whenever you change your password.
+
+<Image src="https://files.readme.io/09308c19ef5679c6c442944d6110ca679093450ba9364b1caa8aaa05b67cb768-image.png" width="1920" height="1080" alt="" />
+
+<Callout kind="info">
+  **API Key**
+
+For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
+</Callout>
+
+<Callout kind="alert">
+  **API Key Regen**
+
+For security reasons, your API token will be automatically changed whenever you change your password.
+</Callout>
+
+## 3. Run your first search
+
+The first thing we'll do is do a test search that will give us a sense for what sort of data might be available.  Eventually we'll refine our search so that we get back the most relevant data.
+
+Since we want hotels, let's try a simple search that will just give us online listings for hotels.
+
+Write the following code in your code editor (replace the dummy API token with your real API token):
+
+```php
+<?php
+/*
+  Illustrates an API call to Datafiniti's Business Database for hotels.
+*/
+
+$url = 'https://api.datafiniti.co/v4/businesses/search';
+
+// Set your API parameters here.
+$APIToken = 'AAAXXXXXXXXXXXX';
+//$format = 'CSV';
+$format = 'JSON';
+$query = 'categories:hotels';
+$num_records = 1;
+$download = false;
+
+$request_body = array(
+	'query' => $query,
+	'format' => $format,
+	'num_records' => $num_records,
+	'download' => $download
+);
+
+$options = array(
+	'http' => array (
+		'header'  => "Authorization: Bearer " . $APIToken . "\r\n" . 
+					 "Content-Type: application/json\r\n",
+		'method'  => 'POST',
+		'content' => json_encode($request_body)
+	)
+);
+
+$context  = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+if ($result === FALSE) {
+	echo "Error.";
+} else {
+	var_dump($result);
+}
+
+?>
+```
+
+You should get a response similar to this:
+
+```json
+(
+    [num_found] => 139666
+  	[total_cost] => 1
+    [records] => Array
+        (
+            [0] => Array
+                (
+                    [address] => 7030 Amin Dr
+                    [categories] => Array
+                        (
+                            [0] => Hotels
+                        )
+
+                    [city] => Chattanooga
+                    [country] => US
+                    [dateAdded] => 2016-11-04T23:50:14Z
+                    [dateUpdated] => 2016-11-04T23:50:14Z
+                    [descriptions] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [dateSeen] => Array
+                                        (
+                                            [0] => 2016-11-09T19:26:53Z
+                                        )
+
+                                    [sourceURLs] => Array
+                                        (
+                                            [0] => http://www.hotels.com/ho141351/?locale=en_US&pos=HCOM_US
+                                        )
+
+                                    [value] => No-frills hotel in Hamilton Place with health club
+                                )
+
+                        )
+
+                    [features] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [key] => Services
+                                    [value] => Array
+                                        (
+                                            [0] => 24-hour front desk, Dry cleaning/laundry service, Laundry facilities, Free newspapers in lobby
+                                        )
+
+                                )
+
+                            [1] => Array
+                                (
+                                    [key] => Nearby Attractions
+                                    [value] => Array
+                                        (
+                                            [0] => [In Hamilton Place, Hamilton Place Mall (1.1 mi / 1.7 km), Dragon Dreams Museum (2.7 mi / 4.4 km), Tennessee Valley Railroad Museum (3.6 mi / 5.8 km), Concord Golf Club (3.8 mi / 6 km), Brown Acres Golf Course (4 mi / 6.5 km)]
+                                        )
+
+                                )
+
+                        )
+
+                    [imageURLs] => Array
+                        (
+                            [0] => https://exp.cdn-hotels.com/hotels/1000000/120000/117400/117332/117332_95_n.jpg
+                            [1] => https://exp.cdn-hotels.com/hotels/1000000/120000/117400/117332/117332_107_n.jpg
+                        )
+
+                    [keys] => Array
+                        (
+                            [0] => us/tn/chattanooga/7030amindr/1104338646
+                        )
+
+                    [latitude] => 35.04281
+                    [longitude] => -85.158
+                    [name] => Mainstay Suites Chattanooga
+                    [numRoom] => 77
+                    [phones] => Array
+                        (
+                            [0] => 8004916126
+                        )
+
+                    [postalCode] => 37421
+                    [province] => TN
+                    [reviews] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [date] => 2013-11-11T00:00:00Z
+                                    [dateAdded] => 2016-11-04T23:50:14Z
+                                    [dateSeen] => Array
+                                        (
+                                            [0] => 2016-11-06T00:00:00Z
+                                            [1] => 2016-08-12T00:00:00Z
+                                        )
+
+                                    [rating] => 2
+                                    [sourceURLs] => Array
+                                        (
+                                            [0] => https://www.hotels.com/hotel/141351/reviews%20/
+                                        )
+
+                                    [text] => Hotel was ok. Room not as up to date as I expected.
+                                    [title] => Was ok
+                                    [username] => A Traveler
+                                )
+
+                            [1] => Array
+                                (
+                                    [date] => 2014-11-03T00:00:00Z
+                                    [dateAdded] => 2016-11-04T23:50:14Z
+                                    [dateSeen] => Array
+                                        (
+                                            [0] => 2016-08-09T00:00:00Z
+                                            [1] => 2016-08-27T00:00:00Z
+                                        )
+
+                                    [rating] => 3
+                                    [sourceURLs] => Array
+                                        (
+                                            [0] => https://www.hotels.com/hotel/141351/reviews%20/
+                                        )
+
+                                    [text] => It was adequate for our one night stay there. Staff was very friendly and the room was clean but not very big. I would recommend to someone for a very short stay.
+                                    [username] => scott
+                                )
+
+                        )
+
+                    [sourceURLs] => Array
+                        (
+                            [0] => http://www.hotels.com/ho141351/?locale=en_US&pos=HCOM_US
+                            [1] => https://www.hotels.com/hotel/141351/reviews%20/
+                        )
+
+                    [id] => AVwcsllU_7pvs4fzx-yW
+                )
+
+        )
+
+)
+```
+
+Let's break down each of the parameters we sent in our request:
+
+| API Call Component             | Description                                                                                                                                                                                                 |
+| :----------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"query": "categories:hotels"` | `query` tells the API what you want to search.  In this case, you're telling the API you want to search by `categories`.  Any business that has `hotels` listed in its `categories` field will be returned. |
+| `"num_records": 1`             | `num_records` tells the API how many records to return in its response.  In this case, you just want to see 1 matching record.                                                                              |
+| `"format":"xxxx"`              | `"format"` tells the API what format to output the data in the response. Can be either `CSV` or `JSON`                                                                                                      |
+
+Now let's dive through the response the API returned:
+
+| Response Field | Description |
+| --- | --- |
+| `"num_found"` | The total number of available records in the database that match your query.  If you end up downloading the entire data set, this is how many records you'll use. |
+| `"total_cost"` | The number of credits this request has cost you.  Business records only cost 1 credit per record. |
+| `"records"` | The first available matches to your query. If there are no matches, this field will be empty.   <br/>    <br/> Within each record returned, you'll see multiple fields shown.  This is the data for each record. |
+
+Within the `records` field, you'll see a single business returned with multiple fields and the values associated with that business.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
+
+Each business record will have multiple fields associated with it.  You can see a full list of available fields in our [Business Data Schema](https://java.documentationai.com/docs/business-data-schema).
+
+## 4. Refine your search
+
+If you think about the original query we made, you'll realize we didn't really specify which geography we're interested in.  Since we only want US hotels, we should narrow our search appropriately.  Modify your code to look like this:
+
+```php
+<?php
+/*
+  Illustrates an API call to Datafiniti's Business Database for hotels.
+*/
+
+$url = 'https://api.datafiniti.co/v4/businesses/search';
+
+// Set your API parameters here.
+$APIToken = 'AAAXXXXXXXXXXXX';
+$format = 'CSV';
+$query = 'categories:hotels AND country:US';
+$num_records = 10;
+$download = false;
+
+$request_body = array(
+	'query' => $query,
+	'format' => $format,
+	'num_records' => $num_records,
+	'download' => $download
+);
+
+$options = array(
+	'http' => array (
+		'header'  => "Authorization: Bearer " . $APIToken . "\r\n" . 
+					 "Content-Type: application/json\r\n",
+		'method'  => 'POST',
+		'content' => json_encode($request_body)
+	)
+);
+
+$context  = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+if ($result === FALSE) {
+	echo "Error.";
+} else {
+	var_dump($result);
+}
+
+?>
+```
+
+This code is different in a couple ways:
+
+1. It adds ` AND country:US` to narrow down results to just US hotels.
+2. It sets `num_records` to 10 so we can look at more sample matches.
+3. it changes `format` from `JSON` to `CSV`.
+
+<Callout kind="info">
+  **Format**
+
+Note that you have the commented line to change between CSV and JSON format. You may change this by comment out the format you do not want.
+</Callout>
+
+Datafiniti lets you construct very refined boolean queries.  If you wanted to do more complicated searches, you could use OR operations, negation, and more.
+
+## 5. Initiate a download of the data
+
+Once we like what we see from the sample matches, it's time to download a larger data set!  To do this, we're going to update our code a fair bit (an explanation follows):
+
+```php
+<?php
+/*
+  Illustrates how to download a full data set from Datafiniti's Business Database.
+*/
+
+$request_url = 'https://api.datafiniti.co/v4/businesses/search';
+
+// Set your API parameters here.
+$API_token = 'AAAXXXXXXXX';
+$view = 'business_basic';
+$format = 'CSV';
+$query = 'categories:hotels AND country:US';
+$num_records = 50;
+$download = true;
+
+$request_body = array(
+	'query' => $query,
+  'num_records' => $num_records,
+	'view' => $view,
+	'format' => $format,
+	'download' => $download
+);
+
+$request_options = array(
+	'http' => array (
+		'header'  => "Authorization: Bearer " . $API_token . "\r\n" . 
+					 "Content-Type: application/json\r\n",
+		'method'  => 'POST',
+		'content' => json_encode($request_body)
+	)
+);
+
+// Make the initial API call.
+echo "Making initial request...\n";
+print_r($request_options);
+$request_context  = stream_context_create($request_options);
+$request_response = file_get_contents($request_url, false, $request_context);
+
+if ($request_response === FALSE) {
+
+	echo "Error.";
+	var_dump($request_response);
+
+} else {
+
+	echo "Download request successful:\n";
+	$request_response_array = json_decode($request_response,true);
+	print_r($request_response_array);
+
+	$download_id = $request_response_array['id'];
+	$download_url = 'https://api.datafiniti.co/v4/downloads/' . $download_id;
+	$download_options = array(
+		'http' => array (
+			'header'  => "Authorization: Bearer " . $API_token . "\r\n",
+			'method'  => 'GET'
+		)
+	);
+	$download_status = 'running';
+	while ($download_status != 'completed') {
+		sleep(10);
+		echo "Checking on status: " . $download_url . "\n";
+		$download_context  = stream_context_create($download_options);
+		$download_response = file_get_contents($download_url, false, $download_context);		
+		$download_response_array = json_decode($download_response,true);
+		$download_status = $download_response_array['status'];
+		echo "Records downloaded: " . $download_response_array['num_downloaded'] . "\n";
+	}
+
+	if ($download_status == 'completed') {
+		$result_list = $download_response_array['results'];
+		for ($i = 0; $i < count($result_list); $i++) {
+			$result_link = $result_list[$i];
+			$filename = $download_id . "_" . $i . "." . $format;
+			file_put_contents($filename, fopen($result_link, 'r'));
+			echo "File " . ($i+1) . " out of " . count($result_list) . " saved: " . $filename . "\n";
+		}
+	}
+}
+
+?>
+```
+
+A few things to pay attention to in the above code:
+
+1. We change `num_records` from `10` to `50`.  This will download the first 50 matching records.  If we wanted to download all matching records, we would remove `num_records`.
+2. We set the view to `business_basic`.  This will nest fields like categories and features into a single cell (instead splitting them across multiple rows and columns).
+3. We changed `download` from `false` to `true`.
+
+<Callout kind="alert">
+  **Num_records not specified**
+
+If num_records is not specified, ALL of the records matching the query will be downloaded.
+</Callout>
+
+Since we've handled multiple steps of the download process in this code, we won't go into the details here, but we do recommend you familiarize yourself with those steps.  Checking them out in our [Business Data with Postman and JSON](https://java.documentationai.com/docs/business-data-with-postman-json) guide.
+
+<Callout kind="alert">
+  **Credit limit monitoring**
+
+When using the API, you will not receive any warning if you are going past your monthly record limit.  Keep a track on how many records you have left by checking your account.  You are responsible for monitoring your monthly limit. To learn more about your credit limit please review [How Credits Work](https://java.documentationai.com/docs/how-credits-work-api).
+</Callout>
+
+## 6. Checking your download status
+
+You will be presented with a response JSON different from the previous download being false. Whenever your download is true, Datafiniti will provide a download ID in the response file along with your credits used and a status. Below is an example of the response of your property search API. You can gather the following fields from the response JSON:
+
+* `status` - your status can be: completed, cancelled, queued, or running
+* `num_downloaded` - you show the amount of records download so far
+* `property_cost` - cost of credit for this download, will update once status = completed
+* `ID` - *most important* to track your download.
+
+```json
+{
+    "status": "queued",
+    "num_downloaded": 0,
+    "num_records_suppressed": 0,
+    "people_cost": 0,
+    "property_cost": 0,
+    "product_cost": 0,
+    "business_cost": 0,
+    "total_cost": 0,
+    "fields": [
+        {
+            "name": "address"
+        },
+        {
+            "name": "apiURLs",
+            "flatten": false
+        },
+        {
+            "name": "careerPageURL"
+        },
+        {
+            "name": "categories",
+            "flatten": false
+        },
+        {
+            "name": "city"
+        },
+        {
+            "name": "claimed",
+            "flatten": false
+        },
+        {
+            "name": "country"
+        },
+        {
+            "name": "cuisines",
+            "flatten": false
+        },
+        {
+            "name": "dateAdded"
+        },
+        {
+            "name": "dateUpdated"
+        },
+        {
+            "name": "descriptions",
+            "flatten": false
+        },
+        {
+            "name": "domains",
+            "flatten": false
+        },
+        {
+            "name": "emails",
+            "flatten": false
+        },
+        {
+            "name": "facebookPageURL"
+        },
+        {
+            "name": "faxes",
+            "flatten": false
+        },
+        {
+            "name": "features",
+            "flatten": false
+        },
+        {
+            "name": "geoLocation"
+        },
+        {
+            "name": "hours",
+            "flatten": false
+        },
+        {
+            "name": "imageURLs",
+            "flatten": false
+        },
+        {
+            "name": "isClosed"
+        },
+        {
+            "name": "keys",
+            "flatten": false
+        },
+        {
+            "name": "languagesSpoken",
+            "flatten": false
+        },
+        {
+            "name": "latitude"
+        },
+        {
+            "name": "longitude"
+        },
+        {
+            "name": "menuPageURL"
+        },
+        {
+            "name": "menus",
+            "flatten": false
+        },
+        {
+            "name": "name"
+        },
+        {
+            "name": "neighborhoods",
+            "flatten": false
+        },
+        {
+            "name": "numEmployeesMin"
+        },
+        {
+            "name": "numEmployeesMax"
+        },
+        {
+            "name": "numRoom"
+        },
+        {
+            "name": "ownershipType"
+        },
+        {
+            "name": "paymentTypes",
+            "flatten": false
+        },
+        {
+            "name": "people",
+            "flatten": false
+        },
+        {
+            "name": "phones",
+            "flatten": false
+        },
+        {
+            "name": "postalCode"
+        },
+        {
+            "name": "priceRangeCurrency"
+        },
+        {
+            "name": "priceRangeMin"
+        },
+        {
+            "name": "priceRangeMax"
+        },
+        {
+            "name": "primaryCategories",
+            "flatten": false
+        },
+        {
+            "name": "productsOrServices",
+            "flatten": false
+        },
+        {
+            "name": "province"
+        },
+        {
+            "name": "revenueCurrency"
+        },
+        {
+            "name": "revenueMin"
+        },
+        {
+            "name": "revenueMax"
+        },
+        {
+            "name": "reviews",
+            "flatten": false
+        },
+        {
+            "name": "rooms",
+            "flatten": false
+        },
+        {
+            "name": "sic"
+        },
+        {
+            "name": "sourceURLs",
+            "flatten": false
+        },
+        {
+            "name": "stockSymbol"
+        },
+        {
+            "name": "technologiesUsed",
+            "flatten": false
+        },
+        {
+            "name": "twitter"
+        },
+        {
+            "name": "websites",
+            "flatten": false
+        },
+        {
+            "name": "yearIncorporated"
+        },
+        {
+            "name": "yearOpened"
+        }
+    ],
+    "sort": true,
+    "auto_trace": false,
+    "only_traceable": false,
+    "format": "csv",
+    "suppressed_fields": [],
+    "enriched_fields": [],
+    "query": "categories:shoes AND -categories:shirts AND categories:women AND (brand:* OR manufacturer:*) AND prices:*",
+    "num_records": 50,
+    "data_type": "product",
+    "user": 126609,
+    "results": [],
+    "date_started": "2025-04-09T20:32:22.163Z",
+    "date_updated": "2025-04-09T20:32:22.163Z",
+    "_id": 847070,
+    "is_suppression_job": false,
+    "is_enrichment_job": false,
+    "id": "847070"
+}
+```
+
+You can track the status of your download via the following method using our GET `https://api.datafiniti.co/v4/downloads/:id` endpoint
+
+### Track your download via the API
+
+The following code can be used to track your download ID:
+
+```php
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => "https://api.datafiniti.co/v4/downloads/811043?api_key=<your_API_key>",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "GET",
+  CURLOPT_HTTPHEADER => [
+    "Authorization: Bearer <your_API_key>",
+    "accept: application/json"
+  ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+The response of your code will provide you with the following JSON:
+
+```json
+{
+  "status": "completed",
+  "num_downloaded": 50,
+  "num_records_suppressed": 0,
+  "people_cost": 0,
+  "property_cost": 0,
+  "product_cost": 0,
+  "business_cost": 50,
+  "total_cost": 50,
+  "sort": true,
+  "auto_trace": false,
+  "only_traceable": false,
+  "format": "csv",
+  "suppressed_fields": [],
+  "enriched_fields": [],
+  "_id": 710516,
+  "query": "categories:hotels AND country:US",
+  "num_records": 50,
+  "data_type": "business",
+  "user": 1226609,
+  "results": [
+    "https://datafiniti-downloads.s3.amazonaws.com/126609/811043_1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250317T200355Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Credential=AKIAZSCI425AD5EKHVNH%2F20250317%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=4c14da1d1df9eb490a0ab7c329b6f60f87c87edda2fe3b1a3dc857ea6e639sdfas6dc"
+  ],
+  "date_started": "2025-03-17T20:00:46.733Z",
+  "date_updated": "2025-03-17T20:03:55.926Z",
+  "is_suppression_job": false,
+  "is_enrichment_job": false,
+  "id": "847070"
+}
+```
+
+### Track your download via the portal
+
+You can track the status of your Datafiniti download via the portal in the download page [here](https://portal.datafiniti.co/download).\
+For more information please read our [Downloading Result Files](https://java.documentationai.com/docs/downloading-result-files).\
+You can match the ID from your API response to the download ID on the page here:
+
+<Image src="https://files.readme.io/e048f51d3f77560a7a3803356c4350802c0f3386c89d25c67dd180c95804c747-image.png" width="1920" height="1080" alt="" />
+
+### Track via our reference page
+
+You can track the status of your Datafiniti download via the API reference page [Get a Download](https://java.documentationai.com/reference/get-a-download). You can match the ID from your API response to the download ID on the page here:
+
+<Image src="https://files.readme.io/c5707f6b7aca415216ec57d58c5047fdedece72db0596e3c7d3ae88cb8c7d35a-image.png" width="1920" height="1080" alt="" />
+
+<br />
+
+<br />
+
+## 7. Parse the JSON data
+
+### Open the result file(s) in Excel
+
+The download code will save one or more result files to your project folder.  Open one of those files in Excel.  It will look something like:
+
+<Image src="https://files.readme.io/b8b08d6f8ae5cdf1c77c8c56b6da899a6c006ce27fb76ddfb795aaf0a4f3b50b-image.png" width="1920" height="1080" alt="" />
+
+### Parse the JSON data
+
+The download code will save one or more result files to your project folder.
+
+<Callout kind="info">
+  **JSON format download**
+
+The JSON data will actually be a text file, instead of a single JSON object. Each line in the text file is a JSON object. We format the data this way because most programming languages won't handle parsing the entire data set as a JSON object with their standard system calls very well. Commonly know as NDJSON
+</Callout>
+
+We'll need to parse the file into an array of JSON objects.  We can use code similar to this to handle the parsing:
+
+```php
+<?php
+
+// Set the location of your file here.
+$file = 'xxxx_x.txt';
+
+// Function to read each line and process it with a callback
+function readLines($filePath, $callback) {
+    $records = [];
+
+    $handle = fopen($filePath, "r");
+    if ($handle) {
+        while (($line = fgets($handle)) !== false) {
+            $line = trim($line);
+            if (!empty($line)) {
+                $callback($line, $records);
+            }
+        }
+        fclose($handle);
+    } else {
+        die("Error opening the file.");
+    }
+
+    processData($records);
+}
+
+// Function to parse line to JSON and add to records array
+function func($line, &$records) {
+    $json = json_decode($line, true);
+    if (json_last_error() === JSON_ERROR_NONE) {
+        $records[] = $json;
+    } else {
+        echo "JSON parse error on line: $line\n";
+    }
+}
+
+// Function to process all data after file read is complete
+function processData($records) {
+    // You can modify this to do more with the data
+    print_r($records);
+}
+
+readLines($file, 'func');
+```
+
+You can edit the code in `processData` above to do whatever you'd like with the data, such as store the data in a database, write it out to your console, etc.
