@@ -996,130 +996,154 @@
             "tab": "API Reference",
             "groups": [
               {
-                "group": "Search and Downloads",
+                "group": "Requesting Data",
                 "pages": [
                   {
-                    "title": "Search and Downloads",
-                    "path": "reference/search-and-downloads"
+                    "group": "Search and Downloads",
+                    "pages": [
+                      {
+                        "title": "Search and Downloads",
+                        "path": "reference/search-and-downloads"
+                      },
+                      {
+                        "title": "Business Data",
+                        "path": "reference/businesses",
+                        "method": "POST",
+                        "openapi": "reference/datafiniti-openapi.json POST /businesses/search"
+                      },
+                      {
+                        "title": "People Data",
+                        "path": "reference/people-data",
+                        "method": "POST",
+                        "openapi": "reference/datafiniti-openapi.json POST /people/search"
+                      },
+                      {
+                        "title": "Product Data",
+                        "path": "reference/products",
+                        "method": "POST",
+                        "openapi": "reference/datafiniti-openapi.json POST /products/search"
+                      },
+                      {
+                        "title": "Property Data",
+                        "path": "reference/properties",
+                        "method": "POST",
+                        "openapi": "reference/datafiniti-openapi.json POST /properties/search"
+                      },
+                      {
+                        "title": "Get a Specific Record",
+                        "path": "reference/get-a-specific-record",
+                        "method": "GET",
+                        "openapi": "reference/datafiniti-openapi.json GET /{data_type}/{id}"
+                      },
+                      {
+                        "title": "Get all Downloads",
+                        "path": "reference/get-all-downloads",
+                        "method": "GET",
+                        "openapi": "reference/datafiniti-openapi.json GET /downloads"
+                      },
+                      {
+                        "title": "Get a Download",
+                        "path": "reference/get-a-download",
+                        "method": "GET",
+                        "openapi": "reference/datafiniti-openapi.json GET /downloads/{id}"
+                      },
+                      {
+                        "title": "Cancel a Download",
+                        "path": "reference/cancel-a-download",
+                        "method": "DELETE",
+                        "openapi": "reference/datafiniti-openapi.json DELETE /downloads/{id}"
+                      }
+                    ]
                   },
                   {
-                    "title": "Business Data",
-                    "path": "reference/businesses",
-                    "openapi": "reference/datafiniti-openapi.json POST /businesses/search"
+                    "group": "Views",
+                    "pages": [
+                      {
+                        "title": "Views",
+                        "path": "reference/views"
+                      },
+                      {
+                        "title": "Create View",
+                        "path": "reference/create-view",
+                        "method": "POST",
+                        "openapi": "reference/datafiniti-openapi.json POST /views"
+                      },
+                      {
+                        "title": "Update View",
+                        "path": "reference/update-view",
+                        "method": "PUT",
+                        "openapi": "reference/datafiniti-openapi.json PUT /views/{view_name}"
+                      },
+                      {
+                        "title": "Get all Views",
+                        "path": "reference/get-all-views",
+                        "method": "GET",
+                        "openapi": "reference/datafiniti-openapi.json GET /views"
+                      },
+                      {
+                        "title": "Get a View by name",
+                        "path": "reference/get-a-view-by-name",
+                        "method": "GET",
+                        "openapi": "reference/datafiniti-openapi.json GET /views/{view_name}"
+                      },
+                      {
+                        "title": "Delete a View",
+                        "path": "reference/delete-a-view",
+                        "method": "DELETE",
+                        "openapi": "reference/datafiniti-openapi.json DELETE /views/{view_name}"
+                      }
+                    ]
                   },
-                  {
-                    "title": "People Data",
-                    "path": "reference/people-data",
-                    "openapi": "reference/datafiniti-openapi.json POST /people/search"
-                  },
-                  {
-                    "title": "Product Data",
-                    "path": "reference/products",
-                    "openapi": "reference/datafiniti-openapi.json POST /products/search"
-                  },
-                  {
-                    "title": "Property Data",
-                    "path": "reference/properties",
-                    "openapi": "reference/datafiniti-openapi.json POST /properties/search"
-                  },
-                  {
-                    "title": "Get a Specific Record",
-                    "path": "reference/get-a-specific-record",
-                    "openapi": "reference/datafiniti-openapi.json GET /{data_type}/{id}"
-                  },
-                  {
-                    "title": "Get all Downloads",
-                    "path": "reference/get-all-downloads",
-                    "openapi": "reference/datafiniti-openapi.json GET /downloads"
-                  },
-                  {
-                    "title": "Get a Download",
-                    "path": "reference/get-a-download",
-                    "openapi": "reference/datafiniti-openapi.json GET /downloads/{id}"
-                  },
-                  {
-                    "title": "Cancel a Download",
-                    "path": "reference/cancel-a-download",
-                    "openapi": "reference/datafiniti-openapi.json DELETE /downloads/{id}"
-                  }
-                ]
-              },
-              {
-                "group": "Views",
-                "pages": [
-                  {
-                    "title": "Create View",
-                    "path": "reference/create-view",
-                    "openapi": "reference/datafiniti-openapi.json POST /views"
-                  },
-                  {
-                    "title": "Update View",
-                    "path": "reference/update-view",
-                    "openapi": "reference/datafiniti-openapi.json PUT /views/{view_name}"
-                  },
-                  {
-                    "title": "Get all Views",
-                    "path": "reference/get-all-views",
-                    "openapi": "reference/datafiniti-openapi.json GET /views"
-                  },
-                  {
-                    "title": "Get a View by name",
-                    "path": "reference/get-a-view-by-name",
-                    "openapi": "reference/datafiniti-openapi.json GET /views/{view_name}"
-                  },
-                  {
-                    "title": "Delete a View",
-                    "path": "reference/delete-a-view",
-                    "openapi": "reference/datafiniti-openapi.json DELETE /views/{view_name}"
-                  }
-                ]
-              },
-              {
-                "group": "Real-time",
-                "pages": [
                   {
                     "title": "Real-time Data Requests",
                     "path": "reference/real-time-data-requests",
+                    "method": "POST",
                     "openapi": "reference/datafiniti-openapi.json POST /scrape"
                   },
                   {
                     "title": "Create a Real-time Update",
                     "path": "reference/create-a-real-time-update",
+                    "method": "POST",
                     "openapi": "reference/datafiniti-openapi.json POST /targeted-updates"
                   },
                   {
                     "title": "View Real-time Updates",
                     "path": "reference/view-all-real-time-updates",
+                    "method": "GET",
                     "openapi": "reference/datafiniti-openapi.json GET /targeted-updates"
                   }
                 ]
               },
               {
-                "group": "Account",
+                "group": "Your Account",
                 "pages": [
                   {
                     "title": "Authentication",
                     "path": "reference/authentication",
+                    "method": "POST",
                     "openapi": "reference/datafiniti-openapi.json POST /auth"
                   },
                   {
                     "title": "Get Your Account",
                     "path": "reference/get-your-account",
+                    "method": "GET",
                     "openapi": "reference/datafiniti-openapi.json GET /account"
                   },
                   {
                     "title": "Update Your Account",
                     "path": "reference/update-your-account",
+                    "method": "PUT",
                     "openapi": "reference/datafiniti-openapi.json PUT /account"
                   }
                 ]
               },
               {
-                "group": "Status",
+                "group": "API Status",
                 "pages": [
                   {
                     "title": "API Status Check",
                     "path": "reference/api-status-check",
+                    "method": "GET",
                     "openapi": "reference/datafiniti-openapi.json GET /health"
                   }
                 ]
