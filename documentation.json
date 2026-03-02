@@ -1000,6 +1000,7 @@
                 "pages": [
                   {
                     "group": "Search and Downloads",
+                    "icon": "search",
                     "pages": [
                       {
                         "title": "Search and Downloads",
@@ -1057,6 +1058,7 @@
                   },
                   {
                     "group": "Views",
+                    "icon": "eye",
                     "pages": [
                       {
                         "title": "Views",
