@@ -22,7 +22,7 @@ We recommend using Postman when accessing the Datafiniti API.  It's a great clie
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co/settings/api), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com/settings/api), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 <Image src="https://files.readme.io/7a9b4cfaa16d9c33bd568f461438ac0f937eca3df7f532450ce1e00fcc74c358-image.png" width="1920" height="1080" alt="" />
 
@@ -90,7 +90,7 @@ Click the blue "Send" button.  You should get a response similar to this:
             "postalCode": "48101",
             "province": "MI",
             "sourceURLs": [
-                "https://datafiniti.co"
+                "https://documentationai.com"
             ],
             "id": "AWG2azB1QH9dEUBnfEki"
         }
@@ -111,7 +111,7 @@ Now let's dive through the response the API returned:
 | Response Field | Description |
 | --- | --- |
 | `"num_found"` | The total number of available records in the database that match your query.  If you end up downloading the entire data set, this is how many records you'll use. |
-| `"total_cost"` | The number of credits this request has cost you.  People records have a record cost multiplier tied to them.  [See pricing](https://datafiniti.co/pricing/people-data-pricing/). |
+| `"total_cost"` | The number of credits this request has cost you.  People records have a record cost multiplier tied to them.  [See pricing](https://documentationai.com/pricing/people-data-pricing/). |
 | `"records"` | The first available matches to your query. If there are no matches, this field will be empty.   <br/>    <br/> Within each record returned, you'll see multiple fields shown.  This is the data for each record. |
 
 Within the `records` field, you'll see a single person returned with multiple fields and the values associated with that product.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
@@ -237,7 +237,7 @@ Here's what these fields mean:
 | `query`          | The query you ran.                                                                                                                                                                                   |
 | `format`         | The data format you requested.                                                                                                                                                                       |
 | `num_records`    | The total number of records that will be downloaded.                                                                                                                                                 |
-| `total_cost`     | The total number of credits used by this download.  People records have a record cost multiplier tied to them.  [See pricing](https://datafiniti.co/pricing/people-data-pricing/).                   |
+| `total_cost`     | The total number of credits used by this download.  People records have a record cost multiplier tied to them.  [See pricing](https://documentationai.com/pricing/people-data-pricing/).                   |
 
 ## 7. Download the result file(s)
 

@@ -324,7 +324,7 @@ All 102 files with relative links fully converted. Zero relative `/docs/` or `/r
 **Output**
 
 ```markdown
-[billing@datafiniti.co](mailto:billing@datafiniti.co)
+[billing@documentationai.com](mailto:billing@documentationai.com)
 ```
 
 </Columns>

@@ -7,7 +7,7 @@ You can use our  `/search/enrichment`  endpoint to improve your data by merging 
 <Image src="https://files.readme.io/9946bea-PostmanSearch.PNG" width="1920" height="1080" alt="PostmanSearch.PNG" />
 
 ## Endpoints
-`POST https://api.datafiniti.co/v4/{dataType}/search/enrichment`
+`POST https://api.documentationai.com/v4/{dataType}/search/enrichment`
 
 ## Input
 A multipart/form-data object containing all the information needed to process your enrichment job. The multipart/form-data object will look like this:
@@ -41,10 +41,10 @@ The object will contain parameters for the job as well as its current status. Th
 <Callout kind="danger">
   **Credit Usage & Enrichment**
 
-Since Enrichment charge credit per the batch file you are enriching data from, you may be overcharged credits to your account upon submitting a enrichment request. If you do not know if overcharging is enable / disable on your account you may contact support@datafiniti.co to find this info out.
+Since Enrichment charge credit per the batch file you are enriching data from, you may be overcharged credits to your account upon submitting a enrichment request. If you do not know if overcharging is enable / disable on your account you may contact support@documentationai.com to find this info out.
 </Callout>
 
 **Retrieving your download**
 You can retrieve the enriched data by using our download endpoint and supplying the ID in the path.
-`GET https://api.datafiniti.co/v4/downloads/{id}`
-This will return an object that indicates the status of your download. If everything is ready, it will also contain s3 links to your data. For more infomation on how to check through your downloads, you can visit [here](https://developer.datafiniti.co/docs/postman-downloading-result-files).
+`GET https://api.documentationai.com/v4/downloads/{id}`
+This will return an object that indicates the status of your download. If everything is ready, it will also contain s3 links to your data. For more infomation on how to check through your downloads, you can visit [here](https://developer.documentationai.com/docs/postman-downloading-result-files).

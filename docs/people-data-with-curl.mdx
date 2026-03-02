@@ -18,7 +18,7 @@ Here are the steps we'll take:
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co/settings), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com/settings), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 <Callout kind="info">
   **API Key**
@@ -41,7 +41,7 @@ Since we want CEOs, let's try a simple search that will just give us people with
 Write the following code in your code editor of choice (replace the dummy API token with your real API token):
 
 ```curl
-curl --request POST --url https://api.datafiniti.co/v4/people/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"jobTitle:CEO","num_records":1}'
+curl --request POST --url https://api.documentationai.com/v4/people/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"jobTitle:CEO","num_records":1}'
 ```
 
 You should get a response similar to this (although it may not look as pretty in your terminal):
@@ -77,7 +77,7 @@ You should get a response similar to this (although it may not look as pretty in
             "postalCode": "48101",
             "province": "MI",
             "sourceURLs": [
-                "https://datafiniti.co"
+                "https://documentationai.com"
             ],
             "id": "AWG2azB1QH9dEUBnfEki"
         }
@@ -98,7 +98,7 @@ Now let's dive through the response the API returned:
 | Response Field | Description |
 | --- | --- |
 | `"num_found"` | The total number of available records in the database that match your query.  If you end up downloading the entire data set, this is how many records you'll use. |
-| `"total_cost"` | The number of credits this request has cost you.  People records have a record cost multiplier tied to them.  [See pricing](https://datafiniti.co/pricing/people-data-pricing/). |
+| `"total_cost"` | The number of credits this request has cost you.  People records have a record cost multiplier tied to them.  [See pricing](https://documentationai.com/pricing/people-data-pricing/). |
 | `"records"` | The first available matches to your query. If there are no matches, this field will be empty.   <br />    <br /> Within each record returned, you'll see multiple fields shown.  This is the data for each record. |
 
 Within the `records` field, you'll see a single person returned with multiple fields and the values associated with that product.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
@@ -112,7 +112,7 @@ Let's say we decided to adjust our sales campaign to only target CEOs in Austin,
 Modify your request to look like this:
 
 ```curl
-curl --request POST --url https://api.datafiniti.co/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"jobTitle:CEO AND province:TX AND city:Austin", "num_records": 10}'
+curl --request POST --url https://api.documentationai.com/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"jobTitle:CEO AND province:TX AND city:Austin", "num_records": 10}'
 ```
 
 This API call is different in a couple ways:
@@ -125,7 +125,7 @@ Notice how Datafiniti lets you construct very refined boolean queries.  In the A
 If you would like to narrow your search to just exact matches you can place the search term in quotation marks.
 
 ```curl
-curl --request POST --url https://api.datafiniti.co/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"jobTitle:\"Product Developer\"", "num_records": 10}'
+curl --request POST --url https://api.documentationai.com/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"jobTitle:\"Product Developer\"", "num_records": 10}'
 ```
 
 The above query will only return people with the exact title of Product Developer. The quotation marks need to be escaped using back slashes since they are already within another set of quotation marks.
@@ -135,7 +135,7 @@ The above query will only return people with the exact title of Product Develope
 Once we like what we see from the sample matches, it's time to download a larger data set!  To do this, we're going to further modify our request to look like this:
 
 ```curl
-curl --request POST --url https://api.datafiniti.co/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"jobTitle:CEO AND province:TX AND city:Austin", "num_records": 20,"format":"csv","download": true}'
+curl --request POST --url https://api.documentationai.com/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"jobTitle:CEO AND province:TX AND city:Austin", "num_records": 20,"format":"csv","download": true}'
 ```
 
 Here's what we changed:
@@ -175,7 +175,7 @@ We'll explain each of these fields in the next section.
 As the download request runs, you can check on its status by making a call to the `/downloads/` endpoint like so:
 
 ```curl
-curl --request GET --url https://api.datafiniti.co/v4/downloads/XXXX --header 'authorization: Bearer AAAXXXXXXXXXXXX'
+curl --request GET --url https://api.documentationai.com/v4/downloads/XXXX --header 'authorization: Bearer AAAXXXXXXXXXXXX'
 ```
 
 You'll want to replace `XXXX` with the `id` value for your request.  If you keep running this call, you'll see some of the values update.  Once the download completes, it will look something like this:
@@ -213,7 +213,7 @@ Here's what these fields mean:
 | `query`          | The query you ran.                                                                                                                                                                                   |
 | `format`         | The data format you requested.                                                                                                                                                                       |
 | `num_records`    | The total number of records that will be downloaded.                                                                                                                                                 |
-| `total_cost`     | The total number of credits used by this download.  People records have a record cost multiplier tied to them.  [See pricing](https://datafiniti.co/pricing/people-data-pricing/).                   |
+| `total_cost`     | The total number of credits used by this download.  People records have a record cost multiplier tied to them.  [See pricing](https://documentationai.com/pricing/people-data-pricing/).                   |
 
 ### 6. Download the result file(s)
 

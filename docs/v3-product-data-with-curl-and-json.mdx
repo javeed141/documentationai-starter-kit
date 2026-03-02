@@ -24,7 +24,7 @@ If you want to use cURL to access the Datafiniti API, we're assuming you have ac
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 <Callout kind="info">
 For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
@@ -36,7 +36,7 @@ The first thing we'll do is do a test search that will give us a sense for what 
 Enter the following into your terminal (replace the dummy API token with your real API token):
 
 ```curl
-curl --user AAAXXXXXXXXXXXX: 'https://api.datafiniti.co/v3/data/products?view=products_all&format=JSON&q=categories:shoes&records=1&download=false'
+curl --user AAAXXXXXXXXXXXX: 'https://api.documentationai.com/v3/data/products?view=products_all&format=JSON&q=categories:shoes&records=1&download=false'
 ```
 
 You should get a response similar to this (although it may not look as pretty in your terminal):
@@ -88,7 +88,7 @@ Let's break down what the API call is all about:
 | --- | --- |
 | `https://` | This is the communication protocol used by the API.  It's the same one used when you visit a secure website. |
 | `AAAXXXXXXXXXXXX:@` | Your API token.  You're telling the API who you are so it can respond to your request. |
-| `api.datafiniti.co` | The location of the API. |
+| `api.documentationai.com` | The location of the API. |
 | `/v3` | You're telling the API which version to use.  `v3` is our most recent and current API version. |
 | `/data` | You're telling the API you're interested in querying data. |
 | `/products` | Specifically, you're interested in product data. |
@@ -114,7 +114,7 @@ If you take a look at the sample record shown above, you'll notice that it's not
 
 We'll need to refine our search to make sure we're only getting shoes.  To do that, we can add additional filters to the `q` parameter to narrow down the results.  For example:
 
-`https://AAAXXXXXXXXXXXX:@api.datafiniti.co/v3/data/products?view=products_all&format=JSON&q=categories:shoes AND -categories:shirts AND categories:women AND (brand:* OR manufacturer:*) AND prices:*&records=10&download=false`
+`https://AAAXXXXXXXXXXXX:@api.documentationai.com/v3/data/products?view=products_all&format=JSON&q=categories:shoes AND -categories:shirts AND categories:women AND (brand:* OR manufacturer:*) AND prices:*&records=10&download=false`
 
 This API call is different in a few ways:
 
@@ -129,7 +129,7 @@ Notice how Datafiniti lets you construct very refined boolean queries.  In the A
 You can use the following cURL command to run this API call:
 
 ```curl
-curl --user AAAXXXXXXXXXXXX: 'https://api.datafiniti.co/v3/data/products?view=products_all&format=JSON&q=categories:shoes+AND+-categories:shirts+AND+categories:women+AND+%28brand%3A%2A+OR+manufacturer%3A%2A%29+AND+prices%3A%2A&records=10&download=false'
+curl --user AAAXXXXXXXXXXXX: 'https://api.documentationai.com/v3/data/products?view=products_all&format=JSON&q=categories:shoes+AND+-categories:shirts+AND+categories:women+AND+%28brand%3A%2A+OR+manufacturer%3A%2A%29+AND+prices%3A%2A&records=10&download=false'
 ```
 
 
@@ -141,7 +141,7 @@ Once we like what we see from the sample matches, it's time to download the enti
 After those changes, the cURL command looks like:
 
 ```curl
-curl --user AAAXXXXXXXXXXXX: 'https://api.datafiniti.co/v3/data/products?view=products_all&format=JSON&q=categories:shoes+AND+-categories:shirts+AND+categories:women+AND+%28brand%3A%2A+OR+manufacturer%3A%2A%29+AND+prices%3A%2A&download=true'
+curl --user AAAXXXXXXXXXXXX: 'https://api.documentationai.com/v3/data/products?view=products_all&format=JSON&q=categories:shoes+AND+-categories:shirts+AND+categories:women+AND+%28brand%3A%2A+OR+manufacturer%3A%2A%29+AND+prices%3A%2A&download=true'
 ```
 
 After running this command, you'll something like:
@@ -193,10 +193,10 @@ Here's what these fields mean:
 
 As the download request runs, you can check on its status by using this command:
 
-`https://AAAXXXXXXXXXXXX:@api.datafiniti.co/v3/requests/XXXX`
+`https://AAAXXXXXXXXXXXX:@api.documentationai.com/v3/requests/XXXX`
 
 ```curl
-curl --user AAAXXXXXXXXXXXX: 'https://api.datafiniti.co/v3/requests/XXXX'
+curl --user AAAXXXXXXXXXXXX: 'https://api.documentationai.com/v3/requests/XXXX'
 ```
 
 You'll want to replace `XXXX` with the `id` value for your request.  If you keep running the above command, you'll see `numDownloaded` gradually increase.
@@ -205,7 +205,7 @@ You'll want to replace `XXXX` with the `id` value for your request.  If you keep
 Once the download finishes, the `/requests/` call will show `COMPLETED` for `status`.  You can then get links to the data files by running this command:
 
 ```curl
-curl --user AAAXXXXXXXXXXXX: 'https://api.datafiniti.co/v3/results/XXXX'
+curl --user AAAXXXXXXXXXXXX: 'https://api.documentationai.com/v3/results/XXXX'
 ```
 
 (Again, replace `XXXX` with the actual request id.)  The response will look similar to:

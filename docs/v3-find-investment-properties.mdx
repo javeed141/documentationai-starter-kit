@@ -4,7 +4,7 @@ title: Find investment properties
 
 ## Introduction
 
-You can use the Datafiniti Property API to search for all kinds of properties that may match your investment criteria.  We have [hundreds of fields available in the data](https://developer.datafiniti.co/docs/property-data-schema), all of which are searchable.  It's just a matter of finding out the right combination of filters to meet your needs.  Let's explore some common search criteria!
+You can use the Datafiniti Property API to search for all kinds of properties that may match your investment criteria.  We have [hundreds of fields available in the data](https://developer.documentationai.com/docs/property-data-schema), all of which are searchable.  It's just a matter of finding out the right combination of filters to meet your needs.  Let's explore some common search criteria!
 
 ## Residential homes for sale
 
@@ -45,7 +45,7 @@ We can add more criteria to this to produce more targeted results.  Here's anoth
 }
 ```
 
-This query adds the `city` and `province` fields to provide some geo-targeting.  You can also run [radial searches around a lat/long point](https://developer.datafiniti.co/docs/constructing-property-queries#geo-queries).
+This query adds the `city` and `province` fields to provide some geo-targeting.  You can also run [radial searches around a lat/long point](https://developer.documentationai.com/docs/constructing-property-queries#geo-queries).
 
 If you want to run price-based searches, try something like:
 
@@ -55,7 +55,7 @@ If you want to run price-based searches, try something like:
 }
 ```
 
-This query searches for single family homes priced between $300,000 and $500,000.  [Learn more about range queries](https://developer.datafiniti.co/docs/constructing-property-queries#range-queries).
+This query searches for single family homes priced between $300,000 and $500,000.  [Learn more about range queries](https://developer.documentationai.com/docs/constructing-property-queries#range-queries).
 
 You can even use the `features` array to search on many, many more custom values, like so:
 
@@ -104,7 +104,7 @@ Of course, we may want to do something a little more complicated than that.  We 
 }
 ```
 
-This will show us all multi-family homes that have rental units available.  [Here are some other possible values for this field](https://developer.datafiniti.co/docs/possible-values-for-property-fields#propertytype).
+This will show us all multi-family homes that have rental units available.  [Here are some other possible values for this field](https://developer.documentationai.com/docs/possible-values-for-property-fields#propertytype).
 
 When you search for rental properties, you can check the `prices` array in the data you get back to see what the rental prices are.  Here's a truncated version of what that data will look like:
 
@@ -169,7 +169,7 @@ You can run a more targeted search by adding more filters.  Searching for land t
 }
 ```
 
-This will search for land that's more than 1 acre in size.  [More info on searching on lot size](https://developer.datafiniti.co/docs/possible-values-for-property-fields#floorsizeunit--lotsizeunit).
+This will search for land that's more than 1 acre in size.  [More info on searching on lot size](https://developer.documentationai.com/docs/possible-values-for-property-fields#floorsizeunit--lotsizeunit).
 
 ## Example Records
 

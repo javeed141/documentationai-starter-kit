@@ -21,7 +21,7 @@ If you want to use PHP to access the Datafiniti API, we're assuming you'll be us
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 <Callout kind="info">
 For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
@@ -51,7 +51,7 @@ $records = '1';
 $download = 'false';
 
 // Construct the API call.
-$APICall = 'https://' . $APIToken . ':@api.datafiniti.co/v3/data/properties?'
+$APICall = 'https://' . $APIToken . ':@api.documentationai.com/v3/data/properties?'
 			. 'view=' . $view 
 			. '&format=' . $format
 			. '&q=' . $query
@@ -173,7 +173,7 @@ Let's break down what the API call is all about:
 | --- | --- |
 | `https://` | This is the communication protocol used by the API.  It's the same one used when you visit a secure website. |
 | `AAAXXXXXXXXXXXX:@` | Your API token.  You're telling the API who you are so it can respond to your request. |
-| `api.datafiniti.co` | The location of the API. |
+| `api.documentationai.com` | The location of the API. |
 | `/v3` | You're telling the API which version to use.  `v3` is our most recent and current API version. |
 | `/data` | You're telling the API you're interested in querying data. |
 | `/properties` | Specifically, you're interested in proeprty data. |
@@ -211,7 +211,7 @@ $records = '10';
 $download = 'false';
 
 // Construct the API call.
-$APICall = 'https://' . $APIToken . ':@api.datafiniti.co/v3/data/properties'
+$APICall = 'https://' . $APIToken . ':@api.documentationai.com/v3/data/properties'
 			. '?view=' . $view 
 			. '&format=' . $format
 			. '&q=' . $query
@@ -260,7 +260,7 @@ $records = '10';
 $download = 'true';
 
 // Construct the API call.
-$APICall = 'https://' . $APIToken . ':@api.datafiniti.co/v3/data/properties?'
+$APICall = 'https://' . $APIToken . ':@api.documentationai.com/v3/data/properties?'
 			. 'view=' . $view 
 			. '&format=' . $format
 			. '&q=' . $query
@@ -313,7 +313,7 @@ if ($responseArray['code'] == 303) { // A download request redirects to a differ
 	if ($requestResponseStatus == 'COMPLETED') {
 		$requestURLTokens = explode('/',$requestAPICall);
 		$requestID = $requestURLTokens[sizeof($requestURLTokens)-1];
-		$resultAPICall = 'http://' . $APIToken . ':@api.datafiniti.co/v3/results/' . $requestID;		
+		$resultAPICall = 'http://' . $APIToken . ':@api.documentationai.com/v3/results/' . $requestID;		
 
 		echo "Downloading result files: " . $resultAPICall . "\n";
 		$resultResponseArray = curlAPICall($resultAPICall);

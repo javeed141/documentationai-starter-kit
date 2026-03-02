@@ -23,7 +23,7 @@ If you want to use PHP to access the Datafiniti API, we're assuming you'll be us
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal Settings Page](https://portal.datafiniti.co/settings/api), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal Settings Page](https://portal.documentationai.com/settings/api), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 For security reasons, your API token will be automatically changed whenever you change your password.
 
@@ -55,7 +55,7 @@ Write the following code in your code editor (replace the dummy API token with y
   Illustrates an API call to Datafiniti's Business Database for hotels.
 */
 
-$url = 'https://api.datafiniti.co/v4/products/search';
+$url = 'https://api.documentationai.com/v4/products/search';
 
 // Set your API parameters here.
 $APIToken = 'AAAXXXXXXXXXXXX';
@@ -185,7 +185,7 @@ We'll need to refine our search to make sure we're only getting shoes.  Modify y
   Illustrates an API call to Datafiniti's Business Database for hotels.
 */
 
-$url = 'https://api.datafiniti.co/v4/products/search';
+$url = 'https://api.documentationai.com/v4/products/search';
 
 // Set your API parameters here.
 $APIToken = 'AAAXXXXXXXXXXXX';
@@ -246,7 +246,7 @@ If you would like to narrow your search to just exact matches you can place the 
   Illustrates an API call to Datafiniti's Business Database for hotels.
 */
 
-$url = 'https://api.datafiniti.co/v4/products/search';
+$url = 'https://api.documentationai.com/v4/products/search';
 
 // Set your API parameters here.
 $APIToken = 'AAAXXXXXXXXXXXX';
@@ -294,7 +294,7 @@ Once we like what we see from the sample matches, it's time to download a larger
   Illustrates how to download a full data set from Datafiniti's Business Database.
 */
 
-$request_url = 'https://api.datafiniti.co/v4/products/search';
+$request_url = 'https://api.documentationai.com/v4/products/search';
 
 // Set your API parameters here.
 $API_token = 'AAAXXXXXXXX';
@@ -337,7 +337,7 @@ if ($request_response === FALSE) {
 	print_r($request_response_array);
 
 	$download_id = $request_response_array['id'];
-	$download_url = 'https://api.datafiniti.co/v4/downloads/' . $download_id;
+	$download_url = 'https://api.documentationai.com/v4/downloads/' . $download_id;
 	$download_options = array(
 		'http' => array (
 			'header'  => "Authorization: Bearer " . $API_token . "\r\n",
@@ -852,7 +852,7 @@ You will be presented with a response JSON different from the previous download 
 }
 ```
 
-You can track the status of your download via the following method using our GET `https://api.datafiniti.co/v4/downloads/:id` endpoint
+You can track the status of your download via the following method using our GET `https://api.documentationai.com/v4/downloads/:id` endpoint
 
 ### Track your download via the API
 
@@ -864,7 +864,7 @@ The following code can be used to track your download ID:
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-  CURLOPT_URL => "https://api.datafiniti.co/v4/downloads/811043?api_key=<your_API_key>",
+  CURLOPT_URL => "https://api.documentationai.com/v4/downloads/811043?api_key=<your_API_key>",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -925,7 +925,7 @@ The response of your code will provide you with the following JSON:
 
 ### Track your download via the portal
 
-You can track the status of your Datafiniti download via the portal in the download page [here](https://portal.datafiniti.co/download).\
+You can track the status of your Datafiniti download via the portal in the download page [here](https://portal.documentationai.com/download).\
 For more information please read our [Downloading Result Files](https://java.documentationai.com/docs/downloading-result-files).\
 You can match the ID from your API response to the download ID on the page here:
 

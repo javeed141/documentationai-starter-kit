@@ -29,7 +29,7 @@ pip3 install requests
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 <Callout kind="info">
 For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
@@ -58,7 +58,7 @@ records = '1'
 download = 'false'
 
 ## Construct the API call.
-APICall = 'https://' + APIToken + ':@api.datafiniti.co/v3/data/properties?' \
+APICall = 'https://' + APIToken + ':@api.documentationai.com/v3/data/properties?' \
 			+ 'view=' + view \
 			+ '&format=' + format \
 			+ '&q=' + query \
@@ -197,7 +197,7 @@ Let's break down what the API call is all about:
 | --- | --- |
 | `https://` | This is the communication protocol used by the API.  It's the same one used when you visit a secure website. |
 | `AAAXXXXXXXXXXXX:@` | Your API token.  You're telling the API who you are so it can respond to your request. |
-| `api.datafiniti.co` | The location of the API. |
+| `api.documentationai.com` | The location of the API. |
 | `/v3` | You're telling the API which version to use.  `v3` is our most recent and current API version. |
 | `/data` | You're telling the API you're interested in querying data. |
 | `/properties` | Specifically, you're interested in property data. |
@@ -237,7 +237,7 @@ records = '1'
 download = 'false'
 
 ## Construct the API call.
-APICall = 'https://' + APIToken + ':@api.datafiniti.co/v3/data/properties?' \
+APICall = 'https://' + APIToken + ':@api.documentationai.com/v3/data/properties?' \
 			+ 'view=' + view \
 			+ '&format=' + format \
 			+ '&q=' + query \
@@ -281,7 +281,7 @@ records = '1'
 download = 'true'
 
 ## Construct the API call.
-APICall = 'https://' + APIToken + ':@api.datafiniti.co/v3/data/properties?' \
+APICall = 'https://' + APIToken + ':@api.documentationai.com/v3/data/properties?' \
 			+ 'view=' + view \
 			+ '&format=' + format \
 			+ '&q=' + query \
@@ -308,7 +308,7 @@ if r.status_code == 200:
 
 	# Once the download has completed, get the list of links to the result files and download each file
 	if requestResponseStatus == 'COMPLETED':
-		result = requests.get('https://' + APIToken + ':@api.datafiniti.co/v3/results/' + str(requestID))
+		result = requests.get('https://' + APIToken + ':@api.documentationai.com/v3/results/' + str(requestID))
 		resultResponse = json.loads(result.text)
 		i = 1;
 		for resultObj in resultResponse:

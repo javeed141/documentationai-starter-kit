@@ -10,7 +10,7 @@ Our `/scrape` endpoint allows you to get the web data you need in real-time.
 
 ## Endpoint
 
-`POST https://api.datafiniti.co/v4/scrape`
+`POST https://api.documentationai.com/v4/scrape`
 
 ## Input
 
@@ -143,7 +143,7 @@ const DF_TOKEN = "INPUT YOUR DF TOKEN HERE";
 
 (async () => {
     const dfAPI = axios.create({
-        baseURL: 'https://api.datafiniti.co/v4',
+        baseURL: 'https://api.documentationai.com/v4',
         headers: {
             'Authorization': `Bearer ${DF_TOKEN}`,
             'Content-type': 'application/json'

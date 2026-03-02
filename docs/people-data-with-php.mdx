@@ -18,7 +18,7 @@ Here are the steps we'll take:
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co/settings), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com/settings), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 <Callout kind="info">
   **API Key**
@@ -43,7 +43,7 @@ Write the following code in your code editor (replace the dummy API token with y
 ```php
 <?php
 
-$url = 'https://api.datafiniti.co/v4/people/search';
+$url = 'https://api.documentationai.com/v4/people/search';
 
 // Set your API parameters here.
 $APIToken = 'AAAXXXXXXXXXXXX';
@@ -123,7 +123,7 @@ You should get a response similar to this:
 
   									[sourceURLs] => Array
                         (
-                            [0] => https://datafiniti.co
+                            [0] => https://documentationai.com
                         )
 
                     [id] => AVwcsllU_7pvs4fzx-yW
@@ -147,7 +147,7 @@ Now let's dive through the response the API returned:
 | Response Field | Description |
 | --- | --- |
 | `"num_found"` | The total number of available records in the database that match your query.  If you end up downloading the entire data set, this is how many records you'll use. |
-| `"total_cost"` | The number of credits this request has cost you.  People records have a record cost multiplier tied to them.  [See pricing](https://datafiniti.co/pricing/people-data-pricing/). |
+| `"total_cost"` | The number of credits this request has cost you.  People records have a record cost multiplier tied to them.  [See pricing](https://documentationai.com/pricing/people-data-pricing/). |
 | `"records"` | The first available matches to your query. If there are no matches, this field will be empty.   <br />    <br /> Within each record returned, you'll see multiple fields shown.  This is the data for each record. |
 
 Within the `records` field, you'll see a single person returned with multiple fields and the values associated with that product.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
@@ -163,7 +163,7 @@ Modify your code to look like this:
 ```php
 <?php
 
-$url = 'https://api.datafiniti.co/v4/people/search';
+$url = 'https://api.documentationai.com/v4/people/search';
 
 // Set your API parameters here.
 $APIToken = 'AAAXXXXXXXXXXXX';
@@ -211,7 +211,7 @@ If you would like to narrow your search to just exact matches you can place the 
 ```php
 <?php
 
-$url = 'https://api.datafiniti.co/v4/people/search';
+$url = 'https://api.documentationai.com/v4/people/search';
 
 // Set your API parameters here.
 $APIToken = 'AAAXXXXXXXXXXXX';
@@ -257,7 +257,7 @@ Once we like what we see from the sample matches, it's time to download a larger
 ```php
 <?php
 
-$request_url = 'https://api.datafiniti.co/v4/people/search';
+$request_url = 'https://api.documentationai.com/v4/people/search';
 
 // Set your API parameters here.
 $API_token = 'AAAXXXXXXXX';
@@ -300,7 +300,7 @@ if ($request_response === FALSE) {
 	print_r($request_response_array);
 
 	$download_id = $request_response_array['id'];
-	$download_url = 'https://api.datafiniti.co/v4/downloads/' . $download_id;
+	$download_url = 'https://api.documentationai.com/v4/downloads/' . $download_id;
 	$download_options = array(
 		'http' => array (
 			'header'  => "Authorization: Bearer " . $API_token . "\r\n",

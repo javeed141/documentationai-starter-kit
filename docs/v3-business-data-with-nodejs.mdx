@@ -27,7 +27,7 @@ npm install request
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co/settings), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com/settings), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 For security reasons, your API token will be automatically changed whenever you change your password.
 
@@ -60,7 +60,7 @@ var num_records = 1;
 var download = false;
 
 var request_options = {
-  url: 'https://api.datafiniti.co/v4/businesses/search',
+  url: 'https://api.documentationai.com/v4/businesses/search',
   method: 'POST',
   json: {
     'query': query,
@@ -223,7 +223,7 @@ var num_records = 10;
 var download = false;
 
 var request_options = {
-  url: 'https://api.datafiniti.co/v4/businesses/search',
+  url: 'https://api.documentationai.com/v4/businesses/search',
   method: 'POST',
   json: {
     'query': query,
@@ -294,7 +294,7 @@ var num_records = 50;
 var download = true;
 
 var request_options = {
-  url: 'https://api.datafiniti.co/v4/businesses/search',
+  url: 'https://api.documentationai.com/v4/businesses/search',
   method: 'POST',
   json: {
     'query': query,
@@ -315,7 +315,7 @@ console.log(request_options);
 function checkDownloadUntilComplete(options, callback) {
   var download_id = options.download_id;
   var download_options = {
-    url: 'https://api.datafiniti.co/v4/downloads/' + download_id,
+    url: 'https://api.documentationai.com/v4/downloads/' + download_id,
     method: 'GET',
     headers: {
       'Authorization': 'Bearer ' + API_token,
@@ -604,7 +604,7 @@ You will be presented with a response JSON different from the previous download 
 }
 ```
 
-You can track the status of your download via the following method using our GET `https://api.datafiniti.co/v4/downloads/:id` endpoint
+You can track the status of your download via the following method using our GET `https://api.documentationai.com/v4/downloads/:id` endpoint
 
 ### Track your download via the API
 
@@ -613,7 +613,7 @@ The following code can be used to track your download ID:
 ```node
 const axios = require('axios');
 
-const url = 'https://api.datafiniti.co/v4/downloads/811043?api_key=<your_API_key>';
+const url = 'https://api.documentationai.com/v4/downloads/811043?api_key=<your_API_key>';
 const headers = {
   'Authorization': 'Bearer <your_API_key>',
   'accept': 'application/json'
@@ -665,7 +665,7 @@ The response of your code will provide you with the following JSON:
 
 ### Track your download via the portal
 
-You can track the status of your Datafiniti download via the portal in the download page [here](https://portal.datafiniti.co/download).\
+You can track the status of your Datafiniti download via the portal in the download page [here](https://portal.documentationai.com/download).\
 For more information please read our [Downloading Result Files](https://java.documentationai.com/docs/downloading-result-files).\
 You can match the ID from your API response to the download ID on the page here:
 

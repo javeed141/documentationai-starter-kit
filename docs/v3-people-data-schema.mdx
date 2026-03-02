@@ -17,7 +17,7 @@ The people data schema below lists all available fields in a people record.  Not
 | `dateOfDeath` | `"dateOfDeath": "2020-07-27T00:00:00Z"` | The date of death of the person.   <br/> Field type: date |
 | `dateUpdated` | `"dateUpdated": "2017-01-08T19:12:13Z"` | The most recent date this person was updated or seen by our system.   <br/> Field type: date |
 | `deceased` | `"deceased": true` | The value to determine if the person is currently deseased.   <br/> Field type: boolean |
-| `domains` | `"domains": [ <br/>   "datafiniti.co" <br/> ]` | A list of each unique domain found in the `sourceURLs` field.   <br/> Field type: domain |
+| `domains` | `"domains": [ <br/>   "documentationai.com" <br/> ]` | A list of each unique domain found in the `sourceURLs` field.   <br/> Field type: domain |
 | `emails` | `"emails": [ <br/>   "doug@idronline.net" <br/> ]` | A list of emails associated with this person.   <br/> Field type: text |
 | `firstName` | `"firstName": "Doug"` | The person's first name.   <br/> Field type: text |
 | `gender` | `"gender": "male"` | The person's gender.   <br/> Field type: text |
@@ -27,7 +27,7 @@ The people data schema below lists all available fields in a people record.  Not
 | `jobLevel` | `"jobLevel": "C-Team"` | The person's current job level.   <br/>  Job level values can be found [here](https://java.documentationai.com/docs/possible-values-for-people-fields).   <br/> Field type: text |
 | `jobSkills` | `"jobSkills": [ <br/>   "enterprise software", <br/>   "start ups", <br/>   "monetization", <br/>   "social networking", <br/>   "usability", <br/>   "product management", <br/>   "photoshop", <br/>   "user experience", <br/>   "web applications", <br/>   "agile methodologies", <br/>   "scrum", <br/>   "video games" <br/> ]` | The person's job-related skills.   <br/> Field type: text |
 | `jobTitle` | `"jobTitle": "President of New Business Development"` | The person's current job title.   <br/> Field type: text |
-| `keys` | `"keys": [ <br/>   "dougidronlinenet" <br/> ]` | A list of internal Datafiniti identifiers for people.  The `keys` field is used to merge raw data from individual sources into the master Datafiniti record.  [Learn more about how this works](https://datafiniti.co).   <br/> Field type: keyword |
+| `keys` | `"keys": [ <br/>   "dougidronlinenet" <br/> ]` | A list of internal Datafiniti identifiers for people.  The `keys` field is used to merge raw data from individual sources into the master Datafiniti record.  [Learn more about how this works](https://documentationai.com).   <br/> Field type: keyword |
 | `lastName` | `"lastName": "Guyer"` | The person's last name.   <br/> Field type: text |
 | `licenses` | `"licenses":  [ <br/> {   <br/>     "type": "TREC",   <br/>     "value": "123456"   <br/> } <br/> ]` | `type:` the type of license the person value is identified by   <br/> Field type: text   <br/>    <br/> `value:` the string value of the license identified by the type   <br/> Field type: text |
 | `linkedinURL` | `"linkedinURL": "https://linkedin.com/in/some-person-7525231"` | LinkedIn URL for this person.  [LinkedIn](https://www.linkedin.com/)   <br/> Field type: keyword |
@@ -55,5 +55,5 @@ The people data schema below lists all available fields in a people record.  Not
 | `province` | `"province": "PA"` | The current province/state where this person works.   <br/> Field type: text |
 | `salesCountAllTime` | `"salesCountAllTime": 55` | The total count of properties sold by the broker.   <br/> Field type: integer |
 | `salesCountLastYear` | `"salesCountLastYear": 12` | The total count of properties sold by the broker within the last 365 days.   <br/> Field type: integer |
-| `sourceURLs` | `"sourceURLs": [ <br/>   "https://datafiniti.co" <br/> ]` | A list of URLs used to generate data for this business location.  If `https://datafiniti.co` is used, then the data was sourced from our data partners.   <br/> Field type: keyword |
+| `sourceURLs` | `"sourceURLs": [ <br/>   "https://documentationai.com" <br/> ]` | A list of URLs used to generate data for this business location.  If `https://documentationai.com` is used, then the data was sourced from our data partners.   <br/> Field type: keyword |
 | `tcpa` | `"tcpa": false` | A flag indicating whether the person is on the TCPA litigators list   <br/> Field type: boolean |

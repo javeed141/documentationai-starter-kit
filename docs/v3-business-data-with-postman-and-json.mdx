@@ -21,7 +21,7 @@ We recommend using Postman when accessing the Datafiniti API.  It's a great clie
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 <Callout kind="info">
 For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
@@ -36,7 +36,7 @@ Open Postman.  You should see a new tab open.
 
 Copy and paste the following URL into where it says "Enter request URL".  (replace the dummy API token with your real API token):
 
-`https://AAAXXXXXXXXXXXX:@api.datafiniti.co/v3/data/businesses?view=businesses_all&format=JSON&q=categories:hotels&records=1&download=false`
+`https://AAAXXXXXXXXXXXX:@api.documentationai.com/v3/data/businesses?view=businesses_all&format=JSON&q=categories:hotels&records=1&download=false`
 
 Click the blue "Send" button.  You should get a response similar to this:
 
@@ -141,7 +141,7 @@ Let's break down what the API call is all about:
 | --- | --- |
 | `https://` | This is the communication protocol used by the API.  It's the same one used when you visit a secure website. |
 | `AAAXXXXXXXXXXXX:@` | Your API token.  You're telling the API who you are so it can respond to your request. |
-| `api.datafiniti.co` | The location of the API. |
+| `api.documentationai.com` | The location of the API. |
 | `/v3` | You're telling the API which version to use.  `v3` is our most recent and current API version. |
 | `/data` | You're telling the API you're interested in querying data. |
 | `/businesses` | Specifically, you're interested in business data. |
@@ -165,7 +165,7 @@ Each business record will have multiple fields associated with it.  You can see 
 
 If you think about the original query we made, you'll realize we didn't really specify which geography we're interested in.  Since we only want US hotels, we should narrow our search appropriately.
 
-`https://AAAXXXXXXXXXXXX:@api.datafiniti.co/v3/data/businesses?view=businesses_all&format=JSON&q=categories:hotels AND country:US&records=10&download=false`
+`https://AAAXXXXXXXXXXXX:@api.documentationai.com/v3/data/businesses?view=businesses_all&format=JSON&q=categories:hotels AND country:US&records=10&download=false`
 
 This API call is different in a couple ways:
 
@@ -184,7 +184,7 @@ Once we like what we see from the sample matches, it's time to download the enti
 
 After those changes, the API call looks like:
 
-`https://AAAXXXXXXXXXXXX:@api.datafiniti.co/v3/data/businesses?view=businesses_all_nested&format=CSV&q=categories:hotels AND country:US&download=true`
+`https://AAAXXXXXXXXXXXX:@api.documentationai.com/v3/data/businesses?view=businesses_all_nested&format=CSV&q=categories:hotels AND country:US&download=true`
 
 When you make this API call, you'll see a response similar to:
 
@@ -235,14 +235,14 @@ Here's what these fields mean:
 
 As the download request runs, you can check on its status by using this API call:
 
-`https://AAAXXXXXXXXXXXX:@api.datafiniti.co/v3/requests/XXXX`
+`https://AAAXXXXXXXXXXXX:@api.documentationai.com/v3/requests/XXXX`
 
 You'll want to replace `XXXX` with the `id` value for your request.  If you keep making the above API call, you'll see `numDownloaded` gradually increase.
 
 
 Once the download finishes, the `/requests/` call will show `COMPLETED` for `status`.  You can then get links to the data files by making this API call:
 
-`https://AAAXXXXXXXXXXXX:@api.datafiniti.co/v3/results/XXXX`
+`https://AAAXXXXXXXXXXXX:@api.documentationai.com/v3/results/XXXX`
 
 (Again, replace `XXXX` with the actual request id.)  The response will look similar to:
 

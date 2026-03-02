@@ -33,7 +33,7 @@ pip3 install requests
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co/settings/api)](https://portal.datafiniti.co/settings/api), login, and click on your "Copy Token". Your API token will be a long string of letters and numbers.  Store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com/settings/api)](https://portal.documentationai.com/settings/api), login, and click on your "Copy Token". Your API token will be a long string of letters and numbers.  Store it somewhere you can easily reference.
 
 <Callout kind="alert">
   **API token reset**
@@ -82,7 +82,7 @@ request_data = {
 }
 
 # Make the API call.
-r = requests.post('https://api.datafiniti.co/v4/businesses/search',json=request_data,headers=request_headers);
+r = requests.post('https://api.documentationai.com/v4/businesses/search',json=request_data,headers=request_headers);
 
 # Do something with the response.
 if r.status_code == 200:
@@ -239,7 +239,7 @@ request_data = {
 }
 
 # Make the API call.
-r = requests.post('https://api.datafiniti.co/v4/businesses/search',json=request_data,headers=request_headers);
+r = requests.post('https://api.documentationai.com/v4/businesses/search',json=request_data,headers=request_headers);
 
 # Do something with the response.
 if r.status_code == 200:
@@ -286,7 +286,7 @@ request_data = {
 }
 
 # Make the API call.
-r = requests.post('https://api.datafiniti.co/v4/businesses/search',json=request_data,headers=request_headers);
+r = requests.post('https://api.documentationai.com/v4/businesses/search',json=request_data,headers=request_headers);
 
 # Do something with the response.
 if r.status_code == 200:
@@ -330,7 +330,7 @@ request_data = {
 }
 
 # Make the API call.
-r = requests.post('https://api.datafiniti.co/v4/businesses/search',json=request_data,headers=request_headers);
+r = requests.post('https://api.documentationai.com/v4/businesses/search',json=request_data,headers=request_headers);
 
 # Do something with the response.
 if r.status_code == 202:
@@ -343,7 +343,7 @@ if r.status_code == 202:
 
 	while (download_status != 'completed'):
 		time.sleep(5)
-		download_r = requests.get('https://api.datafiniti.co/v4/downloads/' + str(download_id),headers=request_headers);
+		download_r = requests.get('https://api.documentationai.com/v4/downloads/' + str(download_id),headers=request_headers);
 		download_response = download_r.json()
 		download_status = download_response['status']
 		print('Records downloaded: ' + str(download_response['num_downloaded']))
@@ -608,7 +608,7 @@ You will be presented with a response JSON different from the previous download 
 }
 ```
 
-You can track the status of your download via the following method using our GET `https://api.datafiniti.co/v4/downloads/:id` endpoint
+You can track the status of your download via the following method using our GET `https://api.documentationai.com/v4/downloads/:id` endpoint
 
 #### Track your download via the API
 
@@ -617,7 +617,7 @@ The following code can be used to track your download ID:
 ```python
 import requests
 
-url = "https://api.datafiniti.co/v4/downloads/811043?api_key=<your_API_key>"
+url = "https://api.documentationai.com/v4/downloads/811043?api_key=<your_API_key>"
 headers = {
     "Authorization": "Bearer <your_API_key>",
     "accept": "application/json"
@@ -668,7 +668,7 @@ The response of your code will provide you with the following JSON:
 
 #### Track your download via the portal
 
-You can track the status of your Datafiniti download via the portal in the download page [here](https://portal.datafiniti.co/download).\
+You can track the status of your Datafiniti download via the portal in the download page [here](https://portal.documentationai.com/download).\
 For more information please read our [Downloading Result Files](https://java.documentationai.com/docs/downloading-result-files).\
 You can match the ID from your API response to the download ID on the page here:
 

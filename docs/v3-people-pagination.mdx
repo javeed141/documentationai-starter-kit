@@ -9,7 +9,7 @@ Pagination is a way that you can page through more results in Realtime than the 
 An alternative to running a people data search, you can also use the API to page through the data. This approach allows you to consume one chunk at a time. Then continue from where the end of the previous page left off. To do the we will need to modify the [People Data](https://java.documentationai.com/reference/people-data) endpoint like so:
 
 ```curl
-POST <https://api.datafiniti.co/v4/people/paginate?page=1&limit=500>
+POST <https://api.documentationai.com/v4/people/paginate?page=1&limit=500>
 ```
 
 The pagination endpoint uses the following parameters:

@@ -23,7 +23,7 @@ If you want to use cURL to access the Datafiniti API, we're assuming you have ac
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co/settings), login, and click on your setting in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com/settings), login, and click on your setting in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 For security reasons, your API token will be automatically changed whenever you change your password.
 
@@ -54,7 +54,7 @@ Since we want homes in the US, let's try a simple search that will just give us 
 Enter the following into your terminal  (replace the dummy API token with your real API token):
 
 ```curl
-curl --request POST --url https://api.datafiniti.co/v4/properties/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"country:US","num_records":1}'
+curl --request POST --url https://api.documentationai.com/v4/properties/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"country:US","num_records":1}'
 ```
 
 You should get a response similar to this (although it may not look as pretty in your terminal):
@@ -173,7 +173,7 @@ Each property record will have multiple fields associated with it.  You can see 
 If you think about the original query we made, you'll realize we didn't really specify we only wanted homes for sale.  There are several other types of properties (e.g., commercial, rentals) that may also be in the data.  Since we only want homes for sale, we should narrow our search appropriately.  Modify your request to look like this:
 
 ```curl
-curl --request POST --url https://api.datafiniti.co/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"country:US AND propertyType:\"Single Family Dwelling\"","format":"json","num_records": 10}'
+curl --request POST --url https://api.documentationai.com/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"country:US AND propertyType:\"Single Family Dwelling\"","format":"json","num_records": 10}'
 ```
 
 This API call is different in a couple ways:
@@ -197,7 +197,7 @@ If you would like to narrow your search to just exact matches you can place the 
 Once we like what we see from the sample matches, it's time to download the entire data set!  To do this, we're going to further modify our request to look like the following for each data format
 
 ```curl
-curl --request POST --url https://api.datafiniti.co/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"country:US AND propertyType:\"Single Family Dwelling\"", "num_records": 50,"format":"json", "download": true}'
+curl --request POST --url https://api.documentationai.com/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"country:US AND propertyType:\"Single Family Dwelling\"", "num_records": 50,"format":"json", "download": true}'
 ```
 
 Here's what we changed:
@@ -240,7 +240,7 @@ When using the API, you will not receive any warning if you are going past your 
 As the download request runs, you can check on its status by making a call to the `/downloads/` endpoint like so:
 
 ```curl
-curl --request GET --url https://api.datafiniti.co/v4/downloads/XXXX --header 'authorization: Bearer AAAXXXXXXXXXXXX'
+curl --request GET --url https://api.documentationai.com/v4/downloads/XXXX --header 'authorization: Bearer AAAXXXXXXXXXXXX'
 ```
 
 You'll want to replace `XXXX` with the `ID` value for your request.  If you keep running this call, you'll see some of the values update.  Once the download completes, it will look something like this:
@@ -297,7 +297,7 @@ You'll probably want to rename `output.txt` to something specific to this reques
 
 ## 8. Parse the data
 
-Navigate to the results file URL or you download page [here](https://portal.datafiniti.co/download) and open the file(s) pertaining to your download ID.
+Navigate to the results file URL or you download page [here](https://portal.documentationai.com/download) and open the file(s) pertaining to your download ID.
 
 <Callout kind="info">
   **Json format**

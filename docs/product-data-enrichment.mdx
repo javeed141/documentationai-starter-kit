@@ -60,7 +60,7 @@ For the field parameter, we want to make sure that the Datafiniti schema field i
 
 ## Configure your query
 
-The query is essential to target the specific group of data you are trying to enrich from. Datafiniti has a very large dataset, and in most cases, you will not need to search through the entire database. Your query can be built using the same logic from our search API [here](https://developer.datafiniti.co/docs/constructing-property-queries).
+The query is essential to target the specific group of data you are trying to enrich from. Datafiniti has a very large dataset, and in most cases, you will not need to search through the entire database. Your query can be built using the same logic from our search API [here](https://developer.documentationai.com/docs/constructing-property-queries).
 
 There are some things you must have in your query. You must include a wildcard for each of the field_parameter you are search off of. In this case, we will add the following:
 
@@ -84,7 +84,7 @@ gtins:* AND categories:cosmetics AND dateUpdated:[2022-09-31 TO *]
 
 Your format will determine the output file type of the enrichment download you wish to start. This can be set to either of *csv* or *json*. For this example we will set it to *csv*.
 
-Finally the view is used to specify which fields you want added to your data. If no view is provided, we will add all fields from matching records as we do for our ***default*** view for the [product search API](https://developer.datafiniti.co/docs/available-views-for-product-data).
+Finally the view is used to specify which fields you want added to your data. If no view is provided, we will add all fields from matching records as we do for our ***default*** view for the [product search API](https://developer.documentationai.com/docs/available-views-for-product-data).
 
 Your finally parameter should be setup as the following.
 
@@ -93,7 +93,7 @@ Your finally parameter should be setup as the following.
 Listed below is a cURL POST to import this example into Postman.
 
 ```bash
-curl --location --request POST 'https://api.datafiniti.co/v4/product/search/enrichment' \
+curl --location --request POST 'https://api.documentationai.com/v4/product/search/enrichment' \
 --header 'Authorization: Bearer Your_API_Key' \
 --form 'gtins=@"/C:/Users/Leonard/Downloads/ProductEnrichmentGTINS.csv"' \
 --form 'format="csv"' \
@@ -104,7 +104,7 @@ curl --location --request POST 'https://api.datafiniti.co/v4/product/search/enri
 
 ## Start your download
 
-Once you send your Postman request for the enrichment download you will not be charged credits immediately. It will create a download response. We recommend holding on to the download ID for that will allow your to access the data once the status is complete. For more on how to manage your downloads, you can visit [here](https://developer.datafiniti.co/docs/postman-downloading-result-files).
+Once you send your Postman request for the enrichment download you will not be charged credits immediately. It will create a download response. We recommend holding on to the download ID for that will allow your to access the data once the status is complete. For more on how to manage your downloads, you can visit [here](https://developer.documentationai.com/docs/postman-downloading-result-files).
 
 An example enrichment download response:
 

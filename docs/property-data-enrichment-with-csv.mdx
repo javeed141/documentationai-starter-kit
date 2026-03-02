@@ -45,7 +45,7 @@ Set your enrichment file as the field_parameter file.
 ## Set Your field_parameter
 
 For the field parameter, we want to make sure that the Datafiniti schema field is selected and matches inside the txt file. This will allow the enrichment API to target submitted addresses plus postalCodes in our case here.
-You can read more about other property schema fields [here](https://developer.datafiniti.co/docs/property-data-schema).
+You can read more about other property schema fields [here](https://developer.documentationai.com/docs/property-data-schema).
 
 <Image src="https://files.readme.io/bdc1f80-enrichmentcsvFieldParams.gif" width="1920" height="1080" alt="Setting enrichment CSV field parameters" />
 
@@ -70,7 +70,7 @@ You can read more about other property schema fields [here](https://developer.da
 
 ## Configure your query
 
-The query is essential to target the specific group of data you are trying to enrich from. Datafiniti has a very large dataset, and in most cases, you will not need to search through the entire database. Your query can be built using the same logic from our search API [here](https://developer.datafiniti.co/docs/constructing-property-queries).
+The query is essential to target the specific group of data you are trying to enrich from. Datafiniti has a very large dataset, and in most cases, you will not need to search through the entire database. Your query can be built using the same logic from our search API [here](https://developer.documentationai.com/docs/constructing-property-queries).
 
 There are some things you must have in your query. You must include a wildcard for each of the field_parameter you are search off of. In this case, we will add the following:
 
@@ -103,7 +103,7 @@ Your finally parameter should be setup as the following.
 Listed below is a cURL POST to import this example into Postman.
 
 ```bash
-curl --location 'https://api.datafiniti.co/v4/properties/search/enrichment' \
+curl --location 'https://api.documentationai.com/v4/properties/search/enrichment' \
 --header 'Authorization: Bearer insert_your_key_here' \
 --form 'address,postalCode=@"/C:/Users/Leonard/Downloads/PropertyEnrichAddresses.csv"' \
 --form 'format="csv"' \
@@ -114,7 +114,7 @@ curl --location 'https://api.datafiniti.co/v4/properties/search/enrichment' \
 
 ## Start your download
 
-Once you send your Postman request for the enrichment download you will not be charged credits immediately. It will create a download response. We recommend holding on to the download ID for that will allow your to access the data once the status is complete. For more on how to manage your downloads, you can visit [here](https://developer.datafiniti.co/docs/postman-downloading-result-files).
+Once you send your Postman request for the enrichment download you will not be charged credits immediately. It will create a download response. We recommend holding on to the download ID for that will allow your to access the data once the status is complete. For more on how to manage your downloads, you can visit [here](https://developer.documentationai.com/docs/postman-downloading-result-files).
 
 An example enrichment download response:
 

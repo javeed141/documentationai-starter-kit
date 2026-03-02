@@ -35,10 +35,6 @@
                       {
                         "title": "API Status Check",
                         "path": "docs/api-status-check-1"
-                      },
-                      {
-                        "title": "Settings",
-                        "path": "docs/settings"
                       }
                     ]
                   },
@@ -121,10 +117,6 @@
                           {
                             "title": "Available Views for Property Data",
                             "path": "docs/available-views-for-property-data"
-                          },
-                          {
-                            "title": "Property Data Views",
-                            "path": "docs/property-data-views"
                           },
                           {
                             "title": "Using a custom property view on the fly",
@@ -260,19 +252,6 @@
                           {
                             "title": "Building rental property data market reports",
                             "path": "docs/building-rental-property-data-market-reports"
-                          }
-                        ]
-                      },
-                      {
-                        "group": "Constructing Property Queries",
-                        "pages": [
-                          {
-                            "title": "Constructing Property Queries",
-                            "path": "docs/constructing-property-queries"
-                          },
-                          {
-                            "title": "Advanced Queries of Property Data in Postman",
-                            "path": "docs/advanced-queries-of-property-postman"
                           }
                         ]
                       },
@@ -706,10 +685,6 @@
                           {
                             "title": "Available Views for Business Data",
                             "path": "docs/available-views-for-business-data-1"
-                          },
-                          {
-                            "title": "Business View",
-                            "path": "docs/business-view"
                           }
                         ]
                       },
@@ -926,10 +901,6 @@
                           {
                             "title": "Discover when clients sell their homes - Portal",
                             "path": "docs/discover-when-clients-sell-their-homes-portal"
-                          },
-                          {
-                            "title": "Find Locations of Dental Offices",
-                            "path": "docs/find-locations-of-dental-offices"
                           }
                         ]
                       },
@@ -1725,19 +1696,6 @@
                   {
                     "title": "Reference Values for Property Schema",
                     "path": "docs/v3-reference-values-for-property-schema"
-                  }
-                ]
-              },
-              {
-                "group": "Miscellaneous",
-                "pages": [
-                  {
-                    "title": "Using Postman",
-                    "path": "docs/v3-using-postman"
-                  },
-                  {
-                    "title": "Migrating from V3 to V4",
-                    "path": "docs/v3-migrating-from-v3-to-v4"
                   }
                 ]
               }

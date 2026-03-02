@@ -23,7 +23,7 @@ If you want to use cURL to access the Datafiniti API, we're assuming you have ac
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co/settings), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com/settings), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 <Callout kind="info">
   **API Key**
@@ -46,7 +46,7 @@ Since we want women's luxury shoes, let's try a simple search that will just giv
 Enter the following into your terminal (replace the dummy API token with your real API token):
 
 ```curl
-curl --request POST --url https://api.datafiniti.co/v4/products/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"categories:shoes","format:json","num_records":1}'
+curl --request POST --url https://api.documentationai.com/v4/products/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"categories:shoes","format:json","num_records":1}'
 ```
 
 You should get a response similar to this (although it may not look as pretty in your terminal):
@@ -120,7 +120,7 @@ If you take a look at the sample record shown above, you'll notice that it's not
 We'll need to refine our search to make sure we're only getting shoes.  Modify your request body to look like this:
 
 ```curl
-curl --request POST --url https://api.datafiniti.co/v4/products/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"categories:shoes AND -categories:shirts AND categories:women AND (brand:* OR manufacturer:*) AND prices:*","format:json","num_records": 10}'
+curl --request POST --url https://api.documentationai.com/v4/products/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"categories:shoes AND -categories:shirts AND categories:women AND (brand:* OR manufacturer:*) AND prices:*","format:json","num_records": 10}'
 ```
 
 This API call is different in a few ways:
@@ -136,7 +136,7 @@ Notice how Datafiniti lets you construct very refined boolean queries.  In the A
 If you would like to narrow your search to just exact matches you can place the search term in quotation marks.
 
 ```curl
-curl --request POST --url https://api.datafiniti.co/v4/products/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"names:\"Apple Iphone 10\"", "num_records": 10}'
+curl --request POST --url https://api.documentationai.com/v4/products/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"names:\"Apple Iphone 10\"", "num_records": 10}'
 ```
 
 The above query will only return products with the exact name of Apple Iphone 10. The quotation marks need to be escaped using back slashes since they are already within another set of quotation marks.
@@ -146,7 +146,7 @@ The above query will only return products with the exact name of Apple Iphone 10
 Once we like what we see from the sample matches, it's time to download a larger data set!  To do this, we're going to further modify our request to look like this:
 
 ```curl
-curl --request POST --url https://api.datafiniti.co/v4/products/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"categories:shoes AND -categories:shirts AND categories:women AND (brand:* OR manufacturer:*) AND prices:*","format:csv","num_records": 50, "download": true}'
+curl --request POST --url https://api.documentationai.com/v4/products/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"categories:shoes AND -categories:shirts AND categories:women AND (brand:* OR manufacturer:*) AND prices:*","format:csv","num_records": 50, "download": true}'
 ```
 
 Here's what we changed:
@@ -186,7 +186,7 @@ We'll explain each of these fields in the next section.
 As the download request runs, you can check on its status by making a call to the `/downloads/` endpoint like so:
 
 ```curl
-curl --request GET --url https://api.datafiniti.co/v4/downloads/XXXX --header 'authorization: Bearer AAAXXXXXXXXXXXX'
+curl --request GET --url https://api.documentationai.com/v4/downloads/XXXX --header 'authorization: Bearer AAAXXXXXXXXXXXX'
 ```
 
 You'll want to replace `XXXX` with the `id` value for your request.  If you keep running this call, you'll see some of the values update.  Once the download completes, it will look something like this:
