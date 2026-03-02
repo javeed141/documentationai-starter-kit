@@ -26,7 +26,7 @@ If using the `csv` format, it will split out elements in multi-valued field list
 | `ean13` | N/A |
 | `ean8` | N/A |
 | `features` | `key`   <br /> `replace`   <br /> `value` |
-| `financingAndLeasing` | `additionalDetails`   <br /> `apr`   <br /> `currency`   <br /> `dateSeen`   <br /> `description`   <br /> disclaimers` <br /> `dueAtSigningMax` <br /> `dueAtSigningMin` <br /> `milesPerYear` <br /> `monthlyPaymentMax` <br /> `monthlyPaymentMin` <br /> `name` <br /> `offerStartDate` <br /> `offerEndDate` <br /> `term` <br /> `type` <br /> `securityDepositMax` <br /> `securityDepositMin` <br /> `sourceURLs` |
+| `financingAndLeasing` | `additionalDetails`   <br /> `apr`   <br /> `currency`   <br /> `dateSeen`   <br /> `description`   <br /> `disclaimers`   <br /> `dueAtSigningMax`   <br /> `dueAtSigningMin`   <br /> `milesPerYear`   <br /> `monthlyPaymentMax`   <br /> `monthlyPaymentMin`   <br /> `name`   <br /> `offerStartDate`   <br /> `offerEndDate`   <br /> `term`   <br /> `type`   <br /> `securityDepositMax`   <br /> `securityDepositMin`   <br /> `sourceURLs` |
 | `flavors` | N/A |
 | `gtins` | N/A |
 | `imageURLs` | N/A |
@@ -64,7 +64,36 @@ If using the `csv` format, it will split out elements in multi-valued field list
 
 Right-click and choose "Save link as..." to download this sample so you can see it in Excel: [products_all-CSV-example.csv](https://raw.githubusercontent.com/datafiniti/SampleData/master/6210_1.csv)
 
-<Card title="View CSV Sample Data" href="https://gist.github.com/shiondev/48a397113db65166b29e8aab24c4f564" />
+```csv
+id,asins,brand,categories,colors,count,dateAdded,dateUpdated,descriptions.dateSeen,descriptions.sourceURLs,descriptions.value,dimension,ean,features.key,features.value,flavors,websiteID,imageURLs,isbn,keys,manufacturer,manufacturerNumber,merchants.address,merchants.availability,merchants.city,merchants.country,merchants.dateSeen,merchants.name,merchants.phone,merchants.postalCode,merchants.province,name,prices.amountMin,prices.amountMax,prices.availability,prices.color,prices.condition,prices.count,prices.currency,prices.dateAdded,prices.dateSeen,prices.flavor,prices.isSale,prices.merchant,prices.offer,prices.returnPolicy,prices.shipping,prices.size,prices.source,prices.sourceURLs,prices.warranty,reviews.date,reviews.dateAdded,reviews.dateSeen,reviews.didPurchase,reviews.doRecommend,reviews.numHelpful,reviews.rating,reviews.sourceURLs,reviews.text,reviews.title,reviews.userCity,reviews.username,reviews.userProvince,sizes,skus.sourceURLs,skus.value,sourceURLs,upc,vin,weight
+"AVnjo8-lD1GB75FR6uL3",,,,,,"2015-08-17T18:43:00Z","2016-05-05T17:20:05Z",,,,,,,,,,,,,"sunville",,,,,,,,,,,"Brand New Women's Fashion Rubber Rain Boots / Bottes De Pluie",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"227 g"
+"AVnjo8-lD1GB75FR6uL3","B00MKHSLP2",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,"Women",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,"Shoes",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,"Shoes & Handbags",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,"Boots",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Beige Plaid",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Fuchsia",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Black Polka Dots",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Black",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Houndstooth",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Navy Stripe",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Dk Green",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Leopard",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Camo",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Green",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Zebra",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Multi-Color Polka Dots",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,"Date first available at Amazon.ca","Jan. 15 2014",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,"brandnewwomensfashionrubberrainbootsbottesdepluie/b00mkhslp2",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,"2016-04-29T00:00:00Z","Amazon.ca",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,26.950000762939453,26.950000762939453,,,"new",,"CAD","2015-08-17T18:43:00Z","2015-08-10T00:00:00Z",,,"Amazon.ca",,,"free",,,"http://www.amazon.ca/Brand-Womens-Rubber-Bottes-Dotted/dp/B00OMB8O7E",,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"2015-08-17T18:43:00Z","2015-08-15T00:00:00Z",,,,4.0,"http://www.amazon.ca/product-reviews/B00MKHSLP2","These fit fine, made for people with skinny legs. My thicker legs/ muscular have a squishy time.","Four Stars",,"PLAINJANE",,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"2015-08-17T18:43:00Z","2015-08-15T00:00:00Z",,,,1.0,"http://www.amazon.ca/product-reviews/B00MKHSLP2","A cheap boot that lasted only a few weeks on our property. Mild use and these have already split the seems. Not recommended for anyone. Spend more money and get a good pair.","Cheaply made boot that doesnt last.",,"Brandon",,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"https://www.amazon.ca/Brand-Womens-Rubber-Boots-Bottes/dp/B00OL26D4K",,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"http://www.amazon.ca/Brand-Womens-Rubber-Boots-Bottes/dp/B00OL26D4K",,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"http://www.amazon.ca/product-reviews/B00MKHSLP2",,,
+```
 
 ### Sample JSON Output
 
@@ -348,7 +377,36 @@ If using the `csv` format, it will group elements in multi-valued field lists in
 
 Right-click and choose "Save link as..." to download this sample so you can see it in Excel: [products_all-CSV-example.csv](https://raw.githubusercontent.com/datafiniti/SampleData/master/6210_1.csv)
 
-<Card title="View CSV Sample Data" href="https://gist.github.com/shiondev/48a397113db65166b29e8aab24c4f564" />
+```csv
+id,asins,brand,categories,colors,count,dateAdded,dateUpdated,descriptions.dateSeen,descriptions.sourceURLs,descriptions.value,dimension,ean,features.key,features.value,flavors,websiteID,imageURLs,isbn,keys,manufacturer,manufacturerNumber,merchants.address,merchants.availability,merchants.city,merchants.country,merchants.dateSeen,merchants.name,merchants.phone,merchants.postalCode,merchants.province,name,prices.amountMin,prices.amountMax,prices.availability,prices.color,prices.condition,prices.count,prices.currency,prices.dateAdded,prices.dateSeen,prices.flavor,prices.isSale,prices.merchant,prices.offer,prices.returnPolicy,prices.shipping,prices.size,prices.source,prices.sourceURLs,prices.warranty,reviews.date,reviews.dateAdded,reviews.dateSeen,reviews.didPurchase,reviews.doRecommend,reviews.numHelpful,reviews.rating,reviews.sourceURLs,reviews.text,reviews.title,reviews.userCity,reviews.username,reviews.userProvince,sizes,skus.sourceURLs,skus.value,sourceURLs,upc,vin,weight
+"AVnjo8-lD1GB75FR6uL3",,,,,,"2015-08-17T18:43:00Z","2016-05-05T17:20:05Z",,,,,,,,,,,,,"sunville",,,,,,,,,,,"Brand New Women's Fashion Rubber Rain Boots / Bottes De Pluie",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"227 g"
+"AVnjo8-lD1GB75FR6uL3","B00MKHSLP2",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,"Women",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,"Shoes",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,"Shoes & Handbags",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,"Boots",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Beige Plaid",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Fuchsia",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Black Polka Dots",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Black",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Houndstooth",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Navy Stripe",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Dk Green",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Leopard",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Camo",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Green",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Zebra",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,"Multi-Color Polka Dots",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,"Date first available at Amazon.ca","Jan. 15 2014",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,"brandnewwomensfashionrubberrainbootsbottesdepluie/b00mkhslp2",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,"2016-04-29T00:00:00Z","Amazon.ca",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,26.950000762939453,26.950000762939453,,,"new",,"CAD","2015-08-17T18:43:00Z","2015-08-10T00:00:00Z",,,"Amazon.ca",,,"free",,,"http://www.amazon.ca/Brand-Womens-Rubber-Bottes-Dotted/dp/B00OMB8O7E",,,,,,,,,,,,,,,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"2015-08-17T18:43:00Z","2015-08-15T00:00:00Z",,,,4.0,"http://www.amazon.ca/product-reviews/B00MKHSLP2","These fit fine, made for people with skinny legs. My thicker legs/ muscular have a squishy time.","Four Stars",,"PLAINJANE",,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"2015-08-17T18:43:00Z","2015-08-15T00:00:00Z",,,,1.0,"http://www.amazon.ca/product-reviews/B00MKHSLP2","A cheap boot that lasted only a few weeks on our property. Mild use and these have already split the seems. Not recommended for anyone. Spend more money and get a good pair.","Cheaply made boot that doesnt last.",,"Brandon",,,,,,,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"https://www.amazon.ca/Brand-Womens-Rubber-Boots-Bottes/dp/B00OL26D4K",,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"http://www.amazon.ca/Brand-Womens-Rubber-Boots-Bottes/dp/B00OL26D4K",,,
+"AVnjo8-lD1GB75FR6uL3",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"http://www.amazon.ca/product-reviews/B00MKHSLP2",,,
+```
 
 ### Sample JSON Output
 
@@ -641,7 +699,7 @@ The `product_flat_reviews` view should be used when you want to look at individu
 | `dimension` | N/A |
 | `domains` | N/A |
 | `ean` | N/A |
-| `ean13 | N/A |
+| `ean13` | N/A |
 | `ean8` | N/A |
 | `features` | `key`   <br /> `value` |
 | `flavors` | N/A |
