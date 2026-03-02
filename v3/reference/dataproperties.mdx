@@ -1,0 +1,10 @@
+---
+title: data/properties
+description: "Search and download property data using the Datafiniti API v3."
+---
+
+The data endpoint lets you run preview searches and initiate downloads for property data.
+
+If you set `download=false` (or don't set it), the API call will return a list of matching properties for your query. If you don't set `records` when `download=false`, it will return up to 10 properties. You can set `records` to a value between 0 and 10.
+
+If you set `download=true`, it will return a request object that can be used to monitor the status of the download request. If you don't set `records` when `download=true`, it will initiate a download request for all matching records. You can set `records` to a value between 1 and the number of matching records.

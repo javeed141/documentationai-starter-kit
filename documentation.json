@@ -1823,39 +1823,51 @@
             ]
           },
           {
-            "tab": "API Reference V3",
+            "tab": "API Reference",
             "groups": [
               {
-                "group": "Search Endpoints",
+                "group": "Requesting Data",
                 "pages": [
                   {
-                    "title": "Search Properties",
-                    "path": "api-reference-v3/hello"
+                    "title": "data/businesses",
+                    "path": "v3/reference/databusinesses",
+                    "method": "GET",
+                    "openapi": "v3/reference/datafiniti-v3-openapi.json GET /data/businesses"
                   },
                   {
-                    "title": "Search Products",
-                    "path": "api-reference-v3/search-products"
+                    "title": "data/products",
+                    "path": "v3/reference/data-products",
+                    "method": "GET",
+                    "openapi": "v3/reference/datafiniti-v3-openapi.json GET /data/products"
                   },
                   {
-                    "title": "Search Businesses",
-                    "path": "api-reference-v3/search-businesses"
+                    "title": "requests",
+                    "path": "v3/reference/requests",
+                    "method": "GET",
+                    "openapi": "v3/reference/datafiniti-v3-openapi.json GET /requests"
+                  },
+                  {
+                    "title": "results",
+                    "path": "v3/reference/results",
+                    "method": "GET",
+                    "openapi": "v3/reference/datafiniti-v3-openapi.json GET /results/{request_id}"
+                  },
+                  {
+                    "title": "data/properties",
+                    "path": "v3/reference/dataproperties",
+                    "method": "GET",
+                    "openapi": "v3/reference/datafiniti-v3-openapi.json GET /data/properties"
                   }
                 ]
               },
               {
-                "group": "Download Endpoints",
+                "group": "Your Account",
                 "pages": [
                   {
-                    "title": "Create Download Request",
-                    "path": "api-reference-v3/create-download-request"
-                  },
-                  {
-                    "title": "Get Download Status",
-                    "path": "api-reference-v3/get-download-status"
-                  },
-                  {
-                    "title": "List Download Results",
-                    "path": "api-reference-v3/list-download-results"
+                    "title": "users",
+                    "path": "v3/reference/users",
+                    "method": "GET",
+                    "openapi": "v3/reference/datafiniti-v3-openapi.json GET /users"
                   }
                 ]
               }
