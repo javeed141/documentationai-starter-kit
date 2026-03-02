@@ -1,0 +1,37 @@
+---
+title: 2019.11 - Data Release Log
+---
+
+# Overview
+
+This month saw the completion of many schema updates that have taken a few months to implement.  However, the biggest change is the revamping of the logic that involves key generation and subsequent merging across data sources.
+
+## Record Counts
+
+The following are the updated record counts for each vertical:
+
+* Business data decreased by 1.9 million to 89.3 million
+* People data stayed at 10.7 million
+* Product data increased by 12.3 million to 173.2 million
+* Property data increased by 9.8 million to 36.9 million
+
+## New Sources
+
+The following data types have received new sources:
+
+* 2 Business data sources
+* 1 Property data source
+
+## Schema Changes
+
+* Our merging logic has been overhauled to include weighting on fields to merge with.  This change will allow certain fields to override others if they are present in the data.  This will reduce unnecessary or invalid merging between sources.
+* Our transition from `crawlResultFiles` to `crawlIDs` is now complete
+* `geoLocation` has completed implementation across our data for Business and Property data
+* `dateSeen` to a single value for many nested JSON object fields has completed
+* The new UPC and EAN fields along with the container field called `gtins` has completed
+
+## Fixes
+
+* Categories and features were being populated with bad seller ranking data, removal has completed
+* Records containing ASIN data have been fixed to use lowercase values for their keys
+* Updated 4 Property data sources, 2 Product data sources, and 1 Business data source

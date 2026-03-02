@@ -1,0 +1,52 @@
+---
+title: Identifying companies with employees targeted by cyberattacks
+---
+
+## Introduction
+
+By providing a commercially-available database of personally-identifiable information (PII), Datafiniti's People Data can be used to protect companies against potential cyberattacks.  Let's learn how!
+
+## Searching against a known target list
+
+If your company provides cybersecurity protection, you likely have access to lists of known compromised individuals  These lists will likely contain name, email, and other identifiers for each person.  A list may look like:
+
+Name, Email
+Joe Curry, joe.curry@bellideas.com
+Tina Harris, tharris@gmail.com
+Luis Fiego, luis42@plymouth.edu
+
+You can take information like this and use it to find matching individuals in our people database.  Here's how such a search might look:
+
+```json
+{
+  "query": "firstName:Joe AND lastName:Curry AND emails:\"joe.curry@bellideas.com\""
+}
+```
+
+If a matching record comes back, it will include the company that currently employs the individual.
+
+```json
+"businessName": "bell ideas",
+```
+
+## Aggregating data to identify compromised companies
+
+As you match each person and find their current company, you can append the data to your original file:
+
+Name, Email, Company
+Joe Curry, joe.curry@bellideas.com, bell ideas
+Tina Harris, tharris@gmail.com, quickpro
+Luis Fiego, luis42@plymouth.edu, plymouth university
+
+Once you've done so, you can count up the companies in your updated list to find which companies may be compromised more severely than others.
+
+### Example files
+
+Here are example bulk download files of our previous query:
+
+* [Cyber Security Business People Leads CSV](https://drive.google.com/file/d/1cJ54Gn-i6yeSDMn2OexxHEiDl1UlRXnI/view?usp=share_link)
+* [Cyber Security Business People Leads JSON](https://drive.google.com/file/d/1_24qB3FhLK7H5WWs90JY7ZS28XNBhf1Q/view?usp=share_link)
+
+### Conclusion
+
+With the knowledge of how to pull records with business-specific categories, you can now generate People Data that can be used to protect companies against potential cyberattacks.

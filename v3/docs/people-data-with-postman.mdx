@@ -1,0 +1,297 @@
+---
+title: People Data with Postman
+---
+
+For this guide, we're going to assume the following you're interested in using Datafiniti's people data to develop a sales campaign.  Let's say you're a growth marketer that's been tasked with the following:
+
+1. Collect email addresses of CEOs.
+2. Refine that list to a specific geographic region.
+
+**Your environment and data needs:**
+
+1. You're working with Postman.
+2. You want to work with CSV or JSON data.
+
+Here are the steps we'll take:
+
+## 1. Download Postman
+
+We recommend using Postman when accessing the Datafiniti API.  It's a great client for using any sort of RESTful API and works particularly well with Datafiniti.  You can download Postman [here](https://www.postman.com/downloads/).
+
+## 2. Get your API token
+
+The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
+
+To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com/settings/api), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+
+<Image src="https://files.readme.io/7a9b4cfaa16d9c33bd568f461438ac0f937eca3df7f532450ce1e00fcc74c358-image.png" width="1920" height="1080" alt="" />
+
+<Callout kind="info">
+  **API Key**
+
+For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
+</Callout>
+
+<Callout kind="alert">
+  **API Key Regen**
+
+For security reasons, your API token will be automatically changed whenever you change your password.
+</Callout>
+
+## 3. Run your first search
+
+The first thing we'll do is perform a test search that will give us a sense of what sort of data might be available.  Eventually we'll refine our search so that we get back the most relevant data.
+
+Since we want CEOs, let's try a simple search that will just give us people with that title.
+
+With Postman open, click on the Datafiniti API V4 collection.  Then navigate to Secured Endpoints > Search > Search People Data.  Click on "Body" in the main screen.
+
+<Image src="https://files.readme.io/78cf3cb26da0a0d78d75846ceb724d154f5642611a015f5acd017357819a71fc-image.png" width="1920" height="1080" alt="" />
+
+Enter the following in the text area:
+
+```json
+{
+	"query": "jobTitle:CEO",
+	"num_records": 1
+}
+```
+
+Click the blue "Send" button.  You should get a response similar to this:
+
+```json
+{
+    "num_found": 357,
+    "total_cost": 1,
+    "records": [
+        {
+            "address": "9855 Melbourne Ave",
+            "businessName": "MICHIGAN MARKETING EXTREME LLC",
+            "city": "Allen Park",
+            "country": "US",
+            "dateAdded": "2018-02-20T00:33:45Z",
+            "dateUpdated": "2018-02-20T00:33:45Z",
+            "emails": [
+                "billmey@michiganmarketingextreme.com"
+            ],
+            "firstName": "Bill",
+            "keys": [
+                "billmeymichiganmarketingextremecom"
+            ],
+            "lastName": "Mey",
+            "jobFunction": "Business Management",
+            "jobLevel": "C-Team",
+            "jobTitle": "CEO",
+            "numEmployeesMin": 1,
+            "numEmployeesMax": 19,
+            "phones": [
+                "7346190715"
+            ],
+            "postalCode": "48101",
+            "province": "MI",
+            "sourceURLs": [
+                "https://documentationai.com"
+            ],
+            "id": "AWG2azB1QH9dEUBnfEki"
+        }
+    ]
+}
+```
+
+Let's break down what the API call is all about:
+
+| API Call Component        | Description                                                                                                                                                                                           |
+| :------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"query": "jobTitle:CEO"` | `query` tells the API what query you want to use.  In this case, you're telling the API you want to search by `jobTitle`.  Any person that has `CEO` listed in its `jobTitle` field will be returned. |
+| `"num_records": 1`        | `num_records` tells the API how many records to return in its response.  In this case, you just want to see 1 matching record.                                                                        |
+| `"format":"xxxx"`         | `format` tells the API what format to output the data in the response. Can be either `CSV` or `JSON`                                                                                                  |
+
+Now let's dive through the response the API returned:
+
+| Response Field | Description |
+| --- | --- |
+| `"num_found"` | The total number of available records in the database that match your query.  If you end up downloading the entire data set, this is how many records you'll use. |
+| `"total_cost"` | The number of credits this request has cost you.  People records have a record cost multiplier tied to them.  [See pricing](https://documentationai.com/pricing/people-data-pricing/). |
+| `"records"` | The first available matches to your query. If there are no matches, this field will be empty.   <br/>    <br/> Within each record returned, you'll see multiple fields shown.  This is the data for each record. |
+
+Within the `records` field, you'll see a single person returned with multiple fields and the values associated with that product.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
+
+Each product record will have multiple fields associated with it.  You can see a full list of available fields in our [People Data Schema](https://java.documentationai.com/docs/people-data-schema).
+
+## 4. Refine your search
+
+Let's say we decided to adjust our sales campaign to only target CEOs in Austin, TX.
+
+We'll need to refine our search to make sure we're only people that match that critera.  Modify your request body to look like this:
+
+```json
+{
+	"query": "jobTitle:CEO AND province:TX AND city:Austin",
+	"num_records": 10
+}
+```
+
+This API call is different in a couple ways:
+
+1. It adds ` AND province:TX AND city:Austin` to narrow down results to just people working in Austin, TX.
+2. It changes `"num_records": 1` to `"num_records": 10` so we can look at more sample matches.
+
+Notice how Datafiniti lets you construct very refined boolean queries.  In the API call above, we're using a combination of `AND` queries to get exactly what we want.
+
+Update your API call in Postman and hit "Send" to see the updated results.
+
+If you would like to narrow your search to just exact matches you can place the search term in quotation marks.
+
+```json
+{
+	"query": "jobTitle:\"Product Developer\"",
+	"num_records": 10
+}
+```
+
+The above query will only return people with the exact title of Product Developer. The quotation marks need to be escaped using back slashes since they are already within another set of quotation marks. Your response should look like this:
+
+<Image src="https://files.readme.io/336a0c096ad093cee8d4fd8b25b881220e62bbb10cd1e16d9f2cb121c37e03b5-image.png" width="1920" height="1080" alt="" />
+
+## 5. Initiate a download of the data
+
+Once we like what we see from the sample matches, it's time to download a larger data set!  To do this, we're going to further modify our request body to look like this:
+
+```json
+{
+	"query": "jobTitle:CEO AND province:TX AND city:Austin",
+  "num_record": 20,
+  "format":"csv",
+	"download": true
+}
+```
+
+Here's what we changed:
+
+1. We change `"num_records": 10` to `"num_records": 20`.  This will download the first 20 matching records.  If we wanted to download all matching records, we would remove `num_records`. `num_records` will tell the API to default to all available records.
+2. We added `"download": true`.  This tells the API to issue a download request instead of a search request.
+3. We added `"format":"csv"`.  We'll want to view the files in CSV format, so it will be easier to look at.
+
+<Callout kind="alert">
+  **num_records**
+
+If num_records is not specified, ALL of the records matching the query will be downloaded.
+</Callout>
+
+When you make this API call, you'll see a response similar to:
+
+```json
+{
+    "id": 288,
+    "results": [],
+    "user_id": 15,
+    "status": "running",
+    "date_started": "2018-02-21 21:58:08.0",
+    "num_downloaded": 0,
+    "data_type": "people",
+    "query": "jobTitle:CEO AND province:TX AND city:Austin",
+    "format": "json",
+    "num_records": 20,
+    "total_cost": 300
+}
+```
+
+We'll explain each of these fields in the next section.
+
+## 6. Monitor the status of the download
+
+As the download request runs, you can check on its status by using the "Get Download" call in your Postman collection.  Simply replace `:id` with the `id` value you saw in the previous step.
+
+If you repeat running this call, you'll see some of the values update. There is no credit charge for running this GET call. Once the download completes, it will look something like this:
+
+```json
+{
+    "id": 288,
+    "results": [
+        "https://datafiniti-downloads.s3.amazonaws.com/15/7_1.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20171116T174607Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Credential=AKIAJYCTIF46QVBTXWYA%2F2017xxxx%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=ecf13f1bb4b7adfdde1a99143541afd1d12347292eb9ec3f6ed1316c64d4eekf"
+    ],
+    "user_id": 15,
+    "status": "completed",
+    "date_started": "2018-02-21 21:58:08.0",
+    "num_downloaded": 20,
+    "data_type": "people",
+    "query": "jobTitle:CEO AND province:TX AND city:Austin",
+    "format": "json",
+    "num_records": 20,
+    "total_cost": 300
+}
+```
+
+Here's what these fields mean:
+
+|                  |                                                                                                                                                                                                      |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`             | This is a unique identifier for the request.                                                                                                                                                         |
+| `results`        | This is a list of links for all the result files generated for this data set.  When you first issue the download request, it will be an empty list, but it will populate as the download progresses. |
+| `user_id`        | This is an internal id for your user account.                                                                                                                                                        |
+| `status`         | This indicates the status of your download.  It will be set to `completed` once the download has finished.                                                                                           |
+| `date_started`   | The date and time the download started.                                                                                                                                                              |
+| `date_updated`   | The last time the download information was updated.                                                                                                                                                  |
+| `num_downloaded` | The number of records that have been downloaded so far.                                                                                                                                              |
+| `data_type`      | The data type you queried.                                                                                                                                                                           |
+| `query`          | The query you ran.                                                                                                                                                                                   |
+| `format`         | The data format you requested.                                                                                                                                                                       |
+| `num_records`    | The total number of records that will be downloaded.                                                                                                                                                 |
+| `total_cost`     | The total number of credits used by this download.  People records have a record cost multiplier tied to them.  [See pricing](https://documentationai.com/pricing/people-data-pricing/).                   |
+
+## 7. Download the result file(s)
+
+Once the download response shows `"status": "completed"`, you can download the data using the URLs in the `results` field.
+
+<Image src="https://files.readme.io/b24b430b1244eab414db004630abb19e9314a8ef246bbfdd8abc20d2538f12bd-image.png" width="1920" height="1080" alt="" />
+
+If you've requested a lot of records (i.e., over 10,000), you may see more than 1 result object shown.
+
+To download the result files, copy each `url` value and paste it into your browser.  Your browser will initiate a download to your computer.
+
+## 8. Parse the data
+
+### Open the result file(s) in Excel
+
+For files formatted as CSV, you will receive you files as `<downloadID_#>`.csv. You can navigate to the file you downloaded and open it.  Since it's a CSV file, it should open in Excel automatically.  It will look something like:
+
+<Image src="https://files.readme.io/e200451-people.png" width="1920" height="1080" alt="" />
+
+### Parse JSON data
+
+The download code will save one or more result files to your project folder.
+
+<Callout kind="info">
+  **JSON Format**
+
+The JSON data will actually be a text file, rather of a single JSON object. Each line in the text file is a JSON object. We format the data this way because most programming languages won't handle parsing the entire data set as a JSON object with their standard system calls very well.
+</Callout>
+
+We'll need to parse the file into an array of JSON objects.  We can use code similar to this to handle the parsing:
+
+```php
+<?php
+
+// Set the location of your file here
+$file = "xxxx_x.txt";
+
+$records = array();
+
+$handle = fopen($file, "r");
+if ($handle) {
+	while (($line = fgets($handle)) !== false) {
+		$records[] = json_decode(($line));
+	}
+} else {
+	echo "Error opening file.";
+}
+
+foreach($records as $record) {
+	// Edit these lines to do more with the data.
+	print_r($record);
+}
+
+?>
+```
+
+You can edit the code in the `foreach` loop above to do whatever you'd like with the data, such as store the data in a database, write it out to your console, etc.

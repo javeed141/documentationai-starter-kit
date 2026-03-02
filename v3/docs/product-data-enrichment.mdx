@@ -1,0 +1,134 @@
+---
+title: Product Data Enrichment with CSV
+---
+
+For this guide, we're going to assume the following you're interested in using Datafiniti's product data enrichment to enrich an existing csv file of gtin values. There are 5 steps to run a product data enrichment using a csv:
+
+1. Select your enrichment file
+2. Set your field_parameter(s)
+3. Configure your query
+4. Configure your format & view
+5. Start your download
+
+## select your enrichment file
+
+Shown here is an example of an acceptable csv file with the correct header to match *gtins*. We will be using this file for the example in this guide.
+
+```text
+id,brand,gtins
+ByfmlncBccoD1xujZi_h,DELL,884116385257
+NSvlJ3gBUbef_7uTmrZ0,iVIEW,880010018154
+AW5IbZIW0Rejpz6vwAXt,DELL,884116316909
+dgiPbXIBvxj1aRneT4Do,Lenovo,194552049454
+AVwjfl5Pnnc1JgDc5uVT,Microsoft,0889842170634
+b1HdPnIBo6SyyXo05RFA,HP,195122090630
+ufzNCHUBo6SyyXo0Cbhh,HP,880118668855
+V3Lmn3IBo6SyyXo08van,Lenovo,194778022286
+hiblJ3gBPkqI1fUQnVR3,iVIEW,880010018116
+DYxQZXEBPkqI1fUQQmtB,Microsoft,889842294590
+F-ej_3EBvxj1aRneqIxF,Microsoft,889842594003
+5u9xbHYBUbef_7uTUCwb,ASUS,192876840085
+cQrmQHcBPkqI1fUQlT3h,HP,196068441692
+AV13Ck1nglJLPUi8O7f5,HP,0825633419421
+HBCgGXcBvxj1aRneekAa,Lenovo,195477750357
+wYybZHEBPkqI1fUQJCDZ,Microsoft,889842388244
+kiw2NXMBPkqI1fUQQYJW,Microsoft,889842265903
+l_E3AngBYEtaI8J07_Y-,ASUS,192876803684
+AW-1PyF-0Rejpz6vIIv6,Microsoft,889842784145
+AVpe8Qmu1cnluZ0-aV3y,HP,680596404057
+```
+
+Set your enrichment file as the field_parameter file.
+
+<Image src="https://files.readme.io/a94a465-csvEnrichment.png" width="1920" height="1080" alt="csvEnrichment.png" />
+
+## Set Your field_parameter
+
+For the field parameter, we want to make sure that the Datafiniti schema field is selected and matches inside the txt file. This will allow the enrichment API to target submitted gtins in our case here.
+
+<Image src="https://files.readme.io/1dcb3a3-enrichmentcsvFieldParams.gif" width="1920" height="1080" alt="enrichmentcsvFieldParams.gif" />
+
+<Callout kind="alert">
+  **CSV format**
+
+Our enrichment search API will not allow any csv without headers. Please be sure to double-check the format of your csv file before submission. A common error you may see in this case: 
+
+        "Invalid file type, must be csv or text file."
+</Callout>
+
+## Configure your query
+
+The query is essential to target the specific group of data you are trying to enrich from. Datafiniti has a very large dataset, and in most cases, you will not need to search through the entire database. Your query can be built using the same logic from our search API [here](https://developer.documentationai.com/docs/constructing-property-queries).
+
+There are some things you must have in your query. You must include a wildcard for each of the field_parameter you are search off of. In this case, we will add the following:
+
+For our example here, we will add logic to our query to search for categories equal to cosmetics and only for products updated since September 31st
+
+```text
+gtins:* AND categories:cosmetics AND dateUpdated:[2022-09-31 TO *]
+```
+
+<Image src="https://files.readme.io/7c69e9c-csvEnrichmentQuery.png" width="1920" height="1080" alt="csvEnrichmentQuery.png" />
+
+<Callout kind="alert">
+  **Query - download time**
+
+We strongly advise against generalized ***field_parameter*** values. This will create a search through a larger pool of products. Therefore the more specific your query is, the faster your enrichment job will be.
+</Callout>
+
+## Configure your format & view
+
+Your format will determine the output file type of the enrichment download you wish to start. This can be set to either of *csv* or *json*. For this example we will set it to *csv*.
+
+Finally the view is used to specify which fields you want added to your data. If no view is provided, we will add all fields from matching records as we do for our ***default*** view for the [product search API](https://developer.documentationai.com/docs/available-views-for-product-data).
+
+Your finally parameter should be setup as the following.
+
+<Image src="https://files.readme.io/99be25e-csvEnrichmentView.png" width="1920" height="1080" alt="csvEnrichmentView.png" />
+
+Listed below is a cURL POST to import this example into Postman.
+
+```curl
+curl --location --request POST 'https://api.documentationai.com/v4/product/search/enrichment' \
+--header 'Authorization: Bearer Your_API_Key' \
+--form 'gtins=@"/C:/Users/Leonard/Downloads/ProductEnrichmentGTINS.csv"' \
+--form 'format="csv"' \
+--form 'num_records="20"' \
+--form 'query="gtins:* AND categories:cosmectics AND dateUpdated:[2022-09-30 TO *]"' \
+--form 'view="default"'
+```
+
+## Start your download
+
+Once you send your Postman request for the enrichment download you will not be charged credits immediately. It will create a download response. We recommend holding on to the download ID for that will allow your to access the data once the status is complete. For more on how to manage your downloads, you can visit [here](https://developer.documentationai.com/docs/postman-downloading-result-files).
+
+An example enrichment download response:
+
+```json
+"status": "completed",
+    "num_downloaded": 19,
+    "num_records_suppressed": 0,
+    "total_cost": 19,
+    "sort": true,
+    "format": "csv",
+    "suppressed_fields": [],
+    "enriched_fields": [
+        {
+            "field": "gtins",
+            "s3Key": "production/126609/1665067765258-productEnrichment20.txt"
+        }
+    ],
+    "_id": 1851135,
+    "user": 123426609,
+    "query": "name:(laptop) AND taxonomy:* AND gtins:* AND taxonomyLevel3:\"computers & tablets\"",
+    "num_records": 20,
+    "data_type": "product",
+    "results": [
+        "https://datafiniti-downloads.s3.amazonaws.com/126609/185115_1.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20221006T151736Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Credential=AKIAZSCI425AD5EKHVNH%2F20221006%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=e35aaeaf9e192a7e6009ef83c18502da154b61e546cef7540528b6ce12af1d81"
+    ],
+    "date_started": "2022-10-06T14:49:25.857Z",
+    "date_updated": "2022-10-06T15:17:36.726Z",
+    "is_suppression_job": false,
+    "is_enrichment_job": true,
+    "id": "1851135"
+```

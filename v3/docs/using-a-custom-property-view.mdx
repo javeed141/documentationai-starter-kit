@@ -1,0 +1,86 @@
+---
+title: Using a custom property view on the fly
+---
+
+## Introduction
+
+Many Datafiniti customers are interested in using our property data with only specific fields in the record results of a query. In this guide, we will show you a couple of ways to set up a custom view.
+
+## Setting a view in your Property Search API
+
+Whenever you set up your property search API body you can create a view by declaring the fields in the JSON of the body. Let's use the following query as a base for a property search:
+
+```json
+{
+    "query":"country:US AND province:TX AND city:\"el paso\" AND address:* AND transactions:*",
+    "num_records":20
+}
+```
+
+Now let's add the view to the body that allows only the following fields:
+
+* address
+* city
+* province
+* postalCode
+* transaction
+  * buyerFirstName
+  * buyerLastName
+
+```json
+{
+    "query": "country:US AND province:TX AND city:\"el paso\" AND address:* AND transactions:*",
+    "view": [
+        {"name": "address"},
+        {"name": "city"},
+        {"name": "province"},
+        {"name": "postalCode"},
+        {"name": "transactions","flatten": true, "sub_fields": [
+            {"name": "saleDate"},
+            {"name": "buyerFirstName"},
+            {"name": "buyerLastName"}
+          ]
+        }
+    ],
+    "num_records":20
+}
+```
+
+Here is an example of the download of this view:
+
+* [Custom View body CSV](https://drive.google.com/file/d/1Tp4C1aTvTkgzziBRV_h-HqQpCUk3uagi/view?usp=sharing)
+
+## Creating a custom view via create view API endpoint
+
+This method will create a permanent view that you can declare by name in the view of your search body. Using the [https://api.documentationai.com/v4/views](https://api.documentationai.com/v4/views) API endpoint you can create a view. We will use the previous fields as our view body. We will name this view `custom_transaction_view`.
+
+```json
+{
+  "name": "custom_transaction_view",
+  "data_type": "property",
+  "fields": [
+    {"name": "address"},
+        {"name": "city"},
+        {"name": "province"},
+        {"name": "postalCode"},
+        {"name": "transactions","flatten": true, "sub_fields": [
+            {"name": "saleDate"},
+            {"name": "buyerFirstName"},
+            {"name": "buyerLastName"}
+          ]
+        }
+  ]
+}
+```
+
+<Callout kind="info">
+  **Name**
+
+Please note you can name the view any string value not currently used. To check your current view you can use: [https://api.documentationai.com/v4/views?page=1&limit=10](https://api.documentationai.com/v4/views?page=1&limit=10)
+</Callout>
+
+<Callout kind="alert">
+  **dataType**
+
+Be sure that you declare the correct dataType to the dataType you wish to search. As we need to match the API to the dataType's schema. Learn more about [Property Data Schema](https://java.documentationai.com/docs/property-data-schema).
+</Callout>

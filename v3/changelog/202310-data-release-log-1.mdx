@@ -1,0 +1,204 @@
+---
+title: 2023.11 - Data Release Log
+---
+
+# Overview
+
+Datafiniti project release 4 and 5 are now live.\
+DR4 -
+
+* We were provided with the opportunity to receive three new data sources. These consisted of MLS data for properties, Refinancing data, and data on Commercial properties.
+* 31 new property data fields were added from this release
+
+DR5 -
+
+* Standardizing certain field values
+* Moving semi-structured data from the features field to top level structured fields of their own
+* Adding additional types to some fields
+
+## Record Counts
+
+* Business: 132,310,957 unique records with 588,581 added
+* People: 15,594,456 unique records with 10,171,378 added
+* Products: 515,039,753 unique records with 6,477,179 newly added
+* Property: 216,787,969 unique records with 8,676,545 newly added
+
+## Property Data Updates
+
+We have added 31 new property schema fields:
+
+### More Accurate MLS Data 
+
+This will include a more comprehensive MLS data feed. It contains the following new fields:
+
+* appliances: Included appliances.
+* assessedValues:
+  * improvementsAmount: Assessed value for property improvements.
+  * landAmount: Assessed value for land/lot.
+  * totalAmount: Amount the property is assessed for.
+  * year: Year of property assessment.
+* categories: List of category keywords from various sources.
+* estimatedPrices: A list of price estimates for the property.
+  * amountMax: maximum price seen
+  * amountMin: minimum price seen
+  * currency: currency used for the price
+  * dateSeen: date seen for the estimated prices.
+  * pricePerSquareFoot: The price divide by the square footage.
+* geoQuality: Quality of property's geoLocation data.
+* hvacTypes: Type/components of HVAC system.
+* price.status: The status of the property at the time of the recorded price. 
+* roofing: Materials used for the property's roof.
+* subdivision: Subdivision/neighborhood information.
+
+```json
+"appliances": [
+
+                "Dishwasher",
+
+                "Refrigerator",
+
+                "Range - Electric",
+
+                "Dryer",
+
+                "Washer"
+
+              ],
+
+"assessedValues": [
+
+                {
+
+                    "year": 2023,
+
+                    "totalAmount": 466136,
+
+                    "improvementsAmount": 391136,
+
+                    "landAmount": 75000
+
+                },
+
+"categories": [
+
+                "Commercial",
+
+                "Neighborhood: Shopping center, Strip center"
+
+              ],
+
+"geoQuality": 5,
+
+"hvacTypes": [
+
+                "Forced Air",
+
+                "Central Air",
+
+                "Natural Gas"
+
+             ],
+
+"prices": [ "status": "Sold" ],
+
+"roofing": [ "Shingle", "HIP" ],
+
+"subdivision": "Prairie Village"
+```
+
+### Parcel Number as a Top-Level Field
+
+You are now able to access parcel numbers as a top-level field, streamlining your property research process.
+
+* parcelNumbers: Associated parcel number.
+
+```json
+"parcelNumbers": [ {  
+                    "number": "3469--2R1",  
+                    "year": 2010,  
+                    "account": "41437721"  
+                } ]
+```
+
+### New Commercial Data Feed: 
+
+This new commercial data feed contains information on the building's construction and features. This contains information about the legal classification of the building, its use, owners, and tax information.
+
+* architecturalStyles: Property's architectural style.
+* ownerOccupied: True/false value indicating owner occupancy.
+* topographyCode: Property's topography code.
+* zoning: Property's zoning value.
+* msaCode: msaCode of the property.
+* msaName: msaName of the property.
+* cbsaCode: cbsaCode of the property.
+* cbsaName: cbsaName of the property.
+
+```json
+"architecturalStyles": [ "Ranch" ],  
+"ownerOccupied": true,  
+"topographyCode": 102,  
+"zoning": "IM, Arlington",
+"cbsaName": "OXNARD-THOUSAND OAKS-VENTURA, CA METROPOLITAN",
+"cbsaCode": 212312,
+"msaName": "OXNARD-THOUSAND, CA METROPOLITAN",
+"cbsaCode": 256312,
+```
+
+### Refinance data
+
+This data is about properties that have been refinanced. This contains information on the actual refinancing transaction, the buyer, the legal classification of the property, tax information, and assessed value.
+
+* taxExemptions: List of property tax exemptions.
+* title: Title text associated with the property.
+* transactions:
+  * documentNumber: Transaction document number.
+  * transactionID: Transaction ID value.
+* trustDescription: Description of trust information related to the property.
+
+```json
+"taxExemptions": [ "Homeowner" ],  
+"title": "Single Family Residence, Two Story - Raeford, NC",  
+"transactions": [ {  
+            "saleDate": "2018-09-05T00:00:00.000Z",  
+            "documentNumber": "198630",  
+            "transactionID": "305434811",  
+                } ],  
+"trustDescription": "Not a Trust"
+```
+
+## Bug fixes
+
+* finalizer change to convert all sqft to sq ft in any unit value
+* Changing all emails to lower case
+* Removing agent names with “non” from brokers
+* Max limit to prices to allow price range functionality
+* Status cleanup - check that firstDateSeen and lastDateSeen are filled out on the statuses and check that the top level most recent value is reflective of the most recent value in the array
+* Prices cleanup - check that firstDateSeen and lastDateSeen are filled out on the prices and check that the top level most recent value is reflective of the most recent value in the array
+* Transactions create a new status object. Check that the status array has entries for each transaction.
+* Converting statuses type “Rental Unit” to “Rental”
+
+## Data Importer Updates
+
+* Updated Remax.ca
+* Added Foreclosure.com
+* Updated Movoto
+* Updated Estately (added foreclosure statuses)
+* Updated Homes.com
+* Updated Realestatebook
+* Updated Har.com
+* Rebuilt Apartmentguide.com
+* Updated Target.com
+* Updated Loopnet
+* Updated Century21
+* Updated Apartments.com
+* Changed our BrightMLS crawler to the site’s new domain → Nestfully.com
+* Added Land.com
+* Updated Redfin
+* Updated Homefinder
+* Added California DRE people source (www2.dre.ca.gov)
+* Updated Realtytrac
+* Updated Realestate.com.au
+* Updated Idealista
+* Added LA County tax records (portal.assessor.lacounty.gov)
+* Updated Best Buy
+* Added Renthop.com

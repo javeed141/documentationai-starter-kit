@@ -1,0 +1,45 @@
+---
+title: 2022.6 - Data Release Log
+---
+
+# Overview
+
+New *mostRecent* fields add to existing product schema to narrow down the most recent data of a specific product field. New product sources added via customer requests. Added broker data to new & existing property records as part of a recent effort to improve what you can search for.
+
+## Record Counts
+
+* Business - 124,570,591
+* People - 2,996,031
+* Product - 445,909,085
+* Property - 160,528,783
+
+## New Sources
+
+New sources were added from common requests from Datafiniti users.
+
+The following data types have received new sources:
+
+* 2 Property data sources - focusing on UK property market
+* 4 New Product sources - combination of hardware and consumer goods
+
+## Schema Changes
+
+New mostRecent recent fields have been add in a request from many Datafiniti users. This was added to enhance the search API to minimize and select only the most recent data scrape via our API. In tandem with our Targeted Update, these fields can allow users to gather the most up to date data Datafiniti can provide.
+
+* Products mostRecent fields added to provide the most recent data from the latest scrape of a source.
+  * mostRecentPriceAmount
+  * mostRecentPriceAvailability
+  * mostRecentPriceByDomain
+  * mostRecentPriceColor
+  * mostRecentPriceCondition
+  * mostRecentPriceCurrency
+  * mostRecentPriceDate
+  * mostRecentPriceDomain
+  * mostRecentPriceIsSale
+  * mostRecentPriceSize
+  * mostRecentPriceSourceURL
+
+## Fixes
+
+* Updated 2 Product data sources and 4 Property data sources
+* Fixed a property bug that was importing isSale & statuses incorrectly

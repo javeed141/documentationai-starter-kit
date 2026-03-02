@@ -1,0 +1,57 @@
+---
+title: Search for specific restaurants
+---
+
+## Introduction
+
+Datafiniti's business data can be used to enrich, search, or verify almost any business you want. In this example we will show you how to use Datafiniti business search API to query for specific restaurants by the cuisine or category of food they offer.
+
+## Search businesses via categories
+
+For this example we are looking for vegan restaurant in the state of California. You can use the following example to get these business records:
+
+```json
+{
+  "query": "country:US AND province:CA AND categories:(vegan)",
+  "num_records":10
+}
+```
+
+Utilizing Datafiniti's `categories `field we can search for restaurant that advertise with vegan as a keyword for their menu items.
+
+<Callout kind="info">
+  **Categories**
+
+Categories is a list of category keywords used for the business that has been scraped from descriptions and menu items across multiple sources.
+</Callout>
+
+## Search businesses via cuisines
+
+For this example we are going to search for the same California based vegan restaurants but we will use Datafiniti's cuisines field as the main search parameter.
+
+```json
+{
+  "query": "country:US AND province:CA AND cuisines:(vegan)",
+  "num_records":10
+}
+```
+
+Utilizing Datafiniti's `cuisines` field is based on list of cuisines offered by this business location. Typically data obtain from online order menus.
+
+## Combining fields to optimize results
+
+Since the fields we have used so far (`categories `& `cuisines`) are typically pulling from different data source, we can combine the query from the previous example to create a catch all for vegan restaurant in California.
+
+```json
+{
+  "query": "country:US AND province:CA AND (categories:vegan OR cuisines:vegan)",
+  "num_records":10
+}
+```
+
+## example files
+
+Here are example bulk download files of our previous query:
+
+* [Vegan Restaurants Json](https://drive.google.com/file/d/1dQbYyGLRkYECud9HuIHHGa9VXR0Zgm2H/view?usp=sharing)
+* [Vegan Restaurants Csv](https://drive.google.com/file/d/1qWYMjXYxxbQhFnXn-WIZDjY82SMKxLVE/view?usp=sharing)

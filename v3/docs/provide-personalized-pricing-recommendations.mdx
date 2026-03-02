@@ -1,0 +1,98 @@
+---
+title: Provide personalized pricing recommendations
+---
+
+## Introduction
+
+Thanks to Datafiniti's robust query system, you can construct very specific searches across a wide number of fields, including price.  This can be helpful when trying to provide users or customers with information on which products match their budgets.
+
+## Available pricing data
+
+There are handful of fields to know about when searching Datafiniti for pricing information:
+
+| Field                         | Description                                                                                                                     |
+| :---------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| `mostRecentPriceAmount`       | The product's most recent price amount scraped.                                                                                 |
+| `mostRecentPriceAvailability` | The product's most recent price availability scraped.                                                                           |
+| `mostRecentPriceByDomain`     | A list of Prices of this product by each domain source. These are typically third-party merchants found on e-commerce websites. |
+| `mostRecentPriceCurrency`     | The currency listed for mostRecentPriceAmount.                                                                                  |
+| `mostRecentPriceDate`         | The most recent price date of the product record.                                                                               |
+| `mostRecentPriceDomain`       | The domain of the most recent price scraped by Datafiniti                                                                       |
+| `mostRecentPriceSourceURL`    | The most recent URL used to generate data for this product.                                                                     |
+| `prices`                      | A list of prices for this product.                                                                                              |
+
+The `mostRecent` fields will help you search for the most up-to-date price of a product, while the `prices` array will give you a full price history to search on.
+
+Here are the fields within a single `prices` object:
+
+| Field          | Description                                                                                                             |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------- |
+| `amountMin`    | The minimum price value listed.                                                                                         |
+| `amountMax`    | The maximum price value listed. This is typically the same as amountMin, except in cases where a price range is listed. |
+| `availability` | A true or false if this product is available at this price.                                                             |
+| `color`        | The color associated with this price.                                                                                   |
+| `condition`    | The condition of the product when being sold at this price.                                                             |
+| `count`        | The number of units being sold at this price.                                                                           |
+| `currency`     | The currency listed for amountMin and amountMax.                                                                        |
+| `dateSeen`     | A list of dates when this price was seen.                                                                               |
+| `flavor`       | The flavor associated with this price.                                                                                  |
+| `isSale`       | A true/false for whether or not this price is a sale/discounted price.                                                  |
+| `isSold`       | A true/flase for whether or not the product has been sold at this price (typically reserved for vehicle listings).      |
+| `merchant`     | The merchant and/or website selling at this price.                                                                      |
+| `offer`        | Any special offer associated with this price.                                                                           |
+| `returnPolicy` | The return policy associated with this price.                                                                           |
+| `shipping`     | The shipping terms associated with this price.                                                                          |
+| `size`         | The size associated with this price.                                                                                    |
+| `sourceURLs`   | A list of URLs where this price was seen.                                                                               |
+| `warranty`     | The warranty associated with this price.                                                                                |
+
+You can use any of the above fields when searching on prices.
+
+## Searching on prices
+
+Let's learn how to search on prices in different ways.
+
+We can start with a very basic search that return any products in a given category with a price:
+
+```json
+{
+  "query": "categories:electronics AND prices:*
+}
+```
+
+If we want to search for products within a certain price range, we can do this, which will return all products priced between $100 and $200.
+
+```json
+{
+  "query": "categories:electronics AND {prices.amountMin:>=100 AND prices.currency:USD} AND {prices.amountMin:<=200 AND prices.currency:USD}"
+}
+```
+
+If we want to find products that are recently on sale, we can do this, which will return all products on sale since April 1, 2023:
+
+```json
+{
+  "query": "categories:electronics AND {prices.isSale AND prices.dateSeen:[2023-04-01 TO *]}"
+}
+```
+
+If we want to make sure we return products that have a warranty:
+
+```json
+{
+  "query": "categories:electronics AND prices.warranty:*
+}
+```
+
+You can use any number of combination of fields to find exactly the pricing data you want.  With this information, you can provide information back to customers that gives them the exact insight they need.
+
+### Example files
+
+Here are example bulk download files of our previous query:
+
+* [Electronic Warranty Record CSV](https://drive.google.com/file/d/1cJ54Gn-i6yeSDMn2OexxHEiDl1UlRXnI/view?usp=share_link)
+* [Electronic Warranty Record JSON](https://drive.google.com/file/d/1YnJt0IWsAe4S3sQCcMoagQ45UzGjA7lD/view?usp=share_link)
+
+### Conclusion
+
+With the knowledge of how to pull records with product pricing, you can provide users or customers with information on which products match their budgets.

@@ -1,0 +1,38 @@
+---
+title: Dimensions Normalization
+---
+
+How Datafiniti Normalizes Dimension Data
+
+## How Datafiniti Normalizes Dimension Data
+
+Datafiniti uses a custom built data scraping engine to search products being sold and pulls detailed information about the product to create a record. Sometimes websites listing these products may have their own way of displaying that data. So Datafiniti uses an algorithm to Normalize this data to our own set of standards.
+
+Dimension data will always be ***Normalized*** to a Height, Width, Length/Depth format (in this order). For example the following dimension from the website will be convert to our Normalize format:
+
+```json
+{
+        "Given from the scraped source": {
+            "dimension": "8.96 (H) x 6.32 (w) x 0.93 (d) in"
+        },
+        "Our Normalized Record's Dimensions": {
+            "dimension": "8.96 in x 6.32 in x 0.93 in"
+        },
+        "comment": "We will also insert measurement units into every dimension if not provided by the source."
+    },
+```
+
+## Normalized Measurement Units for Dimension
+
+We also use a standard format for abbreviations of measurement units. Listed below is a table of what we abbreviate measurement units to in our Datafiniti record database.
+
+| Measurement Unit | Datafiniti Abbreviation |
+| :--------------- | :---------------------- |
+| millimeter       | mm                      |
+| centimeter       | cm                      |
+| inches           | in                      |
+| '' or " symbols  | in                      |
+| foot or feet     | ft                      |
+| ' symbol         | ft                      |
+| meter            | m                       |
+| yard             | yd                      |

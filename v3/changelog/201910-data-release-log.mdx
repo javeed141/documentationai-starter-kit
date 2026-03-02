@@ -1,0 +1,39 @@
+---
+title: 2019.10 - Data Release Log
+---
+
+# Overview
+
+This month saw the beginning of our tool to implement changes into our database begin overhauling.  As that project rolls out the below mentioned schema changes and fixes will take shape much quicker allowing more to take place.
+
+## Record Counts
+
+The following are the updated record counts for each vertical:
+
+* Business data decreased by 1.1 million to 91.2 million
+* People data increased by 1.2 million to 10.7 million
+* Product data increased by 20 million to 160.9 million
+* Property data increased by 2.1 million to 36.9 million
+
+## New Sources
+
+The following data types have received new sources:
+
+* 4 Business data sources
+
+## Schema Changes
+
+* `naics` data has been added to the People data
+* `mostRecentStatus` processing has changed to be source dependent, in other words we'll be relying on the individual domains to provide the most recent status instead of us deriving it.
+* All global product identifiers, which we store in the `gtins` field, will calculate the check digit to verify they are accurate values
+* We're still continuing our transition from `crawlResultFiles` to `crawlIDs`, Product data is the remaining data source being transitioned.
+* `geoLocation` continues to be implemented across our database for Business and Property data
+* `dateSeen` to a single value for many nested JSON object fields continues to be transitioned for all data types.
+* The new UPC and EAN fields along with the container field called `gtins` continues to be implemented for all Product data.
+
+## Fixes
+
+* Categories and features were being populated with bad seller ranking data, removal is still in-progress.
+* Address values have begun being normalized into USPS provided values.  These values will be uploaded here in the coming days to assist with searching.
+* `mostRecentStatusDate` is collected from individual sources instead of derived from the timestamp the data was gathered.
+* Updated 6 Property data sources, 2 Product data sources, and 1 Business data source

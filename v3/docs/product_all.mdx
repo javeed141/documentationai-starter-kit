@@ -1,0 +1,673 @@
+---
+title: Available Views for Product Data
+---
+
+## Default view
+
+The default view will display all available fields in the [Product Data Schema](https://java.documentationai.com/docs/product-data-schema).  This view will be used if you don't set the `view`.
+
+If using the `csv` format, it will split out elements in multi-valued field lists into separate rows.  This means a single product will show up in multiple, contiguous rows while its `categories`, `prices`, etc fields will have one entry per row for each element in their lists.
+
+### Included Fields
+
+| Field | Included Sub-fields |
+| --- | --- |
+| `asins` | N/A |
+| `brand` | N/A |
+| `categories` | N/A |
+| `colors` | N/A |
+| `count` | N/A |
+| `dateAdded` | N/A |
+| `dateUpdated` | N/A |
+| `descriptions` | `dateSeen`   <br/> `sourceURLs`   <br/> `value` |
+| `dimension` | N/A |
+| `domains` | N/A |
+| `ean` | N/A |
+| `ean13` | N/A |
+| `ean8` | N/A |
+| `features` | `key`   <br/> `replace`   <br/> `value` |
+| `financingAndLeasing` | `additionalDetails`   <br/> `apr`   <br/> `currency`   <br/> `dateSeen`   <br/> `description`   <br/> disclaimers` <br/> `dueAtSigningMax` <br/> `dueAtSigningMin` <br/> `milesPerYear` <br/> `monthlyPaymentMax` <br/> `monthlyPaymentMin` <br/> `name` <br/> `offerStartDate` <br/> `offerEndDate` <br/> `term` <br/> `type` <br/> `securityDepositMax` <br/> `securityDepositMin` <br/> `sourceURLs` |
+| `flavors` | N/A |
+| `gtins` | N/A |
+| `imageURLs` | N/A |
+| `isbn` | N/A |
+| `keys` | N/A |
+| `manufacturer` | N/A |
+| `manufacturerNumber` | N/A |
+| `merchants` | `address`   <br/> `availability`   <br/> `city`   <br/> `country`   <br/> `dateSeen`   <br/> `name`   <br/> `phone`   <br/> `postalCode`   <br/> `province` |
+| `name` | N/A |
+| `prices` | `amountMin`   <br/> `amountMax`   <br/> `availability`   <br/> `color`   <br/> `condition`   <br/> `count`   <br/> `currency`   <br/> `dateSeen`   <br/> `flavor`   <br/> `isSale`   <br/> `merchant`   <br/> `offer`   <br/> `returnPolicy`   <br/> `shipping`   <br/> `size`   <br/> `sourceURLs`   <br/> `warranty` |
+| `reviews` | `date`   <br/> `dateSeen`   <br/> `didPurchase`   <br/> `doRecommend`   <br/> `numHelpful`   <br/> `rating`   <br/> `sourceURLs`   <br/> `text`   <br/> `title`   <br/> `userCity`   <br/> `username`   <br/> `userProvince` |
+| `sdsURLs` | N/A |
+| `secondaryCategories` | N/A |
+| `sizes` | N/A |
+| `skus` | `sourceURLs`   <br/> `value` |
+| `sourceURLs` | N/A |
+| `taxonomy` | N/A |
+| `taxonomyLevel1` | N/A |
+| `taxonomyLevel2` | N/A |
+| `taxonomyLevel3` | N/A |
+| `taxonomyLevel4` | N/A |
+| `taxonomyLevel5` | N/A |
+| `taxonomyLevel6` | N/A |
+| `taxonomyLevel7` | N/A |
+| `taxonomyLevel8` | N/A |
+| `taxonomyLevel9` | N/A |
+| `upc` | N/A |
+| `upca` | N/A |
+| `upce` | N/A |
+| `vin` | N/A |
+| `websiteID` | N/A |
+| `weight` | N/A |
+
+### Sample CSV Output
+
+Right-click and choose "Save link as..." to download this sample so you can see it in Excel: [products_all-CSV-example.csv](https://raw.githubusercontent.com/datafiniti/SampleData/master/6210_1.csv)
+
+{/* [block:embed] needs manual review */}
+
+### Sample JSON Output
+
+```json
+{
+  "asins": [
+    "B00MKHSLP2"
+  ],
+  "categories": [
+    "Women",
+    "Shoes",
+    "Shoes & Handbags",
+    "Boots"
+  ],
+  "colors": [
+    "Beige Plaid",
+    "Fuchsia",
+    "Black Polka Dots",
+    "Black",
+    "Houndstooth",
+    "Navy Stripe",
+    "Dk Green",
+    "Leopard",
+    "Camo",
+    "Green",
+    "Zebra",
+    "Multi-Color Polka Dots"
+  ],
+  "dateAdded": "2015-08-17T18:43:00Z",
+  "dateUpdated": "2016-05-05T17:20:05Z",
+  "features": [
+    {
+      "key": "Date first available at Amazon.ca",
+      "value": [
+        "Jan. 15 2014"
+      ]
+    }
+  ],
+  "imageURLs": [
+    "http://ecx.images-amazon.com/images/I/41-V0orNJkL._US40_.jpg",
+    "http://ecx.images-amazon.com/images/I/31CXHHQarXL._US40_.jpg",
+    "http://ecx.images-amazon.com/images/I/411huD5UrRL._SY395_QL70_.jpg",
+    "https://images-na.ssl-images-amazon.com/images/I/51UcNOuZSUL._US40_.jpg",
+    "http://ecx.images-amazon.com/images/I/411HlTw2geL._US40_.jpg",
+    "http://ecx.images-amazon.com/images/I/41ge8ewa3TL._US40_.jpg",
+    "https://images-na.ssl-images-amazon.com/images/I/51UcNOuZSUL._SY395_QL70_.jpg",
+    "http://ecx.images-amazon.com/images/I/411huD5UrRL._US40_.jpg",
+    "http://ecx.images-amazon.com/images/I/41%2BIJyHAy9L._US40_.jpg"
+  ],
+  "keys": [
+    "brandnewwomensfashionrubberrainbootsbottesdepluie/b00mkhslp2"
+  ],
+  "manufacturer": "sunville",
+  "merchants": [
+    {
+      "dateSeen": [
+        "2016-04-29T00:00:00Z"
+      ],
+      "name": "Amazon.ca"
+    }
+  ],
+  "name": "Brand New Women's Fashion Rubber Rain Boots / Bottes De Pluie",
+  "prices": [
+    {
+      "amountMin": 26.950000762939453,
+      "amountMax": 26.950000762939453,
+      "condition": "new",
+      "currency": "CAD",
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-10T00:00:00Z"
+      ],
+      "merchant": "Amazon.ca",
+      "shipping": "free",
+      "sourceURLs": [
+        "http://www.amazon.ca/Brand-Womens-Rubber-Bottes-Dotted/dp/B00OMB8O7E"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 4,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "These fit fine, made for people with skinny legs. My thicker legs/ muscular have a squishy time.",
+      "title": "Four Stars",
+      "username": "PLAINJANE"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 1,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "A cheap boot that lasted only a few weeks on our property. Mild use and these have already split the seems. Not recommended for anyone. Spend more money and get a good pair.",
+      "title": "Cheaply made boot that doesnt last.",
+      "username": "Brandon"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 5,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "Excellent quality and very very cute rain boots. Very comfortable - come on rain!!!",
+      "title": "Quality and comfort and cute too!",
+      "username": "Bonnie Hallman"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 1,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "Cracked within a few months where it bends for your toes. I've owned a couple of these. the same happened for both as well as the buckle breaking. I'm finally done with it. Will just spend a hit more for hunter boots.",
+      "title": "Cracked within a few months.",
+      "username": "Chiqui Mancini"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 5,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "Nice boots. A bit loose for my girl friends skinny legs.",
+      "title": "Five Stars",
+      "username": "Etienne"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 5,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "very fashionable as well as comfortable",
+      "title": "Five Stars",
+      "username": "jahoody"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 5,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "These arrived very fast and are great.",
+      "title": "Five Stars",
+      "username": "Linda Findlay-Palmer"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 3,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "Decent boots but one of the buckles broke a day after I received them.",
+      "title": "Three Stars",
+      "username": "Sheena Cormier"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 5,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "Really like them! Great grips for working on the farm and tall enough too! Found their sizing a little bit smaller than I expected, but still fits good because it has a wide toe area. Now I can farm in style and with any color!",
+      "title": "really like them",
+      "username": "Marie"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 5,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "Fits perfectly. Love the colour.",
+      "title": "Love the colour",
+      "username": "N.K."
+    }
+  ],
+  "sourceURLs": [
+    "https://www.amazon.ca/Brand-Womens-Rubber-Boots-Bottes/dp/B00OL26D4K",
+    "http://www.amazon.ca/Brand-Womens-Rubber-Boots-Bottes/dp/B00OL26D4K",
+    "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+  ],
+  "weight": "227 g",
+  "id": "AVnjo8-lD1GB75FR6uL3"
+}
+```
+
+## product_all_nested
+
+The product_all_nested view will display all available fields in the [Product Data Schema](https://java.documentationai.com/docs/product-data-schema).  This view will be used if you don't set the `view`.
+
+If using the `csv` format, it will group elements in multi-valued field lists into single cells.
+
+### Included Fields
+
+| Field | Included Sub-fields |
+| --- | --- |
+| `asins` | N/A |
+| `brand` | N/A |
+| `categories` | N/A |
+| `colors` | N/A |
+| `count` | N/A |
+| `dateAdded` | N/A |
+| `dateUpdated` | N/A |
+| `descriptions` | `dateSeen`   <br/> `sourceURLs`   <br/> `value` |
+| `dimension` | N/A |
+| `domains` | N/A |
+| `ean` | N/A |
+| `ean13` | N/A |
+| `ean8` | N/A |
+| `features` | `key`   <br/> `replace`   <br/> `value` |
+| `flavors` | N/A |
+| `gtins` | N/A |
+| `imageURLs` | N/A |
+| `isbn` | N/A |
+| `keys` | N/A |
+| `manufacturer` | N/A |
+| `manufacturerNumber` | N/A |
+| `merchants` | `address`   <br/> `availability`   <br/> `city`   <br/> `country`   <br/> `dateSeen`   <br/> `name`   <br/> `phone`   <br/> `postalCode`   <br/> `province` |
+| `name` | N/A |
+| `prices` | `amountMin`   <br/> `amountMax`   <br/> `availability`   <br/> `color`   <br/> `condition`   <br/> `count`   <br/> `currency`   <br/> `dateSeen`   <br/> `flavor`   <br/> `isSale`   <br/> `merchant`   <br/> `offer`   <br/> `returnPolicy`   <br/> `shipping`   <br/> `size`   <br/> `source`   <br/> `sourceURLs`   <br/> `warranty` |
+| `reviews` | `date`   <br/> `dateSeen`   <br/> `didPurchase`   <br/> `doRecommend`   <br/> `numHelpful`   <br/> `rating`   <br/> `sourceURLs`   <br/> `text`   <br/> `title`   <br/> `userCity`   <br/> `username`   <br/> `userProvince` |
+| `sdsURLs` | N/A |
+| `secondaryCategories` | N/A |
+| `sizes` | N/A |
+| `skus` | `sourceURLs`   <br/> `value` |
+| `sourceURLs` | N/A |
+| `stockNum` | N/A |
+| `taxonomy` | N/A |
+| `taxonomyLevel1` | N/A |
+| `taxonomyLevel2` | N/A |
+| `taxonomyLevel3` | N/A |
+| `taxonomyLevel4` | N/A |
+| `taxonomyLevel5` | N/A |
+| `taxonomyLevel6` | N/A |
+| `taxonomyLevel7` | N/A |
+| `taxonomyLevel8` | N/A |
+| `taxonomyLevel9` | N/A |
+| `upc` | N/A |
+| `upca` | N/A |
+| `upce` | N/A |
+| `vin` | N/A |
+| `websiteID` | N/A |
+| `weight` | N/A |
+
+### Sample CSV Output
+
+Right-click and choose "Save link as..." to download this sample so you can see it in Excel: [products_all-CSV-example.csv](https://raw.githubusercontent.com/datafiniti/SampleData/master/6210_1.csv)
+
+{/* [block:embed] needs manual review */}
+
+### Sample JSON Output
+
+```json
+{
+  "asins": [
+    "B00MKHSLP2"
+  ],
+  "categories": [
+    "Women",
+    "Shoes",
+    "Shoes & Handbags",
+    "Boots"
+  ],
+  "colors": [
+    "Beige Plaid",
+    "Fuchsia",
+    "Black Polka Dots",
+    "Black",
+    "Houndstooth",
+    "Navy Stripe",
+    "Dk Green",
+    "Leopard",
+    "Camo",
+    "Green",
+    "Zebra",
+    "Multi-Color Polka Dots"
+  ],
+  "dateAdded": "2015-08-17T18:43:00Z",
+  "dateUpdated": "2016-05-05T17:20:05Z",
+  "features": [
+    {
+      "key": "Date first available at Amazon.ca",
+      "value": [
+        "Jan. 15 2014"
+      ]
+    }
+  ],
+  "imageURLs": [
+    "http://ecx.images-amazon.com/images/I/41-V0orNJkL._US40_.jpg",
+    "http://ecx.images-amazon.com/images/I/31CXHHQarXL._US40_.jpg",
+    "http://ecx.images-amazon.com/images/I/411huD5UrRL._SY395_QL70_.jpg",
+    "https://images-na.ssl-images-amazon.com/images/I/51UcNOuZSUL._US40_.jpg",
+    "http://ecx.images-amazon.com/images/I/411HlTw2geL._US40_.jpg",
+    "http://ecx.images-amazon.com/images/I/41ge8ewa3TL._US40_.jpg",
+    "https://images-na.ssl-images-amazon.com/images/I/51UcNOuZSUL._SY395_QL70_.jpg",
+    "http://ecx.images-amazon.com/images/I/411huD5UrRL._US40_.jpg",
+    "http://ecx.images-amazon.com/images/I/41%2BIJyHAy9L._US40_.jpg"
+  ],
+  "keys": [
+    "brandnewwomensfashionrubberrainbootsbottesdepluie/b00mkhslp2"
+  ],
+  "manufacturer": "sunville",
+  "merchants": [
+    {
+      "dateSeen": [
+        "2016-04-29T00:00:00Z"
+      ],
+      "name": "Amazon.ca"
+    }
+  ],
+  "name": "Brand New Women's Fashion Rubber Rain Boots / Bottes De Pluie",
+  "prices": [
+    {
+      "amountMin": 26.950000762939453,
+      "amountMax": 26.950000762939453,
+      "condition": "new",
+      "currency": "CAD",
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-10T00:00:00Z"
+      ],
+      "merchant": "Amazon.ca",
+      "shipping": "free",
+      "sourceURLs": [
+        "http://www.amazon.ca/Brand-Womens-Rubber-Bottes-Dotted/dp/B00OMB8O7E"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 4,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "These fit fine, made for people with skinny legs. My thicker legs/ muscular have a squishy time.",
+      "title": "Four Stars",
+      "username": "PLAINJANE"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 1,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "A cheap boot that lasted only a few weeks on our property. Mild use and these have already split the seems. Not recommended for anyone. Spend more money and get a good pair.",
+      "title": "Cheaply made boot that doesnt last.",
+      "username": "Brandon"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 5,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "Excellent quality and very very cute rain boots. Very comfortable - come on rain!!!",
+      "title": "Quality and comfort and cute too!",
+      "username": "Bonnie Hallman"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 1,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "Cracked within a few months where it bends for your toes. I've owned a couple of these. the same happened for both as well as the buckle breaking. I'm finally done with it. Will just spend a hit more for hunter boots.",
+      "title": "Cracked within a few months.",
+      "username": "Chiqui Mancini"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 5,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "Nice boots. A bit loose for my girl friends skinny legs.",
+      "title": "Five Stars",
+      "username": "Etienne"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 5,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "very fashionable as well as comfortable",
+      "title": "Five Stars",
+      "username": "jahoody"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 5,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "These arrived very fast and are great.",
+      "title": "Five Stars",
+      "username": "Linda Findlay-Palmer"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 3,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "Decent boots but one of the buckles broke a day after I received them.",
+      "title": "Three Stars",
+      "username": "Sheena Cormier"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 5,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "Really like them! Great grips for working on the farm and tall enough too! Found their sizing a little bit smaller than I expected, but still fits good because it has a wide toe area. Now I can farm in style and with any color!",
+      "title": "really like them",
+      "username": "Marie"
+    },
+    {
+      "dateAdded": "2015-08-17T18:43:00Z",
+      "dateSeen": [
+        "2015-08-15T00:00:00Z"
+      ],
+      "rating": 5,
+      "sourceURLs": [
+        "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+      ],
+      "text": "Fits perfectly. Love the colour.",
+      "title": "Love the colour",
+      "username": "N.K."
+    }
+  ],
+  "sourceURLs": [
+    "https://www.amazon.ca/Brand-Womens-Rubber-Boots-Bottes/dp/B00OL26D4K",
+    "http://www.amazon.ca/Brand-Womens-Rubber-Boots-Bottes/dp/B00OL26D4K",
+    "http://www.amazon.ca/product-reviews/B00MKHSLP2"
+  ],
+  "weight": "227 g",
+  "id": "AVnjo8-lD1GB75FR6uL3"
+}
+```
+
+## product_flat_prices
+
+The `product_flat_prices` view should be used when you want to look at individual prices for each product in your data set in a CSV format.
+
+If using the CSV format, it will split each price for a product into its own row.  All other fields will repeat in each row.
+
+### Included Fields
+
+| Field | Included Sub-fields |
+| --- | --- |
+| `asins` | N/A |
+| `brand` | N/A |
+| `categories` | N/A |
+| `colors` | N/A |
+| `count` | N/A |
+| `dateAdded` | N/A |
+| `dateUpdated` | N/A |
+| `descriptions` | `dateSeen`   <br/> `sourceURLs`   <br/> `value` |
+| `dimension` | N/A |
+| `domains` | N/A |
+| `ean` | N/A |
+| `ean13` | N/A |
+| `ean8` | N/A |
+| `features` | `key`   <br/> `value` |
+| `flavors` | N/A |
+| `gtins` | N/A |
+| `imageURLs` | N/A |
+| `isbn` | N/A |
+| `keys` | N/A |
+| `manufacturer` | N/A |
+| `manufacturerNumber` | N/A |
+| `merchants` | `address`   <br/> `availability`   <br/> `city`   <br/> `country`   <br/> `dateSeen`   <br/> `name`   <br/> `phone`   <br/> `postalCode`   <br/> `province` |
+| `name` | N/A |
+| `prices` | `amountMin`   <br/> `amountMax`   <br/> `availability`   <br/> `color`   <br/> `condition`   <br/> `count`   <br/> `currency`   <br/> `dateSeen`   <br/> `flavor`   <br/> `isSale`   <br/> `merchant`   <br/> `offer`   <br/> `returnPolicy`   <br/> `shipping`   <br/> `size`   <br/> `source`   <br/> `sourceURLs`   <br/> `warranty` |
+| `reviews` | `date`   <br/> `dateSeen`   <br/> `didPurchase`   <br/> `doRecommend`   <br/> `numHelpful`   <br/> `rating`   <br/> `sourceURLs`   <br/> `text`   <br/> `title`   <br/> `userCity`   <br/> `username`   <br/> `userProvince` |
+| `sdsURLs` | N/A |
+| `secondaryCategories` | N/A |
+| `sizes` | N/A |
+| `skus` | `sourceURLs`   <br/> `value` |
+| `sourceURLs` | N/A |
+| `stockNum` | N/A |
+| `upc` | N/A |
+| `upca` | N/A |
+| `upce` | N/A |
+| `vin` | N/A |
+| `websiteID` | N/A |
+| `weight` | N/A |
+
+### Sample CSV Output
+
+Right-click and choose "Save link as..." to download this sample so you can see it in Excel: [products_pricesFlat-CSV-example.csv](https://gist.githubusercontent.com/shiondev/20d51145a7c0eb684221daa1450eed87/raw/b842a3191dfcccec012bbb50bf40e4b2fcd0fa2f/products_pricesflat-CSV-example.csv)
+
+## product_flat_reviews
+
+The `product_flat_reviews` view should be used when you want to look at individual reviews for each product in your data set in a CSV format.  It will split each review for a product into its own row.  All other fields will repeat in each row.
+
+### Included Fields
+
+| Field | Included Sub-fields |
+| --- | --- |
+| `asins` | N/A |
+| `brand` | N/A |
+| `categories` | N/A |
+| `colors` | N/A |
+| `count` | N/A |
+| `dateAdded` | N/A |
+| `dateUpdated` | N/A |
+| `descriptions` | `dateSeen`   <br/> `sourceURLs`   <br/> `value` |
+| `dimension` | N/A |
+| `domains` | N/A |
+| `ean` | N/A |
+| `ean13 | N/A |
+| `ean8` | N/A |
+| `features` | `key`   <br/> `value` |
+| `flavors` | N/A |
+| `gtins` | N/A |
+| `imageURLs` | N/A |
+| `isbn` | N/A |
+| `keys` | N/A |
+| `manufacturer` | N/A |
+| `manufacturerNumber` | N/A |
+| `merchants` | `address`   <br/> `availability`   <br/> `city`   <br/> `country`   <br/> `dateSeen`   <br/> `name`   <br/> `phone`   <br/> `postalCode`   <br/> `province` |
+| `name` | N/A |
+| `prices` | `amountMin`   <br/> `amountMax`   <br/> `availability`   <br/> `color`   <br/> `condition`   <br/> `count`   <br/> `currency`   <br/> `dateSeen`   <br/> `flavor`   <br/> `isSale`   <br/> `merchant`   <br/> `offer`   <br/> `returnPolicy`   <br/> `shipping`   <br/> `size`   <br/> `source`   <br/> `sourceURLs`   <br/> `warranty` |
+| `reviews` | `date`   <br/> `dateSeen`   <br/> `didPurchase`   <br/> `doRecommend`   <br/> `numHelpful`   <br/> `rating`   <br/> `sourceURLs`   <br/> `text`   <br/> `title`   <br/> `userCity`   <br/> `username`   <br/> `userProvince` |
+| `sdsURLs` | N/A |
+| `secondaryCategories` | N/A |
+| `sizes` | N/A |
+| `skus` | `sourceURLs`   <br/> `value` |
+| `sourceURLs` | N/A |
+| `stockNum` | N/A |
+| `upc` | N/A |
+| `upca` | N/A |
+| `upce` | N/A |
+| `vin` | N/A |
+| `websiteID` | N/A |
+| `weight` | N/A |
+
+### Sample CSV Output
+
+Right-click and choose "Save link as..." to download this sample so you can see it in Excel: [products_reviewsFlat-CSV-example.csv](https://gist.githubusercontent.com/shiondev/bf31dc3474844b7a40a9ca1cdd50c915/raw/05fe7d27ca8a2d4b6c42af80bccad9bbd560b6b8/products_reviewsFlat-CSV-example.csv)

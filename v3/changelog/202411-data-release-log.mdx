@@ -1,0 +1,40 @@
+---
+title: 2024.11 - Data Release Log
+---
+
+# Overview
+
+Datafiniti has introduced several updates, including a new Autotrace feature that allows combined People and Property Data retrieval in a single API call, making searches more comprehensive. We've added county assessor data from various counties in Florida, Georgia, and New Jersey, and improved the APN/Parcel Number data for easier, more accurate querying. Additionally, our People Data portal has a fresh design, and an upcoming redesign for the Business Data portal will include new filter options and simplified query capabilities to enhance user experience.
+
+# Property Data
+
+## Autotrace - New property & people data feature
+
+As mentioned in our feature release email, you can now seamlessly combine People Data and Property Data in a single API call, making your property searches more robust and efficient than ever. This feature is an enhancement to the standard property search endpoint, introducing a new auto_trace parameter along with a specialized view for property records. You can learn more about it [here](https://java.documentationai.com/docs/autotrace).
+
+## Newly Added County Assessor Data
+
+We have added sources to import county assessor data into our property data records for the following counties:
+
+* Florida - Lee County
+* Georgia - Dekalb County
+* New Jersey - Hudson County
+* New Jersey - Bergen County
+* New Jeresy - Middlesex County
+
+## Improve APN / Parcel Number Data
+
+We have updated how we import APN/Parcel numbers into our property database. Users will no longer need to check for either terminology, as they can now query our parcelNumbers field with greater accuracy, including a new year subfield to filter by date.
+
+# People Data
+
+## New People Data Portal Design
+
+We have updated our people data portal design to match the format inline with our property data page. This will allow for auto search names, easy to use filters, and one click common searches. Please try it out: [https://portal.documentationai.com/people-data](https://portal.documentationai.com/people-data)
+
+## Record Count
+
+* Property: 277,214,579 unique records
+* People: 135,007,520 unique records
+* Products: 553,165,600 unique records
+* Business: 135,007,520 unique records

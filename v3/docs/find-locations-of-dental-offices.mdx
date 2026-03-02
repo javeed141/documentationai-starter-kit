@@ -1,0 +1,38 @@
+---
+title: Find locations of dental offices
+---
+
+## Introduction
+
+You may need to use Datafiniti to search for very specific types of buildings.  As an example, you may want to look for properties that are or can be used for dental offices.
+
+## Searching for dental offices
+
+The `descriptions` and `features` fields available in many of our property records can help you find which properties are suitable for specific uses.  Here's how you would search for dental offices:
+
+```json
+{
+  "query": "descriptions.value:(dental OR dentist) OR features.value:(dental OR dentist)"
+}
+```
+
+You can use the `( ... OR ...)` construction to search on multiple possible values for each field at once.
+
+You can further refine your search by specifying the `propertyType`:
+
+```json
+{
+  "query": "descriptions.value:(dental OR dentist) OR features.value:(dental OR dentist) AND propertyType:(commercial OR retail)"
+}
+```
+
+## Example files
+
+Here are example bulk download files of our previous query:
+
+* [Dental Offices CSV](https://drive.google.com/file/d/1q9oTP0191yN5a3b-zT8U7_YOonSBD_fg/view?usp=share_link)
+* [Dental Office JSON](https://drive.google.com/file/d/1laaUTPZi0ZPjan1CzWFUmGK7dGYFhrP0/view?usp=share_link)
+
+## Conclusion
+
+With the knowledge of how to pull records with new homeowner data, you can find dental offices that fit your demographics.

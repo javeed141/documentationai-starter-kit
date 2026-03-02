@@ -1,0 +1,104 @@
+---
+title: Pricing analytics for pet food
+---
+
+## Introduction
+
+Datafiniti provides a robust collecting of pricing data for all sorts of products.  Let's take a look at how to pull data that can be used for pricing intelligence in one specific category, pet food.
+
+## Accessing pricing data
+
+Pricing data is available in each record's `prices` field.  This field will show a complete log of all known prices for a product, along with the timestamp and source of that price.
+
+If we want to find all pricing data in the pet food category, we can run this query:
+
+```json
+{
+  "query": "taxonomy:\"pet supplies\" AND categories:food AND prices:*"
+}
+```
+
+The products returned by this query will have `prices` arrays, which will look like:
+
+```json
+"prices": [
+  {
+    "amountMax": 11.99,
+    "amountMin": 11.99,
+    "currency": "USD",
+    "dateSeen": [
+      "2021-08-31T03:44:58.977Z",
+      "2021-07-24T02:14:58.474Z"
+    ],
+    "merchant": "Chewy.com",
+    "shipping": "+$4.95 shipping",
+    "sourceURLs": [
+      "https://www.google.com/shopping/product/10099448883039819830"
+    ]
+  },
+  {
+    "amountMax": 16.99,
+    "amountMin": 16.99,
+    "currency": "USD",
+    "dateSeen": [
+      "2022-04-19T06:51:26.392Z",
+      "2022-05-21T03:44:58.977Z"
+    ],
+    "merchant": "Lowe's",
+    "shipping": "+$5.99 shipping",
+    "sourceURLs": [
+      "https://www.google.com/shopping/product/10099448883039819830"
+    ]
+  },
+  {
+    "amountMax": 13.41,
+    "amountMin": 13.41,
+    "currency": "USD",
+    "dateSeen": [
+      "2016-03-31T00:00:00Z"
+      "2016-02-03T02:14:58.977Z"
+    ],
+    "isSale": "false",
+    "merchant": "ErgodE",
+    "sourceURLs": [
+      "http://www.sears.com/content/pdp/products/pricing/v1/get/price/display/json?pid=SPM2241326821&pidType=0&priceMatch=Y&memberStatus=G&storeId=10153"
+    ]
+  }
+]
+```
+
+Each price object represents the information for a single price amount seen by Datafiniti, along with all dates and sources for when and where that price was seen.
+
+## Finding if the current product is On Sale
+
+By utilizing our `mostRecentPriceIsSale` field you can see if a product is currently list as On Sale. This is a Boolean value. Lets now change the query to search for only pet food that is on sale.
+
+```json
+{
+  "query": "taxonomy:\"pet supplies\" AND categories:food AND prices:* AND mostRecentPriceIsSale:*",
+  "num_records":10
+}
+```
+
+<Callout kind="info">
+  **mostRecentPriceIsSale**
+
+Please note that all most recent fields are data points "at the time of the API call" and are subject to change over time. If you wish to get frequent updates, then you will need to build that into your logic/code.
+</Callout>
+
+## Generating pricing analytics
+
+We can pull the same `prices` array for each of the products matching the query we used originally (or any other query).  Using this collection of pricing data, we can perform a wide variety of analysis to determine what factors determine price for a given product, what the price distribution looks like across a product market segment, and so on.
+
+Datafiniti provides additional metadata to help you segment your analysis.  Use fields like `categories`, `taxonomy`, `brand` and more to segment the data.
+
+### Example files
+
+Here are example bulk download files of our previous query:
+
+* [Pet Food CSV](https://drive.google.com/file/d/1pZ07aduYb-YfDSgGaqcEp2rz-oy3fZfD/view?usp=share_link)
+* [Pet Food JSON](https://drive.google.com/file/d/1lOaD1GvAugVvUpFDfZkxY1UEItzBWYKN/view?usp=share_link)
+
+### Conclusion
+
+With the knowledge of how to pull records with business-specific categories, you can now generate pricing intelligence reports on specific brands of pet food.

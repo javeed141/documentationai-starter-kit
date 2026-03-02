@@ -1,0 +1,144 @@
+---
+title: Generate a list of recent broker contacts
+---
+
+Datafiniti property data can help you discover brokers in your area. This data can be used to look up other listings from the same broker(s), to cross reference with our people database, or generate leads for your company. In this guide we will show you how to retrieve this data.
+
+## Searching for most recent brokers in your area
+
+For the following query we will build the logic on the following parameters:
+
+* Province of interest (For this example we will use Florida)
+* Setting a data range based on `mostRecentStatusFirstDateSeen`
+  * This will guarantee the following statuses fall within this range.
+* Get the most recent status
+* Guarantee the property is not owned by a company using `currentOwnerType`
+* Guarantee the broker's contact data is there using `mostRecentBrokerEmails `OR `mostRecentBrokerPhones`
+
+```json
+{
+	"query":"province:FL AND mostRecentStatusFirstDateSeen:[2023-09-01 TO 2023-09-30] AND propertyType:\"Single Family Dwelling\" AND mostRecentStatus:(\"For Sale\" OR \"Sold\") AND -currentOwnerType:company AND (mostRecentBrokerEmails:* OR mostRecentBrokerPhones:*)",
+	"num_records":10
+}
+```
+
+<Callout kind="info">
+  **For sale vs rental statuses**
+
+Please note that Datafiniti tracks for sale and rental statuses separately, so if you are looking for rental statuses please use mostRecentRentalStatus. Being to check the possible status value here. [Possible Values for Property Fields](https://java.documentationai.com/docs/possible-values-for-property-fields)
+</Callout>
+
+In the result you see the mostRecentBrokers populated like the following:
+
+```json
+{
+  "mostRecentBrokerAgent": "Justin Helmet",
+  "mostRecentBrokerCompany": "Sotheby's International Realty",
+  "mostRecentBrokerEmails": [
+                "hello@picsir.com",
+                "justinm@greenerealty.com"
+            ],
+  "mostRecentBrokerPhones": [
+                "32605284160",
+                "36205284165",
+                "32204808813"
+            ]
+}
+```
+
+## Searching for broker history in your area
+
+Now we can modify the query to search the entire array of both brokers / listing agent data. Ensuring that you have the entire status history and listing agent history data till present day.
+
+We will focus on using `brokers.email OR brokers.phones AND people.emails OR people.phones` for people with the title of *agent*
+
+```json
+{
+    "query":"province:FL AND mostRecentStatusFirstDateSeen:[2023-09-01 TO 2023-09-30] AND propertyType:\"Single Family Dwelling\" AND mostRecentStatus:\"For Sale\"AND -currentOwnerType:company AND brokers.emails:* OR {people.email:* AND people.title:agent}",
+    "num_records":10
+}
+```
+
+### Flattening brokers and people data
+
+In cases where you would like a most digestible format of your data, Datafiniti allows custom views. This is done by flattening specific field within the property data schema. We can achieve either by an on the fly view or using a saved customer view. More on specifics about views here. Using these API property search call you can take the previous query and flatten the results.
+
+#### On the fly brokers - flattened
+
+```json
+{
+	"query":"province:FL AND mostRecentStatusFirstDateSeen:[2023-09-01 TO 2023-09-30] AND propertyType:\"Single Family Dwelling\" AND mostRecentStatus:\"For Sale\"AND -currentOwnerType:company AND brokers.emails:* OR {people.email:* AND people.title:agent}",
+	"num_records":10,
+	"view": [
+		{"name": "address"},
+		{"name": "city"},
+		{"name": "province"},
+		{"name": "postalCode"},
+		{"name": "brokers","flatten": true, "sub_fields": [
+			{"name": "agent"},
+			{"name": "emails"},
+			{"name": "company"},
+			{"name": "dateSeen"},
+			{"name": "licenseNumber"},
+			{"name": "licenseType"},
+			{"name": "phones"}
+			]
+		}
+	]
+}
+```
+
+#### Creating a custom brokers flatten view
+
+This view can be created using our [https://api.documentationai.com/v4/views](https://api.documentationai.com/v4/views) POST API endpoint.
+
+```json
+{
+	"name": "custom_brokers_view",
+	"data_type": "property",
+	"fields": [
+			{"name": "address"},
+			{"name": "city"},
+			{"name": "province"},
+			{"name": "postalCode"},
+			{"name": "brokers","flatten": true, "sub_fields": [
+					{"name": "agent"},
+					{"name": "emails"},
+					{"name": "company"},
+					{"name": "dateSeen"},
+					{"name": "licenseNumber"},
+					{"name": "licenseType"},
+					{"name": "phones"}
+				]	
+			}
+		]
+}
+```
+
+To call your view in the search you can use the following query:
+
+```json
+{
+    "query":"province:FL AND mostRecentStatusFirstDateSeen:[2023-09-01 TO 2023-09-30] AND propertyType:\"Single Family Dwelling\" AND mostRecentStatus:\"For Sale\"AND -currentOwnerType:company AND brokers.emails:* OR {people.email:* AND people.title:agent}",
+    "num_records":10,
+  	"view":"custom_brokers_view",
+  	"format":"csv",
+  	"download":true
+}
+```
+
+<Callout kind="info">
+  **Property view**
+
+For more of a guide on how to create and use view on the fly:\
+[Views](https://java.documentationai.com/docs/views-1)
+</Callout>
+
+## Example files
+
+* [Flatten Brokers Json](https://drive.google.com/file/d/1QT6bIC760En-_-Li88hrPrm0nxFBBgRc/view?usp=sharing)
+* [Brokers Flatten CSV](https://drive.google.com/file/d/1oROOirTUFSKE_di8in-vSMBvvdo0FzGn/view?usp=sharing)
+
+## Conclusion
+
+Utilizing the approach here will allow you to streamline your data extraction. Allow you to manipulate the data before ingestions to a local host. Therefore development time while generating lead data to turn over to sales even faster.

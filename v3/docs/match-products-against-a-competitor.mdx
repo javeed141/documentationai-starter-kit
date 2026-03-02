@@ -1,0 +1,125 @@
+---
+title: Match products against a competitor
+---
+
+## Introduction
+
+Making sure you have the right product assortment is imperative to be competitive in the e-commerce space.  It's important to check how your assortment compares to a competing store.  Datafiniti has a few options available to help you with this.
+
+## Matching existing assortment data with the Search API
+
+Let's say you have an existing product data file that looks like this:
+
+Product Name, Brand Name, Model Number
+Bose X1 Soundbar, Bose, X1
+Klipsh New Gen Speakers, Klipsh, NG-1423
+Logitech Cordless Soundbar, Logitech, LG1H124
+
+You can search for each of these products on a one-by-one basis using Datafiniti's search API.  Here's how one of these searches would look:
+
+```json
+{
+  "query": "brand:Bose AND manufacturerNumber:\"856990-0110\""
+}
+```
+
+Datafiniti will return any matching records.  Included in this information will be the `domains` and `sourceURLs` for each product.  This data will look like:
+
+```json
+{
+  "domains": [
+    "www.target.com",
+    "www.amazon.com",
+    "www.vidlogix.com",
+    "www.bestbuy.com",
+    "www.bhphotovideo.com",
+    "brickseek.com",
+    "www.google.com",
+    "www.newegg.com",
+    "msds.walmartstores.com",
+    "www.walmart.com"
+  ],
+  "sourceURLs": [
+    "https://www.target.com/p/bose-tv-speaker-bluetooth-soundbar/-/A-79829337",
+    "https://www.amazon.com/dp/B088KRPCQJ?productDetails&th=1&psc=1",
+    "https://www.vidlogix.com/products/bose-tv-speaker-soundbar",
+    "https://www.bestbuy.com/site/reviews/bose-tv-speaker-bluetooth-soundbar-black/6416849",
+    "https://www.bhphotovideo.com/c/product/1583370-REG/bose_838309_1100_tv_speaker_soundbar.html",
+    "https://www.bestbuy.com/site/bose-tv-speaker-bluetooth-soundbar-with-hdmi-arc-connectivity-black/6416849.p?skuId=6416849",
+    "https://brickseek.com/p/bose-tv-speaker-bluetooth-soundbar/9266723",
+    "https://www.newegg.com/bose-838309-1100/p/N82E16886942076",
+    "https://www.google.com/shopping/product/3302875699079694386/specs",
+    "https://www.walmart.com/ip/5NZJPQRHRRZ7"
+  ]
+}
+```
+
+With this information, you know which domains are selling this product.
+
+## Finding the most recent pricing data
+
+Now that you can find the brand / model of a product, know you may want to know where the latest price is. By using the following field, we can find the where the latest price of the product comes from:
+
+* mostRecentPriceAmount
+* mostRecentPriceAvailability
+* mostRecentPriceByDomain
+* mostRecentPriceCurrency
+* mostRecentPriceDate
+* mostRecentPriceIsSale
+
+Let look at the record to find the most recent data fields:
+
+```json
+{
+            "mostRecentPriceAmount": 45.99,
+            "mostRecentPriceNonSalesAmount": 45.99,
+            "mostRecentPriceAvailability": "true",
+            "mostRecentPriceCurrency": "USD",
+            "mostRecentPriceColor": "Bose Black",
+            "mostRecentPriceIsSale": "false",
+            "mostRecentPriceDomain": "www.bestbuy.com",
+            "mostRecentPriceSourceURL": "https://www.bestbuy.com/site/l1-pro8-pa-system-slip-cover-bose-black/6448584.p?skuId=6448584",
+            "mostRecentPriceDate": "2023-12-05T16:31:29.398Z",
+            "mostRecentPriceFirstDateSeen": "2023-10-27T07:22:34.425Z"
+}
+```
+
+Now let's refine our search for any product under $45.
+
+```json
+{
+  "query": "brand:Bose AND mostRecentPriceAmount:<=45",
+  "num_records":20
+}
+```
+
+## Using the Enrichment API
+
+You can also use Datafiniti's Enrichment API to pass in an entire file to enrich.  For more information on how to do this, refer to the [Enrichment API documentation](https://developer.documentationai.com/docs/property-data-with-postman-and-json).
+
+## Downloading a competing domain's entire product assortment
+
+If you don't have an existing product data file, you can also just use Datafiniti to download the entire product assortment for a given e-commerce store.
+
+Here's an example of that:
+
+```json
+{
+  "query": "domains:www.bestbuy.com",
+  "download": true,
+  "format": "CSV"
+}
+```
+
+This will download every product for ishop.gt into a CSV file.  You can also download in JSON format.
+
+### Example files
+
+Here are example bulk download files of our previous query:
+
+* [Domain Search CSV](https://drive.google.com/file/d/1qVQfism6KsgydLF3QhUzab3NrUYao5JD/view?usp=share_link)
+* [Domain Search JSON](https://drive.google.com/file/d/1JttdyCEaBWT_rRgNgBNLXNQxTzSZz4D6/view?usp=share_link)
+
+### Conclusion
+
+With the knowledge of how to pull records from specific domains, you can compare the pricing of your or similar from a competing store/website.

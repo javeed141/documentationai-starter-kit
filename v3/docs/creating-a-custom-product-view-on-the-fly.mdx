@@ -1,0 +1,95 @@
+---
+title: Creating a custom product view on the fly
+---
+
+## Introduction
+
+Many Datafiniti customers are interested in using our product data with only specific fields in the record results of a query. In this guide, we will show you a couple of ways to set up a custom view.
+
+## Setting a view in your product Search API
+
+Whenever you set up your product search API body you can create a view by declaring the fields in the JSON of the body. Let's use the following query as a base for a product search:
+
+```json
+{
+  "query": "domains:amazon AND categories:\"Computer Peripherals\" AND brand:SteelSeries AND reviews:*",
+  "num_records":10
+}
+```
+
+Now let's add the view to the body that allows only the following fields:
+
+* brand
+* colors
+* gtins
+* manufacturerNumber
+* mostRecentPriceAmount
+* mostRecentPriceNonSalesAmount
+* mostRecentPriceDate
+* prices - amountMin, amountMax, availability, isSale, offer, sourceURLs
+
+```json
+{
+  "query": "domains:amazon AND categories:\"Computer Peripherals\" AND brand:SteelSeries AND reviews:*",
+  "view": [
+        {"name": "brand"},
+        {"name": "colors"},
+        {"name": "gtins"},
+        {"name": "manufacturerNumber"},
+        {"name": "mostRecentPriceAmount"},
+        {"name": "mostRecentPriceNonSalesAmount"},
+        {"name": "mostRecentPriceDate"},
+        {"name": "prices","flatten": true, "sub_fields": [
+            {"name": "amountMin"},
+            {"name": "amountMax"},
+            {"name": "availability"},
+            {"name": "isSale"},
+            {"name": "offer"},
+            {"name": "sourceURLs"}
+          ]
+        }
+    ],
+  "num_records":10
+}
+```
+
+## Creating a custom view via create view API endpoint
+
+This method will create a permanent view that you can declare by name in the view of your search body. Using the [https://api.documentationai.com/v4/views](https://api.documentationai.com/v4/views) API endpoint you can create a view. We will use the previous fields as our view body. We will name this view `custom_prices_view`.
+
+```json
+{
+  "name": "custom_prices_view",
+  "data_type": "product",
+  "fields": [
+        {"name": "brand"},
+        {"name": "colors"},
+        {"name": "gtins"},
+        {"name": "manufacturerNumber"},
+        {"name": "mostRecentPriceAmount"},
+        {"name": "mostRecentPriceNonSalesAmount"},
+        {"name": "mostRecentPriceDate"},
+        {"name": "prices","flatten": true, "sub_fields": [
+            {"name": "amountMin"},
+            {"name": "amountMax"},
+            {"name": "availability"},
+            {"name": "isSale"},
+            {"name": "offer"},
+            {"name": "sourceURLs"}
+          ]
+        }
+    ]
+}
+```
+
+<Callout kind="info">
+  **Name**
+
+Please note you can name the view any string value not currently used. To check your current view you can use: [https://api.documentationai.com/v4/views?page=1&limit=10](https://api.documentationai.com/v4/views?page=1&limit=10)
+</Callout>
+
+<Callout kind="alert">
+  **dataType**
+
+Be sure that you declare the correct dataType to the dataType you wish to search. As we need to match the API to the dataType's schema. Learn more about [Product Data Schema](https://java.documentationai.com/docs/product-data-schema).
+</Callout>

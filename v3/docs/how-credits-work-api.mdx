@@ -1,0 +1,247 @@
+---
+title: How Credits Work
+---
+
+Upon starting an account or new subscription with Datafiniti you will receive a new allotment of credit to your account. Your credits allow you to download records when opting to download a search.
+
+## Where can I find my current credits used?
+
+You can use the your get account API call to pull your account detail for no charge.
+
+GET [https://api.documentationai.com/v4/account](https://api.documentationai.com/v4/account)
+
+An example of what a response would look like:
+
+```json
+ {
+            "role": "user",
+            "num_credits_used": 0,
+            "product_credits_used": 0,
+            "people_credits_used": 0,
+            "property_credits_used": 0,
+            "business_credits_used": 0,
+            "num_scrape_credits_used": 0,
+            "disabled_code": 0,
+            "plan_ids": [
+                "people-1k-99",
+                "property-10k-349",
+                "business-1k-trial",
+                "product-1k-trial"
+            ],
+            "auto_collect_enabled": true,
+            "overage_limit": 100,
+            "payment_type": "cc",
+            "overages_enabled": false,
+            "first_name": "leonard Mcgee",
+            "last_name": "Trahan",
+            "email": "lentrahan@gmail.com",
+            "organization": "test5",
+            "features": [
+                {
+                    "enabledFields": [
+                        "view",
+                        "download"
+                    ],
+                    "name": "people:search"
+                },
+                {
+                    "enabledFields": [
+                        "view"
+                    ],
+                    "name": "people:paginate"
+                },
+                {
+                    "enabledFields": [
+                        "view",
+                        "download"
+                    ],
+                    "name": "property:search"
+                },
+                {
+                    "enabledFields": [
+                        "view"
+                    ],
+                    "name": "property:paginate"
+                },
+                {
+                    "enabledFields": [
+                        "view",
+                        "download"
+                    ],
+                    "name": "business:search"
+                },
+                {
+                    "enabledFields": [
+                        "view"
+                    ],
+                    "name": "business:paginate"
+                },
+                {
+                    "enabledFields": [
+                        "view",
+                        "download"
+                    ],
+                    "name": "product:search"
+                },
+                {
+                    "enabledFields": [
+                        "view"
+                    ],
+                    "name": "product:paginate"
+                }
+            ],
+            "customer_id": "cus_PwAxhL7ziAxv6C",
+            "date_created": "2024-04-16T20:28:20.279Z",
+            "date_updated": "2024-04-22T17:30:15.145Z",
+            "is_admin": false,
+            "id": 402
+        }
+```
+
+## Determining what data you have access to
+
+Our plans allow flexibility in both price and use of credits per month depend on what plan your account is subscribed to. Your can check your `plan_ids` to check what data types you have access to.
+
+```json
+{
+"plan_ids": [
+                "people-1k-99",
+                "property-10k-349",
+                "business-1k-trial",
+                "product-1k-trial"
+            ]
+}
+```
+
+Plan ids are commonly prefix with the data type it pertains to.\
+However if you have a custom plan or need help figuring out your data plan please contact [billing@documentationai.com](mailto:billing@documentationai.com)
+
+## Find your credits used
+
+You can also use your GET [https://api.documentationai.com/v4/account](https://api.documentationai.com/v4/account) to check your credits used of your account.\
+Credit used are broken up by data type:
+
+* `num_credits_used` -  legacy plan API calls.
+* `product_credits_used` - product data API calls.
+* `people_credits_used` - people data API calls.
+* `property_credits_used` - property data API calls.
+* `business_credits_used` - business data API calls.
+* `num_scrape_credits_used` - scrape & targeted update API calls.
+
+```json
+{
+    "num_credits_used": 0,
+    "product_credits_used": 0,
+    "people_credits_used": 0,
+    "property_credits_used": 0,
+    "business_credits_used": 0,
+    "num_scrape_credits_used": 0
+}
+```
+
+<br />
+
+## When Are Credits Charged to Your Account?
+
+There are multiple ways to spend credits. Let go through the ways this can happen:
+
+### API Searches
+
+No matter what data type you are using for a search API call, you are charged credits up to your `num_records` set in the body of the call.
+
+For example if I search for property using the follow call through postman:\
+POST [https://api.documentationai.com/v4/properties/search](https://api.documentationai.com/v4/properties/search)
+
+```json
+{
+    "query": "address:\"4801 Yucca Hl Dr\" AND province:TX AND (city:Austin OR postalCode:78744)",
+    "num_records":10
+}
+```
+
+You will recieve this response:
+
+```json
+{
+    "num_found": 1,
+    "total_cost": 1,
+    "records": [
+								" "address": "4801 Yucca Hl Dr",
+            "brokers": [
+                {
+                    "agent": "Ryana Stevson",
+                    "company": "Stevson Property Management",
+                    "dateSeen": "2023-10-30T04:08:00.000Z",
+                    "phones": [
+                        "(512) 670-8269"
+                    ]
+                },
+                {
+                    "agent": "Leasing Office",
+                    "company": "Stetson Property Management",
+                    "dateSeen": "2024-03-29T17:16:38.560Z",
+                    "phones": [
+                        "(512) 670-8269"
+                    ]
+                }
+            ]
+}
+
+```
+
+In this case since 1 record was found, only 1 `property_credit_used` was charged.
+
+<Callout kind="info">
+  **Credits Used On Search May Vary**
+
+If the credits consumed is under the stated credits consumed by the Search API, Datafiniti will only charge for the amount of records found.\
+Example:\
+If only 10 records are displayed, we charge 10 credits.\
+If 0 records are found, no credits will be charged.
+</Callout>
+
+Any time you attempt a download of the records found by a search, a *Download_id* will be presented in the response of the API call. Your `total_cost` will dictate how many credits your account was charge on the download.
+
+<Callout kind="alert">
+  **Overages**
+
+Depending on the amount of credits needed to download a searched query, you will be charged an overage fee equal to the amount of credits over your credit's available. *NOTE* you will not be able to download the data files generated to your account until the overages are paid. If you do not know if your account is setup for overages, please contact us at [billing@documentationai.com](mailto:billing@documentationai.com)
+</Callout>
+
+### Enrichment & Suppression API
+
+Enrichment & Suppression API calls are based on the number of `num_record` will be charge against your account upon submitting this request. Once the call is submitted and complete the `total_cost`. (Same as a normal download works) However this total is only comprehensive once the status of the download is complete.
+
+For more information on [Enrichment & Suppression](https://java.documentationai.com/docs/enrichment-suppression), you can read more about it here.
+
+<Callout kind="danger">
+  **Before using enrichment & suppression**
+
+Since Enrichment charge credit per the batch file you are enriching data from, you may be overcharged credits to your account upon submitting a enrichment request. If you do not know if overcharging is enable / disable on your account you may contact [support@documentationai.com](mailto:support@documentationai.com) to find this info out.
+</Callout>
+
+## Common credit related errors
+
+You will always receive and error message when your API or portal request exceed the monthly or yearly limit of credit on your plan.
+
+### API - exceeding your credit limit error
+
+Whether it be via postman, our [Property Data](https://java.documentationai.com/reference/properties) reference page, or any other coding language, you will receive a 400 error message when your credit limit will be reached. The error message will look like this.
+
+```json
+{
+  "errors": [
+    "`num_records` requested will exceed credit allotment for plan."
+  ]
+}
+```
+
+<Callout kind="danger">
+  **Exceeding your credit limit**
+
+If you plan to exceed your credit limit, please contact your Datafiniti customer success representative for refreshing or upgrade your accounts credit limit. Contact us at [support@documentationai.com](mailto:support@documentationai.com) to find this info out.
+</Callout>
+
+## Credit limit refresh period
+
+Your credits to your Datafiniti account refresh period is based on of your data plan subscription. This can vary from monthly to annually. For standard tier plans you can check your settings page [here](https://portal.documentationai.com/settings). Please consult with your Datafiniti representative if you do not know your plan's refresh rate.

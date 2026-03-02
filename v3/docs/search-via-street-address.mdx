@@ -1,0 +1,92 @@
+---
+title: Search via street address
+---
+
+## Introduction
+
+Datafiniti's property data can be used to enrich, search, or verify almost any property you want. In this example we will show you how to use Datafiniti property search API to query for specific addresses.
+
+## Search using Street Address
+
+Since street addresses can be broken down into many parts, we will query based on each individual part. You can determine your fields to search via our [schema](https://developer.documentationai.com/docs/property-data-schema). We will query based on each part at the following address:\
+*2815 Manor Rd, Austin, TX 78722*
+
+```json
+{
+  "query": "country:US AND address:\"2815 Manor Rd\" AND city:Austin AND province:TX AND postalCode:78722",
+  "num_records":1
+}
+```
+
+<Callout kind="alert">
+  **Exact Matches**
+
+Notice that in the address field, we use " " for searching what exactly the address string is. This will guarantee that we are not fuzzy matching and only looking for the specific address string.
+</Callout>
+
+<Callout kind="info">
+  **State Abbreviations**
+
+Datafiniti runs an address normalization process across our entire property database. We normalize our addresses to a 2-character abbreviation USPS standard. You can find out more about this process [here](https://java.documentationai.com/docs/normalized-address-data).
+</Callout>
+
+<Callout kind="info">
+  **Address normalization**
+
+Datafiniti uses standardized street name normalization. Converting `street` to `st`, `drive` to `dr`, etc, you can learn more about our address normalization here: [Normalized Property Addresses](https://java.documentationai.com/docs/normalized-address-data)\
+If you wish to exactly match addresses to Datafiniti's property data, you will need to use this normalization method.
+</Callout>
+
+## Search for Unit
+
+Sometime your property can be a condo, apartment, etc that is designated by an unit / suite number. In this example we will show how to query for the following address:\
+*3904 Maplewood Avenue, Unit B\
+Austin, TX 78722*
+
+```json
+{
+  "query": "address:\"3904 Maplewood Ave Unit B\" AND city:Austin AND province:TX AND postalCode:78722",
+  "num_records":1
+}
+```
+
+Notice that we are using the exact match to how the source of the address displays the unit name.\
+[SourceURL](https://www.compass.com/listing/3904-maplewood-avenue-unit-b-austin-tx-78722/1217635067383938945/)
+
+<Callout kind="alert">
+  **Unit Normalization**
+
+For any address that is an apartment/suite/unit of another building we will normalize the address ending with theses key terms. Normalized units with typically end or switch to Unit ####
+
+Example:\
+`2211 E Camelback Rd #301` would be normalized to `2211 E Camelback Rd Unit 301`
+</Callout>
+
+## Search for Suite Address
+
+Sometime your property can be a condo, apartment, etc that is designated by an unit / suite number. In this example we will show how to query for the following address:\
+*11110 Bluff Bend Dr, Austin, TX 78722,\
+1st Fl-Ste Suite C - E*
+
+```json
+{
+  "query": "address:\"11110 Bluff Bend Dr - 1st Fl-Ste Suite C - E\" AND city:Austin AND province:TX",
+  "num_records":1
+}
+```
+
+<Callout kind="alert">
+  **Matching Suite/Unit Addresses**
+
+Please note that we do normalize partially the suite/unit of the address depending on the source of the data. Since this address is separated from the suite number, we stitch the two string together to form the address in the record.\
+[SourceURL](https://www.loopnet.com/Listing/11110-Bluff-Bend-Dr-Austin-TX/27452691/)
+</Callout>
+
+You can always add any field search from our property [schema](https://developer.documentationai.com/docs/property-data-schema).
+
+## Example Records
+
+Here are example bulk download files of our previous query:
+
+* [Apartment data CSV](https://drive.google.com/file/d/16ud0GybJA913hqghD7E29tE0gEo0cQli/view?usp=share_link)
+* [Apartment data Json](https://drive.google.com/file/d/1m2h3JivD1gXBmTxPzAO7OAQKbCrNGByK/view?usp=share_link)

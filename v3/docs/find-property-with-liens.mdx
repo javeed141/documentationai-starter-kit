@@ -1,0 +1,203 @@
+---
+title: Find property with a lien
+---
+
+## Introduction
+
+This guide provides step-by-step instructions for finding property lien data using Datafiniti. By leveraging the comprehensive property database and available schema, you can efficiently extract property data that pertains to lien on the property itself. Knowing that a lien has been placed on a property can provide several benefits or serve various purposes depending on your role or intentions:
+
+* Identify financial risks
+  * Liens indicate unresolved financial obligations tied to the property, such as unpaid taxes or loans. Knowing about them helps assess potential financial liabilities.
+* Negotiation leverage
+  * Awareness of liens can be a negotiating point for price reductions during property purchase.
+* Avoid title issues
+  * Ensures a clean title transfer by resolving liens before finalizing a purchase.
+
+## Identify property data fields
+
+To find property lien data, you need to determine which fields are relevant. Commonly used fields for lien data include:
+
+* **address**: The property’s street address
+* **city, state, postalCode:** Location information
+* **involuntaryLienJudgement**: involuntaryLienJudgement shows if a lien is set against your wishes and is the result of not fulfilling your financial obligations
+* **transactions.documentType**: used for historical tracking of the transaction of the property with a lien. (optional)
+
+## Construct the API query
+
+Use the following example query to search for property lien data:
+
+Example API Request
+
+```json
+{
+    "query": "country:US AND (transactions.documentType:*lien OR involuntaryLienJudgement:*)",
+    "num_records":10
+}
+```
+
+### Explanation of the query
+
+* `query`: Searches for properties with property using either transitional data that has the `documentType` of Lien or has the `involuntaryLienJudgement`
+* `num_records`: the amount of records you want to receive.
+
+## Expand the query
+
+Now lets expand the query to look for property currently "for sale" within the last 30 days for single family dwellings.
+
+```json
+{
+    "query": "country:US AND (transactions.documentType:*lien OR involuntaryLienJudgement:*) AND mostRecentStatus:\"For Sale\" AND mostRecentStatusDate:[2024-01-13 TO *] AND propertyType:\"Single Family Dwelling\"",
+    "num_records":10
+}
+```
+
+<Callout kind="info">
+  **mostRecentStatusDate**
+
+Please use the date range that is appropriate for your use and current date. Note that the wildcard (*) mean the current date.
+</Callout>
+
+## Analyze the results
+
+Upon executing the query, you will receive a JSON response containing property lien data. Each record will include the requested fields. Please note the record below has been modified for quick readability.
+
+Sample Response
+
+```json
+{
+    "num_found": 4845,
+    "total_cost": 10,
+    "people_cost": 0,
+    "property_cost": 10,
+    "business_cost": 0,
+    "product_cost": 0,
+    "records": [
+        {
+            "address": "920 Rosebay Dr",
+            "categories": [
+                "Residential",
+                "Single Family Residence",
+                "House"
+            ],
+            "cbsaName": "Dallas-Fort Worth-Arlington, TX Metropolitan Statistical Area",
+            "cbsaCode": 19100,
+            "censusBlock": 3032,
+            "censusBlockGroup": 3,
+            "censusTract": 20319,
+            "city": "Justin",
+            "civilDivisionCode": 91970,
+            "civilDivisionName": "Justin-roanoke",
+            "country": "US",
+            "county": "Denton County",
+            "countyFIPS": 48121,
+            "currentOwnerType": "Individual",
+            "floorSizeValue": 2079,
+            "floorSizeUnit": "sq ft",
+            "listingName": "920 Rosebay Drive",
+            "longitude": "-97.337101",
+            "lotSizeValue": 0.1435,
+            "lotSizeUnit": "acs",
+            "managedBy": [
+                {
+                    "dateSeen": "2022-08-21T09:00:09.922Z",
+                    "value": "Highland Homes"
+                },
+                {
+                    "dateSeen": "2021-12-13T18:44:03.247Z",
+                    "value": "Highland Homes Realty"
+                }
+            ],
+            "mostRecentBrokerAgent": "Sagunan-sam Shresstha",
+            "mostRecentBrokerCompany": "Keller Williams Lonestar Dfw",
+            "mostRecentBrokerDateSeen": "2025-01-15T16:26:18.357Z",
+            "mostRecentPriceAmount": 450000,
+            "mostRecentPriceDomain": "www.redfin.com",
+            "mostRecentPriceSourceURL": "https://www.redfin.com/TX/Justin/920-Rosebay-Dr-76247/home/177615473",
+            "mostRecentPriceDate": "2024-08-24T00:00:00.000Z",
+            "mostRecentPriceFirstDateSeen": "2024-10-15T16:15:01.639Z",
+            "mostRecentEstimatedPriceAmount": 450000,
+            "mostRecentEstimatedPriceDomain": "documentationai.com",
+            "mostRecentEstimatedPriceDate": "2024-08-24T00:00:00.000Z",
+            "mostRecentEstimatedPriceFirstDateSeen": "2024-08-29T17:18:18.151Z",
+            "mostRecentStatus": "For Sale",
+            "mostRecentStatusDate": "2024-10-10T00:00:00.000Z",
+            "mostRecentStatusFirstDateSeen": "2024-10-24T04:27:17.574Z",
+            "mlsNumber": "20710106",
+            "numBathroom": 3,
+            "numBedroom": 4,
+            "numFloor": 1,
+            "numParkingSpaces": 2,
+            "ownerOccupiedStatus": [
+                {
+                    "status": true,
+                    "firstDateSeen": "2024-11-08T13:40:41.581Z",
+                    "lastDateSeen": "2024-11-08T13:40:41.581Z",
+                    "startDate": "2024-07-05T00:00:00.000Z"
+                }
+            ],
+            "parcelNumbers": [
+                {
+                    "number": "R980093"
+                },
+                {
+                    "number": "980093"
+                },
+                {
+                    "number": "R 000000980093",
+                    "year": 2025
+                }
+            ],
+           
+            "postalCode": "76247",
+         
+            "propertyType": "Single Family Dwelling",
+            "province": "TX",
+            "transactions": [
+                {
+                    "saleDate": "2024-07-05T00:00:00.000Z",
+                    "documentNumber": "139166",
+                    "documentType": "Venders Lien",
+                    "sellerFirstName": "Ankur",
+                    "sellerLastName": "Highland Homes Dallas LLC",
+                    "buyerFirstName": "Clemence",
+                    "buyerLastName": "Naziraje",
+                    "lenderName": "Highland Homeloans LLC",
+                    "loanType": "Conventional",
+                    "loanAmount": 367250,
+                    "mortgageTerm": 361,
+                    "ownerType": "Individual",
+                    "contactOwnerMailAddressFull": "920 Rosebay Dr, Justin, TX, 76247",
+                    "type": "NHO"
+                },
+                {
+                    "saleDate": "2022-09-29T00:00:00.000Z",
+                    "price": 440700,
+                    "sellerLastName": "Highland Homes Dallas Llc",
+                    "buyerFirstName": "Naziraje",
+                    "buyerLastName": "Clemence",
+                    "lenderName": "Highland Homeloans LLC",
+                    "loanAmount": 367250,
+                    "mortgageTerm": 361,
+                    "parcelNumber": "R980093"
+                }
+            ],
+            "yearBuilt": 2022
+        }
+```
+
+<br />
+
+### Additional Tips
+
+Refer to the [Property Data Schema](https://java.documentationai.com/docs/property-data-schema) for comprehensive details about available fields.
+
+Use [pagination ](https://java.documentationai.com/docs/constructing-property-queries#paging-over-results) for large datasets by adding the limit parameters to your query.
+
+### Example Files
+
+* CSV - [property lien data](https://drive.google.com/file/d/160g8Evyh-7tjSw3T4Mohn1UUw0bCDEsl/view?usp=sharing)
+* JSON - [property lien data](https://drive.google.com/file/d/1lb9qi7W8aatVbORqfcTeZBOV2fzz3spP/view?usp=sharing)
+
+## Conclusion
+
+By following this guide, you can effectively find and analyze property lien data using Datafiniti. Tracking liens offers valuable insights into a property's financial health and the obligations that may impact ownership or investment potential.

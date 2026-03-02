@@ -1,0 +1,127 @@
+---
+title: Finding product material info
+---
+
+## Introduction
+
+Datafiniti collects many different types of product. Not all are the same in the approach of collecting that data. Therefore there are many different approach to finding the product's material info. You can use this as a guide to as a start to finding that product data.
+
+## Searching appliance materials via the features field
+
+Let say you are looking for dishwashers build of materials. This example will show you how to look for key word/values to find this data. For this example we will search dishwashers as a category.
+
+```json
+{
+  "query": "categories:\"dishwasher\" AND name:\"dishwasher\" AND features.key:\"material\"",
+  "num_records":10
+}
+```
+
+We are using wildcards in the `categories `search field to denote that dishwasher can be anywhere in the string value. The same methodology is use for the `name `field as well. Lastly we are searching the `Features `field key values. As that will most likely provide a materials list. Provided here are a couple of examples of material fields found in the `features `key value
+
+```json
+{
+                    "key": "Rack Material",
+                    "value": [
+                        "Nylon"
+                    ]
+ },
+```
+
+\{
+                    "key": "Tub Material",
+                    "value": [
+                        "Stainless steel",
+                        "NeverRust Stainless Steel"
+                    ]
+                \},
+
+## Searching apparel materials via the features field
+
+Following the same technique from the previous example we will build logic to search for t-shirt material in our product data. Except this time the main categories we will focus on is women's clothing.
+
+```json
+{
+  "query": "categories:(\"women\" AND \"clothing\") AND features.key:\"material\"",
+  "num_records":10
+}
+```
+
+Here are some examples of women's clothing material:
+
+```json
+{
+                    "key": "Outer Material",
+                    "value": [
+                        "‎Faux Fur"
+                    ]
+},
+```
+
+```json
+{
+                    "key": "Material",
+                    "value": [
+                        "Silicone"
+                    ]
+},
+```
+
+## Seaching for a specific material type
+
+Based off the same example for women's clothing, let say you wanted to find a specific type of material. In this case we are looking for leather as the material type. You can modify the query as the following to search for leather as a material value.
+
+```json
+{
+  "query": "categories:(\"women\" AND \"clothing\") AND features.key:\"material\" AND features.value:\"leather\"",
+  "num_records":10
+}
+```
+
+Here are a couple of examples:
+
+```json
+{
+                    "value": [
+                        "Leather"
+                    ],
+                    "key": "Fabric Content"
+},
+```
+
+```json
+{
+                    "key": "Glove Material",
+                    "value": [
+                        "Leather"
+                    ]
+},
+```
+
+```json
+{
+                    "value": [
+                        "Faux Leather, Chrome, Metal",
+                        "Leather",
+                        "Metal"
+                    ],
+                    "key": "Material"
+},
+```
+
+<Callout kind="info">
+  **Wildcard searches & products**
+
+Please note that the feature field is built from key feature that we have found from the source website of the product. This data can vary pretty drastically. If you are unable to find materials linked to your data you may need to check the source of that data. To learn more about `views` and finding your `sourceURLs`, you can learn more [Here](https://java.documentationai.com/docs/available-views-for-product-data).
+</Callout>
+
+## Enriching your data
+
+The product record example shown above has been truncated, but each Datafiniti record will contain dozens of additional attributes that you may find useful when enriching your own database of products.  [See our full product schema for all available fields](https://developer.documentationai.com/docs/product-data-schema).
+
+## Example files
+
+Here are example bulk download files of our previous query:
+
+* [Clothing CSV](https://drive.google.com/file/d/1VodBKysSsJGRWawvBuxnDXwxhRlRvdm5/view?usp=share_link)
+* [Clothing JSON](https://drive.google.com/file/d/1h2Y0TDe8dlJJhlbGxVxGUzfUvrSaYshe/view?usp=share_link)

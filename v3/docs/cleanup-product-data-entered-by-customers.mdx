@@ -1,0 +1,71 @@
+---
+title: Cleanup product data entered by customers
+---
+
+## Introduction
+
+Several types of companies take in product information from customers.  Unfortunately, customers are not always great at entering in information correctly or comprehensively.  You can use Datafiniti's Product Data to correct and enrich customer-provided information.
+
+## Searching for matching product data
+
+Let's assume your customer enters some product data into a form.  You can take the form data and build a JSON object from it that might look like:
+
+```json
+{
+  "productName": "Sunon DC cooling fan",
+  "brandName": "",
+  "modelNumber": "KDE0504PFV2",
+  "upc": 602731240726
+}
+```
+
+The customer has provided two fields (`modelNumber` and `upc`) that we can assume are exact, one field (`productName`) that is more subjective, and another field that is completely empty (`brandName`).
+
+Using the two exact fields, we can search Datafiniti for matching product records:
+
+```json
+{
+  "query": "gtins:602731240726 OR manufacturerNumber:KDE0504PFV2"
+}
+```
+
+This returns something like:
+
+```json
+{
+  "brand": "SXDOOL",
+  "categories": [
+    "Components",
+    "Fans & PC Cooling",
+    "Case Fans",
+    "Components & Storage"
+  ],
+  "gtins": [
+    "602731240726"
+  ],
+  "manufacturerNumber": "KDE0504PFV2",
+  "name": "Sunon DC 5V 0.7W 40mm 4010 40*40*10MM cooling fan",
+  "taxonomy": [
+    "electronics > computers & accessories > computer components > internal components > fans & cooling > cpu cooling fans",
+    "electronics > computers & accessories > computer components > internal components > fans & cooling > case fans",
+    "electronics > computers & accessories > computer components > internal components > fans & cooling"
+  ]
+}
+```
+
+Thanks to Datafiniti, we now have an exact `name`, `brand`, and even additional information to further supplement our system.
+
+## Incorporating Datafiniti data into customers' workflows
+
+Using the more complete and correct product data, we can ask customers to either verify the new information or just update the data automatically.  In either case, we're providing a better customer experience by minimizing data entry requirements and improving data accuracy.
+
+### Example files
+
+Here are example bulk download files of our previous query:
+
+* [Electronic Record CSV](https://drive.google.com/file/d/1cJ54Gn-i6yeSDMn2OexxHEiDl1UlRXnI/view?usp=share_link)
+* [Electronic Record JSON](https://drive.google.com/file/d/1YnJt0IWsAe4S3sQCcMoagQ45UzGjA7lD/view?usp=share_link)
+
+### Conclusion
+
+With the knowledge of how to pull records with brand and manufacturerNumber, you can use Datafiniti to clean up data on any product you have in inventory.

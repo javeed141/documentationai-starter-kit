@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "Datafiniti",
   "initialRoute": "docs/how-credits-work-api",
   "navbar": {
@@ -1498,35 +1498,35 @@
                 "pages": [
                   {
                     "title": "Getting Started",
-                    "path": "docs/v3-get-started"
+                    "path": "v3/docs/get-started"
                   },
                   {
                     "title": "V3 API Introduction",
-                    "path": "docs/v3-api-introduction"
+                    "path": "v3/docs/api-introduction"
                   },
                   {
                     "title": "How Credits Work",
-                    "path": "docs/v3-how-credits-work-api"
+                    "path": "v3/docs/how-credits-work-api"
                   },
                   {
                     "title": "Settings",
-                    "path": "docs/v3-settings"
+                    "path": "v3/docs/settings"
                   },
                   {
                     "title": "Migrating from V3 to V4",
-                    "path": "docs/v3-migrating-from-v3-to-v4"
+                    "path": "v3/docs/migrating-from-v3-to-v4"
                   },
                   {
                     "title": "Advanced Querying",
-                    "path": "docs/v3-advanced-querying"
+                    "path": "v3/docs/advanced-querying"
                   },
                   {
                     "title": "Downloading Result Files",
-                    "path": "docs/v3-downloading-result-files"
+                    "path": "v3/docs/downloading-result-files"
                   },
                   {
                     "title": "Using Postman",
-                    "path": "docs/v3-using-postman"
+                    "path": "v3/docs/using-postman"
                   }
                 ]
               },
@@ -1538,90 +1538,90 @@
                     "pages": [
                       {
                         "title": "Business Data with Web Browser and CSV",
-                        "path": "docs/v3-business-data-with-web-browser-csv"
+                        "path": "v3/docs/business-data-with-web-browser-csv"
                       },
                       {
                         "title": "Business Data with Postman and CSV",
-                        "path": "docs/v3-business-data-with-postman-and-csv"
+                        "path": "v3/docs/business-data-with-postman-and-csv"
                       },
                       {
                         "title": "Business Data with cURL and CSV",
-                        "path": "docs/v3-business-data-with-curl-and-csv"
+                        "path": "v3/docs/business-data-with-curl-and-csv"
                       },
                       {
                         "title": "Business Data with PHP and CSV",
-                        "path": "docs/v3-business-data-with-php-and-csv"
+                        "path": "v3/docs/business-data-with-php-and-csv"
                       },
                       {
                         "title": "Business Data with Node.js and CSV",
-                        "path": "docs/v3-business-data-with-nodejs-and-csv"
+                        "path": "v3/docs/business-data-with-nodejs-and-csv"
                       },
                       {
                         "title": "Business Data with Python and CSV",
-                        "path": "docs/v3-business-data-with-python-and-csv"
+                        "path": "v3/docs/business-data-with-python-and-csv"
                       },
                       {
                         "title": "Business Data with Web Browser and JSON",
-                        "path": "docs/v3-business-data-with-web-browser-and-json"
+                        "path": "v3/docs/business-data-with-web-browser-and-json"
                       },
                       {
                         "title": "Business Data with Postman and JSON",
-                        "path": "docs/v3-business-data-with-postman-and-json"
+                        "path": "v3/docs/business-data-with-postman-and-json"
                       },
                       {
                         "title": "Business Data with cURL and JSON",
-                        "path": "docs/v3-business-data-with-curl-and-json"
+                        "path": "v3/docs/business-data-with-curl-and-json"
                       },
                       {
                         "title": "Business Data with PHP and JSON",
-                        "path": "docs/v3-business-data-with-php-and-json"
+                        "path": "v3/docs/business-data-with-php-and-json"
                       },
                       {
                         "title": "Business Data with Node.js and JSON",
-                        "path": "docs/v3-business-data-with-nodejs-and-json"
+                        "path": "v3/docs/business-data-with-nodejs-and-json"
                       },
                       {
                         "title": "Business Data with Python and JSON",
-                        "path": "docs/v3-business-data-with-python-and-json"
+                        "path": "v3/docs/business-data-with-python-and-json"
                       }
                     ]
                   },
                   {
                     "title": "Business Data Schema",
-                    "path": "docs/v3-business-data-schema"
+                    "path": "v3/docs/business-data-schema"
                   },
                   {
                     "group": "Available Views for Business Data",
                     "pages": [
                       {
                         "title": "businesses_all",
-                        "path": "docs/v3-businesses_all"
+                        "path": "v3/docs/businesses_all"
                       },
                       {
                         "title": "businesses_all_menusFlat",
-                        "path": "docs/v3-businesses_all_menusflat"
+                        "path": "v3/docs/businesses_all_menusflat"
                       },
                       {
                         "title": "businesses_all_nested",
-                        "path": "docs/v3-businesses_all_nested"
+                        "path": "v3/docs/businesses_all_nested"
                       },
                       {
                         "title": "businesses_all_nested_no_reviews",
-                        "path": "docs/v3-businesses_all_nested_no_reviews"
+                        "path": "v3/docs/businesses_all_nested_no_reviews"
                       },
                       {
                         "title": "businesses_basic",
-                        "path": "docs/v3-businesses_basic"
+                        "path": "v3/docs/businesses_basic"
                       },
                       {
                         "title": "businesses_all_reviewsFlat",
-                        "path": "docs/v3-businesses_all_reviewsflat"
+                        "path": "v3/docs/businesses_all_reviewsflat"
                       }
                     ]
                   },
                   {
                     "title": "Constructing Business Queries",
-                    "path": "docs/v3-constructing-business-queries"
+                    "path": "v3/docs/constructing-business-queries"
                   }
                 ]
               },
@@ -1630,7 +1630,7 @@
                 "pages": [
                   {
                     "title": "Getting started with People Data",
-                    "path": "docs/v3-getting-started-with-people-data-1"
+                    "path": "v3/docs/getting-started-with-people-data-1"
                   }
                 ]
               },
@@ -1642,90 +1642,90 @@
                     "pages": [
                       {
                         "title": "Product Data with Web Browser and CSV",
-                        "path": "docs/v3-product-data-with-web-browser-csv"
+                        "path": "v3/docs/product-data-with-web-browser-csv"
                       },
                       {
                         "title": "Product Data with Postman and CSV",
-                        "path": "docs/v3-product-data-with-postman-csv"
+                        "path": "v3/docs/product-data-with-postman-csv"
                       },
                       {
                         "title": "Product Data with cURL and CSV",
-                        "path": "docs/v3-product-data-with-curl-csv"
+                        "path": "v3/docs/product-data-with-curl-csv"
                       },
                       {
                         "title": "Product Data with PHP and CSV",
-                        "path": "docs/v3-product-data-with-php-csv"
+                        "path": "v3/docs/product-data-with-php-csv"
                       },
                       {
                         "title": "Product Data with Node.js and CSV",
-                        "path": "docs/v3-product-data-with-nodejs-csv"
+                        "path": "v3/docs/product-data-with-nodejs-csv"
                       },
                       {
                         "title": "Product Data with Python and CSV",
-                        "path": "docs/v3-product-data-with-python-csv"
+                        "path": "v3/docs/product-data-with-python-csv"
                       },
                       {
                         "title": "Product Data with Web Browser and JSON",
-                        "path": "docs/v3-product-data-with-web-browser-and-json"
+                        "path": "v3/docs/product-data-with-web-browser-and-json"
                       },
                       {
                         "title": "Product Data with Postman and JSON",
-                        "path": "docs/v3-product-data-with-postman-and-json"
+                        "path": "v3/docs/product-data-with-postman-and-json"
                       },
                       {
                         "title": "Product Data with cURL and JSON",
-                        "path": "docs/v3-product-data-with-curl-and-json"
+                        "path": "v3/docs/product-data-with-curl-and-json"
                       },
                       {
                         "title": "Product Data with PHP and JSON",
-                        "path": "docs/v3-product-data-with-php-and-json"
+                        "path": "v3/docs/product-data-with-php-and-json"
                       },
                       {
                         "title": "Product Data with Node.js and JSON",
-                        "path": "docs/v3-product-data-with-nodejs-json"
+                        "path": "v3/docs/product-data-with-nodejs-json"
                       },
                       {
                         "title": "Product Data with Python and JSON",
-                        "path": "docs/v3-product-data-with-python-and-json"
+                        "path": "v3/docs/product-data-with-python-and-json"
                       }
                     ]
                   },
                   {
                     "title": "Product Data Schema",
-                    "path": "docs/v3-product-data-schema"
+                    "path": "v3/docs/product-data-schema"
                   },
                   {
                     "group": "Available Views for Product Data",
                     "pages": [
                       {
                         "title": "products_all",
-                        "path": "docs/v3-products_all"
+                        "path": "v3/docs/products_all"
                       },
                       {
                         "title": "products_basicFields",
-                        "path": "docs/v3-products_basicfields"
+                        "path": "v3/docs/products_basicfields"
                       },
                       {
                         "title": "products_keysSourceURLs",
-                        "path": "docs/v3-products_keyssourceurls"
+                        "path": "v3/docs/products_keyssourceurls"
                       },
                       {
                         "title": "products_all_nested",
-                        "path": "docs/v3-products_all_nested"
+                        "path": "v3/docs/products_all_nested"
                       },
                       {
                         "title": "products_pricesFlat",
-                        "path": "docs/v3-products_pricesflat"
+                        "path": "v3/docs/products_pricesflat"
                       },
                       {
                         "title": "products_reviewsFlat",
-                        "path": "docs/v3-products_reviewsflat"
+                        "path": "v3/docs/products_reviewsflat"
                       }
                     ]
                   },
                   {
                     "title": "Constructing Product Queries",
-                    "path": "docs/v3-constructing-product-queries"
+                    "path": "v3/docs/constructing-product-queries"
                   }
                 ]
               },
@@ -1737,51 +1737,51 @@
                     "pages": [
                       {
                         "title": "Property Data with Web Browser and CSV",
-                        "path": "docs/v3-property-data-with-web-browser-and-csv"
+                        "path": "v3/docs/property-data-with-web-browser-and-csv"
                       },
                       {
                         "title": "Property Data with Postman and CSV",
-                        "path": "docs/v3-property-data-with-postman-and-csv"
+                        "path": "v3/docs/property-data-with-postman-and-csv"
                       },
                       {
                         "title": "Property Data with cURL and CSV",
-                        "path": "docs/v3-property-data-with-curl-and-csv"
+                        "path": "v3/docs/property-data-with-curl-and-csv"
                       },
                       {
                         "title": "Property Data with PHP and CSV",
-                        "path": "docs/v3-property-data-with-php-and-csv"
+                        "path": "v3/docs/property-data-with-php-and-csv"
                       },
                       {
                         "title": "Property Data with Node.js and CSV",
-                        "path": "docs/v3-property-data-with-nodejs-and-csv"
+                        "path": "v3/docs/property-data-with-nodejs-and-csv"
                       },
                       {
                         "title": "Property Data with Python and CSV",
-                        "path": "docs/v3-property-data-with-python-and-csv"
+                        "path": "v3/docs/property-data-with-python-and-csv"
                       },
                       {
                         "title": "Property Data with Web Browser and JSON",
-                        "path": "docs/v3-property-data-with-web-browser-and-json"
+                        "path": "v3/docs/property-data-with-web-browser-and-json"
                       },
                       {
                         "title": "Property Data with Postman and JSON",
-                        "path": "docs/v3-property-data-with-postman-and-json"
+                        "path": "v3/docs/property-data-with-postman-and-json"
                       },
                       {
                         "title": "Property Data with cURL and JSON",
-                        "path": "docs/v3-property-data-with-curl-and-json"
+                        "path": "v3/docs/property-data-with-curl-and-json"
                       },
                       {
                         "title": "Property Data with PHP and JSON",
-                        "path": "docs/v3-property-data-with-php-and-json"
+                        "path": "v3/docs/property-data-with-php-and-json"
                       },
                       {
                         "title": "Property Data with Node.js and JSON",
-                        "path": "docs/v3-property-data-with-nodejs-and-json"
+                        "path": "v3/docs/property-data-with-nodejs-and-json"
                       },
                       {
                         "title": "Property Data with Python and JSON",
-                        "path": "docs/v3-property-data-with-python-and-json"
+                        "path": "v3/docs/property-data-with-python-and-json"
                       }
                     ]
                   },
@@ -1790,7 +1790,7 @@
                     "pages": [
                       {
                         "title": "Possible Values for Property Fields",
-                        "path": "docs/v3-possible-values-for-property-fields"
+                        "path": "v3/docs/possible-values-for-property-fields"
                       }
                     ]
                   },
@@ -1799,21 +1799,21 @@
                     "pages": [
                       {
                         "title": "properties_all",
-                        "path": "docs/v3-properties_all"
+                        "path": "v3/docs/properties_all"
                       },
                       {
                         "title": "properties_all_nested",
-                        "path": "docs/v3-properties_all_nested"
+                        "path": "v3/docs/properties_all_nested"
                       }
                     ]
                   },
                   {
                     "title": "Constructing Property Queries",
-                    "path": "docs/v3-constructing-property-queries"
+                    "path": "v3/docs/constructing-property-queries"
                   },
                   {
                     "title": "Reference Values for Property Schema",
-                    "path": "docs/v3-reference-values-for-property-schema"
+                    "path": "v3/docs/reference-values-for-property-schema"
                   }
                 ]
               }
@@ -1875,337 +1875,337 @@
             "pages": [
               {
                 "title": "v3-page-1",
-                "path": "changelog-v3/v3-page-1",
+                "path": "v3/changelog/page-1",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "v3-page-2",
-                "path": "changelog-v3/v3-page-2",
+                "path": "v3/changelog/page-2",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "v3-page-3",
-                "path": "changelog-v3/v3-page-3",
+                "path": "v3/changelog/page-3",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "v3-page-4",
-                "path": "changelog-v3/v3-page-4",
+                "path": "v3/changelog/page-4",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "v3-page-5",
-                "path": "changelog-v3/v3-page-5",
+                "path": "v3/changelog/page-5",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "v3-page-6",
-                "path": "changelog-v3/v3-page-6",
+                "path": "v3/changelog/page-6",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "201910 Data Release Log",
-                "path": "changelog-v3/v3-201910-data-release-log",
+                "path": "v3/changelog/201910-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "201911 Data Release Log",
-                "path": "changelog-v3/v3-201911-data-release-log",
+                "path": "v3/changelog/201911-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "201912 Data Release Log",
-                "path": "changelog-v3/v3-201912-data-release-log",
+                "path": "v3/changelog/201912-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20198 Data Release Log",
-                "path": "changelog-v3/v3-20198-data-release-log",
+                "path": "v3/changelog/20198-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20199 Data Release Log",
-                "path": "changelog-v3/v3-20199-data-release-log",
+                "path": "v3/changelog/20199-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20201 Data Release Log",
-                "path": "changelog-v3/v3-20201-data-release-log",
+                "path": "v3/changelog/20201-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202010 Data Release Log",
-                "path": "changelog-v3/v3-202010-data-release-log",
+                "path": "v3/changelog/202010-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202011 Data Release Log",
-                "path": "changelog-v3/v3-202011-data-release-log",
+                "path": "v3/changelog/202011-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202012 Data Release Log",
-                "path": "changelog-v3/v3-202012-data-release-log",
+                "path": "v3/changelog/202012-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20202 Data Release Log",
-                "path": "changelog-v3/v3-20202-data-release-log",
+                "path": "v3/changelog/20202-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20203 Data Release Log",
-                "path": "changelog-v3/v3-20203-data-release-log",
+                "path": "v3/changelog/20203-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20204 Data Release Log",
-                "path": "changelog-v3/v3-20204-data-release-log",
+                "path": "v3/changelog/20204-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20207 Data Release Log",
-                "path": "changelog-v3/v3-20207-data-release-log",
+                "path": "v3/changelog/20207-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20208 Data Release Log",
-                "path": "changelog-v3/v3-20208-data-release-log",
+                "path": "v3/changelog/20208-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20209 Data Release Log",
-                "path": "changelog-v3/v3-20209-data-release-log",
+                "path": "v3/changelog/20209-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20211 Data Release Log",
-                "path": "changelog-v3/v3-20211-data-release-log",
+                "path": "v3/changelog/20211-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20212 Data Release Log",
-                "path": "changelog-v3/v3-20212-data-release-log",
+                "path": "v3/changelog/20212-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20213 Data Release Log",
-                "path": "changelog-v3/v3-20213-data-release-log",
+                "path": "v3/changelog/20213-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202210 Data Release Log",
-                "path": "changelog-v3/v3-202210-data-release-log",
+                "path": "v3/changelog/202210-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202212 Data Release Log 1",
-                "path": "changelog-v3/v3-202212-data-release-log-1",
+                "path": "v3/changelog/202212-data-release-log-1",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202212 Data Release Log",
-                "path": "changelog-v3/v3-202212-data-release-log",
+                "path": "v3/changelog/202212-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20226 Data Release Log",
-                "path": "changelog-v3/v3-20226-data-release-log",
+                "path": "v3/changelog/20226-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20227 Data Release Log",
-                "path": "changelog-v3/v3-20227-data-release-log",
+                "path": "v3/changelog/20227-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20228 Data Release Log",
-                "path": "changelog-v3/v3-20228-data-release-log",
+                "path": "v3/changelog/20228-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "20229 Data Release Log",
-                "path": "changelog-v3/v3-20229-data-release-log",
+                "path": "v3/changelog/20229-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202302 Data Release Log",
-                "path": "changelog-v3/v3-202302-data-release-log",
+                "path": "v3/changelog/202302-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202304 Data Release Log",
-                "path": "changelog-v3/v3-202304-data-release-log",
+                "path": "v3/changelog/202304-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202305 Data Release Log",
-                "path": "changelog-v3/v3-202305-data-release-log",
+                "path": "v3/changelog/202305-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202306 Data Release Log",
-                "path": "changelog-v3/v3-202306-data-release-log",
+                "path": "v3/changelog/202306-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202307 Data Release Log",
-                "path": "changelog-v3/v3-202307-data-release-log",
+                "path": "v3/changelog/202307-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202308 Data Release Log",
-                "path": "changelog-v3/v3-202308-data-release-log",
+                "path": "v3/changelog/202308-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202309 Data Release Log",
-                "path": "changelog-v3/v3-202309-data-release-log",
+                "path": "v3/changelog/202309-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202310 Data Release Log 1",
-                "path": "changelog-v3/v3-202310-data-release-log-1",
+                "path": "v3/changelog/202310-data-release-log-1",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202310 Data Release Log",
-                "path": "changelog-v3/v3-202310-data-release-log",
+                "path": "v3/changelog/202310-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202312 Data Release Log",
-                "path": "changelog-v3/v3-202312-data-release-log",
+                "path": "v3/changelog/202312-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202402 Data Release Log",
-                "path": "changelog-v3/v3-202402-data-release-log",
+                "path": "v3/changelog/202402-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202404 Data Release Log",
-                "path": "changelog-v3/v3-202404-data-release-log",
+                "path": "v3/changelog/202404-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202407 Data Release Log",
-                "path": "changelog-v3/v3-202407-data-release-log",
+                "path": "v3/changelog/202407-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202409 Data Release Log",
-                "path": "changelog-v3/v3-202409-data-release-log",
+                "path": "v3/changelog/202409-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202411 Data Release Log",
-                "path": "changelog-v3/v3-202411-data-release-log",
+                "path": "v3/changelog/202411-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202502 Data Release Log",
-                "path": "changelog-v3/v3-202502-data-release-log",
+                "path": "v3/changelog/202502-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202503 Data Release Log",
-                "path": "changelog-v3/v3-202503-data-release-log",
+                "path": "v3/changelog/202503-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202506 Data Release Log",
-                "path": "changelog-v3/v3-202506-data-release-log",
+                "path": "v3/changelog/202506-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202507 Data Release Log",
-                "path": "changelog-v3/v3-202507-data-release-log",
+                "path": "v3/changelog/202507-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202508 Data Release Log",
-                "path": "changelog-v3/v3-202508-data-release-log",
+                "path": "v3/changelog/202508-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202509 Data Release Log",
-                "path": "changelog-v3/v3-202509-data-release-log",
+                "path": "v3/changelog/202509-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202510 Data Release Log",
-                "path": "changelog-v3/v3-202510-data-release-log",
+                "path": "v3/changelog/202510-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202511 Data Release Log",
-                "path": "changelog-v3/v3-202511-data-release-log",
+                "path": "v3/changelog/202511-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202601 Data Release Log",
-                "path": "changelog-v3/v3-202601-data-release-log",
+                "path": "v3/changelog/202601-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               },
               {
                 "title": "202602 Data Release Log",
-                "path": "changelog-v3/v3-202602-data-release-log",
+                "path": "v3/changelog/202602-data-release-log",
                 "show-sidebar": false,
                 "show-toc": false
               }

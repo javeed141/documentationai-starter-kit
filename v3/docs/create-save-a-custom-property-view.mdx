@@ -1,0 +1,151 @@
+---
+title: "Create & save a property custom view"
+---
+
+## Introduction
+
+While the ability to using a view on the fly can be useful, we do understand there are use cases that call for a specific view as a requirement. This guide will show you how to create and use a custom view.
+
+## Creating your custom view
+
+For this example we will be creating a customer property view. The same methodology can be applied to any data type however. Please reference your data types schema for the fields your can use to create a custom view.
+
+* [Property Data Schema](https://java.documentationai.com/docs/property-data-schema)
+
+We will use the [https://api.documentationai.com/v4/views](https://api.documentationai.com/v4/views) API endpoint to create this view. We will use the following top level property fields to create a view that only provides these fields upon an API search/enrichment/suppression request.
+
+* address
+* city
+* province
+* postalCode
+* transaction
+  * saleDate
+  * buyerFirstName
+  * buyerLastName
+
+You will have to build the body of the API request as a JSON and must require:
+
+* name
+  * name of the view you are creating
+* data type
+  * data type of the view you are creating
+* fields
+  * fields matching to your data type's [schema](https://java.documentationai.com/docs/property-data-schema)
+
+This what the JSON for the API request should look like:
+
+```json
+{
+  "name": "leads_view",
+  "data_type": "property",
+  "fields": [
+        {"name": "address"},
+        {"name": "city"},
+        {"name": "province"},
+        {"name": "postalCode"},
+        {"name": "transactions","flatten": true, "sub_fields": [
+            {"name": "saleDate"},
+            {"name": "buyerFirstName"},
+            {"name": "buyerLastName"}
+          ]
+        }
+    ]
+}
+```
+
+<Callout kind="alert">
+  **Nested fields**
+
+Please note that if you use a top level field with nested sub fields that you will have to declare if you wish to flatten the results. Otherwise flatten is set to false by default.
+</Callout>
+
+Once you send the request is sent, if successful you will receive a Json 201 response like the following
+
+```json
+{
+    "name": "leads_view",
+    "data_type": "property",
+    "fields": [
+        {
+            "flatten": false,
+            "sub_fields": [],
+            "name": "address"
+        },
+        {
+            "flatten": false,
+            "sub_fields": [],
+            "name": "city"
+        },
+        {
+            "flatten": false,
+            "sub_fields": [],
+            "name": "province"
+        },
+        {
+            "flatten": false,
+            "sub_fields": [],
+            "name": "postalCode"
+        },
+        {
+            "flatten": true,
+            "sub_fields": [
+                {
+                    "name": "saleDate"
+                },
+                {
+                    "name": "buyerFirstName"
+                },
+                {
+                    "name": "buyerLastName"
+                }
+            ],
+            "name": "transactions"
+        }
+    ],
+    "user": 120009,
+    "date_created": "2023-09-14T14:58:12.246Z",
+    "date_updated": "2023-09-14T14:58:12.246Z",
+    "_id": 1409,
+    "isDynamic": false,
+    "id": "1409"
+```
+
+## Using your custom view
+
+Now that you have a customer view, lets use it! This can be done by declaring the view in the body of any search/pagination API call. We will use a property search API call for this example.
+
+```json
+{
+	"query":"country:US AND province:CA",
+	"num_records":10,
+	"view":"leads_view"
+}
+```
+
+Here is an example of a records using the newly created `leads_view`
+
+```json
+ "records": [
+        {
+            "address": "107 Westbluff Ct",
+            "city": "Bakersfield",
+            "province": "CA",
+            "postalCode": "93305",
+            "transactions": [
+                {
+                    "saleDate": "2022-12-19T00:00:00.000Z",
+                    "buyerFirstName": "Richard",
+                    "buyerLastName": "Escalante"
+                }
+            ],
+            "id": "v0e6KnsB5p3ULnC08FM_"
+        }
+```
+
+<Callout kind="info">
+  **custom view is tied to your account**
+
+Please note that once created that your custom view is only tied to your account. If you have question about your view please reference the view ID and name with this API endpoint. [https://api.documentationai.com/v4/views?page=1&limit=10](https://api.documentationai.com/v4/views?page=1&limit=10)
+</Callout>
+
+You can also visit the [API reference](https://developer.documentationai.com/reference/properties) page here to test your new view or you can download the postman suite [here](https://developer.documentationai.com/docs/property-data-with-postman-json).
