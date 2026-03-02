@@ -149,31 +149,7 @@
                           }
                         ]
                       },
-                      {
-                        "group": "API Features",
-                        "pages": [
-                          {
-                            "title": "Property API Features",
-                            "path": "docs/property-api-features"
-                          },
-                          {
-                            "title": "Autotrace",
-                            "path": "docs/autotrace-property"
-                          },
-                          {
-                            "title": "Count",
-                            "path": "docs/count-property"
-                          },
-                          {
-                            "title": "Geolocation",
-                            "path": "docs/geolocation-property"
-                          },
-                          {
-                            "title": "Pagination",
-                            "path": "docs/pagination-property"
-                          }
-                        ]
-                      },
+                     
                       {
                         "group": "Use Cases for Property Data",
                         "pages": [
@@ -301,12 +277,10 @@
                         ]
                       },
                       {
+
                         "group": "API Features",
                         "pages": [
-                          {
-                            "title": "Property API Features",
-                            "path": "docs/property-api-features"
-                          },
+                          
                           {
                             "title": "Autotrace",
                             "path": "docs/autotrace-property"
