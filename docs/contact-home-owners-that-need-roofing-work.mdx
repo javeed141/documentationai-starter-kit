@@ -12,7 +12,7 @@ Many property listings include information on the condition or type of roofing. 
 
 ```json
 {
-  "query":"-features.value:\"new roof\" OR -descriptions.value:\"new roof\""
+  "query":"-features.value:\"new roof\" OR -descriptions.value:\"new roof\"",
 }
 ```
 
@@ -25,7 +25,7 @@ We can also use the `yearBuilt` field to find older homes:
 
 ```json
 {
-  "query":"-features.value:\"new roof\" OR -descriptions.value:\"new roof\" AND yearBuilt:[* TO 2018]"
+  "query":"-features.value:\"new roof\" OR -descriptions.value:\"new roof\" AND yearBuilt:[* TO 2018]",
 }
 ```
 
@@ -35,20 +35,17 @@ Finally, we can add a status filters to find properties that will have or are ab
 
 ```json
 {
-  "query":"-features.value:\"new roof\" OR -descriptions.value:\"new roof\" AND yearBuilt:[* TO 2018] AND mostRecentStatus:(\"For Sale\" OR Sold)"
+  "query":"-features.value:\"new roof\" OR -descriptions.value:\"new roof\" AND yearBuilt:[* TO 2018] AND mostRecentStatus:(\"For Sale\" OR Sold)",
 }
 ```
 
 We use the `OR` constructor to search for multiple status values at once.
 
-<Callout kind="info">
-
-  **Data Freshness Notice – Owner & Transaction Data**
-
-  Homeowner contact details and transaction records are typically available within 2 weeks after a property is marked as sold. This brief processing window allows us to validate, normalize, and match deed and ownership updates to ensure accuracy and reduce false positives.
-
+<Callout kind="info" title="Data Freshness Notice – Owner & Transaction Data">
+Homeowner contact details and transaction records are typically available within 2 weeks after a property is marked as sold. This brief processing window allows us to validate, normalize, and match deed and ownership updates to ensure accuracy and reduce false positives.
 </Callout>
 
+<br />
 
 ## autotrace for owner's contact information
 
@@ -65,20 +62,125 @@ A newer feature to Datafiniti is the ability to cross reference people found in 
 }
 ```
 
+<br />
 
-<Card title="Autotrace" href="https://java.documentationai.com/v4/recipes/autotrace">
+<Request tabs="Shell,Python,C#">
+```bash
+curl --request POST \
+     --url https://api.datafiniti.co/v4/properties/search \
+     --header 'Authorization: Bearer <token>' \
+     --header 'accept: application/json' \
+     --header 'content-type: application/json' \
+     --data '
+{
+  "view": [
+        {"name": "address"},
+        {"name": "city"},
+        {"name": "province"},
+        {"name": "postalCode"},
+        {"name": "people"},
+        {"name": "transactions","flatten": true, "sub_fields": [
+            {"name": "saleDate"},
+            {"name": "buyerFirstName"},
+            {"name": "buyerLastName"}
+          ]
+        }
+    ],
+  "num_records": 10,
+  "query": "country:US AND people.title:owner",
+  "format": "json",
+  "auto_trace":true,
+  "only_traceable":true,
+  "download": false
+}'
+```
+```python
+import requests
 
-Learn more about using Autotrace to connect property and people data.
+url = "https://api.datafiniti.co/v4/properties/search"
 
-</Card>
+payload = {
+    "view": [
+        {"name": "address"},
+        {"name": "city"},
+        {"name": "province"},
+        {"name": "postalCode"},
+        {"name": "people"},
+        {"name": "transactions","flatten": True, "sub_fields": [
+            {"name": "saleDate"},
+            {"name": "buyerFirstName"},
+            {"name": "buyerLastName"}
+          ]
+        }
+    ],
+    "num_records": 10,
+    "query": "country:US AND people.title:owner",
+    "format": "json",
+    "auto_trace": True,
+    "only_traceable": True,
+    "download": False
+}
+headers = {
+    "accept": "application/json",
+    "Authorization": "Bearer <token>",
+    "content-type": "application/json"
+}
 
-<Callout kind="info">
+response = requests.post(url, json=payload, headers=headers)
 
-  **Autotrace people data**
+print(response.text)
+```
+```csharp
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 
-  For more information on our auto_trace feature, you can read more about it here: [Autotrace](https://java.documentationai.com/docs/autotrace)
+var client = new HttpClient();
 
-</Callout>
+var payload = new
+{
+    view = new object[]
+    {
+        new { name = "address" },
+        new { name = "city" },
+        new { name = "province" },
+        new { name = "postalCode" },
+        new { name = "people" },
+        new { name = "transactions", flatten = true, sub_fields = new object[]
+            {
+                new { name = "saleDate" },
+                new { name = "buyerFirstName" },
+                new { name = "buyerLastName" }
+            }
+        }
+    },
+    num_records = 10,
+    query = "country:US AND people.title:owner",
+    format = "json",
+    auto_trace = true,
+    only_traceable = true,
+    download = false
+};
+
+var request = new HttpRequestMessage(HttpMethod.Post, "https://api.datafiniti.co/v4/properties/search");
+request.Headers.Add("accept", "application/json");
+request.Headers.Add("Authorization", "Bearer <token>");
+request.Content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
+
+var response = await client.SendAsync(request);
+Console.WriteLine(await response.Content.ReadAsStringAsync());
+```
+</Request>
+
+<Response tabs="200">
+```json
+{
+  "num_found": 10,
+  "total_cost": 10,
+  "records": [data_content]
+}
+```
+</Response>
 
 ## Example files
 
