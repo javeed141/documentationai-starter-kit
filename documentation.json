@@ -1201,6 +1201,12 @@
                 "show-toc": false
               },
               {
+                "title": "20198 Data Release Log",
+                "path": "changelog/20198-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
                 "title": "201912 Data Release Log",
                 "path": "changelog/201912-data-release-log",
                 "show-sidebar": false,
@@ -1496,6 +1502,10 @@
               {
                 "group": "Welcome to Datafiniti",
                 "pages": [
+                  {
+                    "title": "gai",
+                    "path": "gai"
+                  },
                   {
                     "title": "Getting Started",
                     "path": "v3/docs/get-started"
