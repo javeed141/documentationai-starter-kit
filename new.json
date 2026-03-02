@@ -1,0 +1,2222 @@
+{
+  "name": "Datafiniti",
+  "initialRoute": "docs/how-credits-work-api",
+  "navbar": {
+    "actions": {
+      "primary": {
+        "title": "Get Started",
+        "link": "https://java.documentationai.com/"
+      }
+    }
+  },
+  "navigation": {
+    "versions": [
+      {
+        "version": "v4.0",
+        "icon": "badge",
+        "tabs": [
+          {
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Datafiniti API",
+                "pages": [
+                  {
+                    "group": "Introduction",
+                    "pages": [
+                      {
+                        "title": "API Introduction",
+                        "path": "docs/api-introduction"
+                      },
+                      {
+                        "title": "How Credits Work",
+                        "path": "docs/how-credits-work-api"
+                      },
+                      {
+                        "title": "API Status Check",
+                        "path": "docs/api-status-check-1"
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Property Data",
+                    "pages": [
+                      {
+                        "title": "Property Data Overview",
+                        "path": "docs/api-property-data"
+                      },
+                      {
+                        "group": "Getting started with Property Data",
+                        "pages": [
+                          {
+                            "title": "Getting Started with Property Data",
+                            "path": "docs/getting-started-with-property-data"
+                          },
+                          {
+                            "title": "Property Data with Postman",
+                            "path": "docs/property-data-with-postman"
+                          },
+                          {
+                            "title": "Property Data with cURL",
+                            "path": "docs/property-data-with-curl"
+                          },
+                          {
+                            "title": "Property Data with Node.js",
+                            "path": "docs/property-data-with-nodejs"
+                          },
+                          {
+                            "title": "Property Data with PHP",
+                            "path": "docs/property-data-with-php"
+                          },
+                          {
+                            "title": "Property Data with Python",
+                            "path": "docs/property-data-with-python"
+                          },
+                          {
+                            "title": "Property Data with WPGetAPI",
+                            "path": "docs/property-data-with-wpgetapi"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Property Data Schema",
+                        "pages": [
+                          {
+                            "title": "Property Data Schema",
+                            "path": "docs/property-data-schema"
+                          },
+                          {
+                            "title": "Property Field Type Breakdown",
+                            "path": "docs/property-field-type-breakdown"
+                          },
+                          {
+                            "title": "Possible Values for Property Fields",
+                            "path": "docs/possible-values-for-property-fields"
+                          },
+                          {
+                            "title": "Normalized Property Addresses",
+                            "path": "docs/normalized-address-data"
+                          },
+                          {
+                            "title": "Normalized Countries & Provinces",
+                            "path": "docs/normalized-countries-provinces"
+                          },
+                          {
+                            "title": "How Property Records Are Merged",
+                            "path": "docs/how-property-records-are-merged"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Views",
+                        "pages": [
+                          {
+                            "title": "Property Data Views",
+                            "path": "docs/property-data-views"
+                          },
+                          {
+                            "title": "Available Views for Property Data",
+                            "path": "docs/available-views-for-property-data"
+                          },
+                          {
+                            "title": "Using a custom property view on the fly",
+                            "path": "docs/using-a-custom-property-view"
+                          },
+                          {
+                            "title": "Create & save a property custom view",
+                            "path": "docs/create-save-a-custom-property-view"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Constructing Property Queries",
+                        "pages": [
+                          {
+                            "title": "Constructing Property Queries",
+                            "path": "docs/constructing-property-queries"
+                          },
+                          {
+                            "title": "Advanced Queries of Property Data in Postman",
+                            "path": "docs/advanced-queries-of-property-postman"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Use Cases for Property Data",
+                        "pages": [
+                          {
+                            "title": "Use Cases for Property Data",
+                            "path": "docs/use-cases-for-property-data"
+                          },
+                          {
+                            "title": "Property Use Cases",
+                            "path": "docs/property-use-cases"
+                          },
+                          {
+                            "title": "Search for MLS Numbers or Download MLS Markets",
+                            "path": "docs/search-for-mls-property-data"
+                          },
+                          {
+                            "title": "Determine home values",
+                            "path": "docs/determine-home-values"
+                          },
+                          {
+                            "title": "Search latitude & longitude for properties",
+                            "path": "docs/search-for-properties-around-a-latlong"
+                          },
+                          {
+                            "title": "Select sites for commercial development",
+                            "path": "docs/select-sites-for-commercial-development"
+                          },
+                          {
+                            "title": "Find Location Of Dental Offices",
+                            "path": "docs/find-locations-of-dental-offices"
+                          },
+                          {
+                            "title": "Find owners that need roofing work",
+                            "path": "docs/contact-home-owners-that-need-roofing-work"
+                          },
+                          {
+                            "title": "Contact new home owners",
+                            "path": "docs/contact-new-home-owners"
+                          },
+                          {
+                            "title": "Search on property statuses",
+                            "path": "docs/search-property-status"
+                          },
+                          {
+                            "title": "Search via street address",
+                            "path": "docs/search-via-street-address"
+                          },
+                          {
+                            "title": "Discover when clients sell their homes",
+                            "path": "docs/discover-when-clients-sell-their-homes"
+                          },
+                          {
+                            "title": "Find investment properties",
+                            "path": "docs/find-investment-properties"
+                          },
+                          {
+                            "title": "Identify e-commerce orders shipping to vacant houses",
+                            "path": "docs/identify-e-commerce-orders-shipping-to-vacant-houses"
+                          },
+                          {
+                            "title": "Collect HOA fee data for a property",
+                            "path": "docs/collect-hoa-fee-data-for-a-property"
+                          },
+                          {
+                            "title": "Find rental rates for properties",
+                            "path": "docs/find-rental-rates-for-properties"
+                          },
+                          {
+                            "title": "Find property comps from transaction data",
+                            "path": "docs/find-property-comps-from-transaction-data"
+                          },
+                          {
+                            "title": "Find prices of sold properties",
+                            "path": "docs/find-prices-of-sold-properties"
+                          },
+                          {
+                            "title": "Track property status changes",
+                            "path": "docs/track-property-status-changes"
+                          },
+                          {
+                            "title": "Search broker listing property",
+                            "path": "docs/search-broker-license-numbers"
+                          },
+                          {
+                            "title": "Generate a list of recent broker contacts",
+                            "path": "docs/generate-a-list-of-recent-broker-contacts"
+                          },
+                          {
+                            "title": "Find property refinance data",
+                            "path": "docs/find-property-refinance-data"
+                          },
+                          {
+                            "title": "Find days on market for commercial property",
+                            "path": "docs/find-days-on-market-from-commercial-property"
+                          },
+                          {
+                            "title": "Find property with a lien",
+                            "path": "docs/find-property-with-liens"
+                          },
+                          {
+                            "title": "Find mortgage lender from transactions",
+                            "path": "docs/find-mortgage-lender-from-transactions"
+                          },
+                          {
+                            "title": "Accessing owners, brokers, & other people data",
+                            "path": "docs/accessing-owners-brokers-and-other-people"
+                          },
+                          {
+                            "title": "Building rental property data market reports",
+                            "path": "docs/building-rental-property-data-market-reports"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "API Features",
+                        "pages": [
+                          {
+                            "title": "Autotrace",
+                            "path": "docs/autotrace-property"
+                          },
+                          {
+                            "title": "Count",
+                            "path": "docs/count-property"
+                          },
+                          {
+                            "title": "Geolocation",
+                            "path": "docs/geolocation-property"
+                          },
+                          {
+                            "title": "Pagination",
+                            "path": "docs/pagination-property"
+                          }
+                        ]
+                      }
+                    ],
+                    "openapi": "reference/openapi.yaml"
+                  },
+                  {
+                    "group": "People Data",
+                    "pages": [
+                      {
+                        "title": "People Data Overview",
+                        "path": "docs/api-people-data"
+                      },
+                      {
+                        "group": "Getting started with People Data",
+                        "pages": [
+                          {
+                            "title": "Getting Started with People Data",
+                            "path": "docs/getting-started-with-people-data"
+                          },
+                          {
+                            "title": "People Data with Postman",
+                            "path": "docs/people-data-with-postman"
+                          },
+                          {
+                            "title": "People Data with cURL",
+                            "path": "docs/people-data-with-curl"
+                          },
+                          {
+                            "title": "People Data with Node.js",
+                            "path": "docs/people-data-with-nodejs"
+                          },
+                          {
+                            "title": "People Data with PHP",
+                            "path": "docs/people-data-with-php"
+                          },
+                          {
+                            "title": "People Data with Python",
+                            "path": "docs/people-data-with-python"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "People Data Schema",
+                        "pages": [
+                          {
+                            "title": "People Data Schema",
+                            "path": "docs/people-data-schema"
+                          },
+                          {
+                            "title": "People Field Type Breakdown",
+                            "path": "docs/people-field-type-breakdown"
+                          },
+                          {
+                            "title": "Possible Values for People Fields",
+                            "path": "docs/possible-values-for-people-fields"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Views",
+                        "pages": [
+                          {
+                            "title": "Available Views for People Data",
+                            "path": "docs/available-views-for-people-data"
+                          },
+                          {
+                            "title": "Default view",
+                            "path": "docs/people_all"
+                          },
+                          {
+                            "title": "Creating a custom people view on the fly",
+                            "path": "docs/creating-a-custom-people-view-on-the-fly"
+                          },
+                          {
+                            "title": "Create & save a custom people view",
+                            "path": "docs/create-save-a-custom-people-view"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Use Cases for People Data",
+                        "pages": [
+                          {
+                            "title": "Use Cases for People Data",
+                            "path": "docs/use-cases-for-people-data"
+                          },
+                          {
+                            "title": "People Use Cases",
+                            "path": "docs/people-use-cases"
+                          },
+                          {
+                            "title": "Find leads for a SaaS business",
+                            "path": "docs/find-leads-for-a-saas-business"
+                          },
+                          {
+                            "title": "Identifying companies with employees targeted by cyberattacks",
+                            "path": "docs/identifying-companies-with-employees-targeted-by-cyberattacks"
+                          },
+                          {
+                            "title": "Gather people contact information",
+                            "path": "docs/gather-people-contact-information"
+                          },
+                          {
+                            "title": "Accessing property data linked to people records",
+                            "path": "docs/accessing-property-linked-people-records"
+                          },
+                          {
+                            "title": "Find brokers in your area",
+                            "path": "docs/find-brokers-in-your-area"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "Constructing People Queries",
+                        "path": "docs/constructing-people-queries"
+                      },
+                      {
+                        "group": "API Features",
+                        "pages": [
+                          {
+                            "title": "People API Features",
+                            "path": "docs/people-api-features"
+                          },
+                          {
+                            "title": "Count",
+                            "path": "docs/people-count"
+                          },
+                          {
+                            "title": "Pagination",
+                            "path": "docs/people-pagination"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Product Data",
+                    "pages": [
+                      {
+                        "title": "Product Data Overview",
+                        "path": "docs/api-product-data"
+                      },
+                      {
+                        "group": "Getting started with Product Data",
+                        "pages": [
+                          {
+                            "title": "Getting Started with Product Data",
+                            "path": "docs/getting-started-with-product-data"
+                          },
+                          {
+                            "title": "Product Data with Postman",
+                            "path": "docs/product-data-with-postman"
+                          },
+                          {
+                            "title": "Product Data with Python",
+                            "path": "docs/product-data-with-python"
+                          },
+                          {
+                            "title": "Product Data with Node.js",
+                            "path": "docs/product-data-with-nodejs"
+                          },
+                          {
+                            "title": "Product Data with cURL",
+                            "path": "docs/product-data-with-curl"
+                          },
+                          {
+                            "title": "Product Data with PHP",
+                            "path": "docs/product-data-with-php"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Product Data Schema",
+                        "pages": [
+                          {
+                            "title": "Product Data Schema",
+                            "path": "docs/product-data-schema"
+                          },
+                          {
+                            "title": "Product Field Type Breakdown",
+                            "path": "docs/product-field-type-breakdown"
+                          },
+                          {
+                            "title": "Product Brand Normalization",
+                            "path": "docs/product-brand-normalization"
+                          },
+                          {
+                            "title": "Possible Values for Product Fields",
+                            "path": "docs/possible-values-for-product-fields"
+                          },
+                          {
+                            "title": "Dimensions Normalization",
+                            "path": "docs/dimensions-normalization"
+                          },
+                          {
+                            "title": "Taxonomy 1 Level",
+                            "path": "docs/taxonomy-1-level"
+                          },
+                          {
+                            "title": "Taxonomy 2 Levels",
+                            "path": "docs/taxonomy-2-levels"
+                          },
+                          {
+                            "title": "Taxonomy 3 Levels",
+                            "path": "docs/taxonomy-3-levels"
+                          },
+                          {
+                            "title": "Taxonomy 4 Levels",
+                            "path": "docs/taxonomy-4-levels"
+                          },
+                          {
+                            "title": "Taxonomy 5 Levels",
+                            "path": "docs/taxonomy-5-levels"
+                          },
+                          {
+                            "title": "Taxonomy 6 Levels",
+                            "path": "docs/taxonomy-6-levels"
+                          },
+                          {
+                            "title": "Taxonomy 7 Levels",
+                            "path": "docs/taxonomy-7-levels"
+                          },
+                          {
+                            "title": "Taxonomy 8 Levels",
+                            "path": "docs/taxonomy-8-levels"
+                          },
+                          {
+                            "title": "Taxonomy 9 Levels",
+                            "path": "docs/taxonomy-9-levels"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Views",
+                        "pages": [
+                          {
+                            "title": "Available Views for Product Data",
+                            "path": "docs/available-views-for-product-data"
+                          },
+                          {
+                            "title": "Available Views for Product Data",
+                            "path": "docs/product_all"
+                          },
+                          {
+                            "title": "Creating a custom product view on the fly",
+                            "path": "docs/creating-a-custom-product-view-on-the-fly"
+                          },
+                          {
+                            "title": "Create & save a custom product view",
+                            "path": "docs/create-save-a-custom-product-view"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Constructing Product Queries",
+                        "pages": [
+                          {
+                            "title": "Constructing Product Queries",
+                            "path": "docs/constructing-product-queries"
+                          },
+                          {
+                            "title": "Constructing Advanced Product Data Queries in Postman",
+                            "path": "docs/constructing-advanced-product-data-queries-in-postman"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "How Product Records Are Merged",
+                        "path": "docs/how-product-records-are-merged"
+                      },
+                      {
+                        "group": "Use Cases for Product Data",
+                        "pages": [
+                          {
+                            "title": "Use Cases for Product Data",
+                            "path": "docs/use-cases-for-product-data"
+                          },
+                          {
+                            "title": "Product Use Cases",
+                            "path": "docs/product-use-cases"
+                          },
+                          {
+                            "title": "Lookup products by GTIN (UPC, EAN, etc.)",
+                            "path": "docs/searching-by-gtin"
+                          },
+                          {
+                            "title": "Lookup products by brand and model number",
+                            "path": "docs/lookup-products-by-brand-and-model-number"
+                          },
+                          {
+                            "title": "Train LLMs with product descriptions and review",
+                            "path": "docs/train-llms-with-product-descriptions-and-review"
+                          },
+                          {
+                            "title": "Pricing analytics for pet food",
+                            "path": "docs/pricing-analytics-for-pet-food"
+                          },
+                          {
+                            "title": "Cleanup product data entered by customers",
+                            "path": "docs/cleanup-product-data-entered-by-customers"
+                          },
+                          {
+                            "title": "Build a database of wines",
+                            "path": "docs/build-a-database-of-wines"
+                          },
+                          {
+                            "title": "Provide personalized pricing recommendations",
+                            "path": "docs/provide-personalized-pricing-recommendations"
+                          },
+                          {
+                            "title": "Match products against a competitor",
+                            "path": "docs/match-products-against-a-competitor"
+                          },
+                          {
+                            "title": "Search for smart phones",
+                            "path": "docs/search-for-smart-phones"
+                          },
+                          {
+                            "title": "Finding product material info",
+                            "path": "docs/finding-product-material-info"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "API Features",
+                        "pages": [
+                          {
+                            "title": "Product API Features",
+                            "path": "docs/product-api-features"
+                          },
+                          {
+                            "title": "Count",
+                            "path": "docs/product-count"
+                          },
+                          {
+                            "title": "Pagination",
+                            "path": "docs/product-pagination"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Business Data",
+                    "pages": [
+                      {
+                        "title": "Business Data Overview",
+                        "path": "docs/api-business-data"
+                      },
+                      {
+                        "group": "Getting started with Business Data",
+                        "pages": [
+                          {
+                            "title": "Getting Started with Business Data",
+                            "path": "docs/getting-started-with-business-data"
+                          },
+                          {
+                            "title": "Business Data with Postman",
+                            "path": "docs/business-data-with-postman"
+                          },
+                          {
+                            "title": "Business Data with PHP",
+                            "path": "docs/business-data-with-php"
+                          },
+                          {
+                            "title": "Business Data with Python",
+                            "path": "docs/business-data-with-python"
+                          },
+                          {
+                            "title": "Business Data with Node.js",
+                            "path": "docs/business-data-with-nodejs"
+                          },
+                          {
+                            "title": "Business Data with cURL",
+                            "path": "docs/business-data-with-curl"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Business Data Schema",
+                        "pages": [
+                          {
+                            "title": "Business Data Schema",
+                            "path": "docs/business-data-schema"
+                          },
+                          {
+                            "title": "How Business Records Are Merged",
+                            "path": "docs/how-business-records-are-merged"
+                          },
+                          {
+                            "title": "Business Field Type Breakdown",
+                            "path": "docs/business-field-type-breakdown"
+                          },
+                          {
+                            "title": "Possible Values for Business Fields",
+                            "path": "docs/possible-values-for-business-fields"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Views",
+                        "pages": [
+                          {
+                            "title": "Business View",
+                            "path": "docs/business-view"
+                          },
+                          {
+                            "title": "Available Views for Business Data",
+                            "path": "docs/available-views-for-business-data-1"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Constructing Business Queries",
+                        "pages": [
+                          {
+                            "title": "Constructing Business Queries",
+                            "path": "docs/constructing-business-queries"
+                          },
+                          {
+                            "title": "Constructing Advanced Business Data Queries in Postman",
+                            "path": "docs/constructing-advanced-business-data-queries-in-postman"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Business Data Use Cases",
+                        "pages": [
+                          {
+                            "title": "Business Data Use Cases",
+                            "path": "docs/business-data-use-cases"
+                          },
+                          {
+                            "title": "Business Use Cases",
+                            "path": "docs/business-use-cases"
+                          },
+                          {
+                            "title": "Discover revenue of businesses",
+                            "path": "docs/discover-business-revenue"
+                          },
+                          {
+                            "title": "Search via street address",
+                            "path": "docs/search-via-street-address-business"
+                          },
+                          {
+                            "title": "Search for specific restaurants",
+                            "path": "docs/search-for-specific-restaurants"
+                          },
+                          {
+                            "title": "Find local restaurants using geoLocation",
+                            "path": "docs/find-local-restaurants-using-geolocation"
+                          }
+                        ]
+                      },
+                      {
+                        "group": "API Features",
+                        "pages": [
+                          {
+                            "title": "Business API Features",
+                            "path": "docs/business-api-features"
+                          },
+                          {
+                            "title": "Count",
+                            "path": "docs/business-count"
+                          },
+                          {
+                            "title": "Geolocation",
+                            "path": "docs/business-geolocation"
+                          },
+                          {
+                            "title": "Pagination",
+                            "path": "docs/business-pagination"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Enrichment & Suppression",
+                    "pages": [
+                      {
+                        "title": "Enrichment & Suppression",
+                        "path": "docs/enrichment-suppression"
+                      },
+                      {
+                        "title": "Product Data Enrichment with CSV",
+                        "path": "docs/product-data-enrichment"
+                      },
+                      {
+                        "title": "Product Data Enrichment with Postman and JSON",
+                        "path": "docs/property-data-with-postman-and-json"
+                      },
+                      {
+                        "title": "Property Data Enrichment with CSV",
+                        "path": "docs/property-data-enrichment-with-csv"
+                      },
+                      {
+                        "title": "Property Data Enrichment with JSON",
+                        "path": "docs/property-data-enrichment-with-json"
+                      },
+                      {
+                        "title": "Property Data Suppression with CSV",
+                        "path": "docs/property-data-suppression-with-postman"
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Real-time Data Requests",
+                    "pages": [
+                      {
+                        "title": "Real-Time Data Request",
+                        "path": "docs/real-time-data-request"
+                      },
+                      {
+                        "title": "Scrape API",
+                        "path": "docs/realtime-data-requests"
+                      },
+                      {
+                        "title": "Targeted Updates",
+                        "path": "docs/getting-started-with-realtime-updates"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Web Portal",
+                "pages": [
+                  {
+                    "group": "Introduction",
+                    "pages": [
+                      {
+                        "title": "Portal Introduction",
+                        "path": "docs/portal-introduction"
+                      },
+                      {
+                        "title": "How Credits Work - Portal",
+                        "path": "docs/how-credits-work-portal"
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Portal Walkthrough",
+                    "pages": [
+                      {
+                        "title": "Portal Walkthrough",
+                        "path": "docs/portal-walkthrough"
+                      },
+                      {
+                        "title": "Get Started",
+                        "path": "docs/get-started"
+                      },
+                      {
+                        "group": "Settings",
+                        "pages": [
+                          {
+                            "title": "Settings",
+                            "path": "docs/settings"
+                          },
+                          {
+                            "title": "Billing & Subscription Plan",
+                            "path": "docs/billing"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "Downloading Result Files",
+                        "path": "docs/downloading-result-files"
+                      },
+                      {
+                        "group": "Get Your Postman Collection and Token",
+                        "pages": [
+                          {
+                            "title": "Get Your Postman Collection and Token",
+                            "path": "docs/get-your-postman-collection-and-token"
+                          },
+                          {
+                            "title": "Postman: Endpoint Overview",
+                            "path": "docs/postman-endpoint-overview"
+                          },
+                          {
+                            "title": "Postman: Download Result Files",
+                            "path": "docs/postman-downloading-result-files"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "Advanced Querying Building",
+                        "path": "docs/advanced-querying"
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Property Data",
+                    "pages": [
+                      {
+                        "title": "Property Data Portal",
+                        "path": "docs/property-data-portal"
+                      },
+                      {
+                        "title": "Property Data Features",
+                        "path": "docs/property-data-features"
+                      },
+                      {
+                        "group": "Property Use Cases",
+                        "pages": [
+                          {
+                            "title": "Searching by Address in Property",
+                            "path": "docs/searching-by-address-in-property"
+                          },
+                          {
+                            "title": "Determine home values - Portal",
+                            "path": "docs/determine-home-values-portal"
+                          },
+                          {
+                            "title": "Find recently sold property",
+                            "path": "docs/find-recently-sold-property"
+                          },
+                          {
+                            "title": "Search sites for commercial development",
+                            "path": "docs/search-sites-for-commercial-development"
+                          },
+                          {
+                            "title": "Discover when clients sell their homes - Portal",
+                            "path": "docs/discover-when-clients-sell-their-homes-portal"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "Property Data Views",
+                        "path": "docs/portal-property-data-views"
+                      }
+                    ]
+                  },
+                  {
+                    "group": "People Data",
+                    "pages": [
+                      {
+                        "title": "People Data Portal",
+                        "path": "docs/people-data-portal"
+                      },
+                      {
+                        "group": "People Use Cases",
+                        "pages": [
+                          {
+                            "title": "Generate leads for a SaaS business",
+                            "path": "docs/generate-leads-for-a-saas-business"
+                          },
+                          {
+                            "title": "Identifying employees targeted by cyberattacks",
+                            "path": "docs/identifying-employees-targeted-by-cyberattacks"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Product Data",
+                    "pages": [
+                      {
+                        "title": "Product Data Portal",
+                        "path": "docs/product-data-portal"
+                      },
+                      {
+                        "group": "Product Use Cases",
+                        "pages": [
+                          {
+                            "title": "Searching by UPC in Product Data",
+                            "path": "docs/searching-by-upc-in-product-data"
+                          },
+                          {
+                            "title": "Searching by SKU in Product Data",
+                            "path": "docs/searching-by-sku-in-product-data"
+                          },
+                          {
+                            "title": "Finding Compliance Features In Product Data",
+                            "path": "docs/finding-compliance-features-in-product-data"
+                          },
+                          {
+                            "title": "Finding Highly Rated Products",
+                            "path": "docs/finding-highly-rated-products"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Business Data",
+                    "pages": [
+                      {
+                        "title": "Business Data Portal",
+                        "path": "docs/business-data-portal"
+                      },
+                      {
+                        "group": "Business Use Cases",
+                        "pages": [
+                          {
+                            "title": "Business Data with Web Browser and CSV",
+                            "path": "docs/business-data-with-web-browser-csv"
+                          },
+                          {
+                            "title": "Searching Restaurants",
+                            "path": "docs/searching-restaurants"
+                          },
+                          {
+                            "title": "Find Franchised Restaurants in Your State",
+                            "path": "docs/find-chain-restaurants-in-your-state"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Requesting Data",
+                "pages": [
+                  {
+                    "group": "Search and Downloads",
+                    "pages": [
+                      {
+                        "title": "Search and Downloads",
+                        "path": "reference/search-and-downloads",
+                        "icon": "search"
+                      },
+                      {
+                        "title": "Business Data",
+                        "path": "reference/businesses",
+                        "method": "POST",
+                        "openapi": "reference/datafiniti-openapi.json POST /businesses/search"
+                      },
+                      {
+                        "title": "People Data",
+                        "path": "reference/people-data",
+                        "method": "POST",
+                        "openapi": "reference/datafiniti-openapi.json POST /people/search"
+                      },
+                      {
+                        "title": "Product Data",
+                        "path": "reference/products",
+                        "method": "POST",
+                        "openapi": "reference/datafiniti-openapi.json POST /products/search"
+                      },
+                      {
+                        "title": "Property Data",
+                        "path": "reference/properties",
+                        "method": "POST",
+                        "openapi": "reference/datafiniti-openapi.json POST /properties/search"
+                      },
+                      {
+                        "title": "Get a Specific Record",
+                        "path": "reference/get-a-specific-record",
+                        "method": "GET",
+                        "openapi": "reference/datafiniti-openapi.json GET /{data_type}/{id}"
+                      },
+                      {
+                        "title": "Get all Downloads",
+                        "path": "reference/get-all-downloads",
+                        "method": "GET",
+                        "openapi": "reference/datafiniti-openapi.json GET /downloads"
+                      },
+                      {
+                        "title": "Get a Download",
+                        "path": "reference/get-a-download",
+                        "method": "GET",
+                        "openapi": "reference/datafiniti-openapi.json GET /downloads/{id}"
+                      },
+                      {
+                        "title": "Cancel a Download",
+                        "path": "reference/cancel-a-download",
+                        "method": "DELETE",
+                        "openapi": "reference/datafiniti-openapi.json DELETE /downloads/{id}"
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Views",
+                    "pages": [
+                      {
+                        "title": "Views",
+                        "path": "reference/views",
+                        "icon": "eye"
+                      },
+                      {
+                        "title": "Create View",
+                        "path": "reference/create-view",
+                        "method": "POST",
+                        "openapi": "reference/datafiniti-openapi.json POST /views"
+                      },
+                      {
+                        "title": "Update View",
+                        "path": "reference/update-view",
+                        "method": "PUT",
+                        "openapi": "reference/datafiniti-openapi.json PUT /views/{view_name}"
+                      },
+                      {
+                        "title": "Get all Views",
+                        "path": "reference/get-all-views",
+                        "method": "GET",
+                        "openapi": "reference/datafiniti-openapi.json GET /views"
+                      },
+                      {
+                        "title": "Get a View by name",
+                        "path": "reference/get-a-view-by-name",
+                        "method": "GET",
+                        "openapi": "reference/datafiniti-openapi.json GET /views/{view_name}"
+                      },
+                      {
+                        "title": "Delete a View",
+                        "path": "reference/delete-a-view",
+                        "method": "DELETE",
+                        "openapi": "reference/datafiniti-openapi.json DELETE /views/{view_name}"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Real-time Data Requests",
+                    "path": "reference/real-time-data-requests",
+                    "method": "POST",
+                    "openapi": "reference/datafiniti-openapi.json POST /scrape"
+                  },
+                  {
+                    "title": "Create a Real-time Update",
+                    "path": "reference/create-a-real-time-update",
+                    "method": "POST",
+                    "openapi": "reference/datafiniti-openapi.json POST /targeted-updates"
+                  },
+                  {
+                    "title": "View Real-time Updates",
+                    "path": "reference/view-all-real-time-updates",
+                    "method": "GET",
+                    "openapi": "reference/datafiniti-openapi.json GET /targeted-updates"
+                  }
+                ]
+              },
+              {
+                "group": "Your Account",
+                "pages": [
+                  {
+                    "title": "Authentication",
+                    "path": "reference/authentication",
+                    "method": "POST",
+                    "openapi": "reference/datafiniti-openapi.json POST /auth"
+                  },
+                  {
+                    "title": "Get Your Account",
+                    "path": "reference/get-your-account",
+                    "method": "GET",
+                    "openapi": "reference/datafiniti-openapi.json GET /account"
+                  },
+                  {
+                    "title": "Update Your Account",
+                    "path": "reference/update-your-account",
+                    "method": "PUT",
+                    "openapi": "reference/datafiniti-openapi.json PUT /account"
+                  }
+                ]
+              },
+              {
+                "group": "API Status",
+                "pages": [
+                  {
+                    "title": "API Status Check",
+                    "path": "reference/api-status-check",
+                    "method": "GET",
+                    "openapi": "reference/datafiniti-openapi.json GET /health"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "changelog",
+            "pages": [
+              {
+                "title": "page-1",
+                "path": "changelog/page-1",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "page-2",
+                "path": "changelog/page-2",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "page-3",
+                "path": "changelog/page-3",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "page-4",
+                "path": "changelog/page-4",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "page-5",
+                "path": "changelog/page-5",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "page-6",
+                "path": "changelog/page-6",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "201910 Data Release Log",
+                "path": "changelog/201910-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "201911 Data Release Log",
+                "path": "changelog/201911-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "201912 Data Release Log",
+                "path": "changelog/201912-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20199 Data Release Log",
+                "path": "changelog/20199-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20201 Data Release Log",
+                "path": "changelog/20201-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202010 Data Release Log",
+                "path": "changelog/202010-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202011 Data Release Log",
+                "path": "changelog/202011-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202012 Data Release Log",
+                "path": "changelog/202012-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20202 Data Release Log",
+                "path": "changelog/20202-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20203 Data Release Log",
+                "path": "changelog/20203-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20204 Data Release Log",
+                "path": "changelog/20204-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20207 Data Release Log",
+                "path": "changelog/20207-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20208 Data Release Log",
+                "path": "changelog/20208-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20209 Data Release Log",
+                "path": "changelog/20209-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20211 Data Release Log",
+                "path": "changelog/20211-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20212 Data Release Log",
+                "path": "changelog/20212-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20213 Data Release Log",
+                "path": "changelog/20213-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202210 Data Release Log",
+                "path": "changelog/202210-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202212 Data Release Log 1",
+                "path": "changelog/202212-data-release-log-1",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202212 Data Release Log",
+                "path": "changelog/202212-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20226 Data Release Log",
+                "path": "changelog/20226-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20227 Data Release Log",
+                "path": "changelog/20227-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20228 Data Release Log",
+                "path": "changelog/20228-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20229 Data Release Log",
+                "path": "changelog/20229-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202302 Data Release Log",
+                "path": "changelog/202302-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202304 Data Release Log",
+                "path": "changelog/202304-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202305 Data Release Log",
+                "path": "changelog/202305-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202306 Data Release Log",
+                "path": "changelog/202306-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202307 Data Release Log",
+                "path": "changelog/202307-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202308 Data Release Log",
+                "path": "changelog/202308-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202309 Data Release Log",
+                "path": "changelog/202309-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202310 Data Release Log 1",
+                "path": "changelog/202310-data-release-log-1",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202310 Data Release Log",
+                "path": "changelog/202310-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202312 Data Release Log",
+                "path": "changelog/202312-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202402 Data Release Log",
+                "path": "changelog/202402-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202404 Data Release Log",
+                "path": "changelog/202404-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202407 Data Release Log",
+                "path": "changelog/202407-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202409 Data Release Log",
+                "path": "changelog/202409-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202411 Data Release Log",
+                "path": "changelog/202411-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202502 Data Release Log",
+                "path": "changelog/202502-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202503 Data Release Log",
+                "path": "changelog/202503-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202506 Data Release Log",
+                "path": "changelog/202506-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202507 Data Release Log",
+                "path": "changelog/202507-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202508 Data Release Log",
+                "path": "changelog/202508-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202509 Data Release Log",
+                "path": "changelog/202509-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202510 Data Release Log",
+                "path": "changelog/202510-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202511 Data Release Log",
+                "path": "changelog/202511-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202601 Data Release Log",
+                "path": "changelog/202601-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202602 Data Release Log",
+                "path": "changelog/202602-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "version": "v3.0",
+        "icon": "badge",
+        "tabs": [
+          {
+            "tab": "Guides V3",
+            "groups": [
+              {
+                "group": "Welcome to Datafiniti",
+                "pages": [
+                  {
+                    "title": "Getting Started",
+                    "path": "docs/v3-get-started"
+                  },
+                  {
+                    "title": "V3 API Introduction",
+                    "path": "docs/v3-api-introduction"
+                  },
+                  {
+                    "title": "How Credits Work",
+                    "path": "docs/v3-how-credits-work-api"
+                  },
+                  {
+                    "title": "Settings",
+                    "path": "docs/v3-settings"
+                  },
+                  {
+                    "title": "Migrating from V3 to V4",
+                    "path": "docs/v3-migrating-from-v3-to-v4"
+                  },
+                  {
+                    "title": "Advanced Querying",
+                    "path": "docs/v3-advanced-querying"
+                  },
+                  {
+                    "title": "Downloading Result Files",
+                    "path": "docs/v3-downloading-result-files"
+                  },
+                  {
+                    "title": "Using Postman",
+                    "path": "docs/v3-using-postman"
+                  }
+                ]
+              },
+              {
+                "group": "Datafiniti API",
+                "pages": [
+                  {
+                    "group": "Property Data",
+                    "pages": [
+                      {
+                        "title": "Business Data with Web Browser and CSV",
+                        "path": "docs/v3-business-data-with-web-browser-csv"
+                      },
+                      {
+                        "title": "Business Data with Postman and CSV",
+                        "path": "docs/v3-business-data-with-postman-and-csv"
+                      },
+                      {
+                        "title": "Business Data with cURL and CSV",
+                        "path": "docs/v3-business-data-with-curl-and-csv"
+                      },
+                      {
+                        "title": "Business Data with PHP and CSV",
+                        "path": "docs/v3-business-data-with-php-and-csv"
+                      },
+                      {
+                        "title": "Business Data with Node.js and CSV",
+                        "path": "docs/v3-business-data-with-nodejs-and-csv"
+                      },
+                      {
+                        "title": "Business Data with Python and CSV",
+                        "path": "docs/v3-business-data-with-python-and-csv"
+                      },
+                      {
+                        "title": "Business Data with Web Browser and JSON",
+                        "path": "docs/v3-business-data-with-web-browser-and-json"
+                      },
+                      {
+                        "title": "Business Data with Postman and JSON",
+                        "path": "docs/v3-business-data-with-postman-and-json"
+                      },
+                      {
+                        "title": "Business Data with cURL and JSON",
+                        "path": "docs/v3-business-data-with-curl-and-json"
+                      },
+                      {
+                        "title": "Business Data with PHP and JSON",
+                        "path": "docs/v3-business-data-with-php-and-json"
+                      },
+                      {
+                        "title": "Business Data with Node.js and JSON",
+                        "path": "docs/v3-business-data-with-nodejs-and-json"
+                      },
+                      {
+                        "title": "Business Data with Python and JSON",
+                        "path": "docs/v3-business-data-with-python-and-json"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Business Data Schema",
+                    "path": "docs/v3-business-data-schema"
+                  },
+                  {
+                    "group": "Available Views for Business Data",
+                    "pages": [
+                      {
+                        "title": "businesses_all",
+                        "path": "docs/v3-businesses_all"
+                      },
+                      {
+                        "title": "businesses_all_menusFlat",
+                        "path": "docs/v3-businesses_all_menusflat"
+                      },
+                      {
+                        "title": "businesses_all_nested",
+                        "path": "docs/v3-businesses_all_nested"
+                      },
+                      {
+                        "title": "businesses_all_nested_no_reviews",
+                        "path": "docs/v3-businesses_all_nested_no_reviews"
+                      },
+                      {
+                        "title": "businesses_basic",
+                        "path": "docs/v3-businesses_basic"
+                      },
+                      {
+                        "title": "businesses_all_reviewsFlat",
+                        "path": "docs/v3-businesses_all_reviewsflat"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Constructing Business Queries",
+                    "path": "docs/v3-constructing-business-queries"
+                  }
+                ]
+              },
+              {
+                "group": "People Data",
+                "pages": [
+                  {
+                    "title": "Getting started with People Data",
+                    "path": "docs/v3-getting-started-with-people-data-1"
+                  }
+                ]
+              },
+              {
+                "group": "Product Data",
+                "pages": [
+                  {
+                    "group": "Getting Started with Product Data",
+                    "pages": [
+                      {
+                        "title": "Product Data with Web Browser and CSV",
+                        "path": "docs/v3-product-data-with-web-browser-csv"
+                      },
+                      {
+                        "title": "Product Data with Postman and CSV",
+                        "path": "docs/v3-product-data-with-postman-csv"
+                      },
+                      {
+                        "title": "Product Data with cURL and CSV",
+                        "path": "docs/v3-product-data-with-curl-csv"
+                      },
+                      {
+                        "title": "Product Data with PHP and CSV",
+                        "path": "docs/v3-product-data-with-php-csv"
+                      },
+                      {
+                        "title": "Product Data with Node.js and CSV",
+                        "path": "docs/v3-product-data-with-nodejs-csv"
+                      },
+                      {
+                        "title": "Product Data with Python and CSV",
+                        "path": "docs/v3-product-data-with-python-csv"
+                      },
+                      {
+                        "title": "Product Data with Web Browser and JSON",
+                        "path": "docs/v3-product-data-with-web-browser-and-json"
+                      },
+                      {
+                        "title": "Product Data with Postman and JSON",
+                        "path": "docs/v3-product-data-with-postman-and-json"
+                      },
+                      {
+                        "title": "Product Data with cURL and JSON",
+                        "path": "docs/v3-product-data-with-curl-and-json"
+                      },
+                      {
+                        "title": "Product Data with PHP and JSON",
+                        "path": "docs/v3-product-data-with-php-and-json"
+                      },
+                      {
+                        "title": "Product Data with Node.js and JSON",
+                        "path": "docs/v3-product-data-with-nodejs-json"
+                      },
+                      {
+                        "title": "Product Data with Python and JSON",
+                        "path": "docs/v3-product-data-with-python-and-json"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Product Data Schema",
+                    "path": "docs/v3-product-data-schema"
+                  },
+                  {
+                    "group": "Available Views for Product Data",
+                    "pages": [
+                      {
+                        "title": "products_all",
+                        "path": "docs/v3-products_all"
+                      },
+                      {
+                        "title": "products_basicFields",
+                        "path": "docs/v3-products_basicfields"
+                      },
+                      {
+                        "title": "products_keysSourceURLs",
+                        "path": "docs/v3-products_keyssourceurls"
+                      },
+                      {
+                        "title": "products_all_nested",
+                        "path": "docs/v3-products_all_nested"
+                      },
+                      {
+                        "title": "products_pricesFlat",
+                        "path": "docs/v3-products_pricesflat"
+                      },
+                      {
+                        "title": "products_reviewsFlat",
+                        "path": "docs/v3-products_reviewsflat"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Constructing Product Queries",
+                    "path": "docs/v3-constructing-product-queries"
+                  }
+                ]
+              },
+              {
+                "group": "Property Data",
+                "pages": [
+                  {
+                    "group": "Getting started with Property Data",
+                    "pages": [
+                      {
+                        "title": "Property Data with Web Browser and CSV",
+                        "path": "docs/v3-property-data-with-web-browser-and-csv"
+                      },
+                      {
+                        "title": "Property Data with Postman and CSV",
+                        "path": "docs/v3-property-data-with-postman-and-csv"
+                      },
+                      {
+                        "title": "Property Data with cURL and CSV",
+                        "path": "docs/v3-property-data-with-curl-and-csv"
+                      },
+                      {
+                        "title": "Property Data with PHP and CSV",
+                        "path": "docs/v3-property-data-with-php-and-csv"
+                      },
+                      {
+                        "title": "Property Data with Node.js and CSV",
+                        "path": "docs/v3-property-data-with-nodejs-and-csv"
+                      },
+                      {
+                        "title": "Property Data with Python and CSV",
+                        "path": "docs/v3-property-data-with-python-and-csv"
+                      },
+                      {
+                        "title": "Property Data with Web Browser and JSON",
+                        "path": "docs/v3-property-data-with-web-browser-and-json"
+                      },
+                      {
+                        "title": "Property Data with Postman and JSON",
+                        "path": "docs/v3-property-data-with-postman-and-json"
+                      },
+                      {
+                        "title": "Property Data with cURL and JSON",
+                        "path": "docs/v3-property-data-with-curl-and-json"
+                      },
+                      {
+                        "title": "Property Data with PHP and JSON",
+                        "path": "docs/v3-property-data-with-php-and-json"
+                      },
+                      {
+                        "title": "Property Data with Node.js and JSON",
+                        "path": "docs/v3-property-data-with-nodejs-and-json"
+                      },
+                      {
+                        "title": "Property Data with Python and JSON",
+                        "path": "docs/v3-property-data-with-python-and-json"
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Property Data Schema",
+                    "pages": [
+                      {
+                        "title": "Possible Values for Property Fields",
+                        "path": "docs/v3-possible-values-for-property-fields"
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Available Views for Property Data",
+                    "pages": [
+                      {
+                        "title": "properties_all",
+                        "path": "docs/v3-properties_all"
+                      },
+                      {
+                        "title": "properties_all_nested",
+                        "path": "docs/v3-properties_all_nested"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Constructing Property Queries",
+                    "path": "docs/v3-constructing-property-queries"
+                  },
+                  {
+                    "title": "Reference Values for Property Schema",
+                    "path": "docs/v3-reference-values-for-property-schema"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Requesting Data",
+                "pages": [
+                  {
+                    "title": "data/businesses",
+                    "path": "v3/reference/databusinesses",
+                    "method": "GET",
+                    "openapi": "v3/reference/datafiniti-v3-openapi.json GET /data/businesses"
+                  },
+                  {
+                    "title": "data/products",
+                    "path": "v3/reference/data-products",
+                    "method": "GET",
+                    "openapi": "v3/reference/datafiniti-v3-openapi.json GET /data/products"
+                  },
+                  {
+                    "title": "requests",
+                    "path": "v3/reference/requests",
+                    "method": "GET",
+                    "openapi": "v3/reference/datafiniti-v3-openapi.json GET /requests"
+                  },
+                  {
+                    "title": "results",
+                    "path": "v3/reference/results",
+                    "method": "GET",
+                    "openapi": "v3/reference/datafiniti-v3-openapi.json GET /results/{request_id}"
+                  },
+                  {
+                    "title": "data/properties",
+                    "path": "v3/reference/dataproperties",
+                    "method": "GET",
+                    "openapi": "v3/reference/datafiniti-v3-openapi.json GET /data/properties"
+                  }
+                ]
+              },
+              {
+                "group": "Your Account",
+                "pages": [
+                  {
+                    "title": "users",
+                    "path": "v3/reference/users",
+                    "method": "GET",
+                    "openapi": "v3/reference/datafiniti-v3-openapi.json GET /users"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "changelog v3",
+            "pages": [
+              {
+                "title": "v3-page-1",
+                "path": "changelog-v3/v3-page-1",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "v3-page-2",
+                "path": "changelog-v3/v3-page-2",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "v3-page-3",
+                "path": "changelog-v3/v3-page-3",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "v3-page-4",
+                "path": "changelog-v3/v3-page-4",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "v3-page-5",
+                "path": "changelog-v3/v3-page-5",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "v3-page-6",
+                "path": "changelog-v3/v3-page-6",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "201910 Data Release Log",
+                "path": "changelog-v3/v3-201910-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "201911 Data Release Log",
+                "path": "changelog-v3/v3-201911-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "201912 Data Release Log",
+                "path": "changelog-v3/v3-201912-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20198 Data Release Log",
+                "path": "changelog-v3/v3-20198-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20199 Data Release Log",
+                "path": "changelog-v3/v3-20199-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20201 Data Release Log",
+                "path": "changelog-v3/v3-20201-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202010 Data Release Log",
+                "path": "changelog-v3/v3-202010-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202011 Data Release Log",
+                "path": "changelog-v3/v3-202011-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202012 Data Release Log",
+                "path": "changelog-v3/v3-202012-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20202 Data Release Log",
+                "path": "changelog-v3/v3-20202-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20203 Data Release Log",
+                "path": "changelog-v3/v3-20203-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20204 Data Release Log",
+                "path": "changelog-v3/v3-20204-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20207 Data Release Log",
+                "path": "changelog-v3/v3-20207-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20208 Data Release Log",
+                "path": "changelog-v3/v3-20208-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20209 Data Release Log",
+                "path": "changelog-v3/v3-20209-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20211 Data Release Log",
+                "path": "changelog-v3/v3-20211-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20212 Data Release Log",
+                "path": "changelog-v3/v3-20212-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20213 Data Release Log",
+                "path": "changelog-v3/v3-20213-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202210 Data Release Log",
+                "path": "changelog-v3/v3-202210-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202212 Data Release Log 1",
+                "path": "changelog-v3/v3-202212-data-release-log-1",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202212 Data Release Log",
+                "path": "changelog-v3/v3-202212-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20226 Data Release Log",
+                "path": "changelog-v3/v3-20226-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20227 Data Release Log",
+                "path": "changelog-v3/v3-20227-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20228 Data Release Log",
+                "path": "changelog-v3/v3-20228-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "20229 Data Release Log",
+                "path": "changelog-v3/v3-20229-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202302 Data Release Log",
+                "path": "changelog-v3/v3-202302-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202304 Data Release Log",
+                "path": "changelog-v3/v3-202304-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202305 Data Release Log",
+                "path": "changelog-v3/v3-202305-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202306 Data Release Log",
+                "path": "changelog-v3/v3-202306-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202307 Data Release Log",
+                "path": "changelog-v3/v3-202307-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202308 Data Release Log",
+                "path": "changelog-v3/v3-202308-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202309 Data Release Log",
+                "path": "changelog-v3/v3-202309-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202310 Data Release Log 1",
+                "path": "changelog-v3/v3-202310-data-release-log-1",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202310 Data Release Log",
+                "path": "changelog-v3/v3-202310-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202312 Data Release Log",
+                "path": "changelog-v3/v3-202312-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202402 Data Release Log",
+                "path": "changelog-v3/v3-202402-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202404 Data Release Log",
+                "path": "changelog-v3/v3-202404-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202407 Data Release Log",
+                "path": "changelog-v3/v3-202407-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202409 Data Release Log",
+                "path": "changelog-v3/v3-202409-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202411 Data Release Log",
+                "path": "changelog-v3/v3-202411-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202502 Data Release Log",
+                "path": "changelog-v3/v3-202502-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202503 Data Release Log",
+                "path": "changelog-v3/v3-202503-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202506 Data Release Log",
+                "path": "changelog-v3/v3-202506-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202507 Data Release Log",
+                "path": "changelog-v3/v3-202507-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202508 Data Release Log",
+                "path": "changelog-v3/v3-202508-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202509 Data Release Log",
+                "path": "changelog-v3/v3-202509-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202510 Data Release Log",
+                "path": "changelog-v3/v3-202510-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202511 Data Release Log",
+                "path": "changelog-v3/v3-202511-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202601 Data Release Log",
+                "path": "changelog-v3/v3-202601-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              },
+              {
+                "title": "202602 Data Release Log",
+                "path": "changelog-v3/v3-202602-data-release-log",
+                "show-sidebar": false,
+                "show-toc": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "seo": {
+    "robots:index": true,
+    "robots:follow": true
+  }
+}
