@@ -1,0 +1,1188 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Datafiniti API",
+    "description": "The Datafiniti API provides developers with access to a vast repository of structured data, including Property Data, People Data, Product Data, and Business Data. The API offers endpoints for searching specific data points, bulk downloads, enrichment, real-time data requests, views management, and account management.",
+    "version": "4.0.0",
+    "contact": {
+      "name": "Datafiniti Support",
+      "email": "support@datafiniti.co",
+      "url": "https://docs.datafiniti.co"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.datafiniti.co/v4",
+      "description": "Datafiniti API v4 Production Server"
+    }
+  ],
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Search and Downloads",
+      "description": "Endpoints for searching and downloading business, people, product, and property data"
+    },
+    {
+      "name": "Downloads",
+      "description": "Endpoints for managing bulk data downloads"
+    },
+    {
+      "name": "Records",
+      "description": "Endpoints for retrieving specific records"
+    },
+    {
+      "name": "Views",
+      "description": "Endpoints for creating and managing views that filter which fields are returned"
+    },
+    {
+      "name": "Real-time",
+      "description": "Endpoints for real-time data requests and updates"
+    },
+    {
+      "name": "Account",
+      "description": "Endpoints for authentication and account management"
+    },
+    {
+      "name": "Status",
+      "description": "API health and status check"
+    }
+  ],
+  "paths": {
+    "/businesses/search": {
+      "post": {
+        "operationId": "searchBusinesses",
+        "summary": "Search Business Data",
+        "description": "Search over 35 million business records. Returns up to 10 records per request by default. Include `download: true` in the request body to initiate a bulk download of matching records.",
+        "tags": ["Search and Downloads"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchRequest"
+              },
+              "example": {
+                "query": "keys:*",
+                "format": "JSON",
+                "num_records": 1
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful search returning matching business records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query syntax or malformed parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/people/search": {
+      "post": {
+        "operationId": "searchPeople",
+        "summary": "Search People Data",
+        "description": "Search millions of people records. Returns up to 10 records per request by default. Include `download: true` in the request body to initiate a bulk download of matching records.",
+        "tags": ["Search and Downloads"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchRequest"
+              },
+              "example": {
+                "query": "keys:*",
+                "num_records": 1
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful search returning matching people records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query syntax or malformed parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/search": {
+      "post": {
+        "operationId": "searchProducts",
+        "summary": "Search Product Data",
+        "description": "Search over 75 million product records. Returns up to 10 records per request by default. Include `download: true` in the request body to initiate a bulk download of matching records.",
+        "tags": ["Search and Downloads"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchRequest"
+              },
+              "example": {
+                "query": "keys:*",
+                "num_records": 1
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful search returning matching product records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query syntax or malformed parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/properties/search": {
+      "post": {
+        "operationId": "searchProperties",
+        "summary": "Search Property Data",
+        "description": "Search property records. Returns up to 10 records per request by default. Include `download: true` in the request body to initiate a bulk download. Supports autotrace for cross-referencing property and people data.",
+        "tags": ["Search and Downloads"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PropertySearchRequest"
+              },
+              "example": {
+                "query": "country:US AND province:FL",
+                "num_records": 1,
+                "format": "JSON"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful search returning matching property records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query syntax or malformed parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{data_type}/{id}": {
+      "get": {
+        "operationId": "getRecord",
+        "summary": "Get a Specific Record",
+        "description": "Retrieve a specific record by its unique identifier. The data type determines which dataset to query (properties, people, products, or businesses).",
+        "tags": ["Records"],
+        "parameters": [
+          {
+            "name": "data_type",
+            "in": "path",
+            "required": true,
+            "description": "The type of data to retrieve the record from",
+            "schema": {
+              "type": "string",
+              "enum": ["properties", "people", "products", "businesses"]
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the record to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of the record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "The record data. Schema varies based on the data_type parameter."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request or record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/downloads": {
+      "get": {
+        "operationId": "getAllDownloads",
+        "summary": "Get All Downloads",
+        "description": "Retrieve an array of all the downloads you've ever started, including cancelled and completed ones. Note: This endpoint returns JSON objects describing downloads — it does not download data to your computer. Links to actual files can be found in the `results` field for each download.",
+        "tags": ["Downloads"],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of all downloads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Download"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/downloads/{id}": {
+      "get": {
+        "operationId": "getDownload",
+        "summary": "Get a Download",
+        "description": "Retrieve details about a specific download by its ID. Note: This endpoint returns a JSON object describing the download — it does not download data to your computer. Links to actual files can be found in the `results` field.",
+        "tags": ["Downloads"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the download",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of download details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Download"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request or download not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "cancelDownload",
+        "summary": "Cancel a Download",
+        "description": "Cancel an in-progress download. Cancelling a download will stop it, but not delete it. It will still include all records that were added before cancellation, and you can still retrieve these records via `GET /downloads/{id}`. Your account will still have credits deducted for the number of records added before cancellation.",
+        "tags": ["Downloads"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the download to cancel",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Download successfully cancelled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Confirmation message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request or download not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/views": {
+      "post": {
+        "operationId": "createView",
+        "summary": "Create a View",
+        "description": "Create a new view to configure and save custom field filters for later use. Views allow you to define which fields are returned in search results without specifying them in every request.",
+        "tags": ["Views"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ViewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "View created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/View"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid view configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAllViews",
+        "summary": "Get All Views",
+        "description": "Retrieve all views that have been created by the authenticated user.",
+        "tags": ["Views"],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of all views",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/View"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/views/{view_name}": {
+      "get": {
+        "operationId": "getViewByName",
+        "summary": "Get a View by Name",
+        "description": "Retrieve a single view by its name.",
+        "tags": ["Views"],
+        "parameters": [
+          {
+            "name": "view_name",
+            "in": "path",
+            "required": true,
+            "description": "The name of the view to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of the view",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/View"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request or view not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateView",
+        "summary": "Update a View",
+        "description": "Update an existing view by its name.",
+        "tags": ["Views"],
+        "parameters": [
+          {
+            "name": "view_name",
+            "in": "path",
+            "required": true,
+            "description": "The name of the view to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ViewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "View updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/View"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid view configuration or view not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteView",
+        "summary": "Delete a View",
+        "description": "Delete a previously created view by its name.",
+        "tags": ["Views"],
+        "parameters": [
+          {
+            "name": "view_name",
+            "in": "path",
+            "required": true,
+            "description": "The name of the view to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "View deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Confirmation message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request or view not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scrape": {
+      "post": {
+        "operationId": "createRealTimeRequest",
+        "summary": "Real-time Data Requests",
+        "description": "Get the web data you need in real-time. This endpoint allows you to request real-time web data scraping for up-to-date information.",
+        "tags": ["Real-time"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RealTimeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Real-time request created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Real-time request response with scraped data"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/targeted-updates": {
+      "post": {
+        "operationId": "createRealTimeUpdate",
+        "summary": "Create a Real-time Update",
+        "description": "Refresh the data you need in real-time. Create a targeted update to get the latest data for specific records.",
+        "tags": ["Real-time"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RealTimeUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Real-time update created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Real-time update response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAllRealTimeUpdates",
+        "summary": "View All Real-time Updates",
+        "description": "View all created real-time updates and their current status.",
+        "tags": ["Real-time"],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of all real-time updates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "Real-time update record"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth": {
+      "post": {
+        "operationId": "authenticate",
+        "summary": "Authentication",
+        "description": "Use your email and password to receive a bearer token. You will then use that token in all future API requests via the `Authorization: Bearer <token>` header.",
+        "tags": ["Account"],
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthRequest"
+              },
+              "example": {
+                "email": "user@example.com",
+                "password": "your-password"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authentication successful, returns bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid credentials or malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account": {
+      "get": {
+        "operationId": "getAccount",
+        "summary": "Get Your Account",
+        "description": "Retrieve your account information, which is useful for checking how many credits you have remaining. Legacy plan users access overall credits via `num_credits_used`, while modern plans split credits by data type with separate `credits_allotted` limits per category.",
+        "tags": ["Account"],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of account information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateAccount",
+        "summary": "Update Your Account",
+        "description": "Update your account information, including your email and password. If you update your email or password, a notification will be sent to your original email address.",
+        "tags": ["Account"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountUpdateRequest"
+              },
+              "example": {
+                "first_name": "Shawn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Account updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid update parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "getApiStatus",
+        "summary": "API Status Check",
+        "description": "Check the operational status of the Datafiniti API. You can also view the status page at status.datafiniti.co for additional status information.",
+        "tags": ["Status"],
+        "responses": {
+          "200": {
+            "description": "API is operational",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Current API status",
+                      "example": "ok"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Bearer token obtained from the /auth endpoint. Include in requests as: Authorization: Bearer <token>"
+      }
+    },
+    "schemas": {
+      "SearchRequest": {
+        "type": "object",
+        "required": ["query", "num_records"],
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query using Datafiniti query syntax (e.g., key-value pairs like `country:US AND province:FL`)"
+          },
+          "num_records": {
+            "type": "integer",
+            "description": "Number of records to return"
+          },
+          "format": {
+            "type": "string",
+            "description": "Response format",
+            "default": "JSON",
+            "enum": ["JSON", "CSV"]
+          },
+          "download": {
+            "type": "boolean",
+            "description": "Set to true to initiate a bulk download of all matching records",
+            "default": false
+          },
+          "view": {
+            "type": "string",
+            "description": "Name of a saved view to apply to the results"
+          }
+        }
+      },
+      "PropertySearchRequest": {
+        "type": "object",
+        "required": ["query", "num_records"],
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query using Datafiniti query syntax (e.g., `country:US AND province:FL`)"
+          },
+          "num_records": {
+            "type": "integer",
+            "description": "Number of records to return"
+          },
+          "format": {
+            "type": "string",
+            "description": "Response format",
+            "default": "JSON",
+            "enum": ["JSON", "CSV"]
+          },
+          "download": {
+            "type": "boolean",
+            "description": "Set to true to initiate a bulk download of all matching records",
+            "default": false
+          },
+          "view": {
+            "type": "string",
+            "description": "Name of a saved view to apply to the results"
+          },
+          "auto_trace": {
+            "type": "boolean",
+            "description": "Enable autotrace to cross-reference property and people data. Requires both a people and property data plan. One record returned consumes 1 people data and 1 property data credit.",
+            "default": false
+          },
+          "only_traceable": {
+            "type": "boolean",
+            "description": "Return only traceable records with people.title:owner populated",
+            "default": false
+          }
+        }
+      },
+      "SearchResponse": {
+        "type": "object",
+        "properties": {
+          "num_found": {
+            "type": "integer",
+            "description": "Total number of matching records found"
+          },
+          "total_cost": {
+            "type": "number",
+            "description": "Total credit cost for this request"
+          },
+          "records": {
+            "type": "array",
+            "description": "Array of matching records",
+            "items": {
+              "type": "object"
+            }
+          },
+          "download_id": {
+            "type": "string",
+            "description": "Download ID if download was requested (only present when download: true)"
+          }
+        }
+      },
+      "Download": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique download identifier"
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of the download",
+            "enum": ["queued", "in_progress", "completed", "cancelled"]
+          },
+          "num_records": {
+            "type": "integer",
+            "description": "Number of records in the download"
+          },
+          "results": {
+            "type": "array",
+            "description": "Array of download result file links",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "description": "URL to download the result file"
+                }
+              }
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the download was created"
+          }
+        }
+      },
+      "ViewRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name for the view"
+          },
+          "fields": {
+            "type": "array",
+            "description": "List of fields to include in the view",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "View": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "View name"
+          },
+          "fields": {
+            "type": "array",
+            "description": "Fields included in this view",
+            "items": {
+              "type": "string"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the view was created"
+          }
+        }
+      },
+      "RealTimeRequest": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Query for the real-time data request"
+          },
+          "num_records": {
+            "type": "integer",
+            "description": "Number of records to scrape in real-time"
+          }
+        }
+      },
+      "RealTimeUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Query to identify records for real-time update"
+          },
+          "num_records": {
+            "type": "integer",
+            "description": "Number of records to update"
+          }
+        }
+      },
+      "AuthRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Your Datafiniti account email"
+          },
+          "password": {
+            "type": "string",
+            "description": "Your Datafiniti account password"
+          }
+        }
+      },
+      "AuthResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Bearer token to use in subsequent API requests"
+          }
+        }
+      },
+      "AccountInfo": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Account email address"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "First name"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "Last name"
+          },
+          "num_credits_used": {
+            "type": "integer",
+            "description": "Total credits used (legacy plans)"
+          },
+          "business_credits_allotted": {
+            "type": "integer",
+            "description": "Business data credits allotted"
+          },
+          "business_credits_used": {
+            "type": "integer",
+            "description": "Business data credits used"
+          },
+          "people_credits_allotted": {
+            "type": "integer",
+            "description": "People data credits allotted"
+          },
+          "people_credits_used": {
+            "type": "integer",
+            "description": "People data credits used"
+          },
+          "product_credits_allotted": {
+            "type": "integer",
+            "description": "Product data credits allotted"
+          },
+          "product_credits_used": {
+            "type": "integer",
+            "description": "Product data credits used"
+          },
+          "property_credits_allotted": {
+            "type": "integer",
+            "description": "Property data credits allotted"
+          },
+          "property_credits_used": {
+            "type": "integer",
+            "description": "Property data credits used"
+          }
+        }
+      },
+      "AccountUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "New email address"
+          },
+          "password": {
+            "type": "string",
+            "description": "New password"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "First name"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "Last name"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message describing what went wrong"
+          }
+        }
+      }
+    }
+  }
+}
