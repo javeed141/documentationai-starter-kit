@@ -1,0 +1,731 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Datafiniti API",
+    "description": "The Datafiniti API v3 provides developers with access to structured data for Businesses, Products, and Properties. V3 uses GET requests with query parameters and API key-based authentication in the URL. Note: V3 is a legacy version. Datafiniti recommends migrating to V4 which uses POST requests, Bearer token authentication, and consolidated download endpoints.\n\nKey differences from V4:\n- All data endpoints use GET instead of POST\n- Authentication is via API key in the URL (Basic Auth) rather than Bearer token header\n- A separate /results endpoint is required to fetch download file URLs (removed in V4)\n- No People data endpoint (added in V4)\n- No Views management endpoints (added in V4)\n- No Real-time data endpoints (added in V4)",
+    "version": "3.0.0",
+    "contact": {
+      "name": "Datafiniti Support",
+      "email": "support@datafiniti.co",
+      "url": "https://docs.datafiniti.co"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.datafiniti.co/v3",
+      "description": "Datafiniti API v3 Production Server (Legacy)"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Data",
+      "description": "Endpoints for searching and downloading business, product, and property data"
+    },
+    {
+      "name": "Requests",
+      "description": "Endpoint for monitoring the status of download requests"
+    },
+    {
+      "name": "Results",
+      "description": "Endpoint for retrieving download file URLs"
+    },
+    {
+      "name": "Account",
+      "description": "Endpoint for viewing your account information"
+    }
+  ],
+  "paths": {
+    "/data/businesses": {
+      "get": {
+        "tags": ["Data"],
+        "summary": "Search / Download Business Data",
+        "description": "The data endpoint lets you run preview searches and initiate downloads for business data.\n\nIf you set `download=false` (or don't set it), the API call will return a list of matching businesses for your query (up to 10 records). If you set `download=true`, it will return a request object that can be used to monitor the status of the download via the `/requests` endpoint.",
+        "operationId": "getBusinesses",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/query"
+          },
+          {
+            "$ref": "#/components/parameters/records"
+          },
+          {
+            "$ref": "#/components/parameters/format"
+          },
+          {
+            "$ref": "#/components/parameters/download"
+          },
+          {
+            "$ref": "#/components/parameters/view"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search response (preview mode) or download request initiated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/SearchResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/DownloadRequestResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "303": {
+            "description": "Redirect to the /requests endpoint to monitor download status (when download=true)",
+            "headers": {
+              "Location": {
+                "description": "URL of the request status endpoint",
+                "schema": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "invalidField": {
+                    "summary": "Invalid field name",
+                    "value": {
+                      "error": "field_name does not exist in business schema"
+                    }
+                  },
+                  "invalidQuery": {
+                    "summary": "Invalid query syntax",
+                    "value": {
+                      "error": "invalid query"
+                    }
+                  },
+                  "invalidView": {
+                    "summary": "Invalid view",
+                    "value": {
+                      "error": "view does not exist"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/data/products": {
+      "get": {
+        "tags": ["Data"],
+        "summary": "Search / Download Product Data",
+        "description": "The data endpoint lets you run preview searches and initiate downloads for product data.\n\nIf you set `download=false` (or don't set it), the API call will return a list of matching products for your query. If you don't set `records` when `download=false`, it will return up to 10 products. You can set `records` to a value between 0 and 10.\n\nIf you set `download=true`, it will return a request object that can be used to monitor the status of the download request. If you don't set `records` when `download=true`, it will initiate a download request for all matching products. You can set `records` to a value between 1 and the number of matching products.",
+        "operationId": "getProducts",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/query"
+          },
+          {
+            "$ref": "#/components/parameters/records"
+          },
+          {
+            "$ref": "#/components/parameters/format"
+          },
+          {
+            "$ref": "#/components/parameters/download"
+          },
+          {
+            "$ref": "#/components/parameters/view"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search response (preview mode) or download request initiated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/SearchResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/DownloadRequestResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "303": {
+            "description": "Redirect to the /requests endpoint to monitor download status (when download=true)"
+          },
+          "400": {
+            "description": "Bad request - invalid field name, query syntax, or view name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "invalidField": {
+                    "summary": "Invalid field name",
+                    "value": {
+                      "error": "field_name does not exist in product schema"
+                    }
+                  },
+                  "invalidQuery": {
+                    "summary": "Invalid query syntax",
+                    "value": {
+                      "error": "invalid query"
+                    }
+                  },
+                  "invalidView": {
+                    "summary": "Invalid view",
+                    "value": {
+                      "error": "view does not exist"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/data/properties": {
+      "get": {
+        "tags": ["Data"],
+        "summary": "Search / Download Property Data",
+        "description": "The data endpoint lets you run preview searches and initiate downloads for property data.\n\nIf you set `download=false` (or don't set it), the API call will return a list of matching properties for your query. If you don't set `records` when `download=false`, it will return up to 10 properties. You can set `records` to a value between 0 and 10.\n\nIf you set `download=true`, it will return a request object that can be used to monitor the status of the download request. If you don't set `records` when `download=true`, it will initiate a download request for all matching records. You can set `records` to a value between 1 and the number of matching records.",
+        "operationId": "getProperties",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/query"
+          },
+          {
+            "$ref": "#/components/parameters/records"
+          },
+          {
+            "$ref": "#/components/parameters/format"
+          },
+          {
+            "$ref": "#/components/parameters/download"
+          },
+          {
+            "$ref": "#/components/parameters/view"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search response (preview mode) or download request initiated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/SearchResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/DownloadRequestResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "303": {
+            "description": "Redirect to the /requests endpoint to monitor download status (when download=true)"
+          },
+          "400": {
+            "description": "Bad request - invalid field name, query syntax, or view name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "invalidField": {
+                    "summary": "Invalid field name",
+                    "value": {
+                      "error": "field_name does not exist in property schema"
+                    }
+                  },
+                  "invalidQuery": {
+                    "summary": "Invalid query syntax",
+                    "value": {
+                      "error": "invalid query"
+                    }
+                  },
+                  "invalidView": {
+                    "summary": "Invalid view",
+                    "value": {
+                      "error": "view does not exist"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/requests": {
+      "get": {
+        "tags": ["Requests"],
+        "summary": "Get All Download Requests",
+        "description": "The requests endpoint lets you monitor the status of all download requests you have initiated. Returns an array of request objects with status, progress, and metadata about each download.",
+        "operationId": "getAllRequests",
+        "responses": {
+          "200": {
+            "description": "List of download request objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RequestObject"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/requests/{request_id}": {
+      "get": {
+        "tags": ["Requests"],
+        "summary": "Get a Specific Download Request",
+        "description": "Monitor the status of a specific download request by its ID. Check if the download is still STARTED or has COMPLETED. Once completed, use the `/results/{request_id}` endpoint to get the download file URLs.",
+        "operationId": "getRequest",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "description": "The unique ID of the download request (returned when you initiate a download)",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Download request status and details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RequestObject"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request ID. You may be using an incorrect ID. Call /requests/ without an ID to see all your requests."
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/results/{request_id}": {
+      "get": {
+        "tags": ["Results"],
+        "summary": "Get Download Result Files",
+        "description": "The results endpoint lets you view the URLs of available data files for your completed download. Each result object contains a URL where you can download the data file. Result files expire 7 days after creation.\n\nNote: This endpoint was removed in V4. In V4, result file URLs are included directly in the download response.",
+        "operationId": "getResults",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "description": "The unique ID of the download request whose results you want to retrieve",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of result file objects with download URLs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResultObject"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "description": "Results don't exist. If your download request status still says STARTED, wait until it says COMPLETED. You may also be using the wrong request ID."
+          },
+          "500": {
+            "description": "You may be trying to look at an invalid request ID."
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": ["Account"],
+        "summary": "Get Account Information",
+        "description": "The users endpoint lets you view the status of your Datafiniti account, including your plan information, credit usage, and account details.",
+        "operationId": "getUsers",
+        "responses": {
+          "200": {
+            "description": "Account information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserObject"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "http",
+        "scheme": "basic",
+        "description": "V3 uses Basic Authentication with your API token as the username and no password. In URL form: https://YOUR_API_TOKEN:@api.datafiniti.co/v3/... In cURL: --user YOUR_API_TOKEN: (note the trailing colon). Get your token from the Datafiniti Web Portal at https://portal.datafiniti.co."
+      }
+    },
+    "parameters": {
+      "query": {
+        "name": "q",
+        "in": "query",
+        "required": false,
+        "description": "Search query using Datafiniti query syntax. Supports boolean operators (AND, OR), exact match with quotes, wildcards (*), negation (-), range queries, and nested field queries. Example: `categories:hotels AND country:US`",
+        "schema": {
+          "type": "string"
+        },
+        "example": "categories:hotels AND country:US"
+      },
+      "records": {
+        "name": "records",
+        "in": "query",
+        "required": false,
+        "description": "Number of records to return. For preview (download=false): 0-10, defaults to 10. For download (download=true): 1 to total matching records. If omitted during download, all matching records will be downloaded.",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 10
+      },
+      "format": {
+        "name": "format",
+        "in": "query",
+        "required": false,
+        "description": "Output format for the data. JSON returns data as JSON objects. CSV returns data in CSV format.",
+        "schema": {
+          "type": "string",
+          "enum": ["JSON", "CSV"],
+          "default": "JSON"
+        },
+        "example": "JSON"
+      },
+      "download": {
+        "name": "download",
+        "in": "query",
+        "required": false,
+        "description": "Set to true to initiate a bulk download. When false (default), returns up to 10 preview records immediately. When true, returns a 303 redirect to the /requests endpoint to monitor download progress.",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        },
+        "example": false
+      },
+      "view": {
+        "name": "view",
+        "in": "query",
+        "required": false,
+        "description": "The view determines which fields are returned in the response and the order they appear. Different views are available for each data type. Examples for businesses: businesses_all, businesses_all_nested. Examples for products: products_all, products_basicFields, products_pricesFlat. Examples for properties: properties_all, properties_all_nested.",
+        "schema": {
+          "type": "string"
+        },
+        "example": "businesses_all"
+      }
+    },
+    "schemas": {
+      "SearchResponse": {
+        "type": "object",
+        "description": "Response returned when download=false (preview mode). Contains matching records inline.",
+        "properties": {
+          "num_found": {
+            "type": "integer",
+            "description": "Total number of records in Datafiniti matching the query",
+            "example": 95378
+          },
+          "total_cost": {
+            "type": "integer",
+            "description": "Number of credits consumed by this request",
+            "example": 1
+          },
+          "records": {
+            "type": "array",
+            "description": "Array of matching records. The fields present depend on the data type and view used.",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "DownloadRequestResponse": {
+        "type": "array",
+        "description": "Response returned when download=true. Contains a request object array for monitoring the download.",
+        "items": {
+          "$ref": "#/components/schemas/RequestObject"
+        }
+      },
+      "RequestObject": {
+        "type": "object",
+        "description": "Represents the status of a download request. Poll this object via /requests/{id} until status changes from STARTED to COMPLETED.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the download request",
+            "example": 6073
+          },
+          "records": {
+            "type": "string",
+            "description": "Records field (may be empty)"
+          },
+          "query": {
+            "type": "string",
+            "description": "The query that was used for this download",
+            "example": "categories:hotels AND country:US"
+          },
+          "dataType": {
+            "type": "string",
+            "description": "The data type being downloaded",
+            "enum": ["businesses", "products", "properties"],
+            "example": "businesses"
+          },
+          "dataFormat": {
+            "type": "string",
+            "description": "The format of the download files",
+            "enum": ["json", "csv"],
+            "example": "csv"
+          },
+          "accountId": {
+            "type": "string",
+            "description": "Your API token used for this request",
+            "example": "AAAXXXXXXXXXXXX"
+          },
+          "planId": {
+            "type": "string",
+            "description": "The Datafiniti plan level you're using",
+            "example": "free"
+          },
+          "view": {
+            "type": "string",
+            "description": "The view used for this download, determining which fields are included",
+            "example": "businesses_all_nested"
+          },
+          "async": {
+            "type": "integer",
+            "description": "Should always be 1. Indicates this is a download (async) request.",
+            "example": 1
+          },
+          "status": {
+            "type": "string",
+            "description": "The current progress of the request. STARTED while running, COMPLETED when finished.",
+            "enum": ["STARTED", "COMPLETED"],
+            "example": "STARTED"
+          },
+          "error": {
+            "type": "string",
+            "description": "An error message if anything went wrong with the download. Empty string if no errors.",
+            "example": ""
+          },
+          "numDownloaded": {
+            "type": "integer",
+            "description": "Number of records that have been downloaded so far. Increases as the download progresses.",
+            "example": 0
+          },
+          "numFound": {
+            "type": "integer",
+            "description": "Total number of records in Datafiniti that matched your query",
+            "example": 95378
+          },
+          "numRequested": {
+            "type": "integer",
+            "description": "Number of records you requested to download. If you didn't set records, this equals numFound.",
+            "example": 95378
+          },
+          "date_started": {
+            "type": "string",
+            "description": "Date and time the download started",
+            "example": "2017-1-11 15:52:42"
+          },
+          "date_completed": {
+            "type": "string",
+            "description": "Date and time the download completed. May match date_started if still in progress.",
+            "example": "2017-1-11 15:52:43"
+          }
+        }
+      },
+      "ResultObject": {
+        "type": "object",
+        "description": "Represents a downloadable result file from a completed download request. Result files expire 7 days after creation.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the result object",
+            "example": 1
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "The URL of the data file. Fetch the content of this URL to download the file. This is typically an S3 pre-signed URL.",
+            "example": "https://datafiniti-downloads.s3.amazonaws.com/15/7_1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&..."
+          },
+          "request_id": {
+            "type": "integer",
+            "description": "A unique identifier for your download request",
+            "example": 6073
+          },
+          "downloaded": {
+            "type": "integer",
+            "description": "An internal field. You can ignore this."
+          },
+          "imported": {
+            "type": "integer",
+            "description": "An internal field. You can ignore this."
+          },
+          "date_created": {
+            "type": "string",
+            "description": "Date the result file was created. The result file will expire 7 days after this date.",
+            "example": "2017-1-11 15:53:00"
+          }
+        }
+      },
+      "UserObject": {
+        "type": "object",
+        "description": "Represents your Datafiniti account information.",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Your API token",
+            "example": "AAAXXXXXXXXXXXX"
+          },
+          "organization": {
+            "type": "string",
+            "description": "Your organization or company name",
+            "example": "Acme Corp"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Your email address",
+            "example": "user@example.com"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "Your first name",
+            "example": "John"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "Your last name",
+            "example": "Doe"
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "Your phone number",
+            "example": "555-123-4567"
+          },
+          "plan_id": {
+            "type": "string",
+            "description": "The Datafiniti plan to which you're subscribed",
+            "example": "free"
+          },
+          "type": {
+            "type": "string",
+            "description": "Your account type. Should be set to 'user'.",
+            "example": "user"
+          },
+          "active": {
+            "type": "integer",
+            "description": "Whether or not your account is active",
+            "example": 1
+          },
+          "available_downloads": {
+            "type": "integer",
+            "description": "The number of records you can download at this time",
+            "example": 10000
+          },
+          "date_registered": {
+            "type": "string",
+            "description": "The date your account was created",
+            "example": "2017-01-01 00:00:00"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message describing what went wrong"
+          }
+        }
+      }
+    },
+    "responses": {
+      "Unauthorized": {
+        "description": "You're using an invalid API token. Check your account page on the Datafiniti Portal (https://portal.datafiniti.co) to make sure you have the right token.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  }
+}

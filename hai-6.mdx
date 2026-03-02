@@ -1,0 +1,57 @@
+---
+title: Constructing Advanced Product Data Queries in Postman
+---
+
+This will walk you through querying the Product Database using Postman!
+
+## 1. Select the Product Database
+
+<Image src="https://files.readme.io/23a4086-1.jpg" width="1920" height="1080" alt="Click on 'Search Product Data' to get started." />
+
+## 2. Setting the Stage
+
+<Image src="https://files.readme.io/fa9a4a1-2.jpg" width="1920" height="1080" alt="Click on the 'Body' tab and make sure you have 'Raw' selected and that your text is set to 'JSON(application/JSON)'." />
+
+## 3. Running a Query
+
+<Image src="https://files.readme.io/4f84ea0-3.jpg" width="1920" height="1080" alt="The 'Body' window will have 2 fields in it already. Hitting 'Send' will query the Product Database for all records with a key." />
+
+<Callout kind="info">
+  **The "Wild Card"**
+
+Using **\*** in your query will search for any possible value that could fill that spot. In the above case, it is essentially saying "Find all records that have a key value set to anything". **Note that you can not prefix \* any string.**
+</Callout>
+
+You can query the database using most of the fields in the [Product Data Schema](https://developer.documentationai.com/v4/docs/product-data-schema).
+
+## 4. Narrowing The Search
+
+<Image src="https://files.readme.io/4b69a63-4.jpg" width="1920" height="1080" alt="You can search with different fields together inside the query string using AND or OR. The parentheses tell the API to process both values--amazon.com and ebay.com--as the sourceURLs of the record. Because they are connected with OR, we will see records that have one or the other. Had we used AND, only records with both sourceURLs would be shown." />
+
+## 5. Using Quotes Inside the Query String
+
+<Image src="https://files.readme.io/8997084-5.jpg" width="1920" height="1080" alt="To refine your query more, you may want to search for a specific word and not allow for any variations on it. To do that, you put it inside quotes. However, because you are already inside the main quotes of your string, you need to escape the new quotes by adding a backslash in front of each quote inside the main quotation marks. See the treatment of the iPhone value in the above example for clarification." />
+
+## 6. Additional Specifications
+
+<Image src="https://files.readme.io/686d904-6.jpg" width="1920" height="1080" alt="In addition to the 'query' and 'num_records', there are other values you can specify in the body text. You can set 'download' to either be true or false, 'format' to either be 'CSV' or 'JSON', and you can call any 'view' you have saved to your account." />
+
+<Callout kind="info">
+  **View**
+
+Setting your `"view"` not only changes the layout of your result file, but also changes how you see the records in Postman.
+</Callout>
+
+## 7. Custom Views on the Fly
+
+<Image src="https://files.readme.io/c8fb7ce-7.jpg" width="1920" height="1080" alt="If you'd like to create a custom view that you don't want to save, you can customize it inside the 'view' field before running your query!" />
+
+<Callout kind="info">
+  **Custom View Formatting**
+
+When creating the `"view"` object, put the entire thing inside of `[ ]`, with each field being called inside of `{ }`. If you are listing multiple fields, put a comma after each one except for the last one. See the screenshot above for an example.
+</Callout>
+
+## 8. Getting Your Download ID
+
+<Image src="https://files.readme.io/39a91e0-8.jpg" width="1920" height="1080" alt="When you send the request with 'download' set to true, it will start downloading your files. You will need your download ID to access them, which you can find here." />

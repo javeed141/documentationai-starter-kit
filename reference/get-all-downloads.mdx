@@ -1,0 +1,10 @@
+---
+title: Get all Downloads
+description: "Retrieve an array of all downloads you have started, including cancelled and completed ones."
+---
+
+This will retrieve an array of all the downloads you've ever started, including cancelled and completed ones.
+
+<Callout kind="info">
+Requesting downloads from this endpoint will not actually start downloading the data to your computer. It will simply return a JSON object describing the download. Links to the actual files which make up your download can be found in the `results` field for each download returned.
+</Callout>

@@ -141,7 +141,6 @@
                           }
                         ]
                       },
-                     
                       {
                         "group": "Use Cases for Property Data",
                         "pages": [
@@ -256,10 +255,8 @@
                         ]
                       },
                       {
-
                         "group": "API Features",
                         "pages": [
-                          
                           {
                             "title": "Autotrace",
                             "path": "docs/autotrace-property"
@@ -1378,6 +1375,10 @@
               {
                 "group": "Welcome to Datafiniti",
                 "pages": [
+                  {
+                    "title": "hai-6",
+                    "path": "hai-6"
+                  },
                   {
                     "title": "Getting Started",
                     "path": "docs/v3-get-started"

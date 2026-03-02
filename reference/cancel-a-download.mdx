@@ -1,0 +1,12 @@
+---
+title: Cancel a Download
+description: "Cancel an in-progress download. Cancelled downloads retain records added before cancellation."
+---
+
+<Callout kind="alert">
+Cancelling a download will stop the download, but not delete it. It will still include all records that were added to the download before it was cancelled, and you will be able to retrieve these records still, through `GET /downloads/{id}`.
+</Callout>
+
+<Callout kind="info">
+Your account will still have credits deducted for the number of records that were added before the download was cancelled.
+</Callout>
