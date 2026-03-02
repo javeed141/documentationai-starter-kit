@@ -1000,11 +1000,11 @@
                 "pages": [
                   {
                     "group": "Search and Downloads",
-                    "icon": "search",
                     "pages": [
                       {
                         "title": "Search and Downloads",
-                        "path": "reference/search-and-downloads"
+                        "path": "reference/search-and-downloads",
+                        "icon": "search"
                       },
                       {
                         "title": "Business Data",
@@ -1058,11 +1058,11 @@
                   },
                   {
                     "group": "Views",
-                    "icon": "eye",
                     "pages": [
                       {
                         "title": "Views",
-                        "path": "reference/views"
+                        "path": "reference/views",
+                        "icon": "eye"
                       },
                       {
                         "title": "Create View",
