@@ -1503,48 +1503,16 @@
                 "group": "Welcome to Datafiniti",
                 "pages": [
                   {
-                    "title": "gai",
-                    "path": "gai"
-                  },
-                  {
                     "title": "Getting Started",
                     "path": "v3/docs/get-started"
-                  },
-                  {
-                    "title": "V3 API Introduction",
-                    "path": "v3/docs/api-introduction"
-                  },
-                  {
-                    "title": "How Credits Work",
-                    "path": "v3/docs/how-credits-work-api"
-                  },
-                  {
-                    "title": "Settings",
-                    "path": "v3/docs/settings"
-                  },
-                  {
-                    "title": "Migrating from V3 to V4",
-                    "path": "v3/docs/migrating-from-v3-to-v4"
-                  },
-                  {
-                    "title": "Advanced Querying",
-                    "path": "v3/docs/advanced-querying"
-                  },
-                  {
-                    "title": "Downloading Result Files",
-                    "path": "v3/docs/downloading-result-files"
-                  },
-                  {
-                    "title": "Using Postman",
-                    "path": "v3/docs/using-postman"
                   }
                 ]
               },
               {
-                "group": "Datafiniti API",
+                "group": "Business Data",
                 "pages": [
                   {
-                    "group": "Property Data",
+                    "group": "Getting started with Business Data",
                     "pages": [
                       {
                         "title": "Business Data with Web Browser and CSV",
@@ -1824,6 +1792,19 @@
                   {
                     "title": "Reference Values for Property Schema",
                     "path": "v3/docs/reference-values-for-property-schema"
+                  }
+                ]
+              },
+              {
+                "group": "Miscellaneous",
+                "pages": [
+                  {
+                    "title": "Using Postman",
+                    "path": "v3/docs/using-postman"
+                  },
+                  {
+                    "title": "Migrating from V3 to V4",
+                    "path": "v3/docs/migrating-from-v3-to-v4"
                   }
                 ]
               }

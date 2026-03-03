@@ -108,17 +108,34 @@ It's important to note here that querying on sub-fields will not only return sub
 
 For instance, if a business look likes this:
 
-\{
+<CodeGroup tabs="Input,Output">
+```json
+{
   "name": "example business",
-  "reviews:": [
-    \{
+  "reviews": [
+    {
       "rating": 3
-    \},
-    \{
+    },
+    {
       "rating": 4
-    \}
+    }
   ]
-\}
+}
+```
+```json
+{
+  "name": "example business",
+  "reviews": [
+    {
+      "rating": 3
+    },
+    {
+      "rating": 4
+    }
+  ]
+}
+```
+</CodeGroup>
 
 then you'll see both `rating` values in your data, even if you do `"query": "reviews.rating:3"`.
 
