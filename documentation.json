@@ -34,7 +34,7 @@
                       },
                       {
                         "title": "API Status Check",
-                        "path": "docs/api-status-check-1"
+                        "path": "docs/api-status-check"
                       }
                     ]
                   },
@@ -290,7 +290,7 @@
                         "pages": [
                           {
                             "title": "Getting Started with People Data",
-                            "path": "docs/getting-started-with-people-data"
+                            "path": "docs/getting-started-with-people-data-1"
                           },
                           {
                             "title": "People Data with Postman",
@@ -1503,10 +1503,6 @@
                 "group": "Welcome to Datafiniti",
                 "pages": [
                   {
-                    "title": "gai-1",
-                    "path": "gai-1"
-                  },
-                  {
                     "title": "Getting Started",
                     "path": "v3/docs/get-started"
                   }
@@ -1515,7 +1511,6 @@
               {
                 "group": "Business Data",
                 "pages": [
-                 
                   {
                     "group": "Getting started with Business Data",
                     "pages": [
@@ -1621,7 +1616,7 @@
                 "pages": [
                   {
                     "title": "Getting started with People Data",
-                    "path": "v3/docs/getting-started-with-people-data"
+                    "path": "v3/docs/getting-started-with-people-data-1"
                   }
                 ]
               },
