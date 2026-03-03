@@ -110,10 +110,10 @@
                       {
                         "group": "Views",
                         "pages": [
-{
-                        "title": "Views",
-                        "path": "docs/property-data-views"
-                      },
+                          {
+                            "title": "Views",
+                            "path": "docs/property-data-views"
+                          },
                           {
                             "title": "Available Views for Property Data",
                             "path": "docs/available-views-for-property-data"
@@ -392,10 +392,10 @@
                       {
                         "group": "API Features",
                         "pages": [
-{
-                        "title": "API Features",
-                        "path": "docs/people-api-features"
-                      },
+                          {
+                            "title": "API Features",
+                            "path": "docs/people-api-features"
+                          },
                           {
                             "title": "Count",
                             "path": "docs/people-count"
@@ -599,10 +599,10 @@
                       {
                         "group": "API Features",
                         "pages": [
-{
-                        "title": "API Features",
-                        "path": "docs/product-api-features"
-                      },
+                          {
+                            "title": "API Features",
+                            "path": "docs/product-api-features"
+                          },
                           {
                             "title": "Count",
                             "path": "docs/product-count"
@@ -675,10 +675,10 @@
                       {
                         "group": "Views",
                         "pages": [
-{
-                        "title": "Views",
-                        "path": "docs/business-view"
-                      },
+                          {
+                            "title": "Views",
+                            "path": "docs/business-view"
+                          },
                           {
                             "title": "Available Views for Business Data",
                             "path": "docs/available-views-for-business-data-1"
@@ -730,10 +730,10 @@
                       {
                         "group": "API Features",
                         "pages": [
-{
-                        "title": "API Features",
-                        "path": "docs/business-api-features"
-                      },
+                          {
+                            "title": "API Features",
+                            "path": "docs/business-api-features"
+                          },
                           {
                             "title": "Count",
                             "path": "docs/business-count"
