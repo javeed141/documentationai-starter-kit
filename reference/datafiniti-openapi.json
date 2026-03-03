@@ -886,68 +886,72 @@
     "schemas": {
       "SearchRequest": {
         "type": "object",
-        "required": ["query", "num_records"],
+        "required": ["query"],
         "properties": {
           "query": {
             "type": "string",
-            "description": "Search query using Datafiniti query syntax (e.g., key-value pairs like `country:US AND province:FL`)"
+            "description": "The search query using Datafiniti query syntax (e.g., `keys:*`, `country:US AND province:FL`)"
           },
           "num_records": {
             "type": "integer",
-            "description": "Number of records to return"
+            "description": "The number of records your request will return, and the number of credits that will be deducted from your account. For non-downloads, the maximum is 10 records.",
+            "default": 10
           },
           "format": {
             "type": "string",
-            "description": "Response format",
-            "default": "JSON",
-            "enum": ["JSON", "CSV"]
+            "description": "Must be either `json` or `csv`. Defaults to `json`.",
+            "default": "json",
+            "enum": ["json", "csv"]
           },
           "download": {
             "type": "boolean",
-            "description": "Set to true to initiate a bulk download of all matching records",
+            "description": "Whether or not to start a download for this search.",
             "default": false
           },
           "view": {
             "type": "string",
-            "description": "Name of a saved view to apply to the results"
+            "description": "Specify a view you have created, or use a pre-made view. The view filters what data is displayed in your search results. This allows you to dynamically specify a view to filter the data you get back from your search.",
+            "default": "default"
           }
         }
       },
       "PropertySearchRequest": {
         "type": "object",
-        "required": ["query", "num_records"],
+        "required": ["query"],
         "properties": {
           "query": {
             "type": "string",
-            "description": "Search query using Datafiniti query syntax (e.g., `country:US AND province:FL`)"
+            "description": "The search query using Datafiniti query syntax (e.g., `country:US AND province:FL`)",
+            "default": "country:US"
           },
           "num_records": {
             "type": "integer",
-            "description": "Number of records to return"
+            "description": "The number of records your request will return, and the number of credits that will be deducted from your account. For non-downloads, the maximum is 10 records.",
+            "default": 1
           },
           "format": {
             "type": "string",
-            "description": "Response format",
-            "default": "JSON",
-            "enum": ["JSON", "CSV"]
+            "description": "Must be either `json` or `csv`. Defaults to `json`.",
+            "default": "json",
+            "enum": ["json", "csv"]
           },
           "download": {
             "type": "boolean",
-            "description": "Set to true to initiate a bulk download of all matching records",
+            "description": "Whether or not to start a download for this search.",
             "default": false
           },
           "view": {
             "type": "string",
-            "description": "Name of a saved view to apply to the results"
+            "description": "Specify a view you have created, or use a pre-made view. The view filters what data is displayed in your search results. If using `auto_trace=true`, leave blank or include `people.people_keys:*` in your view."
           },
           "auto_trace": {
             "type": "boolean",
-            "description": "Enable autotrace to cross-reference property and people data. Requires both a people and property data plan. One record returned consumes 1 people data and 1 property data credit.",
+            "description": "Whether to autotrace property data with people data records that match. Set to `true` or `false`.",
             "default": false
           },
           "only_traceable": {
             "type": "boolean",
-            "description": "Return only traceable records with people.title:owner populated",
+            "description": "Whether the records returned must have people data in the dataset. Set to `true` or `false`.",
             "default": false
           }
         }

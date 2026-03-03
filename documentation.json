@@ -1,6 +1,6 @@
 {
   "name": "Datafiniti ",
-  "initialRoute": "docs/how-credits-work-api",
+  "initialRoute": "docs/api-introduction",
   "navbar": {
     "actions": {
       "primary": {
