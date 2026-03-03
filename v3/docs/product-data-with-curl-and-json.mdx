@@ -113,7 +113,7 @@ Now let's dive through the response the API returned:
 
 Within the `records` field, you'll see a single product returned with multiple fields and their values associated with that product.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.  E.g., the example product shown has no `prices` field showing, so that means the database doesn't have any pricing information for it (we can update our request later to make sure we only get products that do have prices).
 
-Each product record will have multiple fields associated with it.  You can see a full list of available fields in our [Product Data Schema](https://java.documentationai.com/docs/product-data-schema).
+Each product record will have multiple fields associated with it.  You can see a full list of available fields in our [Product Data Schema](https://java.documentationai.com/v3/docs/product-data-schema).
 
 
 ## 4. Refine your search
@@ -256,4 +256,4 @@ Navigate to the file you downloaded and open it.
 The JSON data will actually be a text file, instead of a single JSON object. Each line in the text file is a JSON object. We format the data this way because most programming languages won't handle parsing the entire data set as a JSON object with their standard system calls very well.
 </Callout>
 
-From here, you'll most likely want to process the data using the programming language of your choice. Our other [JSON guides](https://java.documentationai.com/docs/getting-started-with-product-data) provide instructions on how to process this data.
+From here, you'll most likely want to process the data using the programming language of your choice. Our other [JSON guides](https://java.documentationai.com/v3/docs/getting-started-with-product-data) provide instructions on how to process this data.
