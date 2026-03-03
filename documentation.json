@@ -1497,7 +1497,7 @@
         "icon": "badge",
         "tabs": [
           {
-            "tab": "Guides V3",
+            "tab": "Guides",
             "groups": [
               {
                 "group": "Welcome to Datafiniti",
@@ -1515,10 +1515,7 @@
               {
                 "group": "Business Data",
                 "pages": [
-                  {
-                    "title": "Getting Started with Business Data",
-                    "path": "v3/docs/getting-started-with-business-data"
-                  },
+                 
                   {
                     "group": "Getting started with Business Data",
                     "pages": [
@@ -1847,7 +1844,7 @@
             ]
           },
           {
-            "tab": "API Reference V3",
+            "tab": "API Reference",
             "groups": [
               {
                 "group": "Requesting Data",
@@ -1898,7 +1895,7 @@
             ]
           },
           {
-            "tab": "changelog v3",
+            "tab": "changelog",
             "pages": [
               {
                 "title": "v3-page-1",
