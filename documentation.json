@@ -34,7 +34,7 @@
                       },
                       {
                         "title": "API Status Check",
-                        "path": "docs/api-status-check-1"
+                        "path": "docs/api-status-check"
                       }
                     ]
                   },
@@ -1515,7 +1515,6 @@
               {
                 "group": "Business Data",
                 "pages": [
-                 
                   {
                     "group": "Getting started with Business Data",
                     "pages": [
