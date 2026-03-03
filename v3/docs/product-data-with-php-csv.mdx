@@ -19,8 +19,12 @@ You're interested in using Datafiniti's product data to analyze trends in the wo
 Here are the steps we'll take:
 
 
+## 1. Open a code editor
+
 If you want to use PHP to access the Datafiniti API, we're assuming you'll be using a standard code editor to write your PHP code.  Open your code editor to get started.
 
+
+## 2. Get your API token
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
@@ -32,6 +36,8 @@ For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute examp
 
 .
 
+
+## 3. Run your first search
 
 The first thing we'll do is do write some code that will run a test search.  This test search will give us a sense for what sort of data might be available.  Eventually we'll refine our search so that we get back the most relevant data.  Since we want women's luxury shoes, let's try a simple search that will just give us listings for shoes sold online.
 
@@ -160,6 +166,8 @@ Within the `records` field, you'll see a single product returned with multiple f
 Each product record will have multiple fields associated with it.  You can see a full list of available fields in our [Product Data Schema](https://java.documentationai.com/docs/product-data-schema).
 
 
+## 4. Refine your search
+
 If you take a look at the sample record shown above, you'll notice that it's not actually a pair of shoes.  It's actually a shirt.  It was returned as a match because its category keywords included `Clothing, Shoes & Jewelry`.  If we downloaded all matching records, we would find several products that really are shoes, but we'd also find other products like this one, which aren't.
 
 We'll need to refine our search to make sure we're only getting shoes.  To do that, we can add additional filters to the `q` parameter to narrow down the results.  For example, we could change our `$query` value to the following:
@@ -217,6 +225,8 @@ Notice how Datafiniti lets you construct very refined boolean queries.  In the q
 
 You can run the PHP code above to see the difference in the results.
 
+
+## 5. Initiate a full download of the data
 
 Once we like what we see from the sample matches, it's time to download the entire data set!  To do this, we're going to update our code a fair bit (an explanation follows):
 
@@ -324,6 +334,8 @@ A few things to pay attention to in the above code:
 Since we've handled multiple steps of the download process in this code, we won't go into the details here, but we do recommend you familiarize yourself with those steps.  Checking them out in our [Product Data with Web Browser and CSV](https://datafiniti-api.readme.io/docs/product-data-with-web-browser-csv#section-5-initiate-a-full-download-of-the-data) will be helpful.
 
 
+## 6. Open the result file(s) in Excel
+
 The download code will save one or more result files to your project folder.  Open one of those files in Excel.  It will look something like:
 
 <Image src="https://files.readme.io/7938051-shoe_sample.jpg" width="1920" height="1080" alt="shoe_sample.jpg" />
@@ -332,5 +344,7 @@ A lot of the fields in a typical Datafiniti record will have multiple values.  E
 
 If you scroll over to the price columns (in Excel this should be columns AG - AY), you'll see entries for each product's prices.  Products can have one or more price, and each price will have multiple values associated with it (e.g., `amountMin`, `amountMax`, `currency`, etc.).  Each price entry will be on a separate row.
 
+
+## 7. Analyze the results
 
 If we want to find the average price of all these shoes, we just need to average column AG (`prices.amountMin`) or column AH (`prices.amoundMax`).  When I do this in my file, I get `75.825` as the average price.  Your average will probably be slightly different, since you're downloading the data at a different time than I did.

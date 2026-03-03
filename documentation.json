@@ -1512,8 +1512,16 @@
                 "group": "Business Data",
                 "pages": [
                   {
+                    "title": "Getting Started with Business Data",
+                    "path": "v3/docs/getting-started-with-business-data"
+                  },
+                  {
                     "group": "Getting started with Business Data",
                     "pages": [
+                      {
+                        "title": "Getting started with Business Data",
+                        "path": "v3/docs/getting-started-with-business-data"
+                      },
                       {
                         "title": "Business Data with Web Browser and CSV",
                         "path": "v3/docs/business-data-with-web-browser-csv"
@@ -1572,6 +1580,10 @@
                     "group": "Available Views for Business Data",
                     "pages": [
                       {
+                        "title": "Available Views for Business Data",
+                        "path": "v3/docs/available-views-for-business-data"
+                      },
+                      {
                         "title": "businesses_all",
                         "path": "v3/docs/businesses_all"
                       },
@@ -1618,6 +1630,10 @@
                   {
                     "group": "Getting Started with Product Data",
                     "pages": [
+                      {
+                        "title": "Getting Started with Product Data",
+                        "path": "v3/docs/getting-started-with-product-data"
+                      },
                       {
                         "title": "Product Data with Web Browser and CSV",
                         "path": "v3/docs/product-data-with-web-browser-csv"
@@ -1676,6 +1692,10 @@
                     "group": "Available Views for Product Data",
                     "pages": [
                       {
+                        "title": "Available Views for Product Data",
+                        "path": "v3/docs/available-views-for-product-data"
+                      },
+                      {
                         "title": "products_all",
                         "path": "v3/docs/products_all"
                       },
@@ -1713,6 +1733,10 @@
                   {
                     "group": "Getting started with Property Data",
                     "pages": [
+                      {
+                        "title": "Getting started with Property Data",
+                        "path": "v3/docs/getting-started-with-property-data"
+                      },
                       {
                         "title": "Property Data with Web Browser and CSV",
                         "path": "v3/docs/property-data-with-web-browser-and-csv"
@@ -1767,6 +1791,10 @@
                     "group": "Property Data Schema",
                     "pages": [
                       {
+                        "title": "Property Data Schema",
+                        "path": "v3/docs/property-data-schema"
+                      },
+                      {
                         "title": "Possible Values for Property Fields",
                         "path": "v3/docs/possible-values-for-property-fields"
                       }
@@ -1775,6 +1803,10 @@
                   {
                     "group": "Available Views for Property Data",
                     "pages": [
+                      {
+                        "title": "Available Views for Property Data",
+                        "path": "v3/docs/available-views-for-property-data"
+                      },
                       {
                         "title": "properties_all",
                         "path": "v3/docs/properties_all"

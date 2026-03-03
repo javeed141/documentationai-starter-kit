@@ -16,8 +16,12 @@ Your environment and data needs:
 Here are the steps we'll take:
 
 
+## 1. Download Postman
+
 We recommend using Postman when accessing the Datafiniti API.  It's a great client for using any sort of RESTful API and works particularly well with Datafiniti.  You can download Postman [here](https://www.getpostman.com/).
 
+
+## 2. Get your API token
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
@@ -27,6 +31,8 @@ To get your API token, go the [Datafiniti Web Portal (https://portal.documentati
 For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
 </Callout>
 
+
+## 3. Run your first search
 
 The first thing we'll do is do a test search that will give us a sense for what sort of data might be available.  Eventually we'll refine our search so that we get back the most relevant data.
 
@@ -163,6 +169,8 @@ Within the `records` field, you'll see a single business returned with multiple 
 Each business record will have multiple fields associated with it.  You can see a full list of available fields in our [Business Data Schema](https://java.documentationai.com/docs/business-data-schema).
 
 
+## 4. Refine your search
+
 If you think about the original query we made, you'll realize we didn't really specify which geography we're interested in.  Since we only want US hotels, we should narrow our search appropriately.
 
 `https://AAAXXXXXXXXXXXX:@api.documentationai.com/v3/data/businesses?view=businesses_all&format=JSON&q=categories:hotels AND country:US&records=10&download=false`
@@ -176,6 +184,8 @@ Datafiniti lets you construct very refined boolean queries.  If you wanted to do
 
 Update your API call in Postman and hit "Send" to see the updated results.
 
+
+## 5. Initiate a full download of the data
 
 Once we like what we see from the sample matches, it's time to download the entire data set!  To do this, we're going to make three changes to our API call:
 
@@ -233,12 +243,16 @@ Here's what these fields mean:
 | `date_completed` | The date and time the download finished. |
 
 
+## 6. Monitor the status of the download
+
 As the download request runs, you can check on its status by using this API call:
 
 `https://AAAXXXXXXXXXXXX:@api.documentationai.com/v3/requests/XXXX`
 
 You'll want to replace `XXXX` with the `id` value for your request.  If you keep making the above API call, you'll see `numDownloaded` gradually increase.
 
+
+## 7. Download the result file(s)
 
 Once the download finishes, the `/requests/` call will show `COMPLETED` for `status`.  You can then get links to the data files by making this API call:
 
@@ -264,9 +278,13 @@ If you've requested a lot of records (i.e., over 10,000), you may see more than 
 To download the result files, copy each `url` value and paste it into your browser.  Your browser will initiate a download to your computer.
 
 
+## 8. Open the result file(s) in Excel
+
 Navigate to the file you downloaded and open it.  Since it's a CSV file, it should open in Excel automatically.  It will look something like:
 
 <Image src="https://files.readme.io/a7b5fae-hotel_sample.jpg" width="1920" height="1080" alt="hotel_sample.jpg" />
 
+
+## 9. Analyze the results
 
 Using Excel, we can easily count the total number of hotels on a state-by-state basis.  The `province` column gives us where each hotel is located, so we can use it to tally up the numbers.

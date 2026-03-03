@@ -16,12 +16,16 @@ Your environment and data needs:
 Here are the steps we'll take:
 
 
+## 1. Install the request module for Node
+
 In your terminal, run the following to install the `request` module for Node:
 
 ```shell
 npm install request
 ```
 
+
+## 2. Get your API token
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
@@ -33,6 +37,8 @@ For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute examp
 
 .
 
+
+## 3. Run your first search
 
 The first thing we'll do is do write some code that will run a test search.  This test search will give us a sense for what sort of data might be available.  Eventually we'll refine our search so that we get back the most relevant data.
 
@@ -215,6 +221,8 @@ Within the `records` field, you'll see a single property returned with multiple 
 Each property record will have multiple fields associated with it.  You can see a full list of available fields in our [Property Data Schema](https://java.documentationai.com/docs/property-data-schema).
 
 
+## 4. Refine your search
+
 If you think about the original query we made, you'll realize we didn't really specify we only wanted homes for sale.  There are several other types of properties (e.g., commercial, rentals) that may also be in the data.  Since we only want homes for sale, we should narrow our search appropriately.
 
 We'll need to refine our search to make sure we're only getting US homes for sale.  To do that, we can add additional filters to the `q` parameter to narrow down the results.  For example:
@@ -259,6 +267,8 @@ Datafiniti lets you construct very refined boolean queries.  If you wanted to do
 
 You can run the Node.js code above to see the difference in the results.
 
+
+## 5. Initiate a full download of the data
 
 Once we like what we see from the sample matches, it's time to download the entire data set!  To do this, we're going to update our code a fair bit (an explanation follows):
 
@@ -326,6 +336,8 @@ A couple things to pay attention to in the above code:
 
 Since we've handled multiple steps of the download process in this code, we won't go into the details here, but we do recommend you familiarize yourself with those steps.  Checking them out in our [Property Data with Web Browser and CSV](https://java.documentationai.com/docs/property-data-with-web-browser-and-csv) guide.
 
+
+## 6. Parse the JSON data
 
 The download code will save one or more result files to your project folder.
 
