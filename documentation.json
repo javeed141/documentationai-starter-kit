@@ -1503,6 +1503,10 @@
                 "group": "Welcome to Datafiniti",
                 "pages": [
                   {
+                    "title": "gai-1",
+                    "path": "gai-1"
+                  },
+                  {
                     "title": "Getting Started",
                     "path": "v3/docs/get-started"
                   }
