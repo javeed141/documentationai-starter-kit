@@ -2,7 +2,7 @@
 title: properties_all_nested
 ---
 
-The `properties_all_nested` view will display all available fields in our [Property Data Schema](https://java.documentationai.com/v3/docs/property-data-schema).
+The `properties_all_nested` view will display all available fields in our [Property Data Schema](/v3/docs/property-data-schema).
 
 If using the `csv` format, it will keep all elements in multi-valued field lists in a single cell.  This means a field like `reviews` will show up as a nested JSON object within the CSV.
 
@@ -64,6 +64,6 @@ If using the `csv` format, it will keep all elements in multi-valued field lists
 | `websiteIDs` | N/A |
 
 
-## Sample CSV Output
+## Sample Output
 
-Right-click and choose "Save link as..." to download this sample so you can see it in Excel: [properties_all-CSV-example.csv]()
+To generate sample CSV or JSON output using this view, make an API request with the `view` parameter set to `properties_all_nested`. See the [Property Data API Reference](/v3/reference/search-property-data) for details on how to construct your request.

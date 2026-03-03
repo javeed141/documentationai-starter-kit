@@ -6,7 +6,7 @@ Establishing connections between individuals and the properties they are associa
 
 ## Locating people records in property data
 
-Whether you are looking for contact info of a property owner, to broker's information on buying / selling a property, Datafiniti's property data creates (when we can verify) a link from our people database to a property database. There are two places this can be found with our property data schema. You can discover these field more within our [Property Data Schema](https://java.documentationai.com/docs/property-data-schema). Here are the top level fields were they can be found:
+Whether you are looking for contact info of a property owner, to broker's information on buying / selling a property, Datafiniti's property data creates (when we can verify) a link from our people database to a property database. There are two places this can be found with our property data schema. You can discover these field more within our [Property Data Schema](/docs/property-data-schema). Here are the top level fields were they can be found:
 
 `owners` - The field array detailing the historical list of owners of the property.
 
@@ -39,14 +39,14 @@ Once you have the `people_key` for the person you wish to search the people data
 
 ## Accessing data on owners
 
-We can use Datafiniti's [People Data](https://java.documentationai.com/reference/people-data) search endpoint to enhance the results found from a property search. Providing more details about the specific homeowner you wish to know more about. This guide will provide you with the steps to bridge the gap between property & people data. If you would like a refresher on how to access homeowner data we recommend the following guides on how to find homeowner data.
+We can use Datafiniti's [People Data](/reference/people-data) search endpoint to enhance the results found from a property search. Providing more details about the specific homeowner you wish to know more about. This guide will provide you with the steps to bridge the gap between property & people data. If you would like a refresher on how to access homeowner data we recommend the following guides on how to find homeowner data.
 
-* [Contact new home owners](https://java.documentationai.com/docs/contact-new-home-owners)
-* [Find owners that need roofing work](https://java.documentationai.com/docs/contact-home-owners-that-need-roofing-work)
+* [Contact new home owners](/docs/contact-new-home-owners)
+* [Find owners that need roofing work](/docs/contact-home-owners-that-need-roofing-work)
 
 ### 1. Searching for property with linked owners
 
-To start, we must first find property with homeowners that have been linked to our people data. This link can be identified with our `people_key` sub field. Using our [Property Data](https://java.documentationai.com/reference/properties) search endpoint frist, we are filter the property data's `people` field for `people_key`. Using the previous [Contact new home owners](https://java.documentationai.com/docs/contact-new-home-owners) as a reference, you can use the following code to achieve this:
+To start, we must first find property with homeowners that have been linked to our people data. This link can be identified with our `people_key` sub field. Using our [Property Data](/reference/properties) search endpoint frist, we are filter the property data's `people` field for `people_key`. Using the previous [Contact new home owners](/docs/contact-new-home-owners) as a reference, you can use the following code to achieve this:
 
 ```json
 {
@@ -84,11 +84,11 @@ You will see the following response from which we can find your `people_key` of 
 
   **People data searches**
 
-  To use the [People Data](https://java.documentationai.com/docs/api-people-data) search endpoint requires a people data plan. Please check your [Settings](https://java.documentationai.com/docs/settings) page if you are unsure if you have people data credits to use for this search.
+  To use the [People Data](/docs/api-people-data) search endpoint requires a people data plan. Please check your [Settings](/docs/settings) page if you are unsure if you have people data credits to use for this search.
 
 </Callout>
 
-Now we will use the [People Data](https://java.documentationai.com/reference/people-data) search endpoint to cross reference the property data's `people_key` to the people data's `people_key`. Using the `mary/harris/us/fl/33919/1489charmontpl` `people_key` from earlier we can directly filter the `keys` field of our people data. You can use the following query to do so:
+Now we will use the [People Data](/reference/people-data) search endpoint to cross reference the property data's `people_key` to the people data's `people_key`. Using the `mary/harris/us/fl/33919/1489charmontpl` `people_key` from earlier we can directly filter the `keys` field of our people data. You can use the following query to do so:
 
 ```json
 {
@@ -107,7 +107,7 @@ Your response will look something like this:
             "dateAdded": "2025-03-20T15:19:40Z",
             "dateUpdated": "2025-05-01T20:00:11Z",
             "domains": [
-                "documentationai.com"
+                "datafiniti.co"
             ],
             "firstName": "Mary",
             "keys": [
@@ -133,7 +133,7 @@ Your response will look something like this:
                 "us/fl/fortmyers/1489charmontpl"
             ],
             "sourceURLs": [
-                "https://documentationai.com/"
+                "https://datafiniti.co/"
             ],
             "id": "F-UjtJUBnlMipTIrgi9T"
         }
@@ -147,14 +147,14 @@ When linking people data to property records, especially in the context of homeo
 
 ## Accessing the broker data
 
-We can use Datafiniti's [People Data](https://java.documentationai.com/reference/people-data) search endpoint to enhance the results found from a property search. Providing more details about brokers contact info, currently listing, and more. This guide will provide you the steps to bridge the gap between property & people data. If you would like a refresher on how to access brokers data we recommend the following guides:
+We can use Datafiniti's [People Data](/reference/people-data) search endpoint to enhance the results found from a property search. Providing more details about brokers contact info, currently listing, and more. This guide will provide you the steps to bridge the gap between property & people data. If you would like a refresher on how to access brokers data we recommend the following guides:
 
-* [Search broker listing property](https://java.documentationai.com/docs/search-broker-license-numbers)
-* [Generate a list of recent broker contacts](https://java.documentationai.com/docs/generate-a-list-of-recent-broker-contacts)
+* [Search broker listing property](/docs/search-broker-license-numbers)
+* [Generate a list of recent broker contacts](/docs/generate-a-list-of-recent-broker-contacts)
 
 ### 1. Searching for property with linked brokers
 
-To start, we must first find property with brokers that have been linked to our people data. This link can be identified with our `people_key` sub field. Using our [Property Data](https://java.documentationai.com/reference/properties) search endpoint we are filter the property data's `brokers` field for `people_key`. Using the [Search broker listing property](https://java.documentationai.com/docs/search-broker-license-numbers) as a start for our query, we can filter for the `brokers.people_key` in a search for broker listings.  You can use the following code to achieve this:
+To start, we must first find property with brokers that have been linked to our people data. This link can be identified with our `people_key` sub field. Using our [Property Data](/reference/properties) search endpoint we are filter the property data's `brokers` field for `people_key`. Using the [Search broker listing property](/docs/search-broker-license-numbers) as a start for our query, we can filter for the `brokers.people_key` in a search for broker listings.  You can use the following code to achieve this:
 
 ```json
 {
@@ -172,7 +172,7 @@ You will see the following response from which we can find your `people_key` of 
                     "agent": "Everett Zimmerman",
                     "dateSeen": "2025-04-02T17:30:46.988Z",
                     "sourceURLs": [
-                        "https://documentationai.com/bd-datafiniti"
+                        "https://datafiniti.co/bd-datafiniti"
                     ],
                     "websites": [
                         "http://homesinwickenburg.com/"
@@ -187,11 +187,11 @@ You will see the following response from which we can find your `people_key` of 
 
   **People data searches**
 
-  To use the [People Data](https://java.documentationai.com/docs/api-people-data) search endpoint requires a people data plan. Please check your [Settings](https://java.documentationai.com/docs/settings) page if you are unsure if you have people data credits to use for this search.
+  To use the [People Data](/docs/api-people-data) search endpoint requires a people data plan. Please check your [Settings](/docs/settings) page if you are unsure if you have people data credits to use for this search.
 
 </Callout>
 
-Now we will use the [People Data](https://java.documentationai.com/reference/people-data) search endpoint to cross reference the broker's `people_key` to the people data's `people_key`. Using the `everett/zimmerman/1531473490` `people_key` we can directly filter the `keys` field of our people data. You can use the following query to do so:
+Now we will use the [People Data](/reference/people-data) search endpoint to cross reference the broker's `people_key` to the people data's `people_key`. Using the `everett/zimmerman/1531473490` `people_key` we can directly filter the `keys` field of our people data. You can use the following query to do so:
 
 ```json
 {
@@ -212,7 +212,7 @@ Your response will look something like this:
             "dateAdded": "2025-04-02T19:21:18Z",
             "dateUpdated": "2025-04-02T19:21:18Z",
             "domains": [
-                "documentationai.com"
+                "datafiniti.co"
             ],
             "emails": [
                 "thehoneteam@outlook.com"
@@ -245,7 +245,7 @@ Your response will look something like this:
             ],
             "province": "AZ",
             "sourceURLs": [
-                "https://documentationai.com/bd-datafiniti"
+                "https://datafiniti.co/bd-datafiniti"
             ],
             "websites": [
                 "http://homesinwickenburg.com/"
@@ -266,7 +266,7 @@ Together, these fields enable a more complete and accurate connection between pe
 
 Owner data in property records will not include any contact information.  The steps described above show how to look individual people records to get the contact information.  If you need to pull multiple people records with contact information, you could script the API to follow the steps above in an automated fashion, or you could use Datafiniti's "Autotrace" API to do pull the contact information while querying the property database.
 
-This section shows you how to use AutoTrace to uncover verified homeowner identities and contact details—starting from just a name or address. We will use the queries shown at [Track property status changes](https://java.documentationai.com/docs/track-property-status-changes) as a starting point to find homeowners that recently put their property up for sale.
+This section shows you how to use AutoTrace to uncover verified homeowner identities and contact details—starting from just a name or address. We will use the queries shown at [Track property status changes](/docs/track-property-status-changes) as a starting point to find homeowners that recently put their property up for sale.
 
 <Callout kind="info">
 
@@ -309,7 +309,7 @@ Next, we set AutoTrace to `true` to import people data into the query results. W
 
 ### 3. Looking at your AutoTraced property record
 
-Your AutoTrace-enabled property search will look largely the same, but you'll notice that the `people` field now includes fields from the [People Data Schema](https://java.documentationai.com/docs/people-data-schema).
+Your AutoTrace-enabled property search will look largely the same, but you'll notice that the `people` field now includes fields from the [People Data Schema](/docs/people-data-schema).
 
 Here's an example record:
 
@@ -1565,7 +1565,7 @@ Here's an example record:
                     "postalCode": "77020",
                     "province": "TX",
                     "sourceURLs": [
-                        "https://documentationai.com/"
+                        "https://datafiniti.co/"
                     ]
                 }
             ],

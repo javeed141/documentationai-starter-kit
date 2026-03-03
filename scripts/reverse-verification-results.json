@@ -1,0 +1,5330 @@
+{
+  "ok": [
+    {
+      "path": "docs/property-data-with-wpgetapi",
+      "status": "ok",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-with-wpgetapi",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 420,
+        "source": 451
+      }
+    },
+    {
+      "path": "docs/normalized-countries-provinces",
+      "status": "ok",
+      "sourceUrl": "https://docs.datafiniti.co/docs/normalized-countries-provinces",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 2087,
+        "source": 987
+      }
+    },
+    {
+      "path": "docs/possible-values-for-people-fields",
+      "status": "ok",
+      "sourceUrl": "https://docs.datafiniti.co/docs/possible-values-for-people-fields",
+      "similarity": "100.0%",
+      "wordCount": {
+        "local": 389,
+        "source": 396
+      }
+    },
+    {
+      "path": "docs/portal-walkthrough",
+      "status": "ok",
+      "sourceUrl": "https://docs.datafiniti.co/docs/portal-walkthrough",
+      "similarity": "89.1%",
+      "wordCount": {
+        "local": 106,
+        "source": 111
+      }
+    },
+    {
+      "path": "docs/settings",
+      "status": "ok",
+      "sourceUrl": "https://docs.datafiniti.co/docs/settings",
+      "similarity": "51.5%",
+      "wordCount": {
+        "local": 264,
+        "source": 318
+      }
+    },
+    {
+      "path": "docs/billing",
+      "status": "ok",
+      "sourceUrl": "https://docs.datafiniti.co/docs/billing",
+      "similarity": "95.8%",
+      "wordCount": {
+        "local": 92,
+        "source": 104
+      }
+    },
+    {
+      "path": "docs/property-data-portal",
+      "status": "ok",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-portal",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 313,
+        "source": 347
+      }
+    },
+    {
+      "path": "docs/people-data-portal",
+      "status": "ok",
+      "sourceUrl": "https://docs.datafiniti.co/docs/people-data-portal",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 330,
+        "source": 404
+      }
+    },
+    {
+      "path": "docs/product-data-portal",
+      "status": "ok",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-data-portal",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 256,
+        "source": 305
+      }
+    },
+    {
+      "path": "docs/business-data-portal",
+      "status": "ok",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-data-portal",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 218,
+        "source": 243
+      }
+    },
+    {
+      "path": "docs/find-chain-restaurants-in-your-state",
+      "status": "ok",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-chain-restaurants-in-your-state",
+      "similarity": "92.0%",
+      "wordCount": {
+        "local": 142,
+        "source": 156
+      }
+    }
+  ],
+  "issues": [
+    {
+      "path": "docs/api-introduction",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/api-introduction",
+      "similarity": "95.3%",
+      "wordCount": {
+        "local": 107,
+        "source": 119
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "introduction"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/how-credits-work-api",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/how-credits-work-api",
+      "similarity": "37.0%",
+      "wordCount": {
+        "local": 728,
+        "source": 976
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "how credits work"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/api-property-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/api-property-data",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 189,
+        "source": 198
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/getting-started-with-property-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/getting-started-with-property-data",
+      "similarity": "77.3%",
+      "wordCount": {
+        "local": 44,
+        "source": 56
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "getting started with property data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/property-data-with-postman",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-with-postman",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1699,
+        "source": 1879
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property data with postman"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/property-data-with-curl",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-with-curl",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1685,
+        "source": 1894
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property data with curl"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/property-data-with-nodejs",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-with-nodejs",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 1081,
+        "source": 2142
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property data with node.js"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/property-data-with-php",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-with-php",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1488,
+        "source": 2599
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property data with php"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/property-data-with-python",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-with-python",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 1528,
+        "source": 2320
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property data with python"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/property-data-schema",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-schema",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 6066,
+        "source": 5710
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property data schema"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/property-field-type-breakdown",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-field-type-breakdown",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 260,
+        "source": 232
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property field type breakdown"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/possible-values-for-property-fields",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/possible-values-for-property-fields",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 411,
+        "source": 365
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "possible values for property fields"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/normalized-address-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/normalized-address-data",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 1333,
+        "source": 672
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "normalized property addresses"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/how-property-records-are-merged",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/how-property-records-are-merged",
+      "similarity": "26.6%",
+      "wordCount": {
+        "local": 167,
+        "source": 570
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "how property records are merged"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 570,
+          "localWords": 167,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/property-data-views",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-views",
+      "similarity": "90.5%",
+      "wordCount": {
+        "local": 36,
+        "source": 44
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "views"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/available-views-for-property-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/available-views-for-property-data",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 2895,
+        "source": 1600
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "available views for property data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/using-a-custom-property-view",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/using-a-custom-property-view",
+      "similarity": "47.1%",
+      "wordCount": {
+        "local": 232,
+        "source": 332
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "using a custom property view on the fly"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/create-save-a-custom-property-view",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/create-save-a-custom-property-view",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 361,
+        "source": 515
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "create &amp; save a property custom view"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/constructing-property-queries",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/constructing-property-queries",
+      "similarity": "69.5%",
+      "wordCount": {
+        "local": 656,
+        "source": 1183
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "constructing property queries"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/advanced-queries-of-property-postman",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/advanced-queries-of-property-postman",
+      "similarity": "37.0%",
+      "wordCount": {
+        "local": 173,
+        "source": 506
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "advanced queries of property data in postman"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 506,
+          "localWords": 173,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/use-cases-for-property-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/use-cases-for-property-data",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 133,
+        "source": 144
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "use cases for property data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/property-use-cases",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-use-cases",
+      "similarity": "66.7%",
+      "wordCount": {
+        "local": 24,
+        "source": 34
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property use cases"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/search-for-mls-property-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/search-for-mls-property-data",
+      "similarity": "66.7%",
+      "wordCount": {
+        "local": 609,
+        "source": 785
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "search for mls numbers or download mls markets"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/determine-home-values",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/determine-home-values",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 320,
+        "source": 14349
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "determine home values"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 14349,
+          "localWords": 320,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/search-for-properties-around-a-latlong",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/search-for-properties-around-a-latlong",
+      "similarity": "58.7%",
+      "wordCount": {
+        "local": 203,
+        "source": 247
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "search latitude &amp; longitude for properties"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/select-sites-for-commercial-development",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/select-sites-for-commercial-development",
+      "similarity": "56.3%",
+      "wordCount": {
+        "local": 256,
+        "source": 347
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "select sites for commercial development"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/find-locations-of-dental-offices",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-locations-of-dental-offices",
+      "similarity": "53.8%",
+      "wordCount": {
+        "local": 141,
+        "source": 178
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find locations of dental offices"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/contact-home-owners-that-need-roofing-work",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/contact-home-owners-that-need-roofing-work",
+      "similarity": "75.4%",
+      "wordCount": {
+        "local": 370,
+        "source": 469
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find owners that need roofing work"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/contact-new-home-owners",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/contact-new-home-owners",
+      "similarity": "72.4%",
+      "wordCount": {
+        "local": 552,
+        "source": 936
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "contact new home owners"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/search-property-status",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/search-property-status",
+      "similarity": "63.9%",
+      "wordCount": {
+        "local": 527,
+        "source": 647
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "search on property statuses"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/search-via-street-address",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/search-via-street-address",
+      "similarity": "66.7%",
+      "wordCount": {
+        "local": 435,
+        "source": 505
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "search via street address"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/discover-when-clients-sell-their-homes",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/discover-when-clients-sell-their-homes",
+      "similarity": "61.3%",
+      "wordCount": {
+        "local": 427,
+        "source": 558
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "discover when clients sell their homes"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/find-investment-properties",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-investment-properties",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 288,
+        "source": 771
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find investment properties"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 771,
+          "localWords": 288,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/identify-e-commerce-orders-shipping-to-vacant-houses",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/identify-e-commerce-orders-shipping-to-vacant-houses",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 325,
+        "source": 362
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "identify e-commerce orders shipping to vacant houses"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/collect-hoa-fee-data-for-a-property",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/collect-hoa-fee-data-for-a-property",
+      "similarity": "53.8%",
+      "wordCount": {
+        "local": 186,
+        "source": 243
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "collect hoa fee data for a property"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/find-rental-rates-for-properties",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-rental-rates-for-properties",
+      "similarity": "72.4%",
+      "wordCount": {
+        "local": 519,
+        "source": 797
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find rental rates for properties"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/find-property-comps-from-transaction-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-property-comps-from-transaction-data",
+      "similarity": "61.3%",
+      "wordCount": {
+        "local": 205,
+        "source": 276
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find property comps from transaction data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/find-prices-of-sold-properties",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-prices-of-sold-properties",
+      "similarity": "66.7%",
+      "wordCount": {
+        "local": 312,
+        "source": 4129
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find prices of sold properties"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 4129,
+          "localWords": 312,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/track-property-status-changes",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/track-property-status-changes",
+      "similarity": "63.9%",
+      "wordCount": {
+        "local": 742,
+        "source": 851
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "track property status changes"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/search-broker-license-numbers",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/search-broker-license-numbers",
+      "similarity": "61.3%",
+      "wordCount": {
+        "local": 345,
+        "source": 442
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "search broker listing property"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/generate-a-list-of-recent-broker-contacts",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/generate-a-list-of-recent-broker-contacts",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 415,
+        "source": 616
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "generate a list of recent broker contacts"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/find-property-refinance-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-property-refinance-data",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 499,
+        "source": 552
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find property refinance data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/find-days-on-market-from-commercial-property",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-days-on-market-from-commercial-property",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 311,
+        "source": 347
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find days on market for commercial property"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/find-property-with-liens",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-property-with-liens",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 401,
+        "source": 695
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find property with a lien"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/find-mortgage-lender-from-transactions",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-mortgage-lender-from-transactions",
+      "similarity": "56.3%",
+      "wordCount": {
+        "local": 132,
+        "source": 302
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find mortgage lender from transactions"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 302,
+          "localWords": 132,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/accessing-owners-brokers-and-other-people",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/accessing-owners-brokers-and-other-people",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 1550,
+        "source": 4740
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "accessing owners, brokers, &amp; other people data"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 4740,
+          "localWords": 1550,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/building-rental-property-data-market-reports",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/building-rental-property-data-market-reports",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 698,
+        "source": 846
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "building rental property data market reports"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/autotrace-property",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/autotrace-property",
+      "similarity": "78.6%",
+      "wordCount": {
+        "local": 536,
+        "source": 1236
+      },
+      "issues": [
+        {
+          "type": "content_shorter",
+          "sourceWords": 1236,
+          "localWords": 536,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/count-property",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/count-property",
+      "similarity": "66.7%",
+      "wordCount": {
+        "local": 132,
+        "source": 151
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "count"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/geolocation-property",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/geolocation-property",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 221,
+        "source": 345
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "geolocation"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/pagination-property",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/pagination-property",
+      "similarity": "78.6%",
+      "wordCount": {
+        "local": 180,
+        "source": 7033
+      },
+      "issues": [
+        {
+          "type": "content_shorter",
+          "sourceWords": 7033,
+          "localWords": 180,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/api-people-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/api-people-data",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 143,
+        "source": 152
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/people-data-with-postman",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/people-data-with-postman",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1531,
+        "source": 1691
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "people data with postman"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/people-data-with-curl",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/people-data-with-curl",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1450,
+        "source": 1661
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "people data with curl"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/people-data-with-nodejs",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/people-data-with-nodejs",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 998,
+        "source": 1869
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "people data with node.js"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/people-data-with-php",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/people-data-with-php",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1094,
+        "source": 1759
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "people data with php"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/people-data-with-python",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/people-data-with-python",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 1155,
+        "source": 1668
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "people data with python"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/people-data-schema",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/people-data-schema",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1341,
+        "source": 1163
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "people data schema"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/people-field-type-breakdown",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/people-field-type-breakdown",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 260,
+        "source": 232
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "people field type breakdown"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/available-views-for-people-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/available-views-for-people-data",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 38,
+        "source": 46
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "views"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/people_all",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/people_all",
+      "similarity": "88.5%",
+      "wordCount": {
+        "local": 212,
+        "source": 184
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "default view"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/creating-a-custom-people-view-on-the-fly",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/creating-a-custom-people-view-on-the-fly",
+      "similarity": "66.7%",
+      "wordCount": {
+        "local": 328,
+        "source": 477
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "creating a custom people view on the fly"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/create-save-a-custom-people-view",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/create-save-a-custom-people-view",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 366,
+        "source": 528
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "create &amp; save a custom people view"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/use-cases-for-people-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/use-cases-for-people-data",
+      "similarity": "82.1%",
+      "wordCount": {
+        "local": 46,
+        "source": 58
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "use cases for people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/people-use-cases",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/people-use-cases",
+      "similarity": "64.3%",
+      "wordCount": {
+        "local": 21,
+        "source": 31
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "people use cases"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/find-leads-for-a-saas-business",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-leads-for-a-saas-business",
+      "similarity": "53.8%",
+      "wordCount": {
+        "local": 301,
+        "source": 537
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find leads for a saas business"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/identifying-companies-with-employees-targeted-by-cyberattacks",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/identifying-companies-with-employees-targeted-by-cyberattacks",
+      "similarity": "63.9%",
+      "wordCount": {
+        "local": 237,
+        "source": 267
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "identifying companies with employees targeted by cyberattacks"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/gather-people-contact-information",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/gather-people-contact-information",
+      "similarity": "69.5%",
+      "wordCount": {
+        "local": 233,
+        "source": 291
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "gather people contact information"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/accessing-property-linked-people-records",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/accessing-property-linked-people-records",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 941,
+        "source": 5036
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "accessing property data linked to people records"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 5036,
+          "localWords": 941,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/find-brokers-in-your-area",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-brokers-in-your-area",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 488,
+        "source": 585
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find brokers in your area"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/constructing-people-queries",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/constructing-people-queries",
+      "similarity": "63.9%",
+      "wordCount": {
+        "local": 441,
+        "source": 700
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "constructing people queries"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/people-api-features",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/people-api-features",
+      "similarity": "94.6%",
+      "wordCount": {
+        "local": 61,
+        "source": 69
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "api features"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/people-count",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/people-count",
+      "similarity": "61.3%",
+      "wordCount": {
+        "local": 149,
+        "source": 161
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "count"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/people-pagination",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/people-pagination",
+      "similarity": "75.4%",
+      "wordCount": {
+        "local": 259,
+        "source": 278
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "pagination"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/api-product-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/api-product-data",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 146,
+        "source": 155
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "product data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/getting-started-with-product-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/getting-started-with-product-data",
+      "similarity": "68.8%",
+      "wordCount": {
+        "local": 48,
+        "source": 60
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "getting started with product data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product-data-with-postman",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-data-with-postman",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1693,
+        "source": 1946
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "product data with postman"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product-data-with-python",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-data-with-python",
+      "similarity": "72.4%",
+      "wordCount": {
+        "local": 1263,
+        "source": 1826
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "product data with python"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product-data-with-nodejs",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-data-with-nodejs",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 1185,
+        "source": 2097
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "product data with node.js"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product-data-with-curl",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-data-with-curl",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1707,
+        "source": 1919
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "product data with curl"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product-data-with-php",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-data-with-php",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1630,
+        "source": 3228
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "product data with php"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product-data-schema",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-data-schema",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 2933,
+        "source": 2770
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "product data schema"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product-field-type-breakdown",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-field-type-breakdown",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 260,
+        "source": 232
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "product field type breakdown"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product-brand-normalization",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-brand-normalization",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 681,
+        "source": 503
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "product brand normalization"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/possible-values-for-product-fields",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/possible-values-for-product-fields",
+      "similarity": "69.5%",
+      "wordCount": {
+        "local": 212,
+        "source": 259
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "possible values for product fields"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/dimensions-normalization",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/dimensions-normalization",
+      "similarity": "78.6%",
+      "wordCount": {
+        "local": 185,
+        "source": 207
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "dimensions normalization"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/taxonomy-1-level",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/taxonomy-1-level",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 198,
+        "source": 203
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "taxonomy 1 level"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/taxonomy-2-levels",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/taxonomy-2-levels",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1623,
+        "source": 2002
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "taxonomy 2 levels"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/taxonomy-3-levels",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/taxonomy-3-levels",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 8235,
+        "source": 5006
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "taxonomy 3 levels"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/taxonomy-4-levels",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/taxonomy-4-levels",
+      "similarity": "33.3%",
+      "wordCount": {
+        "local": 14,
+        "source": 22
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "taxonomy 4 levels"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/taxonomy-5-levels",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/taxonomy-5-levels",
+      "similarity": "33.3%",
+      "wordCount": {
+        "local": 14,
+        "source": 22
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "taxonomy 5 levels"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/taxonomy-6-levels",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/taxonomy-6-levels",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 23345,
+        "source": 36250
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "taxonomy 6 levels"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/taxonomy-7-levels",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/taxonomy-7-levels",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 5510,
+        "source": 9193
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "taxonomy 7 levels"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/taxonomy-8-levels",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/taxonomy-8-levels",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 614,
+        "source": 1046
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "taxonomy 8 levels"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/taxonomy-9-levels",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/taxonomy-9-levels",
+      "similarity": "90.0%",
+      "wordCount": {
+        "local": 136,
+        "source": 181
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "taxonomy 9 levels"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/available-views-for-product-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/available-views-for-product-data",
+      "similarity": "82.6%",
+      "wordCount": {
+        "local": 37,
+        "source": 45
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "views"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product_all",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product_all",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 1376,
+        "source": 2522
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "available views for product data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/creating-a-custom-product-view-on-the-fly",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/creating-a-custom-product-view-on-the-fly",
+      "similarity": "58.7%",
+      "wordCount": {
+        "local": 226,
+        "source": 347
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "creating a custom product view on the fly"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/create-save-a-custom-product-view",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/create-save-a-custom-product-view",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 328,
+        "source": 597
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "create &amp; save a custom product view"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/constructing-product-queries",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/constructing-product-queries",
+      "similarity": "61.3%",
+      "wordCount": {
+        "local": 653,
+        "source": 1014
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "constructing product queries"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/constructing-advanced-product-data-queries-in-postman",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/constructing-advanced-product-data-queries-in-postman",
+      "similarity": "38.9%",
+      "wordCount": {
+        "local": 181,
+        "source": 513
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "constructing advanced product data queries in postman"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 513,
+          "localWords": 181,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/how-product-records-are-merged",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/how-product-records-are-merged",
+      "similarity": "58.7%",
+      "wordCount": {
+        "local": 163,
+        "source": 225
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "how product records are merged"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/use-cases-for-product-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/use-cases-for-product-data",
+      "similarity": "89.6%",
+      "wordCount": {
+        "local": 78,
+        "source": 90
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "use cases for product data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product-use-cases",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-use-cases",
+      "similarity": "68.8%",
+      "wordCount": {
+        "local": 26,
+        "source": 36
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "product use cases"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/searching-by-gtin",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/searching-by-gtin",
+      "similarity": "49.3%",
+      "wordCount": {
+        "local": 212,
+        "source": 265
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "lookup products by gtin (upc, ean, etc.)"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/lookup-products-by-brand-and-model-number",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/lookup-products-by-brand-and-model-number",
+      "similarity": "63.9%",
+      "wordCount": {
+        "local": 240,
+        "source": 298
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "lookup products by brand and model number"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/train-llms-with-product-descriptions-and-review",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/train-llms-with-product-descriptions-and-review",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 317,
+        "source": 764
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "train llms with product descriptions and review"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 764,
+          "localWords": 317,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/pricing-analytics-for-pet-food",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/pricing-analytics-for-pet-food",
+      "similarity": "53.8%",
+      "wordCount": {
+        "local": 349,
+        "source": 453
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "pricing analytics for pet food"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/cleanup-product-data-entered-by-customers",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/cleanup-product-data-entered-by-customers",
+      "similarity": "61.3%",
+      "wordCount": {
+        "local": 232,
+        "source": 360
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "cleanup product data entered by customers"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/build-a-database-of-wines",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/build-a-database-of-wines",
+      "similarity": "56.3%",
+      "wordCount": {
+        "local": 312,
+        "source": 656
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "build a database of wines"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 656,
+          "localWords": 312,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/provide-personalized-pricing-recommendations",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/provide-personalized-pricing-recommendations",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 656,
+        "source": 607
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "provide personalized pricing recommendations"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/match-products-against-a-competitor",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/match-products-against-a-competitor",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 355,
+        "source": 440
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "match products against a competitor"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/search-for-smart-phones",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/search-for-smart-phones",
+      "similarity": "61.3%",
+      "wordCount": {
+        "local": 202,
+        "source": 6898
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "search for smart phones"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 6898,
+          "localWords": 202,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/finding-product-material-info",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/finding-product-material-info",
+      "similarity": "69.5%",
+      "wordCount": {
+        "local": 411,
+        "source": 512
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "finding product material info"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product-api-features",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-api-features",
+      "similarity": "94.3%",
+      "wordCount": {
+        "local": 58,
+        "source": 66
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "api features"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product-count",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-count",
+      "similarity": "53.8%",
+      "wordCount": {
+        "local": 152,
+        "source": 168
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "count"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product-pagination",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-pagination",
+      "similarity": "75.4%",
+      "wordCount": {
+        "local": 263,
+        "source": 278
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "pagination"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/api-business-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/api-business-data",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 142,
+        "source": 151
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "business data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/getting-started-with-business-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/getting-started-with-business-data",
+      "similarity": "76.2%",
+      "wordCount": {
+        "local": 58,
+        "source": 71
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "getting started with business data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/business-data-with-postman",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-data-with-postman",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1446,
+        "source": 1776
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "business data with postman"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/business-data-with-php",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-data-with-php",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1453,
+        "source": 2848
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "business data with php"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/business-data-with-python",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-data-with-python",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 1390,
+        "source": 2557
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "business data with python"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/business-data-with-nodejs",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-data-with-nodejs",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 1555,
+        "source": 2749
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "business data with node.js"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/business-data-with-curl",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-data-with-curl",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1497,
+        "source": 1845
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "business data with curl"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/business-data-schema",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-data-schema",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1993,
+        "source": 1837
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "business data schema"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/how-business-records-are-merged",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/how-business-records-are-merged",
+      "similarity": "53.8%",
+      "wordCount": {
+        "local": 143,
+        "source": 220
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "how business records are merged"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/business-field-type-breakdown",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-field-type-breakdown",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 260,
+        "source": 232
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "business field type breakdown"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/possible-values-for-business-fields",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/possible-values-for-business-fields",
+      "similarity": "85.4%",
+      "wordCount": {
+        "local": 59,
+        "source": 71
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "possible values for business fields"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/business-view",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-view",
+      "similarity": "82.4%",
+      "wordCount": {
+        "local": 25,
+        "source": 33
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "views"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/available-views-for-business-data-1",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/available-views-for-business-data-1",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1808,
+        "source": 1019
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "available views for business data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/constructing-business-queries",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/constructing-business-queries",
+      "similarity": "61.3%",
+      "wordCount": {
+        "local": 630,
+        "source": 1009
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "constructing business queries"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/constructing-advanced-business-data-queries-in-postman",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/constructing-advanced-business-data-queries-in-postman",
+      "similarity": "37.0%",
+      "wordCount": {
+        "local": 173,
+        "source": 504
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "constructing advanced business data queries in postman"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 504,
+          "localWords": 173,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/business-data-use-cases",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-data-use-cases",
+      "similarity": "80.0%",
+      "wordCount": {
+        "local": 29,
+        "source": 39
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "business data use cases"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/business-use-cases",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-use-cases",
+      "similarity": "58.3%",
+      "wordCount": {
+        "local": 18,
+        "source": 28
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "business use cases"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/discover-business-revenue",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/discover-business-revenue",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 271,
+        "source": 2346
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "discover revenue of businesses"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 2346,
+          "localWords": 271,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/search-via-street-address-business",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/search-via-street-address-business",
+      "similarity": "75.4%",
+      "wordCount": {
+        "local": 340,
+        "source": 397
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "search via street address"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/search-for-specific-restaurants",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/search-for-specific-restaurants",
+      "similarity": "72.4%",
+      "wordCount": {
+        "local": 234,
+        "source": 277
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "search for specific restaurants"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/find-local-restaurants-using-geolocation",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-local-restaurants-using-geolocation",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 483,
+        "source": 3253
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find local restaurants using geolocation"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 3253,
+          "localWords": 483,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/business-api-features",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-api-features",
+      "similarity": "94.7%",
+      "wordCount": {
+        "local": 62,
+        "source": 70
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "api features"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/business-count",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-count",
+      "similarity": "61.3%",
+      "wordCount": {
+        "local": 147,
+        "source": 159
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "count"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/business-geolocation",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-geolocation",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 258,
+        "source": 374
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "geolocation"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/business-pagination",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/business-pagination",
+      "similarity": "75.4%",
+      "wordCount": {
+        "local": 254,
+        "source": 271
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "pagination"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/enrichment-suppression",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/enrichment-suppression",
+      "similarity": "66.7%",
+      "wordCount": {
+        "local": 520,
+        "source": 532
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "enrichment &amp; suppression"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/product-data-enrichment",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/product-data-enrichment",
+      "similarity": "51.5%",
+      "wordCount": {
+        "local": 505,
+        "source": 634
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "product data enrichment with csv"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/property-data-with-postman-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-with-postman-and-json",
+      "similarity": "51.5%",
+      "wordCount": {
+        "local": 587,
+        "source": 718
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "product data enrichment with postman and json"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/property-data-enrichment-with-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-enrichment-with-csv",
+      "similarity": "58.7%",
+      "wordCount": {
+        "local": 563,
+        "source": 769
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property data enrichment with csv"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/property-data-enrichment-with-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-enrichment-with-json",
+      "similarity": "63.9%",
+      "wordCount": {
+        "local": 543,
+        "source": 748
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property data enrichment with json"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/property-data-suppression-with-postman",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-suppression-with-postman",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 408,
+        "source": 569
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property data suppression with csv"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/real-time-data-request",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/real-time-data-request",
+      "similarity": "33.3%",
+      "wordCount": {
+        "local": 4,
+        "source": 14
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "real-time data requests"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/realtime-data-requests",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/realtime-data-requests",
+      "similarity": "58.7%",
+      "wordCount": {
+        "local": 665,
+        "source": 813
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "scrape api"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/getting-started-with-realtime-updates",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/getting-started-with-realtime-updates",
+      "similarity": "58.7%",
+      "wordCount": {
+        "local": 1218,
+        "source": 1400
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "targeted updates"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/portal-introduction",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/portal-introduction",
+      "similarity": "80.8%",
+      "wordCount": {
+        "local": 96,
+        "source": 109
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "introduction"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/how-credits-work-portal",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/how-credits-work-portal",
+      "similarity": "69.5%",
+      "wordCount": {
+        "local": 482,
+        "source": 619
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "how credits work - portal"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/downloading-result-files",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/downloading-result-files",
+      "similarity": "42.1%",
+      "wordCount": {
+        "local": 72,
+        "source": 239
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "downloading result files"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 239,
+          "localWords": 72,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/get-your-postman-collection-and-token",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/get-your-postman-collection-and-token",
+      "similarity": "41.1%",
+      "wordCount": {
+        "local": 88,
+        "source": 235
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "get your postman collection and token"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 235,
+          "localWords": 88,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "docs/postman-endpoint-overview",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/postman-endpoint-overview",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 452,
+        "source": 480
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "postman: endpoint overview"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/postman-downloading-result-files",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/postman-downloading-result-files",
+      "similarity": "88.5%",
+      "wordCount": {
+        "local": 127,
+        "source": 153
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "postman: download result files"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/advanced-querying",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/advanced-querying",
+      "similarity": "58.7%",
+      "wordCount": {
+        "local": 177,
+        "source": 206
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "advanced querying building"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/property-data-features",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/property-data-features",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 237,
+        "source": 264
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property data features"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/searching-by-address-in-property",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/searching-by-address-in-property",
+      "similarity": "66.7%",
+      "wordCount": {
+        "local": 166,
+        "source": 192
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "searching by address in property"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/determine-home-values-portal",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/determine-home-values-portal",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 322,
+        "source": 347
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "determine home values - portal"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/find-recently-sold-property",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/find-recently-sold-property",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 274,
+        "source": 287
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "find recently sold property"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/search-sites-for-commercial-development",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/search-sites-for-commercial-development",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 281,
+        "source": 294
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "search sites for commercial development"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/discover-when-clients-sell-their-homes-portal",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/discover-when-clients-sell-their-homes-portal",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 329,
+        "source": 345
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "discover when clients sell their homes - portal"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/portal-property-data-views",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/portal-property-data-views",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 2556,
+        "source": 1377
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "property data views"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/generate-leads-for-a-saas-business",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/generate-leads-for-a-saas-business",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 167,
+        "source": 180
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "generate leads for a saas business"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/identifying-employees-targeted-by-cyberattacks",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/identifying-employees-targeted-by-cyberattacks",
+      "similarity": "63.9%",
+      "wordCount": {
+        "local": 220,
+        "source": 239
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "identifying employees targeted by cyberattacks"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/searching-by-upc-in-product-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/searching-by-upc-in-product-data",
+      "similarity": "78.4%",
+      "wordCount": {
+        "local": 175,
+        "source": 204
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "searching by upc in product data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/searching-by-sku-in-product-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/searching-by-sku-in-product-data",
+      "similarity": "73.6%",
+      "wordCount": {
+        "local": 175,
+        "source": 205
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "searching by sku in product data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/finding-compliance-features-in-product-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/finding-compliance-features-in-product-data",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 446,
+        "source": 461
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "finding compliance features in product data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/finding-highly-rated-products",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/finding-highly-rated-products",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 212,
+        "source": 234
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "finding highly rated products"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/searching-restaurants",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/docs/searching-restaurants",
+      "similarity": "91.5%",
+      "wordCount": {
+        "local": 121,
+        "source": 131
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 3,
+          "examples": [
+            "datafiniti api",
+            "web portal",
+            "searching restaurants"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/get-started",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/get-started",
+      "similarity": "88.4%",
+      "wordCount": {
+        "local": 108,
+        "source": 117
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/getting-started-with-business-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/getting-started-with-business-data",
+      "similarity": "14.8%",
+      "wordCount": {
+        "local": 58,
+        "source": 63
+      },
+      "issues": [
+        {
+          "type": "low_content_match",
+          "similarity": "14.8%",
+          "details": "Content may be significantly different or missing sections"
+        },
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/business-data-with-web-browser-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/business-data-with-web-browser-csv",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1516,
+        "source": 1726
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/business-data-with-postman-and-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/business-data-with-postman-and-csv",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1454,
+        "source": 1661
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/business-data-with-curl-and-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/business-data-with-curl-and-csv",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1467,
+        "source": 1699
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/business-data-with-php-and-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/business-data-with-php-and-csv",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1151,
+        "source": 2045
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/business-data-with-nodejs-and-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/business-data-with-nodejs-and-csv",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 1211,
+        "source": 1809
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/business-data-with-python-and-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/business-data-with-python-and-csv",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 1146,
+        "source": 1774
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "people data",
+            "property data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/business-data-with-web-browser-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/business-data-with-web-browser-and-json",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1494,
+        "source": 1705
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/business-data-with-postman-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/business-data-with-postman-and-json",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1433,
+        "source": 1643
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/business-data-with-curl-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/business-data-with-curl-and-json",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1444,
+        "source": 1677
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/business-data-with-php-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/business-data-with-php-and-json",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1163,
+        "source": 2116
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/business-data-with-nodejs-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/business-data-with-nodejs-and-json",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 1151,
+        "source": 1982
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/business-data-with-python-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/business-data-with-python-and-json",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 1158,
+        "source": 1830
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "people data",
+            "product data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/business-data-schema",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/business-data-schema",
+      "similarity": "51.5%",
+      "wordCount": {
+        "local": 1264,
+        "source": 1503
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/available-views-for-business-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/available-views-for-business-data",
+      "similarity": "59.2%",
+      "wordCount": {
+        "local": 72,
+        "source": 84
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/businesses_all",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/businesses_all",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 332,
+        "source": 191
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/businesses_all_menusflat",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/businesses_all_menusflat",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 324,
+        "source": 184
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/businesses_all_nested",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/businesses_all_nested",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 320,
+        "source": 177
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/businesses_all_nested_no_reviews",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/businesses_all_nested_no_reviews",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 314,
+        "source": 175
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/businesses_basic",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/businesses_basic",
+      "similarity": "82.9%",
+      "wordCount": {
+        "local": 115,
+        "source": 83
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/businesses_all_reviewsflat",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/businesses_all_reviewsflat",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 315,
+        "source": 173
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/constructing-business-queries",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/constructing-business-queries",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 496,
+        "source": 559
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/getting-started-with-people-data-1",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/getting-started-with-people-data-1",
+      "similarity": "0.0%",
+      "wordCount": {
+        "local": 2,
+        "source": 15
+      },
+      "issues": [
+        {
+          "type": "low_content_match",
+          "similarity": "0.0%",
+          "details": "Content may be significantly different or missing sections"
+        },
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/getting-started-with-product-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/getting-started-with-product-data",
+      "similarity": "18.2%",
+      "wordCount": {
+        "local": 93,
+        "source": 63
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/product-data-with-web-browser-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/product-data-with-web-browser-csv",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1845,
+        "source": 1890
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/product-data-with-postman-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/product-data-with-postman-csv",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1816,
+        "source": 1860
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/product-data-with-curl-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/product-data-with-curl-csv",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1787,
+        "source": 1854
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/product-data-with-php-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/product-data-with-php-csv",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1523,
+        "source": 2197
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/product-data-with-nodejs-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/product-data-with-nodejs-csv",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 1571,
+        "source": 2011
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/product-data-with-python-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/product-data-with-python-csv",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 1510,
+        "source": 1980
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/product-data-with-web-browser-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/product-data-with-web-browser-and-json",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1699,
+        "source": 1737
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/product-data-with-postman-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/product-data-with-postman-and-json",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1670,
+        "source": 1707
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/product-data-with-curl-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/product-data-with-curl-and-json",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1641,
+        "source": 1701
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/product-data-with-php-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/product-data-with-php-and-json",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1410,
+        "source": 2135
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/product-data-with-nodejs-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/product-data-with-nodejs-json",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 1354,
+        "source": 2055
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/product-data-with-python-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/product-data-with-python-and-json",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 1395,
+        "source": 1890
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "people data",
+            "product data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/product-data-schema",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/product-data-schema",
+      "similarity": "51.5%",
+      "wordCount": {
+        "local": 1120,
+        "source": 1426
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/available-views-for-product-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/available-views-for-product-data",
+      "similarity": "61.7%",
+      "wordCount": {
+        "local": 72,
+        "source": 83
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/products_all",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/products_all",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 276,
+        "source": 1031
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 1031,
+          "localWords": 276,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/products_basicfields",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/products_basicfields",
+      "similarity": "64.2%",
+      "wordCount": {
+        "local": 112,
+        "source": 645
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 645,
+          "localWords": 112,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/products_keyssourceurls",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/products_keyssourceurls",
+      "similarity": "28.3%",
+      "wordCount": {
+        "local": 76,
+        "source": 366
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 366,
+          "localWords": 76,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/products_all_nested",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/products_all_nested",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 264,
+        "source": 1017
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 1017,
+          "localWords": 264,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/products_pricesflat",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/products_pricesflat",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 262,
+        "source": 556
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 556,
+          "localWords": 262,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/products_reviewsflat",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/products_reviewsflat",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 262,
+        "source": 8800
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        },
+        {
+          "type": "content_shorter",
+          "sourceWords": 8800,
+          "localWords": 262,
+          "details": "Local content may be missing significant portions"
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/constructing-product-queries",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/constructing-product-queries",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 508,
+        "source": 556
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/getting-started-with-property-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/getting-started-with-property-data",
+      "similarity": "19.0%",
+      "wordCount": {
+        "local": 93,
+        "source": 63
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/property-data-with-web-browser-and-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/property-data-with-web-browser-and-csv",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1548,
+        "source": 1694
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/property-data-with-postman-and-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/property-data-with-postman-and-csv",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1523,
+        "source": 1669
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/property-data-with-curl-and-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/property-data-with-curl-and-csv",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1511,
+        "source": 1681
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/property-data-with-php-and-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/property-data-with-php-and-csv",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1183,
+        "source": 1879
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/property-data-with-nodejs-and-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/property-data-with-nodejs-and-csv",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 1239,
+        "source": 1735
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/property-data-with-python-and-csv",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/property-data-with-python-and-csv",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 1175,
+        "source": 1708
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/property-data-with-web-browser-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/property-data-with-web-browser-and-json",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1529,
+        "source": 1676
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/property-data-with-postman-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/property-data-with-postman-and-json",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 1500,
+        "source": 1646
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/property-data-with-curl-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/property-data-with-curl-and-json",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1473,
+        "source": 1643
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/property-data-with-php-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/property-data-with-php-and-json",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 1194,
+        "source": 1937
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/property-data-with-nodejs-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/property-data-with-nodejs-and-json",
+      "similarity": "85.2%",
+      "wordCount": {
+        "local": 1182,
+        "source": 1908
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/property-data-with-python-and-json",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/property-data-with-python-and-json",
+      "similarity": "81.8%",
+      "wordCount": {
+        "local": 1184,
+        "source": 1761
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/property-data-schema",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/property-data-schema",
+      "similarity": "53.8%",
+      "wordCount": {
+        "local": 1276,
+        "source": 2067
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/possible-values-for-property-fields",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/possible-values-for-property-fields",
+      "similarity": "30.0%",
+      "wordCount": {
+        "local": 14,
+        "source": 26
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/available-views-for-property-data",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/available-views-for-property-data",
+      "similarity": "82.9%",
+      "wordCount": {
+        "local": 68,
+        "source": 80
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/properties_all",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/properties_all",
+      "similarity": "92.3%",
+      "wordCount": {
+        "local": 439,
+        "source": 276
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/properties_all_nested",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/properties_all_nested",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 427,
+        "source": 262
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/constructing-property-queries",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/constructing-property-queries",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 517,
+        "source": 564
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/reference-values-for-property-schema",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/reference-values-for-property-schema",
+      "similarity": "88.7%",
+      "wordCount": {
+        "local": 242,
+        "source": 119
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/using-postman",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/using-postman",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 173,
+        "source": 183
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "v3/docs/migrating-from-v3-to-v4",
+      "status": "issues",
+      "sourceUrl": "https://docs.datafiniti.co/v3/docs/migrating-from-v3-to-v4",
+      "similarity": "96.1%",
+      "wordCount": {
+        "local": 481,
+        "source": 494
+      },
+      "issues": [
+        {
+          "type": "missing_sections",
+          "count": 5,
+          "examples": [
+            "welcome to datafiniti",
+            "business data",
+            "people data"
+          ]
+        }
+      ]
+    }
+  ],
+  "warnings": [],
+  "errors": [
+    {
+      "path": "docs/getting-started-with-people-data-1",
+      "status": "error",
+      "issue": "fetch_error",
+      "sourceUrl": "https://docs.datafiniti.co/docs/getting-started-with-people-data-1",
+      "details": "Invalid URL"
+    }
+  ],
+  "skipped": [
+    {
+      "path": "reference/search-and-downloads",
+      "status": "skipped",
+      "reason": "API reference page"
+    },
+    {
+      "path": "reference/views",
+      "status": "skipped",
+      "reason": "API reference page"
+    },
+    {
+      "path": "changelog/index",
+      "status": "skipped",
+      "reason": "Changelog page (consolidated)"
+    },
+    {
+      "path": "v3/changelog/index",
+      "status": "skipped",
+      "reason": "Changelog page (consolidated)"
+    }
+  ]
+}

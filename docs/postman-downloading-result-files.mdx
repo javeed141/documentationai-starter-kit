@@ -4,26 +4,38 @@ title: "Postman: Download Result Files"
 
 ## 1. Get your Download ID
 
-<Image src="https://files.readme.io/a7bc70c-8.jpg" width="1920" height="1080" alt="8.jpg" />
+After running your query with `"download": true`, you can grab your `download ID` from the response you get in Postman.
+
+<Image src="https://files.readme.io/a7bc70c-8.jpg" width="1920" height="1080" alt="Postman response showing download ID after running a query" />
 
 ## 2. Open the "Get Download" Endpoint
 
-<Image src="https://files.readme.io/ec23cab-2.jpg" width="1920" height="1080" alt="2.jpg" />
+Click "Get Download" in the "Downloads" folder to begin the download process.
+
+<Image src="https://files.readme.io/ec23cab-2.jpg" width="1920" height="1080" alt="Get Download endpoint in the Downloads folder" />
 
 ## 3. Request Your Result File(s)
 
-<Image src="https://files.readme.io/bbd5f87-3.jpg" width="1920" height="1080" alt="3.jpg" />
+Replace `:id` with your `download ID` number you got from Step 1. In this example, the `download ID` was `40`.
 
-## 3. Downloading The Files
+<Image src="https://files.readme.io/bbd5f87-3.jpg" width="1920" height="1080" alt="Replacing :id with download ID number in the request" />
 
-<Image src="https://files.readme.io/323305c-4.jpg" width="1920" height="1080" alt="4.jpg" />
+## 4. Downloading The Files
+
+Copy the URL listed in the `"results"`.
+
+<Image src="https://files.readme.io/323305c-4.jpg" width="1920" height="1080" alt="Response showing results URL to copy" />
 
 <Callout kind="info">
-  **Result Files**
+**Result Files**
 
 Result files are generated for every 100mb of records. Depending on the number of records downloading and your view, you may have many result file links, not just one.
 </Callout>
 
-<Image src="https://files.readme.io/a092287-5.jpg" width="1920" height="1080" alt="5.jpg" />
+Paste the results URL into your browser.
 
-<Image src="https://files.readme.io/a6da573-6.jpg" width="1920" height="1080" alt="6.jpg" />
+<Image src="https://files.readme.io/a092287-5.jpg" width="1920" height="1080" alt="Pasting results URL into browser address bar" />
+
+Hit Enter to trigger the download. Then enjoy your dataset!
+
+<Image src="https://files.readme.io/a6da573-6.jpg" width="1920" height="1080" alt="Download triggered in browser" />

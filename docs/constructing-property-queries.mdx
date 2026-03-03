@@ -16,7 +16,7 @@ The simplest query you can do is querying a single field.  Here's an example:
 
 This tells the API to search the property database for any business that has the value `Austin` in its `city` field.
 
-You can do similar queries on any of the fields in the [property schema](https://java.documentationai.com/docs/property-data-schema).  Here's an example that queries the `country` field:
+You can do similar queries on any of the fields in the [property schema](/docs/property-data-schema).  Here's an example that queries the `country` field:
 
 ```json
 {
@@ -561,17 +561,19 @@ It's important to note here that querying on sub-fields will not only return sub
 
 For instance, if a property look likes this:
 
-\{
+```json
+{
   "address": "123 Anywhere Ln",
   "reviews:": [
-    \{
+    {
       "rating": 3
-    \},
-    \{
+    },
+    {
       "rating": 4
-    \}
+    }
   ]
-\}
+}
+```
 
 then you'll see both `rating` values in your data, even if you do `"query": "reviews.rating:3"`.
 
@@ -586,7 +588,7 @@ Along with querying individual sub-fields, you can also query for sub-objects th
 }
 ```
 
-The key thing to note for these queries is that any sub-field requirements that you want to match within a single sub-object must be contained within curly brackets **"\{ \}"**
+The key thing to note for these queries is that any sub-field requirements that you want to match within a single sub-object must be contained within curly brackets **"{ }"**
 
 ## Range queries
 
@@ -640,7 +642,7 @@ You can use the API to search via the `address` field. For example, if you would
 }
 ```
 
-However there are many different ways to approach searching via an address. You can learn more here about [Search address in property or business data](https://support.documentationai.com/docs/searching-by-address-in-property-or-business-data) For more information on our postal code abbreviations, you can visit here: [postal code abbreviations](https://www.pb.com/docs/US/pdf/SIS/Mail-Services/USPS-Suffix-Abbreviations.pdf)
+However there are many different ways to approach searching via an address. You can learn more here about [Search address in property or business data](/docs/searching-by-address-in-property) For more information on our postal code abbreviations, you can visit here: [postal code abbreviations](https://www.pb.com/docs/US/pdf/SIS/Mail-Services/USPS-Suffix-Abbreviations.pdf)
 
 ## Geo Queries
 
@@ -667,7 +669,11 @@ You can also use the following units for measuring distance:
 
 ## Count Feature
 
-As an alternative or used for testing purposes you can set your num_records to 0 in your property search query. This is will only return the num_found of the query and will cost 0 credits to search. Try it out
+As an alternative or used for testing purposes you can set your num_records to 0 in your property search query. This is will only return the num_found of the query and will cost 0 credits to search.
+
+<Card title="Try it in the API Playground" href="/reference/properties" icon="play" horizontal={false}>
+  Test your property search queries directly in the API reference.
+</Card>
 
 ```json
 {
@@ -687,7 +693,7 @@ Please note that this is feature is only for paid accounts. So please check your
 As an alternative to running a download, you can also use the API to page through the data. This approach allows you to consume one chunk at a time.
 
 ```text
-POST https://api.documentationai.com/v4/properties/paginate?page=1&limit=500
+POST https://api.datafiniti.co/v4/properties/paginate?page=1&limit=500
 {
   "query": "keys:*"
 }

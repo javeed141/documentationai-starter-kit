@@ -16,7 +16,7 @@ The simplest query you can do is querying a single field.  Here's an example:
 
 This tells the API to search the people database for any person that works in Austin.
 
-You can do similar queries on any of the fields in the [people schema](https://java.documentationai.com/docs/people-data-schema).  Here's an example that queries the `businessName` field:
+You can do similar queries on any of the fields in the [people schema](/docs/people-data-schema).  Here's an example that queries the `businessName` field:
 
 ```json
 {
@@ -136,7 +136,11 @@ For some searches, you'll want to exclude certain values from returning.  For ex
 
 ## Count Feature
 
-As an alternative or used for testing purposes you can set your `num_records` to 0 in your people search query. This is will only return the `num_found` of the query and will cost 0 credits to search. Try it out
+As an alternative or used for testing purposes you can set your `num_records` to 0 in your people search query. This is will only return the `num_found` of the query and will cost 0 credits to search.
+
+<Card title="Try it in the API Playground" href="/reference/people-data" icon="play" horizontal={false}>
+  Test your people search queries directly in the API reference.
+</Card>
 
 ```json
 {
@@ -156,7 +160,7 @@ Please note that this is feature is only for paid accounts. So please check your
 As an alternative to running a download, you can also use the API to page through the data. This approach allows you to consume one chunk at a time.
 
 ```text
-POST https://api.documentationai.com/v4/products/paginate?page=1&limit=50
+POST https://api.datafiniti.co/v4/products/paginate?page=1&limit=50
 {
   "query": "keys:*"
 }

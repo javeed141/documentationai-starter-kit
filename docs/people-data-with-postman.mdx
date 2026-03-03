@@ -22,9 +22,9 @@ We recommend using Postman when accessing the Datafiniti API.  It's a great clie
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com/settings/api), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co/settings/api), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
-<Image src="https://files.readme.io/7a9b4cfaa16d9c33bd568f461438ac0f937eca3df7f532450ce1e00fcc74c358-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/7a9b4cfaa16d9c33bd568f461438ac0f937eca3df7f532450ce1e00fcc74c358-image.png" width="1920" height="1080" alt="Screenshot showing 2. get your api token" />
 
 <Callout kind="info">
   **API Key**
@@ -46,7 +46,7 @@ Since we want CEOs, let's try a simple search that will just give us people with
 
 With Postman open, click on the Datafiniti API V4 collection.  Then navigate to Secured Endpoints > Search > Search People Data.  Click on "Body" in the main screen.
 
-<Image src="https://files.readme.io/78cf3cb26da0a0d78d75846ceb724d154f5642611a015f5acd017357819a71fc-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/78cf3cb26da0a0d78d75846ceb724d154f5642611a015f5acd017357819a71fc-image.png" width="1920" height="1080" alt="Screenshot showing 3. run your first search" />
 
 Enter the following in the text area:
 
@@ -90,7 +90,7 @@ Click the blue "Send" button.  You should get a response similar to this:
             "postalCode": "48101",
             "province": "MI",
             "sourceURLs": [
-                "https://documentationai.com"
+                "https://datafiniti.co"
             ],
             "id": "AWG2azB1QH9dEUBnfEki"
         }
@@ -111,12 +111,12 @@ Now let's dive through the response the API returned:
 | Response Field | Description |
 | --- | --- |
 | `"num_found"` | The total number of available records in the database that match your query.  If you end up downloading the entire data set, this is how many records you'll use. |
-| `"total_cost"` | The number of credits this request has cost you.  People records have a record cost multiplier tied to them.  [See pricing](https://documentationai.com/pricing/people-data-pricing/). |
+| `"total_cost"` | The number of credits this request has cost you.  People records have a record cost multiplier tied to them.  [See pricing](https://datafiniti.co/pricing/people-data-pricing/). |
 | `"records"` | The first available matches to your query. If there are no matches, this field will be empty.   <br />    <br /> Within each record returned, you'll see multiple fields shown.  This is the data for each record. |
 
 Within the `records` field, you'll see a single person returned with multiple fields and the values associated with that product.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
 
-Each product record will have multiple fields associated with it.  You can see a full list of available fields in our [People Data Schema](https://java.documentationai.com/docs/people-data-schema).
+Each product record will have multiple fields associated with it.  You can see a full list of available fields in our [People Data Schema](/docs/people-data-schema).
 
 ## 4. Refine your search
 
@@ -151,7 +151,7 @@ If you would like to narrow your search to just exact matches you can place the 
 
 The above query will only return people with the exact title of Product Developer. The quotation marks need to be escaped using back slashes since they are already within another set of quotation marks. Your response should look like this:
 
-<Image src="https://files.readme.io/336a0c096ad093cee8d4fd8b25b881220e62bbb10cd1e16d9f2cb121c37e03b5-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/336a0c096ad093cee8d4fd8b25b881220e62bbb10cd1e16d9f2cb121c37e03b5-image.png" width="1920" height="1080" alt="Screenshot showing 4. refine your search" />
 
 ## 5. Initiate a download of the data
 
@@ -237,13 +237,13 @@ Here's what these fields mean:
 | `query`          | The query you ran.                                                                                                                                                                                   |
 | `format`         | The data format you requested.                                                                                                                                                                       |
 | `num_records`    | The total number of records that will be downloaded.                                                                                                                                                 |
-| `total_cost`     | The total number of credits used by this download.  People records have a record cost multiplier tied to them.  [See pricing](https://documentationai.com/pricing/people-data-pricing/).                   |
+| `total_cost`     | The total number of credits used by this download.  People records have a record cost multiplier tied to them.  [See pricing](https://datafiniti.co/pricing/people-data-pricing/).                   |
 
 ## 7. Download the result file(s)
 
 Once the download response shows `"status": "completed"`, you can download the data using the URLs in the `results` field.
 
-<Image src="https://files.readme.io/b24b430b1244eab414db004630abb19e9314a8ef246bbfdd8abc20d2538f12bd-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/b24b430b1244eab414db004630abb19e9314a8ef246bbfdd8abc20d2538f12bd-image.png" width="1920" height="1080" alt="Screenshot showing 7. download the result file(s)" />
 
 If you've requested a lot of records (i.e., over 10,000), you may see more than 1 result object shown.
 
@@ -255,7 +255,7 @@ To download the result files, copy each `url` value and paste it into your brows
 
 For files formatted as CSV, you will receive you files as `<downloadID_#>`.csv. You can navigate to the file you downloaded and open it.  Since it's a CSV file, it should open in Excel automatically.  It will look something like:
 
-<Image src="https://files.readme.io/e200451-people.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/e200451-people.png" width="1920" height="1080" alt="E200451 people" />
 
 ### Parse JSON data
 

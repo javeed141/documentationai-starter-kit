@@ -26,7 +26,7 @@ npm install request
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go to the Datafiniti Web Portal ([https://portal.documentationai.com](https://portal.documentationai.com)), log in, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go to the Datafiniti Web Portal ([https://portal.datafiniti.co](https://portal.datafiniti.co)), log in, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 <Callout kind="info">
   **API Key**
@@ -63,7 +63,7 @@ var num_records = 1;
 var download = false;
 
 var request_options = {
-  url: 'https://api.documentationai.com/v4/people/search',
+  url: 'https://api.datafiniti.co/v4/people/search',
   method: 'POST',
   json: {
     'query': query,
@@ -123,7 +123,7 @@ You should get a response similar to this:
             "postalCode": "48101",
             "province": "MI",
             "sourceURLs": [
-                "https://documentationai.com"
+                "https://datafiniti.co"
             ],
             "id": "AWG2azB1QH9dEUBnfEki"
         }
@@ -144,12 +144,12 @@ Now let's dive through the response the API returned:
 | Response Field | Description |
 | --- | --- |
 | `"num_found"` | The total number of available records in the database that match your query.  If you end up downloading the entire data set, this is how many records you'll use. |
-| `"total_cost"` | The number of credits this request has cost you.  People records have a record cost multiplier tied to them.  [See pricing](https://documentationai.com/pricing/people-data-pricing/). |
+| `"total_cost"` | The number of credits this request has cost you.  People records have a record cost multiplier tied to them.  [See pricing](https://datafiniti.co/pricing/people-data-pricing/). |
 | `"records"` | The first available matches to your query. If there are no matches, this field will be empty.   <br />    <br /> Within each record returned, you'll see multiple fields shown.  This is the data for each record. |
 
 Within the `records` field, you'll see a single person returned with multiple fields and the values associated with that product.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
 
-Each product record will have multiple fields associated with it.  You can see a full list of available fields in our [People Data Schema](https://java.documentationai.com/docs/people-data-schema).
+Each product record will have multiple fields associated with it.  You can see a full list of available fields in our [People Data Schema](/docs/people-data-schema).
 
 ## 4. Refine your search
 
@@ -169,7 +169,7 @@ var num_records = 10;
 var download = false;
 
 var request_options = {
-  url: 'https://api.documentationai.com/v4/people/search',
+  url: 'https://api.datafiniti.co/v4/people/search',
   method: 'POST',
   json: {
     'query': query,
@@ -217,7 +217,7 @@ var num_records = 10;
 var download = false;
 
 var request_options = {
-  url: 'https://api.documentationai.com/v4/people/search',
+  url: 'https://api.datafiniti.co/v4/people/search',
   method: 'POST',
   json: {
     'query': query,
@@ -263,7 +263,7 @@ var num_records = 20;
 var download = true;
 
 var request_options = {
-  url: 'https://api.documentationai.com/v4/people/search',
+  url: 'https://api.datafiniti.co/v4/people/search',
   method: 'POST',
   json: {
     'query': query,
@@ -283,7 +283,7 @@ console.log(request_options);
 function checkDownloadUntilComplete(options, callback) {
   var download_id = options.download_id;
   var download_options = {
-    url: 'https://api.documentationai.com/v4/downloads/' + download_id,
+    url: 'https://api.datafiniti.co/v4/downloads/' + download_id,
     method: 'GET',
     headers: {
       'Authorization': 'Bearer ' + API_token,
@@ -337,7 +337,7 @@ A few things to pay attention to in the above code:
 If num_records is not specified, ALL of the records matching the query will be downloaded.
 </Callout>
 
-Since we've handled multiple steps of the download process in this code, we won't go into the details here, but we do recommend you familiarize yourself with those steps.  Checking them out in our other guides [Getting started with People Data](https://java.documentationai.com/docs/getting-started-with-people-data)
+Since we've handled multiple steps of the download process in this code, we won't go into the details here, but we do recommend you familiarize yourself with those steps.  Checking them out in our other guides [Getting started with People Data](/docs/getting-started-with-people-data)
 
 ## 6. Parse the data
 
@@ -345,7 +345,7 @@ Since we've handled multiple steps of the download process in this code, we won'
 
 For files formatted as CSV, you will receive you files as `downloadID\_#.csv`. You can navigate to the file you downloaded and open it.  Since it's a CSV file, it should open in Excel automatically. Using Excel, we can easily use the data to build our sales campaign.
 
-<Image src="https://files.readme.io/e200451-people.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/e200451-people.png" width="1920" height="1080" alt="E200451 people" />
 
 ### Parse the JSON data
 

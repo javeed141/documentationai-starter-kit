@@ -57,7 +57,7 @@ Now we will need to pull only the addresses in the property csv to use in our su
 
 ## Building the suppress API call using Postman
 
-Next, we will open the Datafiniti api library in Postman. For how to get the Postman library, you can use this guide here: [Postman Guide](https://support.documentationai.com/docs/postman-endpoint-overview) Once open we will use the following query to look for `single family dwelling` in Austin Texas, US.
+Next, we will open the Datafiniti api library in Postman. For how to get the Postman library, you can use this guide here: [Postman Guide](/docs/postman-endpoint-overview) Once open we will use the following query to look for `single family dwelling` in Austin Texas, US.
 
 ```text
 country:US AND province:"TX" AND city:"austin" AND propertyType:"Single Family Dwelling"
@@ -111,6 +111,6 @@ After sending the api call you will receive a response similar to any of the sea
 
 Your `is_suppression_job` will dictate that your api call is a suppression call. Typically these calls have a longer response and download time. Your download `id` is dictated by the last `id` key in the response.
 
-You can check your download status by the following guide here: [Postman: Download Result Files](https://java.documentationai.com/docs/postman-downloading-result-files)
+You can check your download status by the following guide here: [Postman: Download Result Files](/docs/postman-downloading-result-files)
 
 Once you have downloaded your suppressed data, you can check to see that no previously search for addresses were pulled. This will allow you to optimize how you spend your credits using Datafiniti's Suppression API. Only searching once instead of pulling records multiple times.

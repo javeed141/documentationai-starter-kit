@@ -23,7 +23,7 @@ If you want to use cURL to access the Datafiniti API, we're assuming you have ac
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com/settings), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co/settings), login, and click your settings in the left navigation bar.  From there, you'll see a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 <Callout kind="info">
   **API Key**
@@ -46,7 +46,7 @@ Since we want hotels, let's try a simple search that will just give us online li
 Enter the following into your terminal (replace the dummy API token with your real API token):
 
 ```curl
-curl --request POST --url https://api.documentationai.com/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"categories:hotel","format:json","num_records":1}'
+curl --request POST --url https://api.datafiniti.co/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"categories:hotel","format:json","num_records":1}'
 ```
 
 You should get a response similar to this (although it may not look as pretty in your terminal):
@@ -165,14 +165,14 @@ Now let's dive through the response the API returned:
 
 Within the `records` field, you'll see a single business returned with multiple fields and the values associated with that business.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
 
-Each business record will have multiple fields associated with it.  You can see a full list of available fields in our [Business Data Schema](https://java.documentationai.com/docs/business-data-schema).
+Each business record will have multiple fields associated with it.  You can see a full list of available fields in our [Business Data Schema](/docs/business-data-schema).
 
 ### 4. Refine your search
 
 If you think about the original query we made, you'll realize we didn't really specify which geography we're interested in.  Since we only want US hotels, we should narrow our search appropriately.  Modify your request to look like this:
 
 ```curl
-curl --request POST --url https://api.documentationai.com/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"categories:hotel AND country:US","format:csv", "num_records": 10}'
+curl --request POST --url https://api.datafiniti.co/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"categories:hotel AND country:US","format:csv", "num_records": 10}'
 ```
 
 This API call is different in a couple ways:
@@ -188,7 +188,7 @@ Datafiniti lets you construct very refined boolean queries.  If you wanted to do
 Once we like what we see from the sample matches, it's time to download a larger data set!  To do this, we're going to further modify our request to look like this:
 
 ```curl
-curl --request POST --url https://api.documentationai.com/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"categories:hotel AND country:US","format:csv","view": "business_basic", "download": true}'
+curl --request POST --url https://api.datafiniti.co/v4/businesses/search --header 'authorization: Bearer AAAXXXXXXXXXXXX' --data '{"query":"categories:hotel AND country:US","format:csv","view": "business_basic", "download": true}'
 ```
 
 Here's what we changed:
@@ -228,7 +228,7 @@ We'll explain each of these fields in the next section.
 As the download request runs, you can check on its status by making a call to the `/downloads/` endpoint like so:
 
 ```curl
-curl --request GET --url https://api.documentationai.com/v4/downloads/XXXX --header 'authorization: Bearer AAAXXXXXXXXXXXX'
+curl --request GET --url https://api.datafiniti.co/v4/downloads/XXXX --header 'authorization: Bearer AAAXXXXXXXXXXXX'
 ```
 
 You'll want to replace `XXXX` with the `id` value for your request.  If you keep running this call, you'll see some of the values update.  Once the download completes, it will look something like this:
@@ -289,7 +289,7 @@ You'll probably want to rename `output.txt` to something specific to this reques
 
 For files formatted as CSV, you will receive you files as `downloadID_#.csv`. You can navigate to the file you downloaded and open it.  Since it's a CSV file, it should open in Excel automatically.  It will look something like:
 
-<Image src="https://files.readme.io/e200451-people.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/e200451-people.png" width="1920" height="1080" alt="E200451 people" />
 
 #### Parse JSON data
 
@@ -328,4 +328,4 @@ Navigate to the file you downloaded and open it.
 The JSON data will actually be a text file, instead of a single JSON object. Each line in the text file is a JSON object. We format the data this way because most programming languages won't handle parsing the entire data set as a JSON object with their standard system calls very well.
 </Callout>
 
-From here, you'll most likely want to process the data using the programming language of your choice. Our other [JSON guides](https://java.documentationai.com/docs/getting-started-with-product-data) provide instructions on how to process this data.
+From here, you'll most likely want to process the data using the programming language of your choice. Our other [JSON guides](/docs/getting-started-with-product-data) provide instructions on how to process this data.

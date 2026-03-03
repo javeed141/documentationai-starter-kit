@@ -2,11 +2,11 @@
 title: Autotrace
 ---
 
-Autotrace with the Property Data API allows you to connect people and property data. This API call uses the regular property search endpoint with minor differences, notably the `auto_trace` parameter and a specific [view](https://java.documentationai.com/docs/property-data-views) for property records. This will allow you to directly pull property records, along with owner contact information, with just one API call.
+Autotrace with the Property Data API allows you to connect people and property data. This API call uses the regular property search endpoint with minor differences, notably the `auto_trace` parameter and a specific [view](/docs/property-data-views) for property records. This will allow you to directly pull property records, along with owner contact information, with just one API call.
 
 ## Endpoint
 
-POST [https://api.documentationai.com/v4/properties/search](https://api.documentationai.com/v4/properties/search)
+POST [https://api.datafiniti.co/v4/properties/search](https://api.datafiniti.co/v4/properties/search)
 
 <Request tabs="Shell,Python,C#">
 ```bash
@@ -193,7 +193,7 @@ Example API with view:
 
   **custom views**
 
-  You can customize your view with as many or as little subfield as you would like. For more information you can read more about [Views](https://java.documentationai.com/docs/property-data-views).
+  You can customize your view with as many or as little subfield as you would like. For more information you can read more about [Views](/docs/property-data-views).
 
 </Callout>
 
@@ -519,7 +519,7 @@ Example output - simplified view of people
                     "postalCode": "32541-3525",
                     "province": "FL",
                     "sourceURLs": [
-                        "https://documentationai.com/bd-datafiniti"
+                        "https://datafiniti.co/bd-datafiniti"
                     ],
                     "tcpa": false,
                     "phoneNumberHighScoreMobileScore": 100,
@@ -570,5 +570,5 @@ Example output - simplified view of people
 
 ### Example use cases
 
-* [Contact new home owners](https://java.documentationai.com/docs/contact-new-home-owners)
-* [Contact home owners that need roofing work](https://java.documentationai.com/docs/contact-home-owners-that-need-roofing-work)
+* [Contact new home owners](/docs/contact-new-home-owners)
+* [Contact home owners that need roofing work](/docs/contact-home-owners-that-need-roofing-work)

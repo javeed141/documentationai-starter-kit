@@ -2,6 +2,60 @@
 title: Property Data Schema
 ---
 
-The property data schema lists all available fields in a property record. Note that actual property records may not have every field present.
+The property data schema below lists all available fields in a property record. Note that actual property records may not have every field present.
 
-For a list of possible values for specific property fields, see the [Possible Values for Property Fields](https://java.documentationai.com/v3/docs/possible-values-for-property-fields) page.
+For a list of possible values for specific property fields, see the [Possible Values for Property Fields](/v3/docs/possible-values-for-property-fields) page.
+
+| Field Name | Example Value | Description |
+| --- | --- | --- |
+| `address` | `"address": "7206 Walling Ln"` | The physical street address for this property. |
+| `availableDates` | `"availableDates": [{"dateSeen": ["2017-03-16T00:00:00Z"], "endDate": "2017-02-16T00:00:00Z", "sourceURLs": ["http://..."], "startDate": "2017-02-16T00:00:00Z"}]` | A list of dates this property is available (typically for rent). Each availability contains: `dateSeen`, `endDate`, `sourceURLs`, `startDate`. |
+| `brokers` | `"brokers": [{"agent": "Frances Zuckerman", "company": "Fillmore", "dateSeen": ["2017-01-17T09:47:16Z"], "emails": ["fzuckerman@gmail.com"], "phones": ["3214561234"]}]` | A list of brokers that have represented this property over time. Each broker may contain: `agent`, `company`, `dateSeen`, `emails`, `phones`, `websites`. |
+| `buildingName` | `"buildingName": "The Grand"` | The name of the building where this property is located. This field is specific to apartments, condos, and similar property types. |
+| `city` | `"city": "Dallas"` | The city where the property is located. |
+| `country` | `"country": "US"` | The two-letter country code for the property location's country. |
+| `dateAdded` | `"dateAdded": "2017-01-08T19:12:13Z"` | The date this property was first added to the property database. |
+| `dateUpdated` | `"dateUpdated": "2017-01-08T19:12:13Z"` | The most recent date this property was updated or seen by our system. |
+| `deposits` | `"deposits": [{"amount": 104, "currency": "USD", "dateSeen": ["2016-08-07T18:07:05Z"], "sourceURLs": ["https://..."]}]` | A list of deposit fees that have been seen for this property. Each deposit contains: `amount`, `currency`, `dateSeen`, `sourceURLs`. |
+| `descriptions` | `"descriptions": [{"sourceURLs": ["http://..."], "value": "charming starter home priced to sell..."}]` | A list of descriptions for this property from various sources. Each description contains: `dateSeen`, `sourceURLs`, `value`. |
+| `features` | `"features": [{"key": "Community District", "value": ["318"]}]` | A list of features associated with this property. Each feature contains: `key` (label) and `value` (list of possible values). |
+| `fees` | `"fees": [{"amountMax": 11, "amountMin": 11, "currency": "USD", "dateSeen": ["2016-08-07T18:07:05Z"], "sourceURLs": ["https://..."], "type": "Cleaning Fee"}]` | A list of various fees that have been seen for this property. Each fee contains: `amountMax`, `amountMin`, `currency`, `dateSeen`, `sourceURLs`, `type`. |
+| `floorSizeValue` | `"floorSizeValue": 1000` | The size of the walkable area of the property. For apartments and condos, this is the size of the property. For homes and buildings, this is the combined size of each floor and does not include lot size. |
+| `floorSizeUnit` | `"floorSizeUnit": "Sq. ft"` | The units of measurement for `floorSizeValue`. |
+| `hours` | `"hours": [{"day": "Saturday", "hour": "10:00am-5:00pm"}]` | The hours of operation for property. Each hour object contains: `day` and `hour`. |
+| `imageURLs` | `"imageURLs": ["http://image.rent.com/..."]` | A list of image URLs for this property. |
+| `keys` | `"keys": ["us/ca/nhills/9411brightwoodct"]` | A list of internal Datafiniti identifiers for this property. The `keys` field is used to merge raw data from individual sources into the master Datafiniti record. |
+| `languagesSpoken` | `"languagesSpoken": ["French", "English"]` | A list of the languages spoken at this property. |
+| `latitude` | `"latitude": "32.860858"` | The latitude coordinates for this property. |
+| `leasingTerms` | `"leasingTerms": [{"dateSeen": ["2016-07-30T20:41:01Z"], "sourceURLs": ["https://..."], "value": "12 Months"}]` | A list of leasing terms that have been associated with this property. Each leasing term contains: `dateSeen`, `sourceURLs`, `value`. |
+| `listingName` | `"listingName": "Antico Appartamento"` | The name of the property listing. This isn't the name of the building. It's a descriptive name supplied for the listing itself. |
+| `longitude` | `"longitude": "-96.735808"` | The longitude coordinates for this property. |
+| `lotSizeValue` | `"lotSizeValue": 2219` | The lot size for the property. This is the ground area covered by the property. |
+| `lotSizeUnit` | `"lotSizeUnit": "Sq. ft"` | The units of measurement for `lotSizeValue`. |
+| `managedBy` | `"managedBy": [{"dateSeen": ["2016-03-03T15:02:13Z"], "sourceURLs": ["http://..."], "value": "ROM Investments"}]` | A list of companies or people that have managed this property. Each managedBy object contains: `dateSeen`, `sourceURLs`, `value`. |
+| `mlsNumber` | `"mlsNumber": "16177277"` | The MLS number for the property. [Learn more about MLS numbers](https://en.wikipedia.org/wiki/Multiple_listing_service). |
+| `nearbySchools` | `"nearbySchools": [{"dateSeen": ["2017-06-11T11:40:54Z"], "distanceUnit": "mi", "distanceValue": 5.3, "name": "Holbrook High School", "sourceURLs": ["http://..."]}]` | A list of schools near this property. Each school may contain: `assigned`, `address`, `city`, `country`, `dateSeen`, `distanceValue`, `distanceUnit`, `faxes`, `gradeLevels`, `name`, `phones`, `postalCode`, `province`, `sourceURLs`. |
+| `neighborhoods` | `"neighborhoods": ["Canarsie"]` | A list of neighborhoods where this property is located. Sometimes an area can belong to multiple neighborhoods, which is why this field is a list. |
+| `numBathroom` | `"numBathroom": 2` | The number of bathrooms in this property. |
+| `numBedroom` | `"numBedroom": 3` | The number of bedrooms in this property. |
+| `numFloor` | `"numFloor": 2` | The number of floors or stories in this property. |
+| `numPeople` | `"numPeople": 6` | The number of people that can occupy this property. |
+| `numRoom` | `"numRoom": 5` | The number of rooms in this property. |
+| `numUnit` | `"numUnit": 1` | The number of units available in this property. |
+| `parking` | `"parking": ["Garage"]` | A list of details regarding parking at this property. |
+| `paymentTypes` | `"paymentTypes": ["Visa"]` | A list of payment options accepted by the property. |
+| `people` | `"people": [{"name": "Pulcano Yvonne", "title": "Owner"}]` | A list of known people associated with or employed by this property. Each person may contain: `dateSeen`, `email`, `name`, `phone`, `title`. |
+| `petPolicy` | `"petPolicy": "Pets are not allowed."` | The pet policy for the property. |
+| `phones` | `"phones": ["5058982700"]` | A list of phone numbers for the property. |
+| `postalCode` | `"postalCode": "75231"` | The postal or zip code of the property. |
+| `prices` | `"prices": [{"amountMax": 289000, "amountMin": 289000, "currency": "USD", "dateSeen": ["2017-10-09T00:00:00Z"], "isSale": "false", "isSold": "false", "pricePerSquareFoot": 197, "sourceURLs": ["http://..."]}]` | A list of prices for this property. Price objects may contain: `amountMin`, `amountMax`, `availability`, `comment`, `currency`, `date`, `dateAdded`, `dateSeen`, `dateValidStart`, `dateValidEnd`, `isSale`, `isSold`, `minStay`, `period`, `pricePerSquareFoot`, `sourceURLs`. |
+| `propertyTaxes` | `"propertyTaxes": [{"amount": 1582, "currency": "USD", "dateSeen": ["2016-08-09T09:34:15Z"], "sourceURLs": ["http://..."]}]` | A list of property taxes that have been seen for this property. Each property tax includes: `amount`, `currency`, `dateSeen`, `sourceURLs`. |
+| `propertyType` | `"propertyType": "Condo"` | A classification for the property type. |
+| `province` | `"province": "TX"` | The province or state for this property. |
+| `reviews` | `"reviews": [{"dateAdded": "2016-08-17T18:12:03Z", "dateSeen": ["2016-08-17T00:00:00Z"], "sourceURLs": ["https://..."], "text": "We love this place a lot!", "username": "Yuwei"}]` | A list of reviews for this property. Review objects may contain: `date`, `dateAdded`, `dateSeen`, `doRecommend`, `rating`, `sourceURLs`, `text`, `title`, `userCity`, `username`, `userProvince`. |
+| `rules` | `"rules": ["No smoking"]` | A list of rules for living or staying at this property. |
+| `sourceURLs` | `"sourceURLs": ["https://www.airbnb.com/rooms/13392408"]` | A list of URLs used to generate data for this property. |
+| `statuses` | `"statuses": [{"dateSeen": ["2017-10-10T20:12:16Z"], "isUnderContract": "false", "sourceURLs": ["http://..."], "type": "Sold"}]` | A list of statuses for this property. Each status includes: `dateSeen`, `isUnderContract`, `sourceURLs`, `type`. See [Possible Values for Property Fields](/v3/docs/possible-values-for-property-fields) for status types. |
+| `taxID` | `"taxID": "12345678"` | The tax ID for the property. |
+| `unavailableDates` | `"unavailableDates": [{"dateSeen": ["2016-05-29T00:00:00Z"], "endDate": "2016-04-29T00:00:00Z", "sourceURLs": ["http://..."], "startDate": "2016-04-29T00:00:00Z"}]` | A list of dates this property is unavailable (typically for rent). Each unavailability contains: `dateSeen`, `endDate`, `sourceURLs`, `startDate`. |
+| `websiteIDs` | `"websiteIDs": ["domain.com-123", "website.com-4567"]` | A list of website IDs for this property. Website IDs are tied to a specific online listing source and are the unique identifier used by that website. |

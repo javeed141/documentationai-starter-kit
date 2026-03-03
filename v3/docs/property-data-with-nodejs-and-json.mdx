@@ -29,7 +29,7 @@ npm install request
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 <Callout kind="info">
 For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
@@ -58,7 +58,7 @@ var records = '1';
 var download = 'false';
 
 // Construct the API call.
-var APICall = 'https://' + APIToken + ':@api.documentationai.com/v3/data/properties?'
+var APICall = 'https://' + APIToken + ':@api.datafiniti.co/v3/data/properties?'
 				+ 'view=' + view
 				+ '&q=' + query
 				+ '&format=' + format
@@ -199,7 +199,7 @@ Let's break down what the API call is all about:
 | --- | --- |
 | `https://` | This is the communication protocol used by the API.  It's the same one used when you visit a secure website. |
 | `AAAXXXXXXXXXXXX:@` | Your API token.  You're telling the API who you are so it can respond to your request. |
-| `api.documentationai.com` | The location of the API. |
+| `api.datafiniti.co` | The location of the API. |
 | `/v3` | You're telling the API which version to use.  `v3` is our most recent and current API version. |
 | `/data` | You're telling the API you're interested in querying data. |
 | `/properties` | Specifically, you're interested in business data. |
@@ -218,7 +218,7 @@ Now let's dive through the response the API returned:
 
 Within the `records` field, you'll see a single property returned with multiple fields and their values associated with that business.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
 
-Each property record will have multiple fields associated with it.  You can see a full list of available fields in our [Property Data Schema](https://java.documentationai.com/v3/docs/property-data-schema).
+Each property record will have multiple fields associated with it.  You can see a full list of available fields in our [Property Data Schema](/v3/docs/property-data-schema).
 
 
 ## 4. Refine your search
@@ -239,7 +239,7 @@ var records = '10';
 var download = 'false';
 
 // Construct the API call.
-var APICall = 'https://' + APIToken + ':@api.documentationai.com/v3/data/properties?'
+var APICall = 'https://' + APIToken + ':@api.datafiniti.co/v3/data/properties?'
 				+ 'view=' + view
 				+ '&q=' + query
 				+ '&format=' + format
@@ -285,7 +285,7 @@ var records = '10';
 var download = 'true';
 
 // Construct the API call.
-var APICall = 'https://' + APIToken + ':@api.documentationai.com/v3/data/properties?'
+var APICall = 'https://' + APIToken + ':@api.datafiniti.co/v3/data/properties?'
 				+ 'view=' + view
 				+ '&q=' + query
 				+ '&format=' + format
@@ -294,7 +294,7 @@ var APICall = 'https://' + APIToken + ':@api.documentationai.com/v3/data/propert
 
 // A function to check if a download request has completed
 function checkDownloadUntilComplete(options, callback) {
-	var downloadRequestAPICall = 'https://' + APIToken + ':@api.documentationai.com/v3/requests/' + options.requestID;
+	var downloadRequestAPICall = 'https://' + APIToken + ':@api.datafiniti.co/v3/requests/' + options.requestID;
 
 	request({url : downloadRequestAPICall}, function(error, response, body) {
 		var downloadRequestResponse = JSON.parse(body);
@@ -314,7 +314,7 @@ request({url : APICall}, function (error, response, body) {
 
   	// Check on status of the download request.
   	checkDownloadUntilComplete ({requestID : requestID}, function (error, response) {
-  		var resultsAPICall = 'https://' + APIToken + ':@api.documentationai.com/v3/results/' + requestID;
+  		var resultsAPICall = 'https://' + APIToken + ':@api.datafiniti.co/v3/results/' + requestID;
 
   		// Once the download is complete, get all the links to result files and write those to local files.
   		request({url : resultsAPICall}, function(error, response, body) {
@@ -334,7 +334,7 @@ A couple things to pay attention to in the above code:
 1. We removed `&records=10`.
 2. Change `download=false` to `download=true`.
 
-Since we've handled multiple steps of the download process in this code, we won't go into the details here, but we do recommend you familiarize yourself with those steps.  Checking them out in our [Property Data with Web Browser and CSV](https://java.documentationai.com/v3/docs/property-data-with-web-browser-and-csv) guide.
+Since we've handled multiple steps of the download process in this code, we won't go into the details here, but we do recommend you familiarize yourself with those steps.  Checking them out in our [Property Data with Web Browser and CSV](/v3/docs/property-data-with-web-browser-and-csv) guide.
 
 
 ## 6. Parse the JSON data

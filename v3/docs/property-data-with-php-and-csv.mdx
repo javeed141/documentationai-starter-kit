@@ -25,7 +25,7 @@ If you want to use PHP to access the Datafiniti API, we're assuming you'll be us
 
 The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
-To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
+To get your API token, go the [Datafiniti Web Portal (https://portal.datafiniti.co)](https://portal.datafiniti.co), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
 <Callout kind="info">
 For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute example for your actual API token when showing example API calls.
@@ -57,7 +57,7 @@ $records = '1';
 $download = 'false';
 
 // Construct the API call.
-$APICall = 'https://' . $APIToken . ':@api.documentationai.com/v3/data/properties?'
+$APICall = 'https://' . $APIToken . ':@api.datafiniti.co/v3/data/properties?'
 			. 'view=' . $view 
 			. '&format=' . $format
 			. '&q=' . $query
@@ -179,7 +179,7 @@ Let's break down what the API call is all about:
 | --- | --- |
 | `https://` | This is the communication protocol used by the API.  It's the same one used when you visit a secure website. |
 | `AAAXXXXXXXXXXXX:@` | Your API token.  You're telling the API who you are so it can respond to your request. |
-| `api.documentationai.com` | The location of the API. |
+| `api.datafiniti.co` | The location of the API. |
 | `/v3` | You're telling the API which version to use.  `v3` is our most recent and current API version. |
 | `/data` | You're telling the API you're interested in querying data. |
 | `/properties` | Specifically, you're interested in proeprty data. |
@@ -198,7 +198,7 @@ Now let's dive through the response the API returned:
 
 Within the `records` field, you'll see a single property returned with multiple fields and their values associated with that business.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
 
-Each property record will have multiple fields associated with it.  You can see a full list of available fields in our [Property Data Schema](https://java.documentationai.com/v3/docs/property-data-schema).
+Each property record will have multiple fields associated with it.  You can see a full list of available fields in our [Property Data Schema](/v3/docs/property-data-schema).
 
 
 ## 4. Refine your search
@@ -219,7 +219,7 @@ $records = '10';
 $download = 'false';
 
 // Construct the API call.
-$APICall = 'https://' . $APIToken . ':@api.documentationai.com/v3/data/properties'
+$APICall = 'https://' . $APIToken . ':@api.datafiniti.co/v3/data/properties'
 			. '?view=' . $view 
 			. '&format=' . $format
 			. '&q=' . $query
@@ -270,7 +270,7 @@ $records = '10';
 $download = 'true';
 
 // Construct the API call.
-$APICall = 'https://' . $APIToken . ':@api.documentationai.com/v3/data/properties?'
+$APICall = 'https://' . $APIToken . ':@api.datafiniti.co/v3/data/properties?'
 			. 'view=' . $view 
 			. '&format=' . $format
 			. '&q=' . $query
@@ -323,7 +323,7 @@ if ($responseArray['code'] == 303) { // A download request redirects to a differ
 	if ($requestResponseStatus == 'COMPLETED') {
 		$requestURLTokens = explode('/',$requestAPICall);
 		$requestID = $requestURLTokens[sizeof($requestURLTokens)-1];
-		$resultAPICall = 'http://' . $APIToken . ':@api.documentationai.com/v3/results/' . $requestID;		
+		$resultAPICall = 'http://' . $APIToken . ':@api.datafiniti.co/v3/results/' . $requestID;		
 
 		echo "Downloading result files: " . $resultAPICall . "\n";
 		$resultResponseArray = curlAPICall($resultAPICall);
@@ -356,7 +356,7 @@ A few things to pay attention to in the above code:
 3. Change `properties_all` to `properties_all_nested`.  This will nest fields like categories and features into a single cell (instead splitting them across multiple rows and columns).
 4. Change `download=false` to `download=true`.
 
-Since we've handled multiple steps of the download process in this code, we won't go into the details here, but we do recommend you familiarize yourself with those steps.  Checking them out in our [Property Data with Web Browser and CSV](https://java.documentationai.com/v3/docs/property-data-with-web-browser-and-csv)  will be helpful.
+Since we've handled multiple steps of the download process in this code, we won't go into the details here, but we do recommend you familiarize yourself with those steps.  Checking them out in our [Property Data with Web Browser and CSV](/v3/docs/property-data-with-web-browser-and-csv)  will be helpful.
 
 
 ## 6. Open the result file(s) in Excel

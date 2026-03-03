@@ -6,10 +6,10 @@ Pagination is a way that you can page through more results in Realtime than the 
 
 ## Paging Over Results
 
-An alternative to running a product data search, you can also use the API to page through the data. This approach allows you to consume one chunk at a time. Then continue from where the end of the previous page left off. To do the we will need to modify the [Product Data](https://java.documentationai.com/reference/products) endpoint like so:
+An alternative to running a product data search, you can also use the API to page through the data. This approach allows you to consume one chunk at a time. Then continue from where the end of the previous page left off. To do the we will need to modify the [Product Data](/reference/products) endpoint like so:
 
 ```curl
-POST <https://api.documentationai.com/v4/product/paginate?page=1&limit=500>
+POST <https://api.datafiniti.co/v4/product/paginate?page=1&limit=500>
 ```
 
 The pagination endpoint uses the following parameters:
@@ -38,5 +38,5 @@ Your response should look like:
 
 Check out some of our use cases that use pagination:
 
-* [Pricing analytics for pet food](https://java.documentationai.com/docs/pricing-analytics-for-pet-food)
-* [Search for smart phones](https://java.documentationai.com/docs/search-for-smart-phones)
+* [Pricing analytics for pet food](/docs/pricing-analytics-for-pet-food)
+* [Search for smart phones](/docs/search-for-smart-phones)

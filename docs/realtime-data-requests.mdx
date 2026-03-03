@@ -10,7 +10,7 @@ Our `/scrape` endpoint allows you to get the web data you need in real-time.
 
 ## Endpoint
 
-`POST https://api.documentationai.com/v4/scrape`
+`POST https://api.datafiniti.co/v4/scrape`
 
 ## Input
 
@@ -41,10 +41,10 @@ The following snippet contains an example of the accepted URL formats described 
 <Callout kind="info">
   **Which URL format should I use?**
 
-`identifier` corresponds to fields in our [Product Data Schema](https://java.documentationai.com/docs/product-data-schema) which helps users that are already integrated with Datafiniti. If you are unfamiliar with our schema or if identifiers are providing any confusion, simply provide URLs as strings instead.
+`identifier` corresponds to fields in our [Product Data Schema](/docs/product-data-schema) which helps users that are already integrated with Datafiniti. If you are unfamiliar with our schema or if identifiers are providing any confusion, simply provide URLs as strings instead.
 </Callout>
 
-The `urls` array must contain 1 URL at minimum with a maximum of 10. The URLs provided do not have to be from the same domain. We will scrape all URLs provided in the request body in parallel so long as we support them. The sources that we currently support can be found [Here](https://java.documentationai.com/docs/getting-started-with-realtime-updates). Please contact customer support if the source you want to scrape is not present in the hyperlinked section.
+The `urls` array must contain 1 URL at minimum with a maximum of 10. The URLs provided do not have to be from the same domain. We will scrape all URLs provided in the request body in parallel so long as we support them. The sources that we currently support can be found [Here](/docs/getting-started-with-realtime-updates). Please contact customer support if the source you want to scrape is not present in the hyperlinked section.
 
 <Callout kind="info">
   **Rate Limiting**
@@ -143,7 +143,7 @@ const DF_TOKEN = "INPUT YOUR DF TOKEN HERE";
 
 (async () => {
     const dfAPI = axios.create({
-        baseURL: 'https://api.documentationai.com/v4',
+        baseURL: 'https://api.datafiniti.co/v4',
         headers: {
             'Authorization': `Bearer ${DF_TOKEN}`,
             'Content-type': 'application/json'

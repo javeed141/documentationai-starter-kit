@@ -113,11 +113,11 @@ Our plans allow flexibility in both price and use of credits per month depend on
 ```
 
 Plan ids are commonly prefix with the data type it pertains to.\
-However if you have a custom plan or need help figuring out your data plan please contact [billing@documentationai.com](mailto:billing@documentationai.com)
+However if you have a custom plan or need help figuring out your data plan please contact [billing@datafiniti.co](mailto:billing@datafiniti.co)
 
 ## Find your credits used
 
-You can also use your GET [https://api.documentationai.com/v4/account](https://api.documentationai.com/v4/account) to check your credits used of your account.\
+You can also use your GET [https://api.datafiniti.co/v4/account](https://api.datafiniti.co/v4/account) to check your credits used of your account.\
 Credit used are broken up by data type:
 
 - `num_credits_used` -  legacy plan API calls.
@@ -152,7 +152,7 @@ There are multiple ways to spend credits. Let go through the ways this can happe
 No matter what data type you are using for a search API call, you are charged credits up to your `num_records` set in the body of the call.
 
 For example if I search for property using the follow call through postman:\
-POST [https://api.documentationai.com/v4/properties/search](https://api.documentationai.com/v4/properties/search)
+POST [https://api.datafiniti.co/v4/properties/search](https://api.datafiniti.co/v4/properties/search)
 
 ```json
 {
@@ -206,17 +206,17 @@ In this case since 1 record was found, only 1 `property_credit_used` was charged
 Any time you attempt a download of the records found by a search, a *Download\_id* will be presented in the response of the API call. Your `total_cost` will dictate how many credits your account was charge on the download.
 
 <Callout kind="alert" collapsed="false">
-  Depending on the amount of credits needed to download a searched query, you will be charged an overage fee equal to the amount of credits over your credit's available. *NOTE* you will not be able to download the data files generated to your account until the overages are paid. If you do not know if your account is setup for overages, please contact us at [billing@documentationai.com](mailto:billing@documentationai.com)
+  Depending on the amount of credits needed to download a searched query, you will be charged an overage fee equal to the amount of credits over your credit's available. *NOTE* you will not be able to download the data files generated to your account until the overages are paid. If you do not know if your account is setup for overages, please contact us at [billing@datafiniti.co](mailto:billing@datafiniti.co)
 </Callout>
 
 ### Enrichment & Suppression API
 
 Enrichment & Suppression API calls are based on the number of `num_record` will be charge against your account upon submitting this request. Once the call is submitted and complete the `total_cost`. (Same as a normal download works) However this total is only comprehensive once the status of the download is complete.
 
-For more information on [Enrichment & Suppression](https://java.documentationai.com/docs/enrichment-suppression), you can read more about it here.
+For more information on [Enrichment & Suppression](/docs/enrichment-suppression), you can read more about it here.
 
 <Callout kind="danger" collapsed="false">
-  Since Enrichment charge credit per the batch file you are enriching data from, you may be overcharged credits to your account upon submitting a enrichment request. If you do not know if overcharging is enable / disable on your account you may contact [support@documentationai.com](mailto:support@documentationai.com) to find this info out.
+  Since Enrichment charge credit per the batch file you are enriching data from, you may be overcharged credits to your account upon submitting a enrichment request. If you do not know if overcharging is enable / disable on your account you may contact [support@datafiniti.co](mailto:support@datafiniti.co) to find this info out.
 </Callout>
 
 ## Common credit related errors
@@ -225,7 +225,7 @@ You will always receive and error message when your API or portal request exceed
 
 ### API - exceeding your credit limit error
 
-Whether it be via postman, our [Property Data](https://java.documentationai.com/reference/properties) reference page, or any other coding language, you will receive a 400 error message when your credit limit will be reached. The error message will look like this.
+Whether it be via postman, our [Property Data](/reference/properties) reference page, or any other coding language, you will receive a 400 error message when your credit limit will be reached. The error message will look like this.
 
 ```json
 {
@@ -236,9 +236,9 @@ Whether it be via postman, our [Property Data](https://java.documentationai.com/
 ```
 
 <Callout kind="danger" collapsed="false">
-  If you plan to exceed your credit limit, please contact your Datafiniti customer success representative for refreshing or upgrade your accounts credit limit. Contact us at [support@documentationai.com](mailto:support@documentationai.com) to find this info out.
+  If you plan to exceed your credit limit, please contact your Datafiniti customer success representative for refreshing or upgrade your accounts credit limit. Contact us at [support@datafiniti.co](mailto:support@datafiniti.co) to find this info out.
 </Callout>
 
 ## Credit limit refresh period
 
-Your credits to your Datafiniti account refresh period is based on of your data plan subscription. This can vary from monthly to annually. For standard tier plans you can check your settings page [here](https://portal.documentationai.com/settings). Please consult with your Datafiniti representative if you do not know your plan's refresh rate.
+Your credits to your Datafiniti account refresh period is based on of your data plan subscription. This can vary from monthly to annually. For standard tier plans you can check your settings page [here](https://portal.datafiniti.co/settings). Please consult with your Datafiniti representative if you do not know your plan's refresh rate.

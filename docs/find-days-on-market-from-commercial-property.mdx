@@ -13,7 +13,7 @@ Lets start by searching for commercial medical offices in miami, Florida. We wil
 <Callout kind="info">
   **For sale vs rental statuses**
 
-Please note that Datafiniti tracks for sale and rental statuses separately, so if you are looking for rental statuses please use mostRecentRentalStatus. Being to check the possible status value here. [Possible Values for Property Fields](https://java.documentationai.com/docs/possible-values-for-property-fields)
+Please note that Datafiniti tracks for sale and rental statuses separately, so if you are looking for rental statuses please use mostRecentRentalStatus. Being to check the possible status value here. [Possible Values for Property Fields](/docs/possible-values-for-property-fields)
 </Callout>
 
 <br />
@@ -41,20 +41,24 @@ You will find that the categories field is an array with multiple property type 
 
 From here we can filter for days on market by utilizing our sources feature key values. In this case we will look for Crexi's date Added field. After obtaining that we can calculate the days on market by subtracting that value from the current data. Let modify our query to select this data:
 
-\{
+```json
+{
     "query":"mostRecentStatus:\"For Sale\" AND propertyType:commercial AND categories:(Office AND medical) AND features.key:(\"Date Added - Crexi\" OR \"Date Updated - Crexi\")",
     "num_records":10
-\}
+}
+```
 
 You see these feature key/values represent like the following:
 
-			 \{
-                    "key": "Date Added - Crexi",
-                    "value": [
-                        "2024-04-29T21:14:14.399Z"
-                    ],
-                    "replace": "true"
-                \},
+```json
+{
+    "key": "Date Added - Crexi",
+    "value": [
+        "2024-04-29T21:14:14.399Z"
+    ],
+    "replace": "true"
+},
+```
 
 We can use this date here to see that this property is 16 days on the market.
 

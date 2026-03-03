@@ -10,7 +10,7 @@ This guide walks you through the process of integrating Datafiniti's API with th
 
 * A WordPress website with administrator access.
 * The WPGetAPI plugin installed and activated ([Download Here](https://wpgetapi.com/downloads/api-to-posts/)).
-* A Datafiniti API key ([Sign up](https://portal.documentationai.com/sign-up) or [Log in](https://portal.documentationai.com/login)).
+* A Datafiniti API key ([Sign up](https://portal.datafiniti.co/sign-up) or [Log in](https://portal.datafiniti.co/login)).
 
 ## 1. Install and activate WPGetAPI
 
@@ -19,7 +19,7 @@ This guide walks you through the process of integrating Datafiniti's API with th
 * Search for WPGetAPI.
 * Click Install Now, then Activate the plugin.
 
-<Image src="https://files.readme.io/7471d515ba527b8de198059926d279ccc68bd4eef11b46e211bcc8661f785caf-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/7471d515ba527b8de198059926d279ccc68bd4eef11b46e211bcc8661f785caf-image.png" width="1920" height="1080" alt="Screenshot showing 1. install and activate wpgetapi" />
 
 ## 2. Create your Datafiniti API endpoint
 
@@ -27,16 +27,16 @@ This guide walks you through the process of integrating Datafiniti's API with th
 * Configure your setup
   * API Name - Datafiniti Property API
   * Unique ID - any unique name
-  * Base URL - [https://api.documentationai.com/v4/properties/search/](https://api.documentationai.com/v4/properties/search/)
+  * Base URL - [https://api.datafiniti.co/v4/properties/search/](https://api.datafiniti.co/v4/properties/search/)
   * Save
 
-<Image src="https://files.readme.io/7a1c10fd3fc97f5bab8a59b1327975c52498ff43db54abb71fa92795b732f551-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/7a1c10fd3fc97f5bab8a59b1327975c52498ff43db54abb71fa92795b732f551-image.png" width="1920" height="1080" alt="Screenshot showing 2. create your datafiniti api endpoint" />
 
 ## 3. Import WPGetAPI Datafiniti API connection
 
 You can import the following code my clicking on your Datafiniti Property API tab. Click the "Export/Import" button here:
 
-<Image src="https://files.readme.io/193be76fbab0f40755ceb481734621c303b4a368b78d110bcec06715928897f8-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/193be76fbab0f40755ceb481734621c303b4a368b78d110bcec06715928897f8-image.png" width="1920" height="1080" alt="Screenshot showing 3. import wpgetapi datafiniti api connection" />
 
 You can use this code to import the Datafiniti Property Search API endpoint:
 
@@ -46,7 +46,7 @@ You can use this code to import the Datafiniti Property Search API endpoint:
 
 The import box is as follows, just copy and paste the code into the import box:
 
-<Image src="https://files.readme.io/a2aa2bb8363bc289f98d762051d72bcc5b672419136af3fdffd69a1a3c45ad26-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/a2aa2bb8363bc289f98d762051d72bcc5b672419136af3fdffd69a1a3c45ad26-image.png" width="1920" height="1080" alt="Screenshot showing 3. import wpgetapi datafiniti api connection" />
 
 ## 4. Configure your Datafiniti API endpoint
 
@@ -60,7 +60,7 @@ Now move to your new Datafiniti Property API tab.
   * Results Format - JSON Format
   * Timeout - between 10 - 1000
 
-<Image src="https://files.readme.io/e0fbe1c1b6e63c5a680e960dbe0325cc253802f1492e6202030c67e00f370cb6-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/e0fbe1c1b6e63c5a680e960dbe0325cc253802f1492e6202030c67e00f370cb6-image.png" width="1920" height="1080" alt="Screenshot showing 4. configure your datafiniti api endpoint" />
 
 Next we will add the Datafiniti Property Search API header:
 
@@ -70,10 +70,10 @@ Next we will add the Datafiniti Property Search API header:
 <Callout kind="alert">
   **Datafiniti API Key**
 
-Be sure to remove any `<>` around your API key. You can find your Datafiniti API key from the portal page [here](https://portal.documentationai.com/settings/api).
+Be sure to remove any `<>` around your API key. You can find your Datafiniti API key from the portal page [here](https://portal.datafiniti.co/settings/api).
 </Callout>
 
-<Image src="https://files.readme.io/eb85cb8d230d359b6c30a984b069fd6069b18112984e7307ffd7754317ea837a-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/eb85cb8d230d359b6c30a984b069fd6069b18112984e7307ffd7754317ea837a-image.png" width="1920" height="1080" alt="Screenshot showing 4. configure your datafiniti api endpoint" />
 
 Now we will add the API query body. This will mimic the same format that you would build your query in Postman or in code. For this example we will use the following code:
 
@@ -86,28 +86,28 @@ Now we will add the API query body. This will mimic the same format that you wou
 
 Note you do not have to insert anything into the left column
 
-<Image src="https://files.readme.io/f00869232f19601ac5f7d4c1e392b47b47a8bab507a0e6aa5fc2133011fb69aa-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/f00869232f19601ac5f7d4c1e392b47b47a8bab507a0e6aa5fc2133011fb69aa-image.png" width="1920" height="1080" alt="Screenshot showing 4. configure your datafiniti api endpoint" />
 
 Lastly we will set the Encode Body to raw format:
 
-<Image src="https://files.readme.io/e0741584547ec5aedb6ca66064342af17759f6daeb9fb7e1eee055aacfe3c272-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/e0741584547ec5aedb6ca66064342af17759f6daeb9fb7e1eee055aacfe3c272-image.png" width="1920" height="1080" alt="Screenshot showing 4. configure your datafiniti api endpoint" />
 
 Be sure to save your API endpoint here:
 
-<Image src="https://files.readme.io/a5c0c6975c77b6079b72b919520a5ea97c109672ff29584cf39eee4825de1cf0-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/a5c0c6975c77b6079b72b919520a5ea97c109672ff29584cf39eee4825de1cf0-image.png" width="1920" height="1080" alt="Screenshot showing 4. configure your datafiniti api endpoint" />
 
 ## 5. Test the API connection
 
 You can test you configured endpoint by clicking "test endpoint" here:
 
-<Image src="https://files.readme.io/cdebaaa5b012ef5bc0d9d1077a98cd8e4d9a16b4fee8973e31ec3a7231a5abdb-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/cdebaaa5b012ef5bc0d9d1077a98cd8e4d9a16b4fee8973e31ec3a7231a5abdb-image.png" width="1920" height="1080" alt="Screenshot showing 5. test the api connection" />
 
 If the connection is successful, you will see a response with property data.
 
-<Image src="https://files.readme.io/c9bd653e4bcafe2a07f722321b8435f5c7fb4474db159c97bd0f5e8eb5dde593-image.png" width="1920" height="1080" alt="" />
+<Image src="https://files.readme.io/c9bd653e4bcafe2a07f722321b8435f5c7fb4474db159c97bd0f5e8eb5dde593-image.png" width="1920" height="1080" alt="Screenshot showing 5. test the api connection" />
 
 ## 6. Review and publish
 
-Now with your Datafiniti API endpoint integrated into WPgetAPI you are insert any pre-built API call directly into your Wordpress webpage. For more complex API integration or question on how to filter data, you can review our [Use Cases for Product Data](https://java.documentationai.com/docs/use-cases-for-product-data) Or contact your Datafiniti rep at [support@documentationai.com](mailto:support@documentationai.com)
+Now with your Datafiniti API endpoint integrated into WPgetAPI you are insert any pre-built API call directly into your Wordpress webpage. For more complex API integration or question on how to filter data, you can review our [Use Cases for Product Data](/docs/use-cases-for-product-data) Or contact your Datafiniti rep at [support@datafiniti.co](mailto:support@datafiniti.co)
 
-<Image src="https://files.readme.io/bcbc514e8b17d5e2fecb101536baee0abf17d1df8e13f103c696c3a1b7b83ddf-wpgetapit.gif" width="1920" height="1080" alt="Image" />
+<Image src="https://files.readme.io/bcbc514e8b17d5e2fecb101536baee0abf17d1df8e13f103c696c3a1b7b83ddf-wpgetapit.gif" width="1920" height="1080" alt="Screenshot showing 6. review and publish" />

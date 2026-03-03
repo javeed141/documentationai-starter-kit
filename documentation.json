@@ -25,7 +25,7 @@
                     "group": "Introduction",
                     "pages": [
                       {
-                        "title": "API Introduction",
+                        "title": "Introduction",
                         "path": "docs/api-introduction"
                       },
                       {
@@ -34,7 +34,7 @@
                       },
                       {
                         "title": "API Status Check",
-                        "path": "docs/api-status-check"
+                        "href": "/reference/api-status-check"
                       }
                     ]
                   },
@@ -42,7 +42,7 @@
                     "group": "Property Data",
                     "pages": [
                       {
-                        "title": "Property Data Overview",
+                        "title": "Property Data",
                         "path": "docs/api-property-data"
                       },
                       {
@@ -110,10 +110,10 @@
                       {
                         "group": "Views",
                         "pages": [
-                          {
-                            "title": "Property Data Views",
-                            "path": "docs/property-data-views"
-                          },
+{
+                        "title": "Views",
+                        "path": "docs/property-data-views"
+                      },
                           {
                             "title": "Available Views for Property Data",
                             "path": "docs/available-views-for-property-data"
@@ -282,7 +282,7 @@
                     "group": "People Data",
                     "pages": [
                       {
-                        "title": "People Data Overview",
+                        "title": "People Data",
                         "path": "docs/api-people-data"
                       },
                       {
@@ -392,10 +392,10 @@
                       {
                         "group": "API Features",
                         "pages": [
-                          {
-                            "title": "People API Features",
-                            "path": "docs/people-api-features"
-                          },
+{
+                        "title": "API Features",
+                        "path": "docs/people-api-features"
+                      },
                           {
                             "title": "Count",
                             "path": "docs/people-count"
@@ -412,7 +412,7 @@
                     "group": "Product Data",
                     "pages": [
                       {
-                        "title": "Product Data Overview",
+                        "title": "Product Data",
                         "path": "docs/api-product-data"
                       },
                       {
@@ -599,10 +599,10 @@
                       {
                         "group": "API Features",
                         "pages": [
-                          {
-                            "title": "Product API Features",
-                            "path": "docs/product-api-features"
-                          },
+{
+                        "title": "API Features",
+                        "path": "docs/product-api-features"
+                      },
                           {
                             "title": "Count",
                             "path": "docs/product-count"
@@ -619,7 +619,7 @@
                     "group": "Business Data",
                     "pages": [
                       {
-                        "title": "Business Data Overview",
+                        "title": "Business Data",
                         "path": "docs/api-business-data"
                       },
                       {
@@ -675,10 +675,10 @@
                       {
                         "group": "Views",
                         "pages": [
-                          {
-                            "title": "Business View",
-                            "path": "docs/business-view"
-                          },
+{
+                        "title": "Views",
+                        "path": "docs/business-view"
+                      },
                           {
                             "title": "Available Views for Business Data",
                             "path": "docs/available-views-for-business-data-1"
@@ -730,10 +730,10 @@
                       {
                         "group": "API Features",
                         "pages": [
-                          {
-                            "title": "Business API Features",
-                            "path": "docs/business-api-features"
-                          },
+{
+                        "title": "API Features",
+                        "path": "docs/business-api-features"
+                      },
                           {
                             "title": "Count",
                             "path": "docs/business-count"
@@ -783,7 +783,7 @@
                     "group": "Real-time Data Requests",
                     "pages": [
                       {
-                        "title": "Real-Time Data Request",
+                        "title": "Real-time Data Requests",
                         "path": "docs/real-time-data-request"
                       },
                       {
@@ -805,7 +805,7 @@
                     "group": "Introduction",
                     "pages": [
                       {
-                        "title": "Portal Introduction",
+                        "title": "Introduction",
                         "path": "docs/portal-introduction"
                       },
                       {
@@ -820,10 +820,6 @@
                       {
                         "title": "Portal Walkthrough",
                         "path": "docs/portal-walkthrough"
-                      },
-                      {
-                        "title": "Get Started",
-                        "path": "docs/get-started"
                       },
                       {
                         "group": "Settings",
@@ -869,7 +865,7 @@
                     "group": "Property Data",
                     "pages": [
                       {
-                        "title": "Property Data Portal",
+                        "title": "Property Data",
                         "path": "docs/property-data-portal"
                       },
                       {
@@ -911,7 +907,7 @@
                     "group": "People Data",
                     "pages": [
                       {
-                        "title": "People Data Portal",
+                        "title": "People Data",
                         "path": "docs/people-data-portal"
                       },
                       {
@@ -933,7 +929,7 @@
                     "group": "Product Data",
                     "pages": [
                       {
-                        "title": "Product Data Portal",
+                        "title": "Product Data",
                         "path": "docs/product-data-portal"
                       },
                       {
@@ -963,16 +959,12 @@
                     "group": "Business Data",
                     "pages": [
                       {
-                        "title": "Business Data Portal",
+                        "title": "Business Data",
                         "path": "docs/business-data-portal"
                       },
                       {
                         "group": "Business Use Cases",
                         "pages": [
-                          {
-                            "title": "Business Data with Web Browser and CSV",
-                            "path": "docs/business-data-with-web-browser-csv"
-                          },
                           {
                             "title": "Searching Restaurants",
                             "path": "docs/searching-restaurants"
@@ -1150,343 +1142,11 @@
             ]
           },
           {
-            "tab": "changelog",
+            "tab": "Changelog",
             "pages": [
               {
-                "title": "page-1",
-                "path": "changelog/page-1",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "page-2",
-                "path": "changelog/page-2",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "page-3",
-                "path": "changelog/page-3",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "page-4",
-                "path": "changelog/page-4",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "page-5",
-                "path": "changelog/page-5",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "page-6",
-                "path": "changelog/page-6",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "201910 Data Release Log",
-                "path": "changelog/201910-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "201911 Data Release Log",
-                "path": "changelog/201911-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20198 Data Release Log",
-                "path": "changelog/20198-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "201912 Data Release Log",
-                "path": "changelog/201912-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20199 Data Release Log",
-                "path": "changelog/20199-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20201 Data Release Log",
-                "path": "changelog/20201-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202010 Data Release Log",
-                "path": "changelog/202010-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202011 Data Release Log",
-                "path": "changelog/202011-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202012 Data Release Log",
-                "path": "changelog/202012-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20202 Data Release Log",
-                "path": "changelog/20202-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20203 Data Release Log",
-                "path": "changelog/20203-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20204 Data Release Log",
-                "path": "changelog/20204-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20207 Data Release Log",
-                "path": "changelog/20207-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20208 Data Release Log",
-                "path": "changelog/20208-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20209 Data Release Log",
-                "path": "changelog/20209-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20211 Data Release Log",
-                "path": "changelog/20211-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20212 Data Release Log",
-                "path": "changelog/20212-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20213 Data Release Log",
-                "path": "changelog/20213-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202210 Data Release Log",
-                "path": "changelog/202210-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202212 Data Release Log 1",
-                "path": "changelog/202212-data-release-log-1",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202212 Data Release Log",
-                "path": "changelog/202212-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20226 Data Release Log",
-                "path": "changelog/20226-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20227 Data Release Log",
-                "path": "changelog/20227-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20228 Data Release Log",
-                "path": "changelog/20228-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20229 Data Release Log",
-                "path": "changelog/20229-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202302 Data Release Log",
-                "path": "changelog/202302-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202304 Data Release Log",
-                "path": "changelog/202304-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202305 Data Release Log",
-                "path": "changelog/202305-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202306 Data Release Log",
-                "path": "changelog/202306-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202307 Data Release Log",
-                "path": "changelog/202307-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202308 Data Release Log",
-                "path": "changelog/202308-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202309 Data Release Log",
-                "path": "changelog/202309-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202310 Data Release Log 1",
-                "path": "changelog/202310-data-release-log-1",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202310 Data Release Log",
-                "path": "changelog/202310-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202312 Data Release Log",
-                "path": "changelog/202312-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202402 Data Release Log",
-                "path": "changelog/202402-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202404 Data Release Log",
-                "path": "changelog/202404-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202407 Data Release Log",
-                "path": "changelog/202407-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202409 Data Release Log",
-                "path": "changelog/202409-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202411 Data Release Log",
-                "path": "changelog/202411-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202502 Data Release Log",
-                "path": "changelog/202502-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202503 Data Release Log",
-                "path": "changelog/202503-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202506 Data Release Log",
-                "path": "changelog/202506-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202507 Data Release Log",
-                "path": "changelog/202507-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202508 Data Release Log",
-                "path": "changelog/202508-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202509 Data Release Log",
-                "path": "changelog/202509-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202510 Data Release Log",
-                "path": "changelog/202510-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202511 Data Release Log",
-                "path": "changelog/202511-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202601 Data Release Log",
-                "path": "changelog/202601-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202602 Data Release Log",
-                "path": "changelog/202602-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
+                "title": "Changelog",
+                "path": "changelog/index"
               }
             ]
           }
@@ -1890,343 +1550,11 @@
             ]
           },
           {
-            "tab": "changelog",
+            "tab": "Changelog",
             "pages": [
               {
-                "title": "v3-page-1",
-                "path": "v3/changelog/page-1",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "v3-page-2",
-                "path": "v3/changelog/page-2",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "v3-page-3",
-                "path": "v3/changelog/page-3",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "v3-page-4",
-                "path": "v3/changelog/page-4",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "v3-page-5",
-                "path": "v3/changelog/page-5",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "v3-page-6",
-                "path": "v3/changelog/page-6",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "201910 Data Release Log",
-                "path": "v3/changelog/201910-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "201911 Data Release Log",
-                "path": "v3/changelog/201911-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "201912 Data Release Log",
-                "path": "v3/changelog/201912-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20198 Data Release Log",
-                "path": "v3/changelog/20198-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20199 Data Release Log",
-                "path": "v3/changelog/20199-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20201 Data Release Log",
-                "path": "v3/changelog/20201-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202010 Data Release Log",
-                "path": "v3/changelog/202010-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202011 Data Release Log",
-                "path": "v3/changelog/202011-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202012 Data Release Log",
-                "path": "v3/changelog/202012-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20202 Data Release Log",
-                "path": "v3/changelog/20202-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20203 Data Release Log",
-                "path": "v3/changelog/20203-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20204 Data Release Log",
-                "path": "v3/changelog/20204-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20207 Data Release Log",
-                "path": "v3/changelog/20207-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20208 Data Release Log",
-                "path": "v3/changelog/20208-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20209 Data Release Log",
-                "path": "v3/changelog/20209-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20211 Data Release Log",
-                "path": "v3/changelog/20211-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20212 Data Release Log",
-                "path": "v3/changelog/20212-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20213 Data Release Log",
-                "path": "v3/changelog/20213-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202210 Data Release Log",
-                "path": "v3/changelog/202210-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202212 Data Release Log 1",
-                "path": "v3/changelog/202212-data-release-log-1",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202212 Data Release Log",
-                "path": "v3/changelog/202212-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20226 Data Release Log",
-                "path": "v3/changelog/20226-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20227 Data Release Log",
-                "path": "v3/changelog/20227-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20228 Data Release Log",
-                "path": "v3/changelog/20228-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "20229 Data Release Log",
-                "path": "v3/changelog/20229-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202302 Data Release Log",
-                "path": "v3/changelog/202302-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202304 Data Release Log",
-                "path": "v3/changelog/202304-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202305 Data Release Log",
-                "path": "v3/changelog/202305-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202306 Data Release Log",
-                "path": "v3/changelog/202306-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202307 Data Release Log",
-                "path": "v3/changelog/202307-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202308 Data Release Log",
-                "path": "v3/changelog/202308-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202309 Data Release Log",
-                "path": "v3/changelog/202309-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202310 Data Release Log 1",
-                "path": "v3/changelog/202310-data-release-log-1",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202310 Data Release Log",
-                "path": "v3/changelog/202310-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202312 Data Release Log",
-                "path": "v3/changelog/202312-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202402 Data Release Log",
-                "path": "v3/changelog/202402-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202404 Data Release Log",
-                "path": "v3/changelog/202404-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202407 Data Release Log",
-                "path": "v3/changelog/202407-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202409 Data Release Log",
-                "path": "v3/changelog/202409-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202411 Data Release Log",
-                "path": "v3/changelog/202411-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202502 Data Release Log",
-                "path": "v3/changelog/202502-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202503 Data Release Log",
-                "path": "v3/changelog/202503-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202506 Data Release Log",
-                "path": "v3/changelog/202506-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202507 Data Release Log",
-                "path": "v3/changelog/202507-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202508 Data Release Log",
-                "path": "v3/changelog/202508-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202509 Data Release Log",
-                "path": "v3/changelog/202509-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202510 Data Release Log",
-                "path": "v3/changelog/202510-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202511 Data Release Log",
-                "path": "v3/changelog/202511-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202601 Data Release Log",
-                "path": "v3/changelog/202601-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
-              },
-              {
-                "title": "202602 Data Release Log",
-                "path": "v3/changelog/202602-data-release-log",
-                "show-sidebar": false,
-                "show-toc": false
+                "title": "Changelog",
+                "path": "v3/changelog/index"
               }
             ]
           }

@@ -1,0 +1,214 @@
+---
+title: Changelog
+description: Stay up to date with the latest Datafiniti data releases, new features, and improvements.
+---
+
+<Update label="February 2026" description="Property Data Schema Update" tags={["New Feature", "Deprecation"]}>
+### New Field: `statusHistory`
+
+We've introduced a new field, **`statusHistory`**, to the Property Data schema. This field provides a clear, chronological view of a property's status over time, allowing you to track transitions such as *for-sale listings* and *off-market events* with greater precision and context.
+
+Each `statusHistory` entry includes:
+- **Date** — The date the status change occurred
+- **DateSeen** — The date Datafiniti observed the status change
+- **sourceURLs** — The source URL associated with the status
+- **Type** — The type of sales listing associated with the status
+
+### Deprecation Notice: Legacy `statuses` Fields
+
+As part of this improvement, we are beginning the deprecation of legacy `statuses` fields in favor of **`statusHistory`**.
+
+- Existing fields will continue to work for now
+- We strongly recommend updating your workflows to use `statusHistory`
+- Future schema updates will prioritize `statusHistory` as the source of truth
+
+### Coming This Year
+
+- **Improved Autotrace Feature** — Redesigning to deliver a more intuitive experience with a single API call
+- **AI Platform Integration** — MCP integration, detailed code examples, and LLM-friendly tutorials
+</Update>
+
+<Update label="January 2026" description="2026 Operating Priorities" tags={["Announcement"]}>
+### Our 2026 Operating Priorities
+
+**Reliability first.** We're committed to keeping our infrastructure running smoothly day in and day out—so your workflows stay uninterrupted and dependable at scale.
+
+**Data quality you can trust.** Accuracy, freshness, and consistency remain non-negotiable. We continue to invest heavily in processes and tooling that ensure our data remains high-quality and up to date.
+
+**Designing for direct value.** Our customer-facing tools are guided by a simple principle: make them intuitive, actionable, and fast to value.
+
+### Coming This Year
+
+- **Improved Autotrace Feature** — Single API call for retrieving accurate contact information for property owners
+- **AI Platform Integration** — MCP integration and LLM-friendly documentation
+</Update>
+
+<Update label="November 2025" description="Property Pricing Updates" tags={["New Feature", "Deprecation"]}>
+### Property Data: New "type" field in prices
+
+Each price entry now includes a `type` sub-field with values:
+- **Sale List** — for sale list price
+- **Sold** — price at which the property was sold
+- **Rental List** — rental list price
+
+### Improved Field Names
+
+New descriptive fields for clarity:
+- `mostRecentSaleListPriceAmount` & `mostRecentSaleListPriceDate`
+- `mostRecentRentalListPriceAmount` & `mostRecentRentalListPriceDate`
+- `mostRecentSoldPriceAmount` & `mostRecentSoldPriceDate`
+
+### Deprecation Timeline
+
+The legacy fields `isSale`, `isSold`, and `mostRecentPriceAmount` will be fully deprecated by January 31st, 2026.
+
+### Portal Changes
+
+- **Visual Renew Date** — Now shows your exact date of plan renewal
+- **County Autocomplete** — Added autocomplete functionality to property data filter
+</Update>
+
+<Update label="October 2025" description="New County Sources" tags={["New Feature"]}>
+### Property Data: New Counties Source Added
+
+We've expanded our property data sources with new county databases:
+
+- **California** — Fresno County, Sonoma County
+- **Indiana** — Lake County
+- **Iowa** — Polk County
+- **Nevada** — Washoe County
+- **New Jersey** — Camden County
+
+### Portal: County Autocomplete
+
+Added autocomplete functionality to every county text box within the Datafiniti portal for faster and more accurate data entry.
+</Update>
+
+<Update label="September 2025" description="Commercial Property Fields" tags={["New Feature"]}>
+### Property Data: 34 New Commercial Top Level Fields
+
+We've upgraded how commercial property listings are structured by moving key fields from the features array to top-level schema fields:
+
+| New Fields |
+| :--- |
+| brandTenant, brokerCoop, buildingClass, dateOnMarket, daysOnMarket, effectiveGrossIncome, grossRentalIncome, groundLease, investmentSubtype, investmentType, leaseType, majorTenants, netRentable, netOperatingIncome, numBuildings, numProperties, numTenants, occupancy, operatingExpenses, otherIncome, ownership, proFormaNOI, rentableSquareFeet, rentBumps, saleCondition, saleType, sourceURLsPerField, subtype, tenancy, tenantCredit, totalExpenses, vacancyLoss, virtualTour, yearRenovated |
+
+### Source URLs Per Field
+
+New **sourceURLsPerField** array showing exactly which URLs were used to populate individual fields within a record.
+
+### Business Data: New State Sources
+
+- Alabama — arc-sos.state.al.us
+- Arizona — ecorp.azcc.gov
+</Update>
+
+<Update label="August 2025" description="Rental Status Improvements" tags={["New Feature"]}>
+### Property Data: Clearer Rental Statuses
+
+New improvements to how rental statuses are tracked:
+- New top-level `rentalStatuses` field
+- Refined tracking via `mostRecentRentalStatus`, `mostRecentRentalStatusDate`, and `mostRecentRentalStatusFirstDateSeen`
+
+### New County Coverage
+
+Expanded coverage to include **Dane County, Wisconsin**.
+
+### People Data: New Listing Price Fields
+
+- `minListingPrice`
+- `maxListingPrice`
+
+### Business Data: New State Source
+
+- Rhode Island — business.sos.ri.gov
+</Update>
+
+<Update label="July 2025" description="Broker & Property Fields" tags={["New Feature"]}>
+### New People Data Fields (Broker Focus)
+
+- `maxRecentSoldPrice` — Maximum most recently sold price by the broker
+- `minRecentSoldPrice` — Minimum most recently sold price by the broker
+- `salesCountAllTime` — Total number of properties sold by the broker
+- `salesCountLastYear` — Properties sold by the broker in the last 365 days
+
+### New Property Data Fields
+
+- `capRate` — Capitalization rate of the property
+- `capRateSourceURL` — Source link for the reported cap rate
+- `lotDepthValue` — Numeric value of the lot's depth
+- `lotDepthUnit` — Unit of measurement for lot depth
+- `sewerType` — Type of sewer access (public, private, septic)
+
+### New Business Data Sources
+
+- Alaska — commerce.alaska.gov
+- Delaware — data.delaware.gov
+- Kentucky — sosbes.sos.ky.gov
+- Mississippi — corp.sos.ms.gov
+- Pennsylvania — data.pa.gov
+</Update>
+
+<Update label="June 2025" description="People & Property Integration" tags={["New Feature"]}>
+### New People and Property Data Integration
+
+New `people_key` sub-fields linking to corresponding records:
+- `people.people_key` — Retrieve detailed homeowner contact information
+- `brokers.people_key` — Access license numbers, contact details, and listing history
+
+### New Property Data Fields
+
+- `brokers.firstName`
+- `brokers.lastName`
+
+### New People Data Fields
+
+- `propertyKeys`
+- `propertiesOwned`
+- `propertiesRepresented`
+
+### New Business Data Sources
+
+- New York — data.ny.gov
+- Connecticut — data.ct.gov
+</Update>
+
+<Update label="March 2025" description="Parking & People Data" tags={["New Feature"]}>
+### New Parking Data Fields
+
+- `numParkingSpaces` — Total number of available parking spots
+- `numGarageSpace` — Number of garage-specific parking spaces
+
+### New People Data Schema Field
+
+- `propertyKeys` — Person's generated key for comparison in property search API
+</Update>
+
+<Update label="February 2025" description="Property Statuses & Schema" tags={["New Feature"]}>
+### New Supported Property Statuses
+
+- For Rent By Owner (`forrentbyowner`)
+- For Sale By Owner (`forsalebyowner`)
+
+### New Property Data Schema Fields
+
+- `companies.dateSeen`, `companies.email`, `companies.equity`, `companies.equityPercent`
+- `companies.landline`, `companies.name`, `companies.phone`, `companies.title`
+- `people.landline`
+
+### Improved Property & Product Data Crawls
+
+New county coverage:
+- **Florida** — Lee County
+- **Georgia** — Dekalb County
+- **New Jersey** — Hudson County, Bergen County, Middlesex County
+
+Updated sites: Yellowpages, Homes.com, Zillow.com
+
+Newly added: AJMadison.com
+
+### Portal Improvements
+
+- **Keyword Search Functionality** — Search property data using keywords for feature keys, values, or descriptions
+- **Sequential Downloads** — "Download All" button now downloads files one at a time
+</Update>
