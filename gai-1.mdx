@@ -1,5 +1,5 @@
 ---
-title: Business Data with Web Browser and CSV
+title: Business Data with cURL and CSV
 ---
 
 For this guide, we're going to assume you're interested in using Datafiniti's business data to do some marketing analysis on hotels.  Let's say you're a data scientist that's been tasked with the following:
@@ -10,20 +10,20 @@ For this guide, we're going to assume you're interested in using Datafiniti's bu
 
 Your environment and data needs:
 
-1. You're working with your web browser
+1. You're working with cURL.
 2. You want to work with CSV data.
 
 Here are the steps we'll take:
 
 
-## 1. Use Chrome and add the JSONView extension
+## 1. Open your terminal
 
-If you want to use your web browser to access the Datafiniti API, we recommend using Chrome.  In our experience, Chrome is the most stable browser.  It does a good job of displaying results from the Datafiniti API, particularly when coupled with the JSONView extension, which you can [install here](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc).  This extension will make responses from the Datafiniti API look pretty and more readable!
+If you want to use cURL to access the Datafiniti API, we're assuming you have access to a standard, Linux-based terminal.  Open a terminal session to get started.
 
 
 ## 2. Get your API token
 
-The first thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
+The next thing you'll need is your API token.  The API token lets you authenticate with Datafiniti API and tells it who you are, what you have access to, and so on.  Without it, you can't use the API.
 
 To get your API token, go the [Datafiniti Web Portal (https://portal.documentationai.com)](https://portal.documentationai.com), login, and click on your account name and the top-right.  From there, you'll see a link to the "My Account" page, which will take you to a page showing your token.  Your API token will be a long string of letters and numbers.  Copy the API token or store it somewhere you can easily reference.
 
@@ -34,15 +34,17 @@ For the rest of this document, we'll use `AAAXXXXXXXXXXXX` as a substitute examp
 
 ## 3. Run your first search
 
-Open a new window in your browser.  The first thing we'll do is do a test search that will give us a sense for what sort of data might be available.  Eventually we'll refine our search so that we get back the most relevant data.
+The first thing we'll do is do a test search that will give us a sense for what sort of data might be available.  Eventually we'll refine our search so that we get back the most relevant data.
 
 Since we want hotels, let's try a simple search that will just give us online listings for hotels.
 
-Copy and paste the following URL into your browser (replace the dummy API token with your real API token):
+Enter the following into your terminal (replace the dummy API token with your real API token):
 
-`https://AAAXXXXXXXXXXXX:@api.documentationai.com/v3/data/businesses?view=businesses_all&format=JSON&q=categories:hotels&records=1&download=false`
+```curl
+curl --user AAAXXXXXXXXXXXX: 'https://api.documentationai.com/v3/data/businesses?view=businesses_all&format=JSON&q=categories:hotels&records=1&download=false'
+```
 
-You should get a response similar to this:
+You should get a response similar to this (although it may not look as pretty in your terminal):
 
 ```json
 {
@@ -162,7 +164,7 @@ Now let's dive through the response the API returned:
 | `"estimated_total"` | The total number of available records in the database that match your query.  If you end up downloading the entire data set, this is how many records you'll use. |
 | `"records"` | The first available matches to your query.  For most queries, you'll see 1 to 10 example records.  If there are no matches, this field will be empty. <br/>  <br/> Within each record returned, you'll see multiple fields shown.  This is the data for each record. |
 
-Within the `records` field, you'll see a single business returned with multiple fields and their values associated with that product.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
+Within the `records` field, you'll see a single business returned with multiple fields and their values associated with that hotel.  The JSON response will show all fields that have a value.  It won't show any fields that don't have a value.
 
 Each business record will have multiple fields associated with it.  You can see a full list of available fields in our [Business Data Schema](https://java.documentationai.com/docs/business-data-schema).
 
@@ -182,7 +184,11 @@ This API call is different in a couple ways:
 
 Datafiniti lets you construct very refined boolean queries.  If you wanted to do more complicated searches, you could OR operations, negation, and more.
 
-Update your API call in Chrome and hit enter to see the updated results.
+You can use the following cURL command to run this API call:
+
+```curl
+curl --user AAAXXXXXXXXXXXX: 'https://api.documentationai.com/v3/data/businesses?view=businesses_all&format=JSON&q=categories:hotels+AND+country:US&records=10&download=false'
+```
 
 
 ## 5. Initiate a full download of the data
@@ -194,11 +200,13 @@ Once we like what we see from the sample matches, it's time to download the enti
 3. Change `businesses_all` to `businesses_all_nested`.  This will nest fields like categories and features into a single cell (instead splitting them across multiple rows and columns).
 4. Change `download=false` to `download=true`.
 
-After those changes, the API call looks like:
+After those changes, the cURL command looks like:
 
-`https://AAAXXXXXXXXXXXX:@api.documentationai.com/v3/data/businesses?view=businesses_all_nested&format=CSV&q=categories:hotels AND country:US&download=true`
+```curl
+curl --user AAAXXXXXXXXXXXX: 'https://api.documentationai.com/v3/data/businesses?view=businesses_all_nested&format=CSV&q=categories:hotels+AND+country:US&download=true'
+```
 
-When you make this API call, you'll see a response similar to:
+After running this command, you'll see something like:
 
 ```json
 [
@@ -247,18 +255,24 @@ Here's what these fields mean:
 
 ## 6. Monitor the status of the download
 
-As the download request runs, you can check on its status by using this API call:
+As the download request runs, you can check on its status by using this command:
 
 `https://AAAXXXXXXXXXXXX:@api.documentationai.com/v3/requests/XXXX`
 
-You'll want to replace `XXXX` with the `id` value for your request.  If you keep making the above API call, you'll see `numDownloaded` gradually increase.
+```curl
+curl --user AAAXXXXXXXXXXXX: 'https://api.documentationai.com/v3/requests/XXXX'
+```
+
+You'll want to replace `XXXX` with the `id` value for your request.  If you keep running the above command, you'll see `numDownloaded` gradually increase.
 
 
 ## 7. Download the result file(s)
 
-Once the download finishes, the `/requests/` call will show `COMPLETED` for `status`.  You can then get links to the data files by making this API call:
+Once the download finishes, the `/requests/` call will show `COMPLETED` for `status`.  You can then get links to the data files by running this command:
 
-`https://AAAXXXXXXXXXXXX:@api.documentationai.com/v3/results/XXXX`
+```curl
+curl --user AAAXXXXXXXXXXXX: 'https://api.documentationai.com/v3/results/XXXX'
+```
 
 (Again, replace `XXXX` with the actual request id.)  The response will look similar to:
 
@@ -277,14 +291,20 @@ Once the download finishes, the `/requests/` call will show `COMPLETED` for `sta
 
 If you've requested a lot of records (i.e., over 10,000), you may see more than 1 result object shown.
 
-To download the result files, copy each `url` value and paste it into your browser.  Your browser will initiate a download to your computer.
+To download the result files, copy each `url` value run a command like:
+
+```curl
+curl 'http://datafiniti-downloads-qa.s3.amazonaws.com/AAAXXXXXXXXXXXX/6073_1.csv?AWSAccessKeyId=AKIAIXQMCWHOZB3O35SA&Signature=2YtBsW9xY8CZrWDECcdLzyx4Jlk%3D&Expires=1484754763' > output.csv
+```
+
+You'll probably want to rename `output.csv` to something specific to this request.
 
 
 ## 8. Open the result file(s) in Excel
 
 Navigate to the file you downloaded and open it.  Since it's a CSV file, it should open in Excel automatically.  It will look something like:
 
-<Image src="https://files.readme.io/e69dbfa-hotel_sample.jpg" width="1920" height="1080" alt="hotel_sample.jpg" />
+<Image src="https://files.readme.io/eeb2bad-hotel_sample.jpg" width="1920" height="1080" alt="hotel_sample.jpg" />
 
 
 ## 9. Analyze the results
