@@ -5,7 +5,7 @@ title: Property Data Schema
 The property data schema below lists all available fields in a property record. Note that actual property records (actually, most of them) may not have every field present.
 
 | Field Name | Example Value (in JSON) | Description |
-| :----: | :----: | :----: |
+| ---- | ---- | ---- |
 | `absenteeOwner` | `"absenteeOwner": [{"absent": false, "firstDateSeen": "2024-04-11T17:17:53.270Z", "lastDateSeen": "2024-04-11T17:17:53.270Z"}]` | The owner of a property who does not reside in or otherwise occupy that property.<br/><br/>`absent`: Is currently an absentee owner<br/>Field type: boolean<br/><br/>`firstDateSeen`: Earliest date seen of the absentee owner.<br/>Field type: date<br/><br/>`lastDateSeen`: Latest date seen of the absentee owner.<br/>Field type: date |
 | `address` | `"address": "7206 Walling Ln"` | The physical street address for this property.<br/>Field type: text |
 | `appliances` | `"appliances": ["Cooktop","Dryer","Dishwasher","Microwave","Refrigerator","Washer"]` | The appliances included with the property.<br/>Field Type: text |
