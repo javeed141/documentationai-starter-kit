@@ -281,6 +281,10 @@
                         "group": "API Features",
                         "pages": [
                           {
+                            "title": "API Features",
+                            "path": "docs/property-api-features"
+                          },
+                          {
                             "title": "Autotrace",
                             "path": "docs/autotrace-property"
                           },
