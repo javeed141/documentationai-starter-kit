@@ -39,14 +39,14 @@ Shown here is an example of an acceptable line separated json file with the corr
 
 Set your enrichment file as the field_parameter file.
 
-<Image src="https://files.readme.io/1fcfd13-fileJSONselect.png" width="1920" height="1080" alt="fileJSONselect.png" />
+<Image src="https://files.readme.io/1fcfd13-fileJSONselect.png" width="1920" height="1080" alt="Selecting the JSON enrichment file" noCaption />
 
 ## Set Your field_parameter
 
 For the field parameter, we want to make sure that the Datafiniti schema field is selected and matches inside the txt file. This will allow the enrichment API to target submitted addresses plus postalCodes in our case here.
 You can read more about other property schema fields [here](/docs/property-data-schema).
 
-<Image src="https://files.readme.io/3c8131c-PropertyEnrichParamsJson.gif" width="1920" height="1080" alt="PropertyEnrichParamsJson.gif" />
+<Image src="https://files.readme.io/3c8131c-PropertyEnrichParamsJson.gif" width="1920" height="1080" alt="Setting field parameters for property enrichment" noCaption />
 
 <Callout kind="alert">
 
@@ -70,7 +70,7 @@ For our example here, we will add logic to our query to search for properties in
 address:* AND postalCode:* AND country:US AND province:(TX) AND propertyType:"commercial"
 ```
 
-<Image src="https://files.readme.io/7000e4e-enrichpropertiesjsonQuery.png" width="1920" height="1080" alt="enrichpropertiesjsonQuery.png" />
+<Image src="https://files.readme.io/7000e4e-enrichpropertiesjsonQuery.png" width="1920" height="1080" alt="Configuring the property enrichment query" noCaption />
 
 <Callout kind="alert">
 
@@ -88,7 +88,7 @@ Finally, the view is used to specify which fields you want to be added to your d
 
 Your final parameter should be set up as the following.
 
-<Image src="https://files.readme.io/4d2bb9a-JsonEnrichment.png" width="1920" height="1080" alt="JsonEnrichment.png" />
+<Image src="https://files.readme.io/4d2bb9a-JsonEnrichment.png" width="1920" height="1080" alt="Final JSON enrichment configuration" noCaption />
 
 Listed below is a cURL POST to import this example into Postman.
 

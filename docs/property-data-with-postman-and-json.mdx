@@ -39,13 +39,13 @@ Shown here is an example of an acceptable line separate json file with the corre
 
 Set your enrichment file as the field_parameter file.
 
-<Image src="https://files.readme.io/5d81381-fileJSONselect.png" width="1920" height="1080" alt="fileJSONselect.png" />
+<Image src="https://files.readme.io/5d81381-fileJSONselect.png" width="1920" height="1080" alt="Selecting the JSON enrichment file" noCaption />
 
 ## Set your field_parameter
 
 For the field parameter, we want to make sure that the Datafiniti schema field is selected and matches inside the txt file. This will allow the enrichment API to target submitted gtins in our case here.
 
-<Image src="https://files.readme.io/9fd4125-gtinsfieldparam.gif" width="1920" height="1080" alt="gtinsfieldparam.gif" />
+<Image src="https://files.readme.io/9fd4125-gtinsfieldparam.gif" width="1920" height="1080" alt="Setting the gtins field parameter" noCaption />
 
 <Callout kind="alert">
 
@@ -69,7 +69,7 @@ For our example here, we will add logic to our query to search for categories eq
 gtins:* AND categories:cosmetics AND dateUpdated:[2022-09-31 TO *]
 ```
 
-<Image src="https://files.readme.io/002cb19-5d63a65-postmanProductEnrich.png" width="1920" height="1080" alt="5d63a65-postmanProductEnrich.png" />
+<Image src="https://files.readme.io/002cb19-5d63a65-postmanProductEnrich.png" width="1920" height="1080" alt="Enrichment query configuration in Postman" noCaption />
 
 <Callout kind="alert">
 
@@ -87,7 +87,7 @@ Finally the view is used to specify which fields you want added to your data. If
 
 Your finally parameter should be setup as the following.
 
-<Image src="https://files.readme.io/5d63a65-postmanProductEnrich.png" width="1920" height="1080" alt="postmanProductEnrich.png" />
+<Image src="https://files.readme.io/5d63a65-postmanProductEnrich.png" width="1920" height="1080" alt="Final enrichment parameters in Postman" noCaption />
 
 Listed below is a cURL POST to import this example into Postman.
 

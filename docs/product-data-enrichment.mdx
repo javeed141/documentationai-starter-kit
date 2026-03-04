@@ -40,13 +40,13 @@ AVpe8Qmu1cnluZ0-aV3y,HP,680596404057
 
 Set your enrichment file as the field_parameter file.
 
-<Image src="https://files.readme.io/a94a465-csvEnrichment.png" width="1920" height="1080" alt="csvEnrichment.png" />
+<Image src="https://files.readme.io/a94a465-csvEnrichment.png" width="1920" height="1080" alt="Selecting the CSV enrichment file" noCaption />
 
 ## Set Your field_parameter
 
 For the field parameter, we want to make sure that the Datafiniti schema field is selected and matches inside the txt file. This will allow the enrichment API to target submitted gtins in our case here.
 
-<Image src="https://files.readme.io/1dcb3a3-enrichmentcsvFieldParams.gif" width="1920" height="1080" alt="enrichmentcsvFieldParams.gif" />
+<Image src="https://files.readme.io/1dcb3a3-enrichmentcsvFieldParams.gif" width="1920" height="1080" alt="Setting the field parameters for CSV enrichment" noCaption />
 
 <Callout kind="alert">
 
@@ -70,7 +70,7 @@ For our example here, we will add logic to our query to search for categories eq
 gtins:* AND categories:cosmetics AND dateUpdated:[2022-09-31 TO *]
 ```
 
-<Image src="https://files.readme.io/7c69e9c-csvEnrichmentQuery.png" width="1920" height="1080" alt="csvEnrichmentQuery.png" />
+<Image src="https://files.readme.io/7c69e9c-csvEnrichmentQuery.png" width="1920" height="1080" alt="Configuring the enrichment query" noCaption />
 
 <Callout kind="alert">
 
@@ -88,7 +88,7 @@ Finally the view is used to specify which fields you want added to your data. If
 
 Your finally parameter should be setup as the following.
 
-<Image src="https://files.readme.io/99be25e-csvEnrichmentView.png" width="1920" height="1080" alt="csvEnrichmentView.png" />
+<Image src="https://files.readme.io/99be25e-csvEnrichmentView.png" width="1920" height="1080" alt="Final enrichment view configuration" noCaption />
 
 Listed below is a cURL POST to import this example into Postman.
 

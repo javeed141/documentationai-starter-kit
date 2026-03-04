@@ -40,14 +40,14 @@ W BAY AREA BLVD,77546
 
 Set your enrichment file as the field_parameter file.
 
-<Image src="https://files.readme.io/29275a3-enrichpropertiescsv.png" width="1920" height="1080" alt="enrichpropertiescsv.png" />
+<Image src="https://files.readme.io/29275a3-enrichpropertiescsv.png" width="1920" height="1080" alt="Property enrichment CSV configuration" noCaption />
 
 ## Set Your field_parameter
 
 For the field parameter, we want to make sure that the Datafiniti schema field is selected and matches inside the txt file. This will allow the enrichment API to target submitted addresses plus postalCodes in our case here.
 You can read more about other property schema fields [here](/docs/property-data-schema).
 
-<Image src="https://files.readme.io/bdc1f80-enrichmentcsvFieldParams.gif" width="1920" height="1080" alt="Setting enrichment CSV field parameters" />
+<Image src="https://files.readme.io/bdc1f80-enrichmentcsvFieldParams.gif" width="1920" height="1080" alt="Setting enrichment CSV field parameters" noCaption />
 
 <Callout kind="alert">
 
@@ -80,7 +80,7 @@ For our example here, we will add logic to our query to search for properties in
 address:* AND postalCode:* AND country:US AND province:(TX) AND propertyType:"commercial"
 ```
 
-<Image src="https://files.readme.io/292c6b1-enrichpropertiesquery.png" width="1920" height="1080" alt="Property enrichment query configuration" />
+<Image src="https://files.readme.io/292c6b1-enrichpropertiesquery.png" width="1920" height="1080" alt="Property enrichment query configuration" noCaption />
 
 <Callout kind="alert">
 
@@ -98,7 +98,7 @@ Finally the view is used to specify which fields you want added to your data. If
 
 Your finally parameter should be setup as the following.
 
-<Image src="https://files.readme.io/0ac0eaf-enrichpropertiesformat.png" width="1920" height="1080" alt="Property enrichment format and view configuration" />
+<Image src="https://files.readme.io/0ac0eaf-enrichpropertiesformat.png" width="1920" height="1080" alt="Property enrichment format and view configuration" noCaption />
 
 Listed below is a cURL POST to import this example into Postman.
 
