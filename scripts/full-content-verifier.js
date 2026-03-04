@@ -1,357 +1,256 @@
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
 
-const config = require('./migration-config.json');
+const WORKSPACE = '/Users/yashwanthmuddana/Documents/work/migrations/documentationai-starter-kit';
 
-class FullContentVerifier {
-  constructor(workspaceRoot) {
-    this.workspaceRoot = workspaceRoot;
-    this.sourceBaseUrl = config.sourceBaseUrl;
-    this.rateLimitMs = 300;
-    this.results = {
-      verified: [],
-      contentMismatch: [],
-      source404: [],
-      sourceErrors: [],
-      localMissing: []
-    };
+function extractPaths(obj, paths = []) {
+  if (Array.isArray(obj)) {
+    obj.forEach(item => extractPaths(item, paths));
+  } else if (typeof obj === 'object' && obj !== null) {
+    if (obj.path && !obj.openapi) {
+      paths.push(obj.path);
+    }
+    Object.values(obj).forEach(val => extractPaths(val, paths));
   }
+  return paths;
+}
 
-  async fetchUrl(url) {
-    return new Promise((resolve, reject) => {
-      const request = https.get(url, {
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (compatible; MigrationVerifier/1.0)',
-          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-        }
-      }, (response) => {
-        if (response.statusCode >= 300 && response.statusCode < 400 && response.headers.location) {
-          const redirectUrl = response.headers.location.startsWith('http') 
-            ? response.headers.location 
-            : `${this.sourceBaseUrl}${response.headers.location}`;
-          this.fetchUrl(redirectUrl).then(resolve).catch(reject);
-          return;
-        }
-        
-        let data = '';
-        response.on('data', chunk => data += chunk);
-        response.on('end', () => resolve({
-          statusCode: response.statusCode,
-          content: data,
-          url
-        }));
+function fetchPage(url) {
+  return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      reject(new Error('Timeout'));
+    }, 30000);
+    
+    https.get(url, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        clearTimeout(timeout);
+        resolve({ status: res.statusCode, data });
       });
-      
-      request.on('error', reject);
-      request.setTimeout(30000, () => {
-        request.destroy();
-        reject(new Error('Request timeout'));
-      });
+    }).on('error', (err) => {
+      clearTimeout(timeout);
+      reject(err);
     });
-  }
+  });
+}
 
-  extractTextContent(html) {
-    let text = html
-      .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
-      .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
-      .replace(/<nav[^>]*>[\s\S]*?<\/nav>/gi, '')
-      .replace(/<header[^>]*>[\s\S]*?<\/header>/gi, '')
-      .replace(/<footer[^>]*>[\s\S]*?<\/footer>/gi, '');
+function normalizeContent(content) {
+  return content
+    .replace(/^---[\s\S]*?---/m, '')
+    .replace(/\[block:[^\]]+\][\s\S]*?\[\/block\]/g, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/```[\s\S]*?```/g, ' [CODE] ')
+    .replace(/`[^`]+`/g, ' ')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/https?:\/\/[^\s)]+/g, '')
+    .replace(/[#*_~|]/g, '')
+    .replace(/\s+/g, ' ')
+    .toLowerCase()
+    .trim();
+}
 
-    text = text
-      .replace(/<[^>]+>/g, ' ')
-      .replace(/&nbsp;/g, ' ')
-      .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/\s+/g, ' ')
-      .trim();
-
-    return text;
-  }
-
-  extractMdxTextContent(mdxContent) {
-    const frontmatterMatch = mdxContent.match(/^---\n([\s\S]*?)\n---/);
-    let body = mdxContent;
-    
-    if (frontmatterMatch) {
-      body = mdxContent.slice(frontmatterMatch[0].length).trim();
+function extractListOrder(content) {
+  const lines = content.split('\n');
+  const listItems = [];
+  
+  for (const line of lines) {
+    const match = line.match(/^\s*[-*]\s+\[([^\]]+)\]/);
+    if (match) {
+      listItems.push(match[1].toLowerCase().trim());
     }
-
-    return body
-      .replace(/<[^>]+>/g, ' ')
-      .replace(/```[\s\S]*?```/g, '')
-      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-      .replace(/[#*_`]/g, '')
-      .replace(/\s+/g, ' ')
-      .trim();
   }
+  return listItems;
+}
 
-  normalizeText(text) {
-    return text
-      .toLowerCase()
-      .replace(/[^\w\s]/g, '')
-      .replace(/\s+/g, ' ')
-      .trim();
+function compareListOrder(sourceContent, localContent) {
+  const sourceList = extractListOrder(sourceContent);
+  const localList = extractListOrder(localContent);
+  
+  if (sourceList.length < 2 || localList.length < 2) {
+    return { match: true, reason: 'insufficient_lists' };
   }
-
-  calculateSimilarity(text1, text2) {
-    const norm1 = this.normalizeText(text1);
-    const norm2 = this.normalizeText(text2);
-    
-    if (norm1 === norm2) return 1.0;
-    if (!norm1 || !norm2) return 0.0;
-
-    const words1 = new Set(norm1.split(' '));
-    const words2 = new Set(norm2.split(' '));
-    
-    const intersection = new Set([...words1].filter(x => words2.has(x)));
-    const union = new Set([...words1, ...words2]);
-    
-    return intersection.size / union.size;
+  
+  const commonItems = sourceList.filter(item => 
+    localList.some(l => l.includes(item) || item.includes(l))
+  );
+  
+  if (commonItems.length < 2) {
+    return { match: true, reason: 'no_common_items' };
   }
-
-  extractNavigationPaths(navObj, paths = [], prefix = '') {
-    if (Array.isArray(navObj)) {
-      for (const item of navObj) {
-        this.extractNavigationPaths(item, paths, prefix);
-      }
-    } else if (typeof navObj === 'object' && navObj !== null) {
-      if (navObj.path) {
-        paths.push(navObj.path);
-      }
-      if (navObj.pages) {
-        this.extractNavigationPaths(navObj.pages, paths, prefix);
-      }
-      if (navObj.groups) {
-        this.extractNavigationPaths(navObj.groups, paths, prefix);
-      }
-      if (navObj.tabs) {
-        this.extractNavigationPaths(navObj.tabs, paths, prefix);
-      }
-      if (navObj.versions) {
-        this.extractNavigationPaths(navObj.versions, paths, prefix);
-      }
+  
+  const sourceIndices = commonItems.map(item => 
+    sourceList.findIndex(s => s.includes(item) || item.includes(s))
+  );
+  const localIndices = commonItems.map(item => 
+    localList.findIndex(l => l.includes(item) || item.includes(l))
+  );
+  
+  let orderMatch = true;
+  for (let i = 1; i < sourceIndices.length; i++) {
+    const sourceOrder = sourceIndices[i] > sourceIndices[i-1];
+    const localOrder = localIndices[i] > localIndices[i-1];
+    if (sourceOrder !== localOrder) {
+      orderMatch = false;
+      break;
     }
-    return paths;
   }
+  
+  return { 
+    match: orderMatch,
+    sourceList: commonItems.map((item, i) => `${sourceIndices[i]}:${item}`),
+    localList: commonItems.map((item, i) => `${localIndices[i]}:${item}`)
+  };
+}
 
-  pathToSourceUrl(localPath) {
-    if (localPath.startsWith('v3/')) {
-      return `${this.sourceBaseUrl}/${localPath}`;
-    }
-    return `${this.sourceBaseUrl}/${localPath}`;
+function getSourceUrl(pagePath) {
+  if (pagePath.startsWith('v3/')) {
+    const slug = pagePath.replace('v3/', '');
+    return `https://docs.datafiniti.co/v3/${slug}.md`;
   }
+  if (pagePath.startsWith('reference/')) {
+    return `https://docs.datafiniti.co/reference/${pagePath.replace('reference/', '')}.md`;
+  }
+  if (pagePath.startsWith('changelog/')) {
+    return `https://docs.datafiniti.co/changelog.md`;
+  }
+  return `https://docs.datafiniti.co/${pagePath}.md`;
+}
 
-  async verifyPage(localPath) {
-    const sourceUrl = this.pathToSourceUrl(localPath);
-    const localFilePath = path.join(this.workspaceRoot, `${localPath}.mdx`);
+async function verifyPage(pagePath) {
+  const localPath = path.join(WORKSPACE, pagePath + '.mdx');
+  
+  if (!fs.existsSync(localPath)) {
+    return { path: pagePath, status: 'missing_local', error: 'Local file not found' };
+  }
+  
+  const localContent = fs.readFileSync(localPath, 'utf8');
+  const sourceUrl = getSourceUrl(pagePath);
+  
+  try {
+    const { status, data: sourceContent } = await fetchPage(sourceUrl);
     
-    const result = {
-      localPath,
-      sourceUrl,
-      status: 'pending',
-      similarity: null,
-      error: null,
-      sourceStatus: null,
-      localExists: false,
-      sourceTextLength: 0,
-      localTextLength: 0
+    if (status === 404) {
+      return { path: pagePath, status: 'source_404', url: sourceUrl };
+    }
+    
+    if (status !== 200) {
+      return { path: pagePath, status: 'fetch_error', error: `HTTP ${status}`, url: sourceUrl };
+    }
+    
+    const normalizedSource = normalizeContent(sourceContent);
+    const normalizedLocal = normalizeContent(localContent);
+    
+    const sourceWords = normalizedSource.split(/\s+/).filter(w => w.length > 3);
+    const localWords = normalizedLocal.split(/\s+/).filter(w => w.length > 3);
+    
+    const commonWords = sourceWords.filter(w => localWords.includes(w));
+    const similarity = Math.round((commonWords.length / Math.max(sourceWords.length, 1)) * 100);
+    
+    const listComparison = compareListOrder(sourceContent, localContent);
+    
+    const issues = [];
+    if (similarity < 50) issues.push('low_similarity');
+    if (!listComparison.match) issues.push('list_order_mismatch');
+    
+    return {
+      path: pagePath,
+      status: issues.length === 0 ? 'ok' : issues.join(','),
+      similarity,
+      listOrderMatch: listComparison.match,
+      url: sourceUrl,
+      details: !listComparison.match ? listComparison : undefined
     };
-
-    if (!fs.existsSync(localFilePath)) {
-      result.status = 'local_missing';
-      result.localExists = false;
-      return result;
-    }
-    result.localExists = true;
-
-    try {
-      const response = await this.fetchUrl(sourceUrl);
-      result.sourceStatus = response.statusCode;
-      
-      if (response.statusCode === 404) {
-        result.status = 'source_404';
-        return result;
-      }
-      
-      if (response.statusCode !== 200) {
-        result.status = 'source_error';
-        result.error = `HTTP ${response.statusCode}`;
-        return result;
-      }
-
-      const sourceText = this.extractTextContent(response.content);
-      const mdxContent = fs.readFileSync(localFilePath, 'utf-8');
-      const localText = this.extractMdxTextContent(mdxContent);
-
-      result.sourceTextLength = sourceText.length;
-      result.localTextLength = localText.length;
-      result.similarity = this.calculateSimilarity(sourceText, localText);
-
-      if (result.similarity >= 0.6) {
-        result.status = 'verified';
-      } else {
-        result.status = 'content_mismatch';
-      }
-
-    } catch (error) {
-      result.status = 'error';
-      result.error = error.message;
-    }
-
-    return result;
-  }
-
-  async verifyAllNavigationPages() {
-    const navPath = path.join(this.workspaceRoot, 'documentation.json');
-    const navContent = JSON.parse(fs.readFileSync(navPath, 'utf-8'));
-    
-    const allPaths = this.extractNavigationPaths(navContent.navigation);
-    const uniquePaths = [...new Set(allPaths)];
-    
-    console.log(`Found ${uniquePaths.length} unique paths in navigation\n`);
-
-    const v4Paths = uniquePaths.filter(p => !p.startsWith('v3/'));
-    const v3Paths = uniquePaths.filter(p => p.startsWith('v3/'));
-
-    console.log(`v4 paths: ${v4Paths.length}`);
-    console.log(`v3 paths: ${v3Paths.length}\n`);
-
-    console.log('Verifying v4 pages...\n');
-    for (let i = 0; i < v4Paths.length; i++) {
-      const localPath = v4Paths[i];
-      const result = await this.verifyPage(localPath);
-      this.categorizeResult(result);
-      
-      const pct = Math.round(((i + 1) / v4Paths.length) * 100);
-      const statusIcon = this.getStatusIcon(result.status);
-      console.log(`[v4 ${pct}%] ${statusIcon} ${localPath} (${result.status}${result.similarity ? `, ${Math.round(result.similarity * 100)}%` : ''})`);
-      
-      await this.delay(this.rateLimitMs);
-    }
-
-    console.log('\nVerifying v3 pages...\n');
-    for (let i = 0; i < v3Paths.length; i++) {
-      const localPath = v3Paths[i];
-      const result = await this.verifyPage(localPath);
-      this.categorizeResult(result);
-      
-      const pct = Math.round(((i + 1) / v3Paths.length) * 100);
-      const statusIcon = this.getStatusIcon(result.status);
-      console.log(`[v3 ${pct}%] ${statusIcon} ${localPath} (${result.status}${result.similarity ? `, ${Math.round(result.similarity * 100)}%` : ''})`);
-      
-      await this.delay(this.rateLimitMs);
-    }
-
-    return this.generateReport();
-  }
-
-  getStatusIcon(status) {
-    switch (status) {
-      case 'verified': return '✓';
-      case 'content_mismatch': return '!';
-      case 'source_404': return '✗';
-      case 'local_missing': return '?';
-      default: return '⚠';
-    }
-  }
-
-  categorizeResult(result) {
-    switch (result.status) {
-      case 'verified':
-        this.results.verified.push(result);
-        break;
-      case 'content_mismatch':
-        this.results.contentMismatch.push(result);
-        break;
-      case 'source_404':
-        this.results.source404.push(result);
-        break;
-      case 'local_missing':
-        this.results.localMissing.push(result);
-        break;
-      default:
-        this.results.sourceErrors.push(result);
-    }
-  }
-
-  generateReport() {
-    const report = {
-      timestamp: new Date().toISOString(),
-      summary: {
-        total: this.results.verified.length + 
-               this.results.contentMismatch.length + 
-               this.results.source404.length + 
-               this.results.localMissing.length +
-               this.results.sourceErrors.length,
-        verified: this.results.verified.length,
-        contentMismatch: this.results.contentMismatch.length,
-        source404: this.results.source404.length,
-        localMissing: this.results.localMissing.length,
-        errors: this.results.sourceErrors.length
-      },
-      results: this.results
-    };
-
-    return report;
-  }
-
-  delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  } catch (err) {
+    return { path: pagePath, status: 'fetch_error', error: err.message, url: sourceUrl };
   }
 }
 
 async function main() {
-  const workspaceRoot = path.resolve(__dirname, '..');
-  const verifier = new FullContentVerifier(workspaceRoot);
-
-  console.log('╔════════════════════════════════════════════════════════════╗');
-  console.log('║     Full Content Verification - All Navigation Pages      ║');
-  console.log('╚════════════════════════════════════════════════════════════╝\n');
-
-  const report = await verifier.verifyAllNavigationPages();
-
-  console.log('\n' + '═'.repeat(60));
-  console.log('VERIFICATION SUMMARY');
-  console.log('═'.repeat(60));
-  console.log(`Total pages checked: ${report.summary.total}`);
-  console.log(`  ✓ Verified (content matches): ${report.summary.verified}`);
-  console.log(`  ! Content mismatch: ${report.summary.contentMismatch}`);
-  console.log(`  ✗ Source 404: ${report.summary.source404}`);
-  console.log(`  ? Local file missing: ${report.summary.localMissing}`);
-  console.log(`  ⚠ Errors: ${report.summary.errors}`);
-
-  if (report.results.source404.length > 0) {
-    console.log('\n' + '─'.repeat(60));
-    console.log('PAGES WITH SOURCE 404 (need attention):');
-    console.log('─'.repeat(60));
-    for (const item of report.results.source404) {
-      console.log(`  ${item.localPath}`);
-      console.log(`    Source URL: ${item.sourceUrl}`);
+  const docJson = JSON.parse(fs.readFileSync(path.join(WORKSPACE, 'documentation.json'), 'utf8'));
+  const paths = extractPaths(docJson.navigation);
+  
+  console.log(`Verifying ${paths.length} pages using .md endpoints...\n`);
+  
+  const results = {
+    ok: [],
+    issues: [],
+    missing_local: [],
+    source_404: [],
+    fetch_error: []
+  };
+  
+  const batchSize = 5;
+  for (let i = 0; i < paths.length; i += batchSize) {
+    const batch = paths.slice(i, i + batchSize);
+    const batchResults = await Promise.all(batch.map(p => verifyPage(p)));
+    
+    for (const result of batchResults) {
+      if (result.status === 'ok') {
+        results.ok.push(result);
+        console.log(`✓ ${result.path} (${result.similarity}%)`);
+      } else if (result.status === 'missing_local') {
+        results.missing_local.push(result);
+        console.log(`✗ ${result.path} - MISSING LOCAL FILE`);
+      } else if (result.status === 'source_404') {
+        results.source_404.push(result);
+        console.log(`? ${result.path} - SOURCE 404`);
+      } else if (result.status === 'fetch_error') {
+        results.fetch_error.push(result);
+        console.log(`! ${result.path} - ${result.error}`);
+      } else {
+        results.issues.push(result);
+        console.log(`⚠ ${result.path} (${result.similarity}%) - ${result.status}`);
+      }
     }
+    
+    await new Promise(r => setTimeout(r, 300));
   }
-
-  if (report.results.contentMismatch.length > 0) {
-    console.log('\n' + '─'.repeat(60));
-    console.log('PAGES WITH CONTENT MISMATCH:');
-    console.log('─'.repeat(60));
-    for (const item of report.results.contentMismatch) {
-      console.log(`  ${item.localPath} (${Math.round(item.similarity * 100)}% similar)`);
-      console.log(`    Source: ${item.sourceTextLength} chars, Local: ${item.localTextLength} chars`);
-    }
+  
+  console.log('\n' + '='.repeat(60));
+  console.log('SUMMARY');
+  console.log('='.repeat(60));
+  console.log(`✓ OK: ${results.ok.length}`);
+  console.log(`⚠ Issues: ${results.issues.length}`);
+  console.log(`✗ Missing Local: ${results.missing_local.length}`);
+  console.log(`? Source 404: ${results.source_404.length}`);
+  console.log(`! Fetch Error: ${results.fetch_error.length}`);
+  
+  if (results.issues.length > 0) {
+    console.log('\n' + '='.repeat(60));
+    console.log('PAGES WITH ISSUES');
+    console.log('='.repeat(60));
+    results.issues.forEach(r => {
+      console.log(`\n${r.path}:`);
+      console.log(`  Status: ${r.status}`);
+      console.log(`  Similarity: ${r.similarity}%`);
+      if (r.details) {
+        console.log(`  Source order: ${r.details.sourceList?.join(', ')}`);
+        console.log(`  Local order: ${r.details.localList?.join(', ')}`);
+      }
+    });
   }
-
-  const outputPath = path.join(__dirname, 'full-verification-results.json');
-  fs.writeFileSync(outputPath, JSON.stringify(report, null, 2));
-  console.log(`\nDetailed results saved to: ${outputPath}`);
-
-  return report;
+  
+  if (results.missing_local.length > 0) {
+    console.log('\n' + '='.repeat(60));
+    console.log('MISSING LOCAL FILES');
+    console.log('='.repeat(60));
+    results.missing_local.forEach(r => console.log(`  ${r.path}`));
+  }
+  
+  if (results.source_404.length > 0) {
+    console.log('\n' + '='.repeat(60));
+    console.log('SOURCE 404 (may be renamed or removed)');
+    console.log('='.repeat(60));
+    results.source_404.forEach(r => console.log(`  ${r.path} -> ${r.url}`));
+  }
+  
+  fs.writeFileSync(
+    path.join(WORKSPACE, 'verification-results.json'),
+    JSON.stringify(results, null, 2)
+  );
+  console.log('\nResults saved to verification-results.json');
 }
 
-module.exports = { FullContentVerifier, main };
-
-if (require.main === module) {
-  main().catch(console.error);
-}
+main().catch(console.error);

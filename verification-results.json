@@ -1,0 +1,1800 @@
+{
+  "ok": [
+    {
+      "path": "docs/api-introduction",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/api-introduction.md"
+    },
+    {
+      "path": "docs/how-credits-work-api",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/how-credits-work-api.md"
+    },
+    {
+      "path": "docs/api-property-data",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/api-property-data.md"
+    },
+    {
+      "path": "docs/getting-started-with-property-data",
+      "status": "ok",
+      "similarity": 90,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/getting-started-with-property-data.md"
+    },
+    {
+      "path": "docs/property-data-with-postman",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-with-postman.md"
+    },
+    {
+      "path": "docs/property-data-with-curl",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-with-curl.md"
+    },
+    {
+      "path": "docs/property-data-with-nodejs",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-with-nodejs.md"
+    },
+    {
+      "path": "docs/property-data-with-php",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-with-php.md"
+    },
+    {
+      "path": "docs/property-data-with-python",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-with-python.md"
+    },
+    {
+      "path": "docs/property-data-with-wpgetapi",
+      "status": "ok",
+      "similarity": 96,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-with-wpgetapi.md"
+    },
+    {
+      "path": "docs/property-data-schema",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-schema.md"
+    },
+    {
+      "path": "docs/property-field-type-breakdown",
+      "status": "ok",
+      "similarity": 50,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-field-type-breakdown.md"
+    },
+    {
+      "path": "docs/possible-values-for-property-fields",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/possible-values-for-property-fields.md"
+    },
+    {
+      "path": "docs/normalized-address-data",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/normalized-address-data.md"
+    },
+    {
+      "path": "docs/normalized-countries-provinces",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/normalized-countries-provinces.md"
+    },
+    {
+      "path": "docs/how-property-records-are-merged",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/how-property-records-are-merged.md"
+    },
+    {
+      "path": "docs/property-data-views",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-views.md"
+    },
+    {
+      "path": "docs/available-views-for-property-data",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/available-views-for-property-data.md"
+    },
+    {
+      "path": "docs/using-a-custom-property-view",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/using-a-custom-property-view.md"
+    },
+    {
+      "path": "docs/create-save-a-custom-property-view",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/create-save-a-custom-property-view.md"
+    },
+    {
+      "path": "docs/constructing-property-queries",
+      "status": "ok",
+      "similarity": 73,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/constructing-property-queries.md"
+    },
+    {
+      "path": "docs/advanced-queries-of-property-postman",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/advanced-queries-of-property-postman.md"
+    },
+    {
+      "path": "docs/use-cases-for-property-data",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/use-cases-for-property-data.md"
+    },
+    {
+      "path": "docs/property-use-cases",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-use-cases.md"
+    },
+    {
+      "path": "docs/search-for-mls-property-data",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/search-for-mls-property-data.md"
+    },
+    {
+      "path": "docs/determine-home-values",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/determine-home-values.md"
+    },
+    {
+      "path": "docs/search-for-properties-around-a-latlong",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/search-for-properties-around-a-latlong.md"
+    },
+    {
+      "path": "docs/select-sites-for-commercial-development",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/select-sites-for-commercial-development.md"
+    },
+    {
+      "path": "docs/find-locations-of-dental-offices",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-locations-of-dental-offices.md"
+    },
+    {
+      "path": "docs/contact-home-owners-that-need-roofing-work",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/contact-home-owners-that-need-roofing-work.md"
+    },
+    {
+      "path": "docs/contact-new-home-owners",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/contact-new-home-owners.md"
+    },
+    {
+      "path": "docs/search-property-status",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/search-property-status.md"
+    },
+    {
+      "path": "docs/search-via-street-address",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/search-via-street-address.md"
+    },
+    {
+      "path": "docs/discover-when-clients-sell-their-homes",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/discover-when-clients-sell-their-homes.md"
+    },
+    {
+      "path": "docs/find-investment-properties",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-investment-properties.md"
+    },
+    {
+      "path": "docs/identify-e-commerce-orders-shipping-to-vacant-houses",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/identify-e-commerce-orders-shipping-to-vacant-houses.md"
+    },
+    {
+      "path": "docs/collect-hoa-fee-data-for-a-property",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/collect-hoa-fee-data-for-a-property.md"
+    },
+    {
+      "path": "docs/find-rental-rates-for-properties",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-rental-rates-for-properties.md"
+    },
+    {
+      "path": "docs/find-property-comps-from-transaction-data",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-property-comps-from-transaction-data.md"
+    },
+    {
+      "path": "docs/find-prices-of-sold-properties",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-prices-of-sold-properties.md"
+    },
+    {
+      "path": "docs/track-property-status-changes",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/track-property-status-changes.md"
+    },
+    {
+      "path": "docs/search-broker-license-numbers",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/search-broker-license-numbers.md"
+    },
+    {
+      "path": "docs/generate-a-list-of-recent-broker-contacts",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/generate-a-list-of-recent-broker-contacts.md"
+    },
+    {
+      "path": "docs/find-property-refinance-data",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-property-refinance-data.md"
+    },
+    {
+      "path": "docs/find-days-on-market-from-commercial-property",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-days-on-market-from-commercial-property.md"
+    },
+    {
+      "path": "docs/find-property-with-liens",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-property-with-liens.md"
+    },
+    {
+      "path": "docs/find-mortgage-lender-from-transactions",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-mortgage-lender-from-transactions.md"
+    },
+    {
+      "path": "docs/accessing-owners-brokers-and-other-people",
+      "status": "ok",
+      "similarity": 52,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/accessing-owners-brokers-and-other-people.md"
+    },
+    {
+      "path": "docs/building-rental-property-data-market-reports",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/building-rental-property-data-market-reports.md"
+    },
+    {
+      "path": "docs/autotrace-property",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/autotrace-property.md"
+    },
+    {
+      "path": "docs/count-property",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/count-property.md"
+    },
+    {
+      "path": "docs/geolocation-property",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/geolocation-property.md"
+    },
+    {
+      "path": "docs/pagination-property",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/pagination-property.md"
+    },
+    {
+      "path": "docs/api-people-data",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/api-people-data.md"
+    },
+    {
+      "path": "docs/people-data-with-postman",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/people-data-with-postman.md"
+    },
+    {
+      "path": "docs/people-data-with-curl",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/people-data-with-curl.md"
+    },
+    {
+      "path": "docs/people-data-with-nodejs",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/people-data-with-nodejs.md"
+    },
+    {
+      "path": "docs/people-data-with-php",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/people-data-with-php.md"
+    },
+    {
+      "path": "docs/people-data-with-python",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/people-data-with-python.md"
+    },
+    {
+      "path": "docs/people-data-schema",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/people-data-schema.md"
+    },
+    {
+      "path": "docs/people-field-type-breakdown",
+      "status": "ok",
+      "similarity": 50,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/people-field-type-breakdown.md"
+    },
+    {
+      "path": "docs/possible-values-for-people-fields",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/possible-values-for-people-fields.md"
+    },
+    {
+      "path": "docs/available-views-for-people-data",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/available-views-for-people-data.md"
+    },
+    {
+      "path": "docs/people_all",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/people_all.md"
+    },
+    {
+      "path": "docs/creating-a-custom-people-view-on-the-fly",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/creating-a-custom-people-view-on-the-fly.md"
+    },
+    {
+      "path": "docs/create-save-a-custom-people-view",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/create-save-a-custom-people-view.md"
+    },
+    {
+      "path": "docs/use-cases-for-people-data",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/use-cases-for-people-data.md"
+    },
+    {
+      "path": "docs/people-use-cases",
+      "status": "ok",
+      "similarity": 94,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/people-use-cases.md"
+    },
+    {
+      "path": "docs/find-leads-for-a-saas-business",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-leads-for-a-saas-business.md"
+    },
+    {
+      "path": "docs/identifying-companies-with-employees-targeted-by-cyberattacks",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/identifying-companies-with-employees-targeted-by-cyberattacks.md"
+    },
+    {
+      "path": "docs/gather-people-contact-information",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/gather-people-contact-information.md"
+    },
+    {
+      "path": "docs/accessing-property-linked-people-records",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/accessing-property-linked-people-records.md"
+    },
+    {
+      "path": "docs/find-brokers-in-your-area",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-brokers-in-your-area.md"
+    },
+    {
+      "path": "docs/constructing-people-queries",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/constructing-people-queries.md"
+    },
+    {
+      "path": "docs/people-api-features",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/people-api-features.md"
+    },
+    {
+      "path": "docs/people-count",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/people-count.md"
+    },
+    {
+      "path": "docs/people-pagination",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/people-pagination.md"
+    },
+    {
+      "path": "docs/api-product-data",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/api-product-data.md"
+    },
+    {
+      "path": "docs/getting-started-with-product-data",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/getting-started-with-product-data.md"
+    },
+    {
+      "path": "docs/product-data-with-postman",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-data-with-postman.md"
+    },
+    {
+      "path": "docs/product-data-with-python",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-data-with-python.md"
+    },
+    {
+      "path": "docs/product-data-with-nodejs",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-data-with-nodejs.md"
+    },
+    {
+      "path": "docs/product-data-with-curl",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-data-with-curl.md"
+    },
+    {
+      "path": "docs/product-data-with-php",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-data-with-php.md"
+    },
+    {
+      "path": "docs/product-data-schema",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-data-schema.md"
+    },
+    {
+      "path": "docs/product-field-type-breakdown",
+      "status": "ok",
+      "similarity": 50,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-field-type-breakdown.md"
+    },
+    {
+      "path": "docs/product-brand-normalization",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-brand-normalization.md"
+    },
+    {
+      "path": "docs/possible-values-for-product-fields",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/possible-values-for-product-fields.md"
+    },
+    {
+      "path": "docs/dimensions-normalization",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/dimensions-normalization.md"
+    },
+    {
+      "path": "docs/taxonomy-1-level",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/taxonomy-1-level.md"
+    },
+    {
+      "path": "docs/taxonomy-2-levels",
+      "status": "ok",
+      "similarity": 76,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/taxonomy-2-levels.md"
+    },
+    {
+      "path": "docs/taxonomy-3-levels",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/taxonomy-3-levels.md"
+    },
+    {
+      "path": "docs/taxonomy-4-levels",
+      "status": "ok",
+      "similarity": 88,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/taxonomy-4-levels.md"
+    },
+    {
+      "path": "docs/taxonomy-5-levels",
+      "status": "ok",
+      "similarity": 88,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/taxonomy-5-levels.md"
+    },
+    {
+      "path": "docs/taxonomy-6-levels",
+      "status": "ok",
+      "similarity": 63,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/taxonomy-6-levels.md"
+    },
+    {
+      "path": "docs/available-views-for-product-data",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/available-views-for-product-data.md"
+    },
+    {
+      "path": "docs/product_all",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product_all.md"
+    },
+    {
+      "path": "docs/creating-a-custom-product-view-on-the-fly",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/creating-a-custom-product-view-on-the-fly.md"
+    },
+    {
+      "path": "docs/create-save-a-custom-product-view",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/create-save-a-custom-product-view.md"
+    },
+    {
+      "path": "docs/constructing-product-queries",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/constructing-product-queries.md"
+    },
+    {
+      "path": "docs/constructing-advanced-product-data-queries-in-postman",
+      "status": "ok",
+      "similarity": 96,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/constructing-advanced-product-data-queries-in-postman.md"
+    },
+    {
+      "path": "docs/how-product-records-are-merged",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/how-product-records-are-merged.md"
+    },
+    {
+      "path": "docs/use-cases-for-product-data",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/use-cases-for-product-data.md"
+    },
+    {
+      "path": "docs/product-use-cases",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-use-cases.md"
+    },
+    {
+      "path": "docs/searching-by-gtin",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/searching-by-gtin.md"
+    },
+    {
+      "path": "docs/lookup-products-by-brand-and-model-number",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/lookup-products-by-brand-and-model-number.md"
+    },
+    {
+      "path": "docs/train-llms-with-product-descriptions-and-review",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/train-llms-with-product-descriptions-and-review.md"
+    },
+    {
+      "path": "docs/pricing-analytics-for-pet-food",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/pricing-analytics-for-pet-food.md"
+    },
+    {
+      "path": "docs/cleanup-product-data-entered-by-customers",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/cleanup-product-data-entered-by-customers.md"
+    },
+    {
+      "path": "docs/build-a-database-of-wines",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/build-a-database-of-wines.md"
+    },
+    {
+      "path": "docs/provide-personalized-pricing-recommendations",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/provide-personalized-pricing-recommendations.md"
+    },
+    {
+      "path": "docs/match-products-against-a-competitor",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/match-products-against-a-competitor.md"
+    },
+    {
+      "path": "docs/search-for-smart-phones",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/search-for-smart-phones.md"
+    },
+    {
+      "path": "docs/finding-product-material-info",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/finding-product-material-info.md"
+    },
+    {
+      "path": "docs/product-api-features",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-api-features.md"
+    },
+    {
+      "path": "docs/product-count",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-count.md"
+    },
+    {
+      "path": "docs/product-pagination",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-pagination.md"
+    },
+    {
+      "path": "docs/api-business-data",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/api-business-data.md"
+    },
+    {
+      "path": "docs/getting-started-with-business-data",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/getting-started-with-business-data.md"
+    },
+    {
+      "path": "docs/business-data-with-postman",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-data-with-postman.md"
+    },
+    {
+      "path": "docs/business-data-with-php",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-data-with-php.md"
+    },
+    {
+      "path": "docs/business-data-with-python",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-data-with-python.md"
+    },
+    {
+      "path": "docs/business-data-with-nodejs",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-data-with-nodejs.md"
+    },
+    {
+      "path": "docs/business-data-with-curl",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-data-with-curl.md"
+    },
+    {
+      "path": "docs/business-data-schema",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-data-schema.md"
+    },
+    {
+      "path": "docs/how-business-records-are-merged",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/how-business-records-are-merged.md"
+    },
+    {
+      "path": "docs/business-field-type-breakdown",
+      "status": "ok",
+      "similarity": 50,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-field-type-breakdown.md"
+    },
+    {
+      "path": "docs/possible-values-for-business-fields",
+      "status": "ok",
+      "similarity": 92,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/possible-values-for-business-fields.md"
+    },
+    {
+      "path": "docs/business-view",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-view.md"
+    },
+    {
+      "path": "docs/available-views-for-business-data-1",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/available-views-for-business-data-1.md"
+    },
+    {
+      "path": "docs/constructing-business-queries",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/constructing-business-queries.md"
+    },
+    {
+      "path": "docs/constructing-advanced-business-data-queries-in-postman",
+      "status": "ok",
+      "similarity": 96,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/constructing-advanced-business-data-queries-in-postman.md"
+    },
+    {
+      "path": "docs/business-data-use-cases",
+      "status": "ok",
+      "similarity": 92,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-data-use-cases.md"
+    },
+    {
+      "path": "docs/business-use-cases",
+      "status": "ok",
+      "similarity": 94,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-use-cases.md"
+    },
+    {
+      "path": "docs/discover-business-revenue",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/discover-business-revenue.md"
+    },
+    {
+      "path": "docs/search-via-street-address-business",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/search-via-street-address-business.md"
+    },
+    {
+      "path": "docs/search-for-specific-restaurants",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/search-for-specific-restaurants.md"
+    },
+    {
+      "path": "docs/find-local-restaurants-using-geolocation",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-local-restaurants-using-geolocation.md"
+    },
+    {
+      "path": "docs/business-api-features",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-api-features.md"
+    },
+    {
+      "path": "docs/business-count",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-count.md"
+    },
+    {
+      "path": "docs/business-geolocation",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-geolocation.md"
+    },
+    {
+      "path": "docs/business-pagination",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-pagination.md"
+    },
+    {
+      "path": "docs/enrichment-suppression",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/enrichment-suppression.md"
+    },
+    {
+      "path": "docs/product-data-enrichment",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-data-enrichment.md"
+    },
+    {
+      "path": "docs/property-data-with-postman-and-json",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-with-postman-and-json.md"
+    },
+    {
+      "path": "docs/property-data-enrichment-with-csv",
+      "status": "ok",
+      "similarity": 96,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-enrichment-with-csv.md"
+    },
+    {
+      "path": "docs/property-data-enrichment-with-json",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-enrichment-with-json.md"
+    },
+    {
+      "path": "docs/property-data-suppression-with-postman",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-suppression-with-postman.md"
+    },
+    {
+      "path": "docs/real-time-data-request",
+      "status": "ok",
+      "similarity": 50,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/real-time-data-request.md"
+    },
+    {
+      "path": "docs/realtime-data-requests",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/realtime-data-requests.md"
+    },
+    {
+      "path": "docs/getting-started-with-realtime-updates",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/getting-started-with-realtime-updates.md"
+    },
+    {
+      "path": "docs/portal-introduction",
+      "status": "ok",
+      "similarity": 91,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/portal-introduction.md"
+    },
+    {
+      "path": "docs/how-credits-work-portal",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/how-credits-work-portal.md"
+    },
+    {
+      "path": "docs/portal-walkthrough",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/portal-walkthrough.md"
+    },
+    {
+      "path": "docs/settings",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/settings.md"
+    },
+    {
+      "path": "docs/billing",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/billing.md"
+    },
+    {
+      "path": "docs/downloading-result-files",
+      "status": "ok",
+      "similarity": 92,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/downloading-result-files.md"
+    },
+    {
+      "path": "docs/get-your-postman-collection-and-token",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/get-your-postman-collection-and-token.md"
+    },
+    {
+      "path": "docs/postman-endpoint-overview",
+      "status": "ok",
+      "similarity": 94,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/postman-endpoint-overview.md"
+    },
+    {
+      "path": "docs/postman-downloading-result-files",
+      "status": "ok",
+      "similarity": 94,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/postman-downloading-result-files.md"
+    },
+    {
+      "path": "docs/advanced-querying",
+      "status": "ok",
+      "similarity": 96,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/advanced-querying.md"
+    },
+    {
+      "path": "docs/property-data-portal",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-portal.md"
+    },
+    {
+      "path": "docs/property-data-features",
+      "status": "ok",
+      "similarity": 96,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/property-data-features.md"
+    },
+    {
+      "path": "docs/searching-by-address-in-property",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/searching-by-address-in-property.md"
+    },
+    {
+      "path": "docs/determine-home-values-portal",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/determine-home-values-portal.md"
+    },
+    {
+      "path": "docs/find-recently-sold-property",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-recently-sold-property.md"
+    },
+    {
+      "path": "docs/search-sites-for-commercial-development",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/search-sites-for-commercial-development.md"
+    },
+    {
+      "path": "docs/discover-when-clients-sell-their-homes-portal",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/discover-when-clients-sell-their-homes-portal.md"
+    },
+    {
+      "path": "docs/portal-property-data-views",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/portal-property-data-views.md"
+    },
+    {
+      "path": "docs/people-data-portal",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/people-data-portal.md"
+    },
+    {
+      "path": "docs/generate-leads-for-a-saas-business",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/generate-leads-for-a-saas-business.md"
+    },
+    {
+      "path": "docs/identifying-employees-targeted-by-cyberattacks",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/identifying-employees-targeted-by-cyberattacks.md"
+    },
+    {
+      "path": "docs/product-data-portal",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/product-data-portal.md"
+    },
+    {
+      "path": "docs/searching-by-upc-in-product-data",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/searching-by-upc-in-product-data.md"
+    },
+    {
+      "path": "docs/searching-by-sku-in-product-data",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/searching-by-sku-in-product-data.md"
+    },
+    {
+      "path": "docs/finding-compliance-features-in-product-data",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/finding-compliance-features-in-product-data.md"
+    },
+    {
+      "path": "docs/finding-highly-rated-products",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/finding-highly-rated-products.md"
+    },
+    {
+      "path": "docs/business-data-portal",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/business-data-portal.md"
+    },
+    {
+      "path": "docs/searching-restaurants",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/searching-restaurants.md"
+    },
+    {
+      "path": "docs/find-chain-restaurants-in-your-state",
+      "status": "ok",
+      "similarity": 93,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/find-chain-restaurants-in-your-state.md"
+    },
+    {
+      "path": "reference/search-and-downloads",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/reference/search-and-downloads.md"
+    },
+    {
+      "path": "reference/views",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/reference/views.md"
+    },
+    {
+      "path": "v3/docs/get-started",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/get-started.md"
+    },
+    {
+      "path": "v3/docs/getting-started-with-business-data",
+      "status": "ok",
+      "similarity": 87,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/getting-started-with-business-data.md"
+    },
+    {
+      "path": "v3/docs/business-data-with-web-browser-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/business-data-with-web-browser-csv.md"
+    },
+    {
+      "path": "v3/docs/business-data-with-postman-and-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/business-data-with-postman-and-csv.md"
+    },
+    {
+      "path": "v3/docs/business-data-with-curl-and-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/business-data-with-curl-and-csv.md"
+    },
+    {
+      "path": "v3/docs/business-data-with-php-and-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/business-data-with-php-and-csv.md"
+    },
+    {
+      "path": "v3/docs/business-data-with-nodejs-and-csv",
+      "status": "ok",
+      "similarity": 87,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/business-data-with-nodejs-and-csv.md"
+    },
+    {
+      "path": "v3/docs/business-data-with-python-and-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/business-data-with-python-and-csv.md"
+    },
+    {
+      "path": "v3/docs/business-data-with-web-browser-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/business-data-with-web-browser-and-json.md"
+    },
+    {
+      "path": "v3/docs/business-data-with-postman-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/business-data-with-postman-and-json.md"
+    },
+    {
+      "path": "v3/docs/business-data-with-curl-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/business-data-with-curl-and-json.md"
+    },
+    {
+      "path": "v3/docs/business-data-with-php-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/business-data-with-php-and-json.md"
+    },
+    {
+      "path": "v3/docs/business-data-with-nodejs-and-json",
+      "status": "ok",
+      "similarity": 92,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/business-data-with-nodejs-and-json.md"
+    },
+    {
+      "path": "v3/docs/business-data-with-python-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/business-data-with-python-and-json.md"
+    },
+    {
+      "path": "v3/docs/business-data-schema",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/business-data-schema.md"
+    },
+    {
+      "path": "v3/docs/available-views-for-business-data",
+      "status": "ok",
+      "similarity": 88,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/available-views-for-business-data.md"
+    },
+    {
+      "path": "v3/docs/businesses_all",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/businesses_all.md"
+    },
+    {
+      "path": "v3/docs/businesses_all_menusflat",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/businesses_all_menusflat.md"
+    },
+    {
+      "path": "v3/docs/businesses_all_nested",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/businesses_all_nested.md"
+    },
+    {
+      "path": "v3/docs/businesses_all_nested_no_reviews",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/businesses_all_nested_no_reviews.md"
+    },
+    {
+      "path": "v3/docs/businesses_basic",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/businesses_basic.md"
+    },
+    {
+      "path": "v3/docs/businesses_all_reviewsflat",
+      "status": "ok",
+      "similarity": 97,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/businesses_all_reviewsflat.md"
+    },
+    {
+      "path": "v3/docs/constructing-business-queries",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/constructing-business-queries.md"
+    },
+    {
+      "path": "v3/docs/getting-started-with-product-data",
+      "status": "ok",
+      "similarity": 87,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/getting-started-with-product-data.md"
+    },
+    {
+      "path": "v3/docs/product-data-with-web-browser-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/product-data-with-web-browser-csv.md"
+    },
+    {
+      "path": "v3/docs/product-data-with-postman-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/product-data-with-postman-csv.md"
+    },
+    {
+      "path": "v3/docs/product-data-with-curl-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/product-data-with-curl-csv.md"
+    },
+    {
+      "path": "v3/docs/product-data-with-php-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/product-data-with-php-csv.md"
+    },
+    {
+      "path": "v3/docs/product-data-with-nodejs-csv",
+      "status": "ok",
+      "similarity": 86,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/product-data-with-nodejs-csv.md"
+    },
+    {
+      "path": "v3/docs/product-data-with-python-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/product-data-with-python-csv.md"
+    },
+    {
+      "path": "v3/docs/product-data-with-web-browser-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/product-data-with-web-browser-and-json.md"
+    },
+    {
+      "path": "v3/docs/product-data-with-postman-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/product-data-with-postman-and-json.md"
+    },
+    {
+      "path": "v3/docs/product-data-with-curl-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/product-data-with-curl-and-json.md"
+    },
+    {
+      "path": "v3/docs/product-data-with-php-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/product-data-with-php-and-json.md"
+    },
+    {
+      "path": "v3/docs/product-data-with-nodejs-json",
+      "status": "ok",
+      "similarity": 92,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/product-data-with-nodejs-json.md"
+    },
+    {
+      "path": "v3/docs/product-data-with-python-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/product-data-with-python-and-json.md"
+    },
+    {
+      "path": "v3/docs/product-data-schema",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/product-data-schema.md"
+    },
+    {
+      "path": "v3/docs/available-views-for-product-data",
+      "status": "ok",
+      "similarity": 90,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/available-views-for-product-data.md"
+    },
+    {
+      "path": "v3/docs/products_all",
+      "status": "ok",
+      "similarity": 96,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/products_all.md"
+    },
+    {
+      "path": "v3/docs/products_basicfields",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/products_basicfields.md"
+    },
+    {
+      "path": "v3/docs/products_keyssourceurls",
+      "status": "ok",
+      "similarity": 92,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/products_keyssourceurls.md"
+    },
+    {
+      "path": "v3/docs/products_all_nested",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/products_all_nested.md"
+    },
+    {
+      "path": "v3/docs/products_pricesflat",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/products_pricesflat.md"
+    },
+    {
+      "path": "v3/docs/products_reviewsflat",
+      "status": "ok",
+      "similarity": 95,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/products_reviewsflat.md"
+    },
+    {
+      "path": "v3/docs/constructing-product-queries",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/constructing-product-queries.md"
+    },
+    {
+      "path": "v3/docs/getting-started-with-property-data",
+      "status": "ok",
+      "similarity": 87,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/getting-started-with-property-data.md"
+    },
+    {
+      "path": "v3/docs/property-data-with-web-browser-and-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/property-data-with-web-browser-and-csv.md"
+    },
+    {
+      "path": "v3/docs/property-data-with-postman-and-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/property-data-with-postman-and-csv.md"
+    },
+    {
+      "path": "v3/docs/property-data-with-curl-and-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/property-data-with-curl-and-csv.md"
+    },
+    {
+      "path": "v3/docs/property-data-with-php-and-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/property-data-with-php-and-csv.md"
+    },
+    {
+      "path": "v3/docs/property-data-with-nodejs-and-csv",
+      "status": "ok",
+      "similarity": 89,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/property-data-with-nodejs-and-csv.md"
+    },
+    {
+      "path": "v3/docs/property-data-with-python-and-csv",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/property-data-with-python-and-csv.md"
+    },
+    {
+      "path": "v3/docs/property-data-with-web-browser-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/property-data-with-web-browser-and-json.md"
+    },
+    {
+      "path": "v3/docs/property-data-with-postman-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/property-data-with-postman-and-json.md"
+    },
+    {
+      "path": "v3/docs/property-data-with-curl-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/property-data-with-curl-and-json.md"
+    },
+    {
+      "path": "v3/docs/property-data-with-php-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/property-data-with-php-and-json.md"
+    },
+    {
+      "path": "v3/docs/property-data-with-nodejs-and-json",
+      "status": "ok",
+      "similarity": 93,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/property-data-with-nodejs-and-json.md"
+    },
+    {
+      "path": "v3/docs/property-data-with-python-and-json",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/property-data-with-python-and-json.md"
+    },
+    {
+      "path": "v3/docs/property-data-schema",
+      "status": "ok",
+      "similarity": 87,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/property-data-schema.md"
+    },
+    {
+      "path": "v3/docs/possible-values-for-property-fields",
+      "status": "ok",
+      "similarity": 67,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/possible-values-for-property-fields.md"
+    },
+    {
+      "path": "v3/docs/available-views-for-property-data",
+      "status": "ok",
+      "similarity": 98,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/available-views-for-property-data.md"
+    },
+    {
+      "path": "v3/docs/properties_all",
+      "status": "ok",
+      "similarity": 81,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/properties_all.md"
+    },
+    {
+      "path": "v3/docs/properties_all_nested",
+      "status": "ok",
+      "similarity": 78,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/properties_all_nested.md"
+    },
+    {
+      "path": "v3/docs/constructing-property-queries",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/constructing-property-queries.md"
+    },
+    {
+      "path": "v3/docs/reference-values-for-property-schema",
+      "status": "ok",
+      "similarity": 94,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/reference-values-for-property-schema.md"
+    },
+    {
+      "path": "v3/docs/using-postman",
+      "status": "ok",
+      "similarity": 100,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/using-postman.md"
+    },
+    {
+      "path": "v3/docs/migrating-from-v3-to-v4",
+      "status": "ok",
+      "similarity": 99,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/migrating-from-v3-to-v4.md"
+    }
+  ],
+  "issues": [
+    {
+      "path": "docs/taxonomy-7-levels",
+      "status": "low_similarity",
+      "similarity": 46,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/taxonomy-7-levels.md"
+    },
+    {
+      "path": "docs/taxonomy-8-levels",
+      "status": "low_similarity",
+      "similarity": 34,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/taxonomy-8-levels.md"
+    },
+    {
+      "path": "docs/taxonomy-9-levels",
+      "status": "low_similarity",
+      "similarity": 37,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/docs/taxonomy-9-levels.md"
+    },
+    {
+      "path": "changelog/index",
+      "status": "low_similarity",
+      "similarity": 32,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/changelog.md"
+    },
+    {
+      "path": "v3/docs/getting-started-with-people-data-1",
+      "status": "low_similarity",
+      "similarity": 0,
+      "listOrderMatch": true,
+      "url": "https://docs.datafiniti.co/v3/docs/getting-started-with-people-data-1.md"
+    }
+  ],
+  "missing_local": [],
+  "source_404": [
+    {
+      "path": "v3/changelog/index",
+      "status": "source_404",
+      "url": "https://docs.datafiniti.co/v3/changelog/index.md"
+    }
+  ],
+  "fetch_error": [
+    {
+      "path": "docs/getting-started-with-people-data-1",
+      "status": "fetch_error",
+      "error": "HTTP 301",
+      "url": "https://docs.datafiniti.co/docs/getting-started-with-people-data-1.md"
+    }
+  ]
+}

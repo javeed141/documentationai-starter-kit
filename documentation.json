@@ -34,7 +34,8 @@
                       },
                       {
                         "title": "API Status Check",
-                        "href": "/reference/api-status-check"
+                        "href": "https://status.datafiniti.co/",
+                        "icon": "external-link"
                       }
                     ]
                   },

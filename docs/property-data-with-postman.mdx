@@ -4,14 +4,14 @@ title: Property Data with Postman
 
 For this guide, we're going to assume you're interested in using Datafiniti's property data to do some marketing analysis on homes in the US.  Let's say you're a data scientist that's been tasked with the following:
 
-1. Collect data on homes.
+1. Find which states have the most expensive homes.
 2. Sort the data by state.
-3. Find which states have the most expensive homes.
+3. Collect data on homes.
 
 **Your environment and data needs:**
 
-1. You're working with Postman.
-2. You want to work with CSV or JSON data.
+1. You want to work with CSV or JSON data.
+2. You're working with Postman.
 
 Here are the steps we'll take:
 
@@ -180,9 +180,9 @@ If you think about the original query we made, you'll realize we didn't really s
 
 This API call is different in a couple ways:
 
-1. It adds ` AND propertyType:"Single Family Dwelling"` to narrow down results to just US hotels.
+1. It adds `"format":"CSV",` to the code for outputting a csv format in the response.
 2. It changes `records=1` to `records=10` so we can look at more sample matches.
-3. It adds `"format":"CSV",` to the code for outputting a csv format in the response.
+3. It adds ` AND propertyType:"Single Family Dwelling"` to narrow down results to just US hotels.
 
 <Callout kind="info">
   **Format**
@@ -211,8 +211,8 @@ Once we like what we see from the sample matches, it's time to download a larger
 
 Here's what we changed:
 
-1. We changed `"num_records": 10` to `"num_records": 50`.  This will download the first 50 matching records.  If we wanted to download all matching records, we would remove `num_records`. `num_records` will tell the API to default to all available records.
-2. We added `"download": true`.  This tells the API to issue a download request instead of a search request.
+1. We added `"download": true`.  This tells the API to issue a download request instead of a search request.
+2. We changed `"num_records": 10` to `"num_records": 50`.  This will download the first 50 matching records.  If we wanted to download all matching records, we would remove `num_records`. `num_records` will tell the API to default to all available records.
 
 <Callout kind="alert">
   **Num_records**
